@@ -1,0 +1,17 @@
+{
+  "activity_status": "active",
+  "authors": [],
+  "commit_counts": {},
+  "days_since_last_commit": null,
+  "errors": [],
+  "features": {},
+  "gerrit_host": "gerrit.example.com",
+  "gerrit_project": "test-repo",
+  "gerrit_url": "https://gerrit.example.com/test-repo",
+  "has_any_commits": true,
+  "last_commit_timestamp": null,
+  "loc_stats": {},
+  "local_path": "/tmp/test-repo",
+  "total_commits_ever": 100,
+  "unique_contributors": {}
+}

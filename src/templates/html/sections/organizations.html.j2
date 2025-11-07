@@ -1,0 +1,40 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Section: Organizations (HTML) -#}
+{#- Renders the organizations section with top organization tables -#}
+{#-
+    Context required:
+        - organizations (dict): Organization data and lists
+        - config (dict): Configuration options
+
+    This section displays:
+        - Top organizations by commit count
+        - Organization statistics
+        - Contributor counts per organization
+-#}
+
+{% if config.include_sections.organizations and organizations.has_organizations %}
+<section id="organizations" class="report-section organizations-section">
+    <h2>Top Organizations</h2>
+
+    {% set columns = [
+        {'key': 'name', 'label': 'Organization', 'class': 'org-name'},
+        {'key': 'domain', 'label': 'Domain', 'class': 'domain'},
+        {'key': 'unique_contributors', 'label': 'Contributors'},
+        {'key': 'total_commits', 'label': 'Commits', 'format': 'number'},
+        {'key': 'repositories_count', 'label': 'Repositories'}
+    ] %}
+    {% set rows = organizations.top %}
+    {% set show_rank = true %}
+    {% set table_class = 'organizations-table' %}
+    {% include 'html/components/data_table.html.j2' %}
+
+    <p class="total-count">
+        <strong>Total Organizations:</strong> {{ organizations.total_count }}
+    </p>
+
+</section>
+{% endif %}

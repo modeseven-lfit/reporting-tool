@@ -1,0 +1,31 @@
+{
+  "commits": {
+    "1y": 100,
+    "30d": 10,
+    "90d": 30
+  },
+  "domain": "example.com",
+  "email": "john.doe@example.com",
+  "lines_added": {
+    "1y": 5000,
+    "30d": 500,
+    "90d": 1500
+  },
+  "lines_net": {
+    "1y": 3000,
+    "30d": 300,
+    "90d": 900
+  },
+  "lines_removed": {
+    "1y": 2000,
+    "30d": 200,
+    "90d": 600
+  },
+  "name": "John Doe",
+  "repositories_touched": {
+    "1y": 5,
+    "30d": 1,
+    "90d": 3
+  },
+  "username": "jdoe"
+}

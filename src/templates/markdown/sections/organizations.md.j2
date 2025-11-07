@@ -1,0 +1,31 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Section: Organizations -#}
+{#- Renders the organizations section with top organization tables -#}
+{#-
+    Context required:
+        - organizations (dict): Organization data and lists
+        - config (dict): Configuration options
+
+    This section displays:
+        - Top organizations by commit count
+        - Organization statistics
+        - Contributor counts per organization
+-#}
+
+{% if config.include_sections.organizations and organizations.has_organizations %}
+## Top Organizations
+
+| Rank | Organization | Domain | Contributors | Commits | Repositories |
+|------|--------------|--------|--------------|---------|--------------|
+{% for org in organizations.top %}
+| {{ loop.index }} | {{ org.name }} | {{ org.domain }} | {{ org.unique_contributors }} | {{ org.total_commits | format_number }} | {{ org.repositories_count }} |
+{% endfor %}
+
+**Total Organizations:** {{ organizations.total_count }}
+
+---
+{% endif %}

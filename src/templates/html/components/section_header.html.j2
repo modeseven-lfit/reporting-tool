@@ -1,0 +1,73 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Component: Section Header (HTML) -#}
+{#- Renders a consistent section header with optional metadata -#}
+{#-
+    Parameters:
+        - title (str): Section title (required)
+        - level (int): Heading level (2-6, default: 2)
+        - subtitle (str): Optional subtitle
+        - count (int): Optional item count to display
+        - id (str): Optional ID for the section (auto-generated from title if not provided)
+        - class (str): Optional CSS class for the header
+
+    Example usage:
+        {% set title = "Repository Analysis" %}
+        {% set count = 42 %}
+        {% include 'html/components/section_header.html.j2' with context %}
+-#}
+
+{% if level is not defined or not level or level < 2 or level > 6 %}
+    {% set level = 2 %}
+{% endif %}
+
+{#- Auto-generate ID from title if not provided -#}
+{% if id is not defined or not id %}
+    {% set id = title | slugify %}
+{% endif %}
+
+<header class="section-header {{ class if class is defined else '' }}">
+    {% if level == 2 %}
+    <h2 id="{{ id }}">
+        {{ title }}
+        {% if count is defined and count is not none %}
+        <span class="count">({{ count }})</span>
+        {% endif %}
+    </h2>
+    {% elif level == 3 %}
+    <h3 id="{{ id }}">
+        {{ title }}
+        {% if count is defined and count is not none %}
+        <span class="count">({{ count }})</span>
+        {% endif %}
+    </h3>
+    {% elif level == 4 %}
+    <h4 id="{{ id }}">
+        {{ title }}
+        {% if count is defined and count is not none %}
+        <span class="count">({{ count }})</span>
+        {% endif %}
+    </h4>
+    {% elif level == 5 %}
+    <h5 id="{{ id }}">
+        {{ title }}
+        {% if count is defined and count is not none %}
+        <span class="count">({{ count }})</span>
+        {% endif %}
+    </h5>
+    {% else %}
+    <h6 id="{{ id }}">
+        {{ title }}
+        {% if count is defined and count is not none %}
+        <span class="count">({{ count }})</span>
+        {% endif %}
+    </h6>
+    {% endif %}
+
+    {% if subtitle is defined and subtitle %}
+    <p class="subtitle">{{ subtitle }}</p>
+    {% endif %}
+</header>

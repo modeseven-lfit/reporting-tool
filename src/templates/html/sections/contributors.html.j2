@@ -1,0 +1,53 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Section: Contributors (HTML) -#}
+{#- Renders the contributors section with top contributor tables -#}
+{#-
+    Context required:
+        - contributors (dict): Contributor data and lists
+        - config (dict): Configuration options
+
+    This section displays:
+        - Top contributors by commit count
+        - Top contributors by lines of code
+        - Contributor statistics and rankings
+-#}
+
+{% if config.include_sections.contributors and contributors.has_contributors %}
+<section id="contributors" class="report-section contributors-section">
+    <h2>Top Contributors</h2>
+
+    <div class="subsection">
+        {% set title = "By Commit Count" %}
+        {% set columns = [
+            {'key': 'name', 'label': 'Contributor', 'class': 'contributor-name'},
+            {'key': 'email', 'label': 'Email', 'class': 'email'},
+            {'key': 'total_commits', 'label': 'Commits', 'format': 'number'},
+            {'key': 'repositories_count', 'label': 'Repositories'}
+        ] %}
+        {% set rows = contributors.top_by_commits %}
+        {% set show_rank = true %}
+        {% set table_class = 'contributors-table' %}
+        {% include 'html/components/data_table.html.j2' %}
+    </div>
+
+    <div class="subsection">
+        {% set title = "By Lines of Code" %}
+        {% set columns = [
+            {'key': 'name', 'label': 'Contributor', 'class': 'contributor-name'},
+            {'key': 'email', 'label': 'Email', 'class': 'email'},
+            {'key': 'total_lines_added', 'label': 'Lines Added', 'format': 'number'},
+            {'key': 'total_lines_removed', 'label': 'Lines Removed', 'format': 'number'},
+            {'key': 'net_lines', 'label': 'Net Lines', 'format': 'number'}
+        ] %}
+        {% set rows = contributors.top_by_loc %}
+        {% set show_rank = true %}
+        {% set table_class = 'contributors-table' %}
+        {% include 'html/components/data_table.html.j2' %}
+    </div>
+
+</section>
+{% endif %}

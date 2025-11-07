@@ -1,0 +1,32 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Section: Features -#}
+{#- Renders the features section with repository feature matrix -#}
+{#-
+    Context required:
+        - features (dict): Feature detection data and matrix
+        - config (dict): Configuration options
+
+    This section displays:
+        - Repository feature matrix showing which features are detected
+        - Feature counts and statistics
+        - Visual indicators for feature presence/absence
+-#}
+
+{% if config.include_sections.features and features.has_features %}
+## Repository Feature Matrix
+
+| Repository | {% for feature in features.features_list %}{{ feature }} | {% endfor %}
+|------------|{% for feature in features.features_list %}:---:|{% endfor %}
+{% for repo_data in features.matrix %}
+| {{ repo_data.repo_name }} | {% for feature in features.features_list %}{{ '✓' if repo_data.features[feature] else '✗' }} | {% endfor %}
+{% endfor %}
+
+**Features Detected:** {{ features.feature_count }}
+**Repositories Analyzed:** {{ features.repositories_count }}
+
+---
+{% endif %}

@@ -1,0 +1,40 @@
+[
+  {
+    "commits": {
+      "1y": 200
+    },
+    "domain": "unknown",
+    "email": "alice@example.com",
+    "lines_added": {
+      "1y": 10000
+    },
+    "lines_net": {
+      "1y": 5000
+    },
+    "lines_removed": {
+      "1y": 5000
+    },
+    "name": "Alice Developer",
+    "repositories_touched": {},
+    "username": ""
+  },
+  {
+    "commits": {
+      "1y": 150
+    },
+    "domain": "unknown",
+    "email": "bob@example.com",
+    "lines_added": {
+      "1y": 7500
+    },
+    "lines_net": {
+      "1y": 4500
+    },
+    "lines_removed": {
+      "1y": 3000
+    },
+    "name": "Bob Engineer",
+    "repositories_touched": {},
+    "username": ""
+  }
+]

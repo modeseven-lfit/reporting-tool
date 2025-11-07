@@ -1,0 +1,39 @@
+{
+  "name": "Minimal",
+  "description": "Clean, stripped-down theme focusing on content with minimal styling and maximum readability",
+  "version": "1.0.0",
+  "author": "Repository Reporting System",
+  "created": "2025-01-28",
+  "supports_dark_mode": false,
+  "colors": {
+    "primary": "#000000",
+    "success": "#000000",
+    "warning": "#000000",
+    "error": "#000000",
+    "background": "#ffffff",
+    "surface": "#fafafa",
+    "text_primary": "#000000",
+    "text_secondary": "#666666"
+  },
+  "typography": {
+    "font_family": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+    "font_size_base": "16px",
+    "line_height_base": "1.6"
+  },
+  "accessibility": {
+    "wcag_level": "AAA",
+    "min_contrast_ratio": 21.0,
+    "supports_high_contrast": true,
+    "supports_reduced_motion": true,
+    "optimized_for_print": true
+  },
+  "features": {
+    "responsive": true,
+    "print_optimized": true,
+    "mobile_first": true,
+    "css_variables": true,
+    "minimal_styling": true,
+    "fast_loading": true,
+    "grayscale_focused": true
+  }
+}

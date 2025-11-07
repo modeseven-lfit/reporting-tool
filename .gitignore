@@ -1,0 +1,93 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2025 The Linux Foundation
+
+testing/ONAP
+testing/reports
+testing/gerrit-clone.log
+
+# Gerrit server directories (server-specific naming)
+gerrit.*/
+gerrit-repos*/
+reports/
+test-repos/sample-repo
+
+# Temporary and binary files
+*~
+*.py[cod]
+*.so
+*.cfg
+!.isort.cfg
+!setup.cfg
+*.orig
+*.log
+*.pot
+__pycache__/*
+.cache/*
+.*.swp
+*/.ipynb_checkpoints/*
+.DS_Store
+
+# Project files
+.ropeproject
+.project
+.pydevproject
+.settings
+.idea
+.vscode
+tags
+
+# Package files
+*.egg
+*.eggs/
+.installed.cfg
+*.egg-info
+
+# Unittest and coverage
+htmlcov/*
+.coverage
+.coverage.*
+.tox
+junit*.xml
+coverage.xml
+.pytest_cache/
+
+# Build and docs folder/files
+build/*
+dist/*
+sdist/*
+docs/api/*
+docs/_rst/*
+docs/_build/*
+cover/*
+MANIFEST
+
+# Per-project virtualenvs
+.venv*/
+.conda*/
+
+# Node
+node_modules/*
+
+# Development artifacts (Phase 7 & 8 cleanup)
+.mypy_cache/
+.hypothesis/
+.benchmarks/
+test_artifacts/
+*.pyc
+*.pyo
+
+# Test outputs
+baseline_test_output.txt
+parallel_test_output.txt
+test_*.html
+
+# Temporary cleanup scripts
+cleanup_*.sh
+organize_*.sh
+
+# UV package manager
+.uv/
+uv.lock
+*.egg-info/
+dist/
+build/

@@ -1,0 +1,451 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/lfit/releng-reports/config-schema/v1.0.0",
+  "title": "Repository Reporting System Configuration Schema",
+  "description": "Schema for validating repository analysis configuration files",
+  "type": "object",
+  "required": [
+    "project",
+    "time_windows",
+    "activity_thresholds",
+    "schema_version"
+  ],
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Project identifier",
+      "minLength": 1,
+      "pattern": "^[a-zA-Z0-9_-]+$"
+    },
+    "output": {
+      "type": "object",
+      "required": [
+        "include_sections"
+      ],
+      "properties": {
+        "include_sections": {
+          "type": "object",
+          "properties": {
+            "contributors": {
+              "type": "boolean"
+            },
+            "organizations": {
+              "type": "boolean"
+            },
+            "repo_feature_matrix": {
+              "type": "boolean"
+            },
+            "inactive_distributions": {
+              "type": "boolean"
+            },
+            "global_summary": {
+              "type": "boolean"
+            },
+            "activity_distribution": {
+              "type": "boolean"
+            },
+            "all_repositories": {
+              "type": "boolean"
+            },
+            "contributor_leaderboards": {
+              "type": "boolean"
+            },
+            "organization_leaderboard": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "time_windows": {
+      "type": "object",
+      "description": "Time windows for analysis in days",
+      "required": [
+        "last_30_days",
+        "last_90_days",
+        "last_365_days",
+        "last_3_years"
+      ],
+      "properties": {
+        "last_30_days": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 30
+        },
+        "last_90_days": {
+          "type": "integer",
+          "minimum": 30,
+          "maximum": 90
+        },
+        "last_365_days": {
+          "type": "integer",
+          "minimum": 90,
+          "maximum": 365
+        },
+        "last_3_years": {
+          "type": "integer",
+          "minimum": 365,
+          "maximum": 1095
+        }
+      },
+      "additionalProperties": false
+    },
+    "activity_thresholds": {
+      "type": "object",
+      "description": "Thresholds for determining repository activity status",
+      "required": [
+        "current_days",
+        "active_days"
+      ],
+      "properties": {
+        "current_days": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Days threshold for 'current' status"
+        },
+        "active_days": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Days threshold for 'active' status"
+        }
+      },
+      "additionalProperties": false
+    },
+    "features": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "dependabot",
+              "github2gerrit_workflow",
+              "g2g",
+              "pre_commit",
+              "readthedocs",
+              "sonatype_config",
+              "project_types",
+              "workflows",
+              "gitreview",
+              "github_mirror"
+            ]
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "workflows": {
+      "type": "object",
+      "properties": {
+        "classify": {
+          "type": "object",
+          "properties": {
+            "verify": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "merge": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "performance": {
+      "type": "object",
+      "properties": {
+        "max_workers": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32,
+          "description": "Maximum number of concurrent workers"
+        },
+        "cache": {
+          "type": "boolean",
+          "description": "Enable caching of git metrics"
+        }
+      },
+      "additionalProperties": false
+    },
+    "render": {
+      "type": "object",
+      "properties": {
+        "show_net_lines": {
+          "type": "boolean"
+        },
+        "show_added_removed": {
+          "type": "boolean"
+        },
+        "abbreviate_large_numbers": {
+          "type": "boolean"
+        },
+        "large_number_threshold": {
+          "type": "integer",
+          "minimum": 100
+        },
+        "emoji": {
+          "type": "object",
+          "properties": {
+            "active": {
+              "type": "string",
+              "maxLength": 10
+            },
+            "inactive": {
+              "type": "string",
+              "maxLength": 10
+            },
+            "missing": {
+              "type": "string",
+              "maxLength": 10
+            },
+            "present": {
+              "type": "string",
+              "maxLength": 10
+            },
+            "very_old": {
+              "type": "string",
+              "maxLength": 10
+            },
+            "old": {
+              "type": "string",
+              "maxLength": 10
+            }
+          },
+          "additionalProperties": false
+        },
+        "max_repo_name_length": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 200
+        },
+        "max_author_name_length": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 100
+        }
+      },
+      "additionalProperties": false
+    },
+    "privacy": {
+      "type": "object",
+      "properties": {
+        "mask_emails": {
+          "type": "boolean"
+        },
+        "anonymize_authors": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "logging": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": [
+            "DEBUG",
+            "INFO",
+            "WARNING",
+            "ERROR"
+          ]
+        },
+        "include_timestamps": {
+          "type": "boolean"
+        },
+        "log_per_repo_timing": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "data_quality": {
+      "type": "object",
+      "properties": {
+        "unknown_email_placeholder": {
+          "type": "string",
+          "format": "email"
+        },
+        "skip_binary_changes": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "html_tables": {
+      "type": "object",
+      "properties": {
+        "sortable": {
+          "type": "boolean"
+        },
+        "searchable": {
+          "type": "boolean"
+        },
+        "pagination": {
+          "type": "boolean"
+        },
+        "entries_per_page": {
+          "type": "integer",
+          "minimum": 5,
+          "maximum": 500
+        },
+        "page_size_options": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 5
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "min_rows_for_sorting": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "gerrit": {
+      "type": "object",
+      "required": [
+        "enabled"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "host": {
+          "type": "string"
+        },
+        "base_url": {
+          "type": "string"
+        },
+        "timeout": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 300
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "enabled": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "host"
+            ]
+          }
+        }
+      ]
+    },
+    "jenkins": {
+      "type": "object",
+      "required": [
+        "enabled"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "host": {
+          "type": "string"
+        },
+        "timeout": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 300
+        }
+      },
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "enabled": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "host"
+            ]
+          }
+        }
+      ]
+    },
+    "extensions": {
+      "type": "object",
+      "properties": {
+        "github_api": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "token": {
+              "type": "string"
+            },
+            "timeout": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 300
+            },
+            "include_issues": {
+              "type": "boolean"
+            },
+            "include_prs": {
+              "type": "boolean"
+            },
+            "github_org": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "language_analysis": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "security_scanning": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Schema version for compatibility checking"
+    }
+  },
+  "additionalProperties": false
+}

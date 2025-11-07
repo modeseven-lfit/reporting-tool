@@ -1,0 +1,36 @@
+[
+  {
+    "activity_status": "current",
+    "authors": [],
+    "commit_counts": {},
+    "days_since_last_commit": null,
+    "errors": [],
+    "features": {},
+    "gerrit_host": "gerrit.example.com",
+    "gerrit_project": "project-a",
+    "gerrit_url": "https://gerrit.example.com/project-a",
+    "has_any_commits": true,
+    "last_commit_timestamp": null,
+    "loc_stats": {},
+    "local_path": "/repos/project-a",
+    "total_commits_ever": 1000,
+    "unique_contributors": {}
+  },
+  {
+    "activity_status": "active",
+    "authors": [],
+    "commit_counts": {},
+    "days_since_last_commit": null,
+    "errors": [],
+    "features": {},
+    "gerrit_host": "gerrit.example.com",
+    "gerrit_project": "project-b",
+    "gerrit_url": "https://gerrit.example.com/project-b",
+    "has_any_commits": true,
+    "last_commit_timestamp": null,
+    "loc_stats": {},
+    "local_path": "/repos/project-b",
+    "total_commits_ever": 500,
+    "unique_contributors": {}
+  }
+]

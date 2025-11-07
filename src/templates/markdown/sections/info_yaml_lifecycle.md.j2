@@ -1,0 +1,14 @@
+{# SPDX-License-Identifier: Apache-2.0 #}
+{# SPDX-FileCopyrightText: 2025 The Linux Foundation #}
+
+{#- Lifecycle State Summary Template (Markdown) -#}
+
+### Lifecycle State Summary
+
+| Lifecycle State | Gerrit Project Count | Percentage |
+|----------------|---------------------|------------|
+{% for summary in lifecycle_summaries %}
+| {{ summary.state }} | {{ summary.count }} | {{ summary.percentage|round(1) }}% |
+{% endfor %}
+
+**Total Projects:** {{ total_projects }}

@@ -1,0 +1,66 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Section: Repositories (HTML) -#}
+{#- Renders the repositories section with repository activity tables -#}
+{#-
+    Context required:
+        - repositories (dict): Repository data and counts
+        - config (dict): Configuration options
+
+    This section displays:
+        - All repositories table with activity metrics
+        - Repositories with no commits (if any)
+        - Repository counts and summaries
+-#}
+
+{% if config.include_sections.repositories and repositories.has_repositories %}
+<section id="repositories" class="report-section repositories-section">
+    <h2>All Repositories</h2>
+
+    {% if repositories.all_count > 0 %}
+    <div class="subsection">
+        {% set title = "Repository Activity Table" %}
+        {% set columns = [
+            {'key': 'gerrit_project', 'label': 'Repository', 'class': 'repo-name'},
+            {'key': 'last_commit_age', 'label': 'Last Commit Age', 'format': 'age'},
+            {'key': 'total_commits', 'label': 'Total Commits', 'format': 'number'},
+            {'key': 'unique_contributors', 'label': 'Contributors'},
+            {'key': 'activity_status', 'label': 'Status', 'class': 'status'},
+            {'key': 'jenkins_job_count', 'label': 'CI/CD Jobs'}
+        ] %}
+        {% set rows = repositories.all %}
+        {% set table_class = 'repository-table' %}
+        {% include 'html/components/data_table.html.j2' %}
+
+        <p class="total-count">
+            <strong>Total Repositories:</strong> {{ repositories.all_count }}
+        </p>
+    </div>
+    {% endif %}
+
+    {% if repositories.no_commits_count > 0 %}
+    <div class="subsection no-commits-section">
+        <h3>Repositories with No Commits</h3>
+
+        <p>The following repositories have no commit history:</p>
+
+        <ul class="no-commits-list">
+            {% for repo in repositories.no_commits %}
+            <li>
+                <strong>{{ repo.gerrit_project }}</strong>
+                <span class="state-badge">{{ repo.state | default('UNKNOWN') }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <p class="total-count">
+            <strong>Total:</strong> {{ repositories.no_commits_count }}
+        </p>
+    </div>
+    {% endif %}
+
+</section>
+{% endif %}

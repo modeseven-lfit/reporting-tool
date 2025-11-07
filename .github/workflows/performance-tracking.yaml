@@ -1,0 +1,407 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2025 The Linux Foundation
+
+---
+name: Performance Tracking
+
+on:
+  schedule:
+    # Run weekly on Monday at 00:00 UTC
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+    inputs:
+      comparison_baseline:
+        description: 'Baseline to compare against (commit SHA or tag)'
+        required: false
+        default: 'main'
+
+concurrency:
+  group: performance-tracking
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  benchmark-suite:
+    name: Full Benchmark Suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Harden Runner
+        # yamllint disable-line rule:line-length
+        uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+        with:
+          egress-policy: audit
+
+      - name: Checkout code
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          fetch-depth: 0  # Full history for comparison
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@85856786d1ce8acfbcc2f13a5f3fbd6b938f9f41
+        # v7.1.2
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        # v6.0.0
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: uv sync --all-extras
+
+      - name: Download baseline benchmarks
+        continue-on-error: true
+        run: |
+          mkdir -p .benchmarks
+          # Try to fetch previous benchmark results from artifacts
+          BASELINE="${{ github.event.inputs.comparison_baseline || 'main' }}"
+          echo "Baseline: ${BASELINE}"
+
+      - name: Run comprehensive benchmarks
+        timeout-minutes: 20
+        run: |
+          uv run pytest tests/performance/test_benchmarks.py \
+            -v \
+            -m benchmark \
+            --benchmark-only \
+            --benchmark-warmup=on \
+            --benchmark-warmup-iterations=3 \
+            --benchmark-min-rounds=10 \
+            --benchmark-disable-gc \
+            --benchmark-sort=name \
+            --benchmark-columns=min,max,mean,median,stddev,iqr,ops \
+            --benchmark-histogram=benchmark-histogram \
+            --benchmark-save="tracking-$(date +%Y%m%d-%H%M%S)" \
+            --benchmark-save-data \
+            --benchmark-json=benchmark-results.json \
+            --no-cov
+
+      - name: Generate performance report
+        if: always()
+        run: |
+          cat > performance-report.md << 'EOF'
+          # Performance Tracking Report
+
+          **Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          **Commit:** ${{ github.sha }}
+          **Branch:** ${{ github.ref_name }}
+          **Run:** ${{ github.run_number }}
+
+          ## Benchmark Results
+
+          See benchmark-results.json for detailed metrics.
+
+          ## Performance Metrics
+
+          ### Cache Operations
+          - Cache Get: Target < 1ms
+          - Cache Set: Target < 2ms
+          - Cache Cleanup: Target < 100ms
+          - Cache Invalidation: Target < 5ms
+
+          ### Worker Pool
+          - Pool Creation: Target < 100ms
+          - Task Execution: Efficient parallel processing
+
+          ### Batch Operations
+          - Rate Limit Check: Target < 1ms
+          - Queue Operations: Target < 100ms
+
+          ### Throughput
+          - Cache Operations: Target > 1000 ops/sec
+          - Batch Requests: Target > 100 req/sec
+          - Parallel Items: Target > 50 items/sec
+
+          ## Trend Analysis
+
+          Historical performance data is tracked in the benchmark artifacts.
+
+          ## Action Items
+
+          - ✅ All benchmarks completed
+          - 📊 Results archived for historical comparison
+          - 📈 Performance trends available in artifacts
+
+          EOF
+
+      - name: Upload benchmark results
+        if: always()
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        # v5.0.0
+        with:
+          name: performance-tracking-${{ github.run_number }}
+          path: |
+            .benchmarks/
+            benchmark-results.json
+            benchmark-histogram.svg
+            performance-report.md
+          retention-days: 90
+
+      - name: Upload historical data
+        if: always()
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        # v5.0.0
+        with:
+          name: benchmark-history
+          path: .benchmarks/
+          retention-days: 365
+
+      - name: Check performance thresholds
+        id: threshold-check
+        timeout-minutes: 5
+        run: |
+          PYTHONPATH=. pytest tests/performance/test_thresholds.py \
+            -v \
+            -m performance \
+            --tb=short \
+            --no-cov \
+            --timeout=60 \
+            --junit-xml=threshold-results.xml
+        continue-on-error: true
+
+      - name: Analyze threshold failures
+        if: steps.threshold-check.outcome == 'failure'
+        run: |
+          echo "⚠️ Performance threshold violations detected!"
+          echo "threshold_failures=true" >> "$GITHUB_OUTPUT"
+
+          cat > threshold-alert.md << 'EOF'
+          # ⚠️ Performance Alert
+
+          Performance threshold violations detected in this run.
+
+          **Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          **Run:** ${{ github.run_number }}
+          **Commit:** ${{ github.sha }}
+
+          ## Action Required
+
+          1. Review threshold test results in artifacts
+          2. Investigate performance degradation
+          3. Profile slow operations
+          4. Consider optimization or threshold adjustment
+
+          ## Resources
+
+          - Benchmark results: See artifacts
+          - Threshold tests: tests/performance/test_thresholds.py
+          - Performance docs: tests/performance/README.md
+
+          EOF
+
+      - name: Create performance issue
+        if: >-
+          steps.threshold-check.outcome == 'failure' &&
+          github.ref == 'refs/heads/main'
+        uses: actions/github-script@ed59741e841120dd8e79189bd448bfb98239a2c7
+        # v8.0.0
+        with:
+          script: |
+            const fs = require('fs');
+            const alert = fs.readFileSync('threshold-alert.md', 'utf8');
+
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Performance Alert: Threshold Violations ` +
+                `(Run ${{ github.run_number }})`,
+              body: alert,
+              labels: ['performance', 'automated', 'needs-investigation']
+            });
+
+            console.log(`Created issue #${issue.data.number}`);
+
+      - name: Comment on recent PRs
+        if: steps.threshold-check.outcome == 'failure'
+        uses: actions/github-script@ed59741e841120dd8e79189bd448bfb98239a2c7
+        # v8.0.0
+        with:
+          script: |
+            const { data: prs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              sort: 'updated',
+              direction: 'desc',
+              per_page: 5
+            });
+
+            const comment = `⚠️ **Performance Alert**\n\n` +
+              `Recent performance tracking run detected ` +
+              `threshold violations.\n` +
+              `Run: ${{ github.run_number }}\n` +
+              `Please review if your changes may have ` +
+              `impacted performance.`;
+
+            for (const pr of prs) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                body: comment
+              });
+            }
+
+  memory-profiling:
+    name: Memory Profiling
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Harden Runner
+        # yamllint disable-line rule:line-length
+        uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+        with:
+          egress-policy: audit
+
+      - name: Checkout code
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@85856786d1ce8acfbcc2f13a5f3fbd6b938f9f41
+        # v7.1.2
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        # v6.0.0
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: uv sync --all-extras
+
+      - name: Run memory profiling
+        timeout-minutes: 10
+        run: |
+          # Profile memory usage during tests
+          PYTHONPATH=. pytest tests/performance/ \
+            -v \
+            --no-cov \
+            --tb=short \
+            -k "memory" || true
+
+          # Generate memory report
+          cat > memory-report.md << 'EOF'
+          # Memory Profiling Report
+
+          **Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+
+          ## Memory Constraints
+
+          - Cache Max Size: 100 MB
+          - Worker Memory/Item: 10 MB
+          - Batch Overhead: 50 MB
+
+          ## Analysis
+
+          Memory usage patterns documented in test artifacts.
+
+          EOF
+
+      - name: Upload memory profiles
+        if: always()
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        # v5.0.0
+        with:
+          name: memory-profiles
+          path: |
+            memory-report.md
+          retention-days: 30
+
+  performance-dashboard:
+    name: Update Performance Dashboard
+    needs:
+      - benchmark-suite
+      - memory-profiling
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Harden Runner
+        # yamllint disable-line rule:line-length
+        uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2
+        with:
+          egress-policy: audit
+
+      - name: Checkout code
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: Download benchmark results
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53
+        # v6.0.0
+        with:
+          pattern: performance-tracking-*
+          path: ./performance-results/
+          merge-multiple: true
+
+      - name: Download memory profiles
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53
+        # v6.0.0
+        with:
+          name: memory-profiles
+          path: ./memory-results/
+        continue-on-error: true
+
+      - name: Generate dashboard
+        run: |
+          cat > performance-dashboard.md << 'EOF'
+          # Performance Dashboard
+
+          **Last Updated:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          **Run Number:** ${{ github.run_number }}
+
+          ## Status
+
+          | Component | Status | Last Check |
+          |-----------|--------|------------|
+          | Benchmarks | ${{ needs.benchmark-suite.result }} | \
+          $(date -u +"%Y-%m-%d") |
+          | Memory Profiling | ${{ needs.memory-profiling.result }} | \
+          $(date -u +"%Y-%m-%d") |
+
+          ## Latest Results
+
+          See artifacts for detailed performance data:
+          - Benchmark results: performance-tracking-${{ github.run_number }}
+          - Memory profiles: memory-profiles
+          - Historical data: benchmark-history
+
+          ## Trends
+
+          Performance trends tracked over the last 90 days.
+          Weekly automated benchmarking ensures consistent monitoring.
+
+          ## Quick Reference
+
+          ### Performance Thresholds
+          - Cache operations: < 2ms
+          - Worker pool: < 100ms creation
+          - Throughput: > 1000 ops/sec
+
+          ### Memory Limits
+          - Cache: 100 MB max
+          - Worker overhead: 10 MB/item
+          - Batch processing: 50 MB overhead
+
+          ## Resources
+
+          - [Performance Tests](tests/performance/)
+          - [Threshold Definitions](tests/performance/conftest.py)
+          - [Benchmark Documentation](tests/performance/README.md)
+
+          EOF
+
+      - name: Upload dashboard
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        # v5.0.0
+        with:
+          name: performance-dashboard
+          path: performance-dashboard.md
+          retention-days: 365

@@ -1,0 +1,41 @@
+{
+  "activity_status": "inactive",
+  "authors": [],
+  "commit_counts": {
+    "1y": 0,
+    "30d": 0,
+    "90d": 0
+  },
+  "days_since_last_commit": 1300,
+  "errors": [],
+  "features": {},
+  "gerrit_host": "gerrit.example.com",
+  "gerrit_project": "archived/old-project",
+  "gerrit_url": "https://gerrit.example.com/archived/old-project",
+  "has_any_commits": true,
+  "last_commit_timestamp": "2020-06-01T10:00:00Z",
+  "loc_stats": {
+    "1y": {
+      "added": 0,
+      "net": 0,
+      "removed": 0
+    },
+    "30d": {
+      "added": 0,
+      "net": 0,
+      "removed": 0
+    },
+    "90d": {
+      "added": 0,
+      "net": 0,
+      "removed": 0
+    }
+  },
+  "local_path": "/repos/archived/old-project",
+  "total_commits_ever": 500,
+  "unique_contributors": {
+    "1y": 0,
+    "30d": 0,
+    "90d": 0
+  }
+}

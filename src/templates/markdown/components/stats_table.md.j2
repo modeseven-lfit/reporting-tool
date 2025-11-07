@@ -1,0 +1,36 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Component: Statistics Table -#}
+{#- Renders a two-column statistics table with metric names and values -#}
+{#-
+    Parameters:
+        - title (str): Optional section title
+        - stats (list): List of dicts with 'metric', 'value', and optional 'total' keys
+        - show_total (bool): Whether to show total column (default: true)
+
+    Example usage:
+        {% include 'markdown/components/stats_table.md.j2' with context %}
+-#}
+
+{% if title is defined and title %}
+### {{ title }}
+{% endif %}
+
+{% if show_total is not defined %}{% set show_total = true %}{% endif %}
+
+{% if show_total %}
+| Metric | Value | Total |
+|--------|-------|-------|
+{% for stat in stats %}
+| {{ stat.metric }} | {{ stat.value }} | {{ stat.total | default('-') }} |
+{% endfor %}
+{% else %}
+| Metric | Value |
+|--------|-------|
+{% for stat in stats %}
+| {{ stat.metric }} | {{ stat.value }} |
+{% endfor %}
+{% endif %}

@@ -1,0 +1,48 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Component: Repository Table -#}
+{#- Renders a table of repository information -#}
+{#-
+    Parameters:
+        - repositories (list): List of repository dicts
+        - columns (list): Optional list of columns to display
+        - title (str): Optional section title
+
+    Available columns:
+        - name: Repository name
+        - age: Last commit age
+        - commits: Total commits
+        - contributors: Contributor count
+        - status: Activity status
+        - jobs: CI/CD job count
+        - lines_added: Lines added
+        - lines_removed: Lines removed
+        - net_lines: Net lines of code
+
+    Example usage:
+        {% set columns = ['name', 'age', 'commits', 'contributors', 'status'] %}
+        {% include 'markdown/components/repo_table.md.j2' with context %}
+-#}
+
+{% if title is defined and title %}
+### {{ title }}
+{% endif %}
+
+{% if not columns %}
+    {% set columns = ['name', 'age', 'commits', 'contributors', 'status', 'jobs'] %}
+{% endif %}
+
+{#- Build header row -#}
+|{% for col in columns %}{% if col == 'name' %} Repository |{% elif col == 'age' %} Last Commit Age |{% elif col == 'commits' %} Total Commits |{% elif col == 'contributors' %} Contributors |{% elif col == 'status' %} Status |{% elif col == 'jobs' %} CI/CD Jobs |{% elif col == 'lines_added' %} Lines Added |{% elif col == 'lines_removed' %} Lines Removed |{% elif col == 'net_lines' %} Net Lines |{% endif %}{% endfor %}
+
+{#- Build separator row -#}
+|{% for col in columns %}{% if col == 'name' %}----------|{% elif col == 'age' %}-----------------|{% elif col == 'commits' %}---------------|{% elif col == 'contributors' %}--------------|{% elif col == 'status' %}--------|{% elif col == 'jobs' %}------------|{% elif col == 'lines_added' %}--------------|{% elif col == 'lines_removed' %}----------------|{% elif col == 'net_lines' %}-----------|{% endif %}{% endfor %}
+
+{#- Build data rows -#}
+{% for repo in repo_list if repo_list is defined else repositories %}
+|{% for col in columns %}{% if col == 'name' %} {{ repo.gerrit_project | default(repo.name) }} |{% elif col == 'age' %} {{ repo.last_commit_age | format_age }} |{% elif col == 'commits' %} {{ repo.total_commits | format_number }} |{% elif col == 'contributors' %} {{ repo.unique_contributors | default(0) }} |{% elif col == 'status' %} {{ repo.activity_status | default('UNKNOWN') }} |{% elif col == 'jobs' %} {{ repo.jenkins_job_count | default(0) }} |{% elif col == 'lines_added' %} {{ repo.total_lines_added | format_number }} |{% elif col == 'lines_removed' %} {{ repo.total_lines_removed | format_number }} |{% elif col == 'net_lines' %} {{ repo.net_lines | format_number }} |{% endif %}{% endfor %}
+
+{% endfor %}

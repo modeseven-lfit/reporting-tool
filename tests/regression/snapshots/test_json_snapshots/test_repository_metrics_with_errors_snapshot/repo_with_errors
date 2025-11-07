@@ -1,0 +1,21 @@
+{
+  "activity_status": "inactive",
+  "authors": [],
+  "commit_counts": {},
+  "days_since_last_commit": null,
+  "errors": [
+    "Failed to parse commit: abc123",
+    "Invalid author email: malformed@",
+    "Timeout during git log operation"
+  ],
+  "features": {},
+  "gerrit_host": "gerrit.example.com",
+  "gerrit_project": "problem/repo",
+  "gerrit_url": "https://gerrit.example.com/problem/repo",
+  "has_any_commits": false,
+  "last_commit_timestamp": null,
+  "loc_stats": {},
+  "local_path": "/repos/problem/repo",
+  "total_commits_ever": 0,
+  "unique_contributors": {}
+}

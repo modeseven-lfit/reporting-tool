@@ -1,0 +1,149 @@
+{# SPDX-License-Identifier: Apache-2.0 #}
+{# SPDX-FileCopyrightText: 2025 The Linux Foundation #}
+
+{#- INFO.yaml Committer Report Template (Markdown) -#}
+
+## 📋 Committer INFO.yaml Report
+
+This report shows project information from INFO.yaml files, including lifecycle state, project leads, and committer activity status.
+
+{% if group_by_server %}
+{#- Group projects by Gerrit server -#}
+{% for server, server_projects in projects_by_server.items()|sort %}
+
+### {{ server }}
+
+| Project | Creation Date | Lifecycle State | Project Lead | Committers |
+|---------|---------------|-----------------|--------------|------------|
+{% for project in server_projects|sort(attribute='project_name') %}
+{%- set issue_tracking = project.issue_tracking -%}
+{%- set project_lead = project.project_lead -%}
+{%- set committers = project.committers -%}
+
+{#- Format project name with issue tracker link -#}
+{%- if issue_tracking.url -%}
+  {%- if issue_tracking.is_valid -%}
+    {%- set project_name_display = '<a href="' ~ issue_tracking.url ~ '" target="_blank">' ~ project.project_name ~ '</a>' -%}
+  {%- else -%}
+    {%- set error_msg = issue_tracking.validation_error|default('Unknown error') -%}
+    {%- set project_name_display = '<span style="color: red;" title="⚠️ Broken project issue-tracker link: ' ~ error_msg ~ '">' ~ project.project_name ~ '</span>' -%}
+  {%- endif -%}
+{%- else -%}
+  {%- set project_name_display = project.project_name -%}
+{%- endif -%}
+
+{#- Find project lead in committers for activity status -#}
+{%- set lead_name = project_lead.name if project_lead else 'Unknown' -%}
+{%- set lead_committer = None -%}
+{%- for c in committers -%}
+  {%- if c.name == lead_name -%}
+    {%- set lead_committer = c -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{#- Format project lead with color -#}
+{%- if lead_committer -%}
+  {%- if lead_committer.activity_color == 'green' -%}
+    {%- set lead_display = '<span style="color: green;" title="✅ Current - commits within last 365 days">' ~ lead_name ~ '</span>' -%}
+  {%- elif lead_committer.activity_color == 'orange' -%}
+    {%- set lead_display = '<span style="color: orange;" title="☑️ Active - commits between 365-1095 days">' ~ lead_name ~ '</span>' -%}
+  {%- elif lead_committer.activity_color == 'red' -%}
+    {%- set lead_display = '<span style="color: red;" title="🛑 Inactive - no commits in 1095+ days">' ~ lead_name ~ '</span>' -%}
+  {%- else -%}
+    {%- set lead_display = '<span style="color: gray;" title="Unknown activity status">' ~ lead_name ~ '</span>' -%}
+  {%- endif -%}
+{%- else -%}
+  {%- set lead_display = '<span style="color: gray;" title="Unknown activity status">' ~ lead_name ~ '</span>' -%}
+{%- endif -%}
+
+{#- Format committers (excluding project lead) -#}
+{%- set committer_list = [] -%}
+{%- for c in committers -%}
+  {%- if c.name != lead_name -%}
+    {%- if c.activity_color == 'green' -%}
+      {%- set colored_name = '<span style="color: green;" title="✅ Current - commits within last 365 days">' ~ c.name ~ '</span>' -%}
+    {%- elif c.activity_color == 'orange' -%}
+      {%- set colored_name = '<span style="color: orange;" title="☑️ Active - commits between 365-1095 days">' ~ c.name ~ '</span>' -%}
+    {%- elif c.activity_color == 'red' -%}
+      {%- set colored_name = '<span style="color: red;" title="🛑 Inactive - no commits in 1095+ days">' ~ c.name ~ '</span>' -%}
+    {%- else -%}
+      {%- set colored_name = '<span style="color: gray;" title="Unknown activity status">' ~ c.name ~ '</span>' -%}
+    {%- endif -%}
+    {%- set _ = committer_list.append(colored_name) -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- set committers_display = committer_list|join('<br>') if committer_list else 'None' -%}
+
+| {{ project_name_display }} | {{ project.creation_date }} | {{ project.lifecycle_state }} | {{ lead_display }} | {{ committers_display }} |
+{% endfor %}
+
+{% endfor %}
+
+{% else %}
+{#- Single table for all projects -#}
+
+| Project | Creation Date | Lifecycle State | Project Lead | Committers |
+|---------|---------------|-----------------|--------------|------------|
+{% for project in projects|sort(attribute='project_name') %}
+{%- set issue_tracking = project.issue_tracking -%}
+{%- set project_lead = project.project_lead -%}
+{%- set committers = project.committers -%}
+
+{#- Format project name with issue tracker link -#}
+{%- if issue_tracking.url -%}
+  {%- if issue_tracking.is_valid -%}
+    {%- set project_name_display = '<a href="' ~ issue_tracking.url ~ '" target="_blank">' ~ project.project_name ~ '</a>' -%}
+  {%- else -%}
+    {%- set error_msg = issue_tracking.validation_error|default('Unknown error') -%}
+    {%- set project_name_display = '<span style="color: red;" title="⚠️ Broken project issue-tracker link: ' ~ error_msg ~ '">' ~ project.project_name ~ '</span>' -%}
+  {%- endif -%}
+{%- else -%}
+  {%- set project_name_display = project.project_name -%}
+{%- endif -%}
+
+{#- Find project lead in committers for activity status -#}
+{%- set lead_name = project_lead.name if project_lead else 'Unknown' -%}
+{%- set lead_committer = None -%}
+{%- for c in committers -%}
+  {%- if c.name == lead_name -%}
+    {%- set lead_committer = c -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{#- Format project lead with color -#}
+{%- if lead_committer -%}
+  {%- if lead_committer.activity_color == 'green' -%}
+    {%- set lead_display = '<span style="color: green;" title="✅ Current - commits within last 365 days">' ~ lead_name ~ '</span>' -%}
+  {%- elif lead_committer.activity_color == 'orange' -%}
+    {%- set lead_display = '<span style="color: orange;" title="☑️ Active - commits between 365-1095 days">' ~ lead_name ~ '</span>' -%}
+  {%- elif lead_committer.activity_color == 'red' -%}
+    {%- set lead_display = '<span style="color: red;" title="🛑 Inactive - no commits in 1095+ days">' ~ lead_name ~ '</span>' -%}
+  {%- else -%}
+    {%- set lead_display = '<span style="color: gray;" title="Unknown activity status">' ~ lead_name ~ '</span>' -%}
+  {%- endif -%}
+{%- else -%}
+  {%- set lead_display = '<span style="color: gray;" title="Unknown activity status">' ~ lead_name ~ '</span>' -%}
+{%- endif -%}
+
+{#- Format committers (excluding project lead) -#}
+{%- set committer_list = [] -%}
+{%- for c in committers -%}
+  {%- if c.name != lead_name -%}
+    {%- if c.activity_color == 'green' -%}
+      {%- set colored_name = '<span style="color: green;" title="✅ Current - commits within last 365 days">' ~ c.name ~ '</span>' -%}
+    {%- elif c.activity_color == 'orange' -%}
+      {%- set colored_name = '<span style="color: orange;" title="☑️ Active - commits between 365-1095 days">' ~ c.name ~ '</span>' -%}
+    {%- elif c.activity_color == 'red' -%}
+      {%- set colored_name = '<span style="color: red;" title="🛑 Inactive - no commits in 1095+ days">' ~ c.name ~ '</span>' -%}
+    {%- else -%}
+      {%- set colored_name = '<span style="color: gray;" title="Unknown activity status">' ~ c.name ~ '</span>' -%}
+    {%- endif -%}
+    {%- set _ = committer_list.append(colored_name) -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- set committers_display = committer_list|join('<br>') if committer_list else 'None' -%}
+
+| {{ project_name_display }} | {{ project.creation_date }} | {{ project.lifecycle_state }} | {{ lead_display }} | {{ committers_display }} |
+{% endfor %}
+
+{% endif %}

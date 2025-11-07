@@ -1,0 +1,761 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2025 The Linux Foundation
+
+"""
+Test Utilities - Subprocess handling and common test helpers.
+
+This module provides test utility functions including subprocess handling
+with automatic timeout management to prevent test hangs.
+
+Phase 14: Test Reliability - Subprocess timeout utilities
+Phase 14, Step 3, Phase 4: Enhanced error messages and diagnostic utilities
+"""
+
+import functools
+import json
+import os
+import subprocess
+import time
+import traceback
+from contextlib import contextmanager
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Callable, Dict, List, Optional, Union</parameter>
+</invoke>
+
+
+# Standard timeout values for different git operations
+DEFAULT_TEST_TIMEOUTS = {
+    'git_log': 30,          # git log operations
+    'git_shortlog': 20,     # git shortlog operations
+    'git_diff': 45,         # git diff operations
+    'git_clone': 300,       # git clone (5 minutes)
+    'git_fast_import': 60,  # bulk import operations
+    'git_config': 5,        # configuration operations
+    'git_init': 10,         # repository initialization
+    'git_add': 15,          # staging operations
+    'git_commit': 15,       # commit operations
+    'git_checkout': 10,     # branch operations
+    'git_rev_list': 30,     # revision listing
+    'default': 10,          # default for all other operations
+}
+
+
+def run_git_command_safe(
+    args: List[str],
+    cwd: Optional[Union[str, Path]] = None,
+    timeout: Optional[int] = None,
+    check: bool = True,
+    capture_output: bool = True,
+    text: bool = True,
+    **kwargs
+) -> subprocess.CompletedProcess:
+    """
+    Run a git command with automatic timeout handling.
+
+    This is a test utility function that ensures all git commands
+    have appropriate timeouts to prevent test hangs.
+
+    Args:
+        args: Command arguments (including 'git')
+        cwd: Working directory
+        timeout: Timeout in seconds (auto-detected from command if None)
+        check: Raise exception on non-zero exit code
+        capture_output: Capture stdout/stderr
+        text: Return output as text (not bytes)
+        **kwargs: Additional subprocess.run arguments
+
+    Returns:
+        subprocess.CompletedProcess result
+
+    Raises:
+        subprocess.TimeoutExpired: If command times out
+        subprocess.CalledProcessError: If command fails and check=True
+
+    Example:
+        >>> result = run_git_command_safe(
+        ...     ["git", "log", "--oneline"],
+        ...     cwd=repo_path
+        ... )
+        >>> print(result.stdout)
+    """
+    # Auto-detect timeout based on git command
+    if timeout is None:
+        if len(args) >= 2 and args[0] == 'git':
+            git_cmd = args[1]
+            # Map git command to timeout category
+            timeout_key = {
+                'log': 'git_log',
+                'shortlog': 'git_shortlog',
+                'diff': 'git_diff',
+                'clone': 'git_clone',
+                'fast-import': 'git_fast_import',
+                'config': 'git_config',
+                'init': 'git_init',
+                'add': 'git_add',
+                'commit': 'git_commit',
+                'checkout': 'git_checkout',
+                'rev-list': 'git_rev_list',
+            }.get(git_cmd, 'default')
+            timeout = DEFAULT_TEST_TIMEOUTS[timeout_key]
+        else:
+            timeout = DEFAULT_TEST_TIMEOUTS['default']
+
+    return subprocess.run(
+        args,
+        cwd=cwd,
+        timeout=timeout,
+        check=check,
+        capture_output=capture_output,
+        text=text,
+        **kwargs
+    )
+
+
+def retry_on_failure(
+    max_attempts: int = 3,
+    delay: float = 1.0,
+    backoff: float = 2.0,
+    exceptions: tuple = (AssertionError,)
+):
+    """
+    Decorator to retry a test function on failure with exponential backoff.
+
+    This is useful for tests that are occasionally flaky due to timing issues,
+    race conditions, or external dependencies.
+
+    Args:
+        max_attempts: Maximum number of retry attempts (default: 3)
+        delay: Initial delay in seconds before first retry (default: 1.0)
+        backoff: Multiplier for delay after each retry (default: 2.0)
+        exceptions: Tuple of exception types to catch and retry (default: AssertionError)
+
+    Returns:
+        Decorated test function
+
+    Example:
+        >>> @retry_on_failure(max_attempts=3, delay=0.5, backoff=2)
+        ... def test_flaky_operation():
+        ...     # Test that occasionally fails due to timing
+        ...     result = perform_async_operation()
+        ...     assert result == expected
+
+    Note:
+        - Retry attempts are logged to help identify flaky tests
+        - If all retries fail, the last exception is raised
+        - Use sparingly - prefer fixing root cause over retrying
+    """
+    def decorator(func: Callable) -> Callable:
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            attempt = 1
+            current_delay = delay
+            last_exception = None
+
+            while attempt <= max_attempts:
+                try:
+                    return func(*args, **kwargs)
+                except exceptions as e:
+                    last_exception = e
+
+                    if attempt == max_attempts:
+                        # Last attempt failed, raise the exception
+                        print(f"\n❌ Test '{func.__name__}' failed after {max_attempts} attempts")
+                        raise
+
+                    # Log retry attempt
+                    print(f"\n⚠️  Test '{func.__name__}' failed (attempt {attempt}/{max_attempts})")
+                    print(f"   Error: {str(e)[:100]}")
+                    print(f"   Retrying in {current_delay:.1f}s...")
+
+                    time.sleep(current_delay)
+                    current_delay *= backoff
+                    attempt += 1
+
+            # Should never reach here, but just in case
+            if last_exception:
+                raise last_exception
+
+        return wrapper
+    return decorator
+
+
+def mark_flaky(reason: str = "Test is known to be flaky"):
+    """
+    Mark a test as flaky with automatic retry logic.
+
+    This is a convenience wrapper around retry_on_failure with sensible
+    defaults for flaky tests. It also documents why the test is flaky.
+
+    Args:
+        reason: Description of why the test is flaky
+
+    Returns:
+        Decorated test function with retry logic
+
+    Example:
+        >>> @mark_flaky(reason="Timing-dependent test with race conditions")
+        ... def test_concurrent_operations():
+        ...     # Test code here
+        ...     pass
+    """
+    def decorator(func: Callable) -> Callable:
+        # Add flaky marker to function metadata
+        func._is_flaky = True
+        func._flaky_reason = reason
+
+        # Apply retry logic with sensible defaults for flaky tests
+        return retry_on_failure(
+            max_attempts=3,
+            delay=0.5,
+            backoff=2.0,
+            exceptions=(AssertionError, Exception)
+        )(func)
+
+    return decorator
+
+
+def reset_global_state():
+    """
+    Reset all global state to ensure test isolation.
+
+    This function should be called before/after each test to ensure
+    no state leaks between tests. It resets:
+    - Global metrics collector
+    - Performance caches
+    - Benchmark runner state
+    - Any other global singletons
+
+    This can be used as a fixture with autouse=True to automatically
+    reset state between tests.
+
+    Example:
+        >>> @pytest.fixture(autouse=True)
+        ... def auto_reset_state():
+        ...     reset_global_state()
+        ...     yield
+        ...     reset_global_state()
+    """
+    # Reset metrics collector
+    try:
+        from src.cli.metrics import reset_metrics_collector
+        reset_metrics_collector()
+    except ImportError:
+        pass  # Module not available in this context
+
+    # Clear performance caches
+    try:
+        from src.performance.cache import CacheManager
+        # Clear any singleton instances if they exist
+        if hasattr(CacheManager, '_instance'):
+            CacheManager._instance = None
+    except ImportError:
+        pass
+
+    # Reset benchmark runner
+    try:
+        from src.performance.profiler import BenchmarkRunner
+        if hasattr(BenchmarkRunner, '_instance'):
+            BenchmarkRunner._instance = None
+    except ImportError:
+        pass
+
+    # Clear any module-level caches
+    try:
+        import gc
+        gc.collect()
+    except Exception:
+        pass
+
+
+def ensure_clean_environment():
+    """
+    Ensure clean test environment by removing test-specific environment variables.
+
+    This removes environment variables that might have been set by tests
+    and could affect other tests.
+
+    Example:
+        >>> @pytest.fixture(autouse=True)
+        ... def clean_env():
+        ...     ensure_clean_environment()
+        ...     yield
+        ...     ensure_clean_environment()
+    """
+    import os
+
+    # List of test-related environment variables to clean
+    test_env_vars = [
+        'GITHUB_TOKEN',
+        'GERRIT_URL',
+        'JENKINS_URL',
+        'TEST_MODE',
+        'DEBUG_MODE',
+        'FORCE_COLOR',
+    ]
+
+    for var in test_env_vars:
+        os.environ.pop(var, None)
+
+
+# ============================================================================
+# Enhanced Error Messages (Phase 14: Test Reliability - Phase 4)
+# ============================================================================
+
+
+def get_git_status(repo_path: Union[str, Path]) -> str:
+    """
+    Get git status for a repository.
+
+    Args:
+        repo_path: Path to git repository
+
+    Returns:
+        Git status output as string
+    """
+    try:
+        result = run_git_command_safe(
+            ["git", "status", "--porcelain"],
+            cwd=repo_path
+        )
+        return result.stdout
+    except Exception as e:
+        return f"Error getting git status: {e}"
+
+
+def get_git_log(repo_path: Union[str, Path], max_commits: int = 10) -> str:
+    """
+    Get recent git log entries.
+
+    Args:
+        repo_path: Path to git repository
+        max_commits: Maximum number of commits to show
+
+    Returns:
+        Git log output as string
+    """
+    try:
+        result = run_git_command_safe(
+            ["git", "log", f"-{max_commits}", "--oneline", "--decorate"],
+            cwd=repo_path
+        )
+        return result.stdout
+    except Exception as e:
+        return f"Error getting git log: {e}"
+
+
+def get_repository_info(repo_path: Union[str, Path]) -> Dict[str, Any]:
+    """
+    Get comprehensive repository information for debugging.
+
+    Args:
+        repo_path: Path to git repository
+
+    Returns:
+        Dictionary with repository information
+    """
+    info = {
+        'path': str(repo_path),
+        'exists': Path(repo_path).exists(),
+    }
+
+    if not info['exists']:
+        return info
+
+    try:
+        # Current branch
+        result = run_git_command_safe(
+            ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+            cwd=repo_path
+        )
+        info['branch'] = result.stdout.strip()
+    except Exception as e:
+        info['branch'] = f"Error: {e}"
+
+    try:
+        # Commit count
+        result = run_git_command_safe(
+            ["git", "rev-list", "--count", "HEAD"],
+            cwd=repo_path
+        )
+        info['commit_count'] = int(result.stdout.strip())
+    except Exception as e:
+        info['commit_count'] = f"Error: {e}"
+
+    try:
+        # Working directory status
+        result = run_git_command_safe(
+            ["git", "status", "--porcelain"],
+            cwd=repo_path
+        )
+        info['working_dir_clean'] = len(result.stdout.strip()) == 0
+        info['status'] = result.stdout
+    except Exception as e:
+        info['working_dir_clean'] = f"Error: {e}"
+        info['status'] = ""
+
+    return info
+
+
+def format_dict_diff(expected: Dict, actual: Dict) -> str:
+    """
+    Generate a human-readable diff between two dictionaries.
+
+    Args:
+        expected: Expected dictionary
+        actual: Actual dictionary
+
+    Returns:
+        Formatted diff string
+    """
+    lines = []
+
+    # Keys only in expected
+    missing_keys = set(expected.keys()) - set(actual.keys())
+    if missing_keys:
+        lines.append("  Missing keys:")
+        for key in sorted(missing_keys):
+            lines.append(f"    - {key}: {expected[key]}")
+
+    # Keys only in actual
+    extra_keys = set(actual.keys()) - set(expected.keys())
+    if extra_keys:
+        lines.append("  Extra keys:")
+        for key in sorted(extra_keys):
+            lines.append(f"    + {key}: {actual[key]}")
+
+    # Keys with different values
+    common_keys = set(expected.keys()) & set(actual.keys())
+    differing_keys = [k for k in common_keys if expected[k] != actual[k]]
+    if differing_keys:
+        lines.append("  Different values:")
+        for key in sorted(differing_keys):
+            lines.append(f"    {key}:")
+            lines.append(f"      Expected: {expected[key]}")
+            lines.append(f"      Actual:   {actual[key]}")
+
+    return "\n".join(lines) if lines else "  No differences"
+
+
+def assert_repository_state(
+    repo_path: Union[str, Path],
+    expected_branch: Optional[str] = None,
+    expected_commit_count: Optional[int] = None,
+    should_be_clean: Optional[bool] = None,
+    custom_checks: Optional[Dict[str, Any]] = None
+):
+    """
+    Assert repository is in expected state with detailed error messages.
+
+    Args:
+        repo_path: Path to repository
+        expected_branch: Expected branch name
+        expected_commit_count: Expected number of commits
+        should_be_clean: Whether working directory should be clean
+        custom_checks: Additional custom checks as {name: expected_value}
+
+    Raises:
+        AssertionError: If repository state doesn't match expectations
+
+    Example:
+        >>> assert_repository_state(
+        ...     repo_path,
+        ...     expected_branch="main",
+        ...     expected_commit_count=10,
+        ...     should_be_clean=True
+        ... )
+    """
+    info = get_repository_info(repo_path)
+
+    errors = []
+
+    # Check repository exists
+    if not info['exists']:
+        raise AssertionError(
+            f"\nRepository does not exist: {repo_path}\n"
+            f"Working directory: {os.getcwd()}\n"
+        )
+
+    # Check branch
+    if expected_branch is not None and info['branch'] != expected_branch:
+        errors.append(f"Branch: expected '{expected_branch}', got '{info['branch']}'")
+
+    # Check commit count
+    if expected_commit_count is not None:
+        if isinstance(info['commit_count'], int):
+            if info['commit_count'] != expected_commit_count:
+                errors.append(
+                    f"Commit count: expected {expected_commit_count}, "
+                    f"got {info['commit_count']}"
+                )
+        else:
+            errors.append(f"Could not get commit count: {info['commit_count']}")
+
+    # Check working directory
+    if should_be_clean is not None:
+        if isinstance(info['working_dir_clean'], bool):
+            if info['working_dir_clean'] != should_be_clean:
+                status_text = "clean" if should_be_clean else "dirty"
+                actual_text = "clean" if info['working_dir_clean'] else "dirty"
+                errors.append(
+                    f"Working directory: expected {status_text}, but is {actual_text}"
+                )
+        else:
+            errors.append(f"Could not check working directory: {info['working_dir_clean']}")
+
+    # Custom checks
+    if custom_checks:
+        for check_name, expected_value in custom_checks.items():
+            actual_value = info.get(check_name)
+            if actual_value != expected_value:
+                errors.append(
+                    f"{check_name}: expected {expected_value}, got {actual_value}"
+                )
+
+    if errors:
+        error_msg = "\n".join([f"  - {err}" for err in errors])
+        raise AssertionError(
+            f"\nRepository state mismatch:\n"
+            f"Repository: {repo_path}\n"
+            f"Errors:\n{error_msg}\n"
+            f"\nRepository info:\n{json.dumps(info, indent=2)}\n"
+            f"\nGit log:\n{get_git_log(repo_path)}\n"
+        )
+
+
+@contextmanager
+def assert_git_operation(operation_name: str, repo_path: Optional[Union[str, Path]] = None):
+    """
+    Context manager that provides enhanced error messages for git operations.
+
+    Args:
+        operation_name: Description of the git operation
+        repo_path: Optional repository path for additional context
+
+    Yields:
+        None
+
+    Raises:
+        AssertionError: Wraps any exception with detailed git context
+
+    Example:
+        >>> with assert_git_operation("create test commits", repo_path):
+        ...     # Perform git operations
+        ...     subprocess.run(["git", "commit", "-m", "test"])
+    """
+    try:
+        yield
+    except Exception as e:
+        error_parts = [
+            f"\nGit operation failed: {operation_name}",
+            f"Error type: {type(e).__name__}",
+            f"Error message: {str(e)}",
+            f"Working directory: {os.getcwd()}",
+        ]
+
+        if repo_path:
+            error_parts.extend([
+                f"\nRepository information:",
+                f"{json.dumps(get_repository_info(repo_path), indent=2)}",
+                f"\nGit status:",
+                f"{get_git_status(repo_path)}",
+                f"\nRecent commits:",
+                f"{get_git_log(repo_path)}",
+            ])
+
+        raise AssertionError("\n".join(error_parts)) from e
+
+
+@contextmanager
+def assert_test_operation(
+    operation_name: str,
+    save_artifacts_on_failure: bool = False,
+    artifact_path: Optional[Union[str, Path]] = None
+):
+    """
+    Context manager for test operations with enhanced error reporting.
+
+    Args:
+        operation_name: Description of the operation
+        save_artifacts_on_failure: Whether to save artifacts on failure
+        artifact_path: Optional path for saving artifacts
+
+    Yields:
+        None
+
+    Raises:
+        AssertionError: Wraps any exception with detailed context
+
+    Example:
+        >>> with assert_test_operation("analyze repository", save_artifacts_on_failure=True):
+        ...     result = analyze_repository(repo_path)
+    """
+    try:
+        yield
+    except Exception as e:
+        error_msg = (
+            f"\nTest operation failed: {operation_name}\n"
+            f"Error type: {type(e).__name__}\n"
+            f"Error message: {str(e)}\n"
+        )
+
+        if save_artifacts_on_failure and artifact_path:
+            try:
+                artifact_dir = save_test_artifacts(operation_name, str(e), artifact_path)
+                error_msg += f"\nArtifacts saved to: {artifact_dir}\n"
+            except Exception as save_error:
+                error_msg += f"\nFailed to save artifacts: {save_error}\n"
+
+        raise AssertionError(error_msg) from e
+
+
+def save_test_artifacts(
+    test_name: str,
+    error_message: str,
+    repo_path: Optional[Union[str, Path]] = None,
+    additional_info: Optional[Dict[str, Any]] = None
+) -> Path:
+    """
+    Save debugging artifacts when a test fails.
+
+    Args:
+        test_name: Name of the test that failed
+        error_message: Error message from the failure
+        repo_path: Optional repository path to capture git info
+        additional_info: Optional additional information to save
+
+    Returns:
+        Path to artifact directory
+
+    Example:
+        >>> artifact_dir = save_test_artifacts(
+        ...     "test_repository_analysis",
+        ...     str(exception),
+        ...     repo_path=temp_repo
+        ... )
+    """
+    # Create artifacts directory
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    artifact_dir = Path("test_artifacts") / f"{test_name}_{timestamp}"
+    artifact_dir.mkdir(parents=True, exist_ok=True)
+
+    # Save error information
+    error_file = artifact_dir / "error.txt"
+    with open(error_file, "w") as f:
+        f.write(f"Test: {test_name}\n")
+        f.write(f"Timestamp: {datetime.now().isoformat()}\n")
+        f.write(f"Error: {error_message}\n\n")
+        f.write("Traceback:\n")
+        f.write(traceback.format_exc())
+
+    # Save repository information if available
+    if repo_path and Path(repo_path).exists():
+        # Git log
+        log_file = artifact_dir / "git_log.txt"
+        with open(log_file, "w") as f:
+            f.write(get_git_log(repo_path, max_commits=50))
+
+        # Git status
+        status_file = artifact_dir / "git_status.txt"
+        with open(status_file, "w") as f:
+            f.write(get_git_status(repo_path))
+
+        # Repository info
+        info_file = artifact_dir / "repo_info.json"
+        with open(info_file, "w") as f:
+            json.dump(get_repository_info(repo_path), f, indent=2)
+
+    # Save additional information
+    if additional_info:
+        info_file = artifact_dir / "additional_info.json"
+        with open(info_file, "w") as f:
+            json.dump(additional_info, f, indent=2, default=str)
+
+    # Save environment information
+    env_file = artifact_dir / "environment.json"
+    with open(env_file, "w") as f:
+        json.dump({
+            'python_version': os.sys.version,
+            'working_directory': os.getcwd(),
+            'environment_variables': {
+                k: v for k, v in os.environ.items()
+                if k.startswith(('TEST_', 'PYTEST_', 'GIT_', 'GITHUB_'))
+            }
+        }, f, indent=2)
+
+    return artifact_dir
+
+
+def assert_no_error_logs(log_output: str, context: str = ""):
+    """
+    Assert that log output contains no ERROR level messages.
+
+    Args:
+        log_output: Log output to check
+        context: Optional context description
+
+    Raises:
+        AssertionError: If ERROR messages are found
+    """
+    error_lines = [line for line in log_output.split('\n') if 'ERROR' in line]
+
+    if error_lines:
+        raise AssertionError(
+            f"\nUnexpected ERROR messages in logs{' (' + context + ')' if context else ''}:\n"
+            f"{''.join(['  ' + line + chr(10) for line in error_lines])}\n"
+            f"Full log output:\n{log_output}\n"
+        )
+
+
+def assert_command_success(
+    result: subprocess.CompletedProcess,
+    operation: str = "command",
+    expected_output: Optional[str] = None
+):
+    """
+    Assert that a command completed successfully with detailed error messages.
+
+    Args:
+        result: subprocess.CompletedProcess result
+        operation: Description of the operation
+        expected_output: Optional expected output substring
+
+    Raises:
+        AssertionError: If command failed or output doesn't match
+    """
+    if result.returncode != 0:
+        raise AssertionError(
+            f"\nCommand failed: {operation}\n"
+            f"Return code: {result.returncode}\n"
+            f"Command: {' '.join(result.args) if hasattr(result, 'args') else 'N/A'}\n"
+            f"Stdout:\n{result.stdout}\n"
+            f"Stderr:\n{result.stderr}\n"
+        )
+
+    if expected_output is not None and expected_output not in result.stdout:
+        raise AssertionError(
+            f"\nCommand output doesn't contain expected text: {operation}\n"
+            f"Expected substring: {expected_output}\n"
+            f"Actual output:\n{result.stdout}\n"
+        )
+
+
+__all__ = [
+    'run_git_command_safe',
+    'DEFAULT_TEST_TIMEOUTS',
+    'retry_on_failure',
+    'mark_flaky',
+    'reset_global_state',
+    'ensure_clean_environment',
+    # Enhanced error messages
+    'get_git_status',
+    'get_git_log',
+    'get_repository_info',
+    'format_dict_diff',
+    'assert_repository_state',
+    'assert_git_operation',
+    'assert_test_operation',
+    'save_test_artifacts',
+    'assert_no_error_logs',
+    'assert_command_success',
+]

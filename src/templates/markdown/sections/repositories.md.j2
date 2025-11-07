@@ -1,0 +1,44 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Section: Repositories -#}
+{#- Renders the repositories section with repository activity tables -#}
+{#-
+    Context required:
+        - repositories (dict): Repository data and counts
+        - config (dict): Configuration options
+
+    This section displays:
+        - All repositories table with activity metrics
+        - Repositories with no commits (if any)
+        - Repository counts and summaries
+-#}
+
+{% if config.include_sections.repositories and repositories.has_repositories %}
+## All Repositories
+
+{% if repositories.all_count > 0 %}
+{% set title = "Repository Activity Table" %}
+{% set columns = ['name', 'age', 'commits', 'contributors', 'status', 'jobs'] %}
+{% set repo_list = repositories.all %}
+{% include 'markdown/components/repo_table.md.j2' %}
+
+**Total Repositories:** {{ repositories.all_count }}
+{% endif %}
+
+{% if repositories.no_commits_count > 0 %}
+### Repositories with No Commits
+
+The following repositories have no commit history:
+
+{% for repo in repositories.no_commits %}
+- **{{ repo.gerrit_project }}** - {{ repo.state | default('UNKNOWN') }}
+{% endfor %}
+
+**Total:** {{ repositories.no_commits_count }}
+{% endif %}
+
+---
+{% endif %}

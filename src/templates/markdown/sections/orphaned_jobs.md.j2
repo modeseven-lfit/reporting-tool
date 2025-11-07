@@ -1,0 +1,41 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Section: Orphaned Jenkins Jobs -#}
+{#- Renders the orphaned jobs section for jobs matched to archived/read-only projects -#}
+{#-
+    Context required:
+        - orphaned_jobs (dict): Orphaned job data and counts
+        - config (dict): Configuration options
+
+    This section displays:
+        - Orphaned job counts by Gerrit project state
+        - Detailed orphaned job table with match scores
+        - Summary statistics
+-#}
+
+{% if config.include_sections.orphaned_jobs and orphaned_jobs.has_orphaned_jobs %}
+## Orphaned Jenkins Jobs
+
+These Jenkins jobs are matched to archived or read-only Gerrit projects:
+
+### By State
+
+{% for state, count in orphaned_jobs.by_state.items() %}
+- **{{ state }}:** {{ count }} jobs
+{% endfor %}
+
+### Job Details
+
+| Job Name | Matched Project | State | Match Score |
+|----------|----------------|-------|-------------|
+{% for job in orphaned_jobs.jobs %}
+| {{ job.name }} | {{ job.project }} | {{ job.state }} | {{ job.score }}% |
+{% endfor %}
+
+**Total Orphaned Jobs:** {{ orphaned_jobs.total_count }}
+
+---
+{% endif %}

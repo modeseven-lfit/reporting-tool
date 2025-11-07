@@ -1,0 +1,47 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Component: Statistics Table (HTML) -#}
+{#- Renders a statistics table with metric names and values -#}
+{#-
+    Parameters:
+        - title (str): Optional section title
+        - stats (list): List of dicts with 'metric', 'value', and optional 'total' keys
+        - show_total (bool): Whether to show total column (default: true)
+        - class (str): Optional CSS class for the table
+
+    Example usage:
+        {% set stats = [...] %}
+        {% include 'html/components/stats_table.html.j2' with context %}
+-#}
+
+{% if title is defined and title %}
+<h3>{{ title }}</h3>
+{% endif %}
+
+{% if show_total is not defined %}{% set show_total = true %}{% endif %}
+
+<table class="stats-table {{ class if class is defined else '' }}">
+    <thead>
+        <tr>
+            <th scope="col">Metric</th>
+            <th scope="col">Value</th>
+            {% if show_total %}
+            <th scope="col">Total</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for stat in stats %}
+        <tr>
+            <td>{{ stat.metric }}</td>
+            <td class="value">{{ stat.value }}</td>
+            {% if show_total %}
+            <td class="total">{{ stat.total | default('—') }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

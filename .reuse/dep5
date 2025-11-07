@@ -1,0 +1,14 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: reporting-tool
+Upstream-Contact: The Linux Foundation
+Source: https://github.com/lfit/reporting-tool
+
+Files: tests/regression/snapshots/**
+Copyright: 2025 The Linux Foundation
+License: Apache-2.0
+Comment: Test snapshot data files
+
+Files: src/config/schema.json src/themes/*/config.json .markdownlint.json
+Copyright: 2025 The Linux Foundation
+License: Apache-2.0
+Comment: JSON configuration files (JSON format doesn't support comments)

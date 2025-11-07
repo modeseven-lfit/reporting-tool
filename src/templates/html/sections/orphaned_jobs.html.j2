@@ -1,0 +1,59 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Section: Orphaned Jenkins Jobs (HTML) -#}
+{#- Renders the orphaned jobs section for jobs matched to archived/read-only projects -#}
+{#-
+    Context required:
+        - orphaned_jobs (dict): Orphaned job data and counts
+        - config (dict): Configuration options
+
+    This section displays:
+        - Orphaned job counts by Gerrit project state
+        - Detailed orphaned job table with match scores
+        - Summary statistics
+-#}
+
+{% if config.include_sections.orphaned_jobs and orphaned_jobs.has_orphaned_jobs %}
+<section id="orphaned-jobs" class="report-section orphaned-jobs-section">
+    <h2>Orphaned Jenkins Jobs</h2>
+
+    <p class="section-description">
+        These Jenkins jobs are matched to archived or read-only Gerrit projects:
+    </p>
+
+    <div class="subsection">
+        <h3>By State</h3>
+
+        <ul class="state-summary">
+            {% for state, count in orphaned_jobs.by_state.items() %}
+            <li>
+                <strong>{{ state }}:</strong>
+                <span class="count">{{ count }} {{ 'job' if count == 1 else 'jobs' }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="subsection">
+        <h3>Job Details</h3>
+
+        {% set columns = [
+            {'key': 'name', 'label': 'Job Name', 'class': 'job-name'},
+            {'key': 'project', 'label': 'Matched Project', 'class': 'project-name'},
+            {'key': 'state', 'label': 'State', 'class': 'state'},
+            {'key': 'score', 'label': 'Match Score', 'class': 'score'}
+        ] %}
+        {% set rows = orphaned_jobs.jobs %}
+        {% set table_class = 'orphaned-jobs-table' %}
+        {% include 'html/components/data_table.html.j2' %}
+
+        <p class="total-count">
+            <strong>Total Orphaned Jobs:</strong> {{ orphaned_jobs.total_count }}
+        </p>
+    </div>
+
+</section>
+{% endif %}

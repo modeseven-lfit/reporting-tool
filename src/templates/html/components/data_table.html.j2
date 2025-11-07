@@ -1,0 +1,87 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Component: Data Table (HTML) -#}
+{#- Renders a flexible data table with configurable columns -#}
+{#-
+    Parameters:
+        - title (str): Optional section title
+        - columns (list): List of column definitions, each with 'key', 'label', 'class'
+        - rows (list): List of data dictionaries
+        - table_class (str): Optional CSS class for the table
+        - show_rank (bool): Whether to show rank column (default: false)
+
+    Column definition:
+        - key: Data key to access in row dict
+        - label: Column header label
+        - class: Optional CSS class for column
+        - format: Optional format filter name ('number', 'age', 'percentage', 'bytes')
+
+    Example usage:
+        {% set columns = [
+            {'key': 'name', 'label': 'Repository', 'class': 'repo-name'},
+            {'key': 'commits', 'label': 'Commits', 'format': 'number'}
+        ] %}
+        {% set rows = repositories.all %}
+        {% include 'html/components/data_table.html.j2' with context %}
+-#}
+
+{% if title is defined and title %}
+<h3>{{ title }}</h3>
+{% endif %}
+
+{% if show_rank is not defined %}{% set show_rank = false %}{% endif %}
+
+<table class="data-table {{ table_class if table_class is defined else '' }}">
+    <thead>
+        <tr>
+            {% if show_rank %}
+            <th scope="col" class="rank-col">Rank</th>
+            {% endif %}
+            {% for col in columns %}
+            <th scope="col" class="{{ col.class if col.class is defined else '' }}">
+                {{ col.label }}
+            </th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in rows %}
+        <tr>
+            {% if show_rank %}
+            <td class="rank">{{ loop.index }}</td>
+            {% endif %}
+            {% for col in columns %}
+            <td class="{{ col.class if col.class is defined else '' }}">
+                {% set value = row[col.key] | default('—') %}
+                {% if col.format is defined and col.format %}
+                    {% if col.format == 'number' %}
+                        {{ value | format_number }}
+                    {% elif col.format == 'age' %}
+                        {{ value | format_age }}
+                    {% elif col.format == 'percentage' %}
+                        {{ value | format_percentage }}
+                    {% elif col.format == 'bytes' %}
+                        {{ value | format_bytes }}
+                    {% elif col.format == 'date' %}
+                        {{ value | format_date }}
+                    {% else %}
+                        {{ value }}
+                    {% endif %}
+                {% else %}
+                    {{ value }}
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if rows|length > 0 %}
+<p class="table-summary">
+    <strong>Total:</strong> {{ rows|length }} {{ 'row' if rows|length == 1 else 'rows' }}
+</p>
+{% endif %}

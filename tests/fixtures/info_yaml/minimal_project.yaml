@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2025 The Linux Foundation
+
+# Minimal INFO.yaml file for testing
+---
+project: 'Minimal Project'
+project_creation_date: '2021-06-01'
+lifecycle_state: 'Incubation'

@@ -1,0 +1,470 @@
+# serializer version: 1
+# name: TestAuthorMetricsSnapshots.test_author_metrics_basic_snapshot[author_basic]
+  '''
+  {
+    "commits": {
+      "1y": 100,
+      "30d": 10,
+      "90d": 30
+    },
+    "domain": "example.com",
+    "email": "john.doe@example.com",
+    "lines_added": {
+      "1y": 5000,
+      "30d": 500,
+      "90d": 1500
+    },
+    "lines_net": {
+      "1y": 3000,
+      "30d": 300,
+      "90d": 900
+    },
+    "lines_removed": {
+      "1y": 2000,
+      "30d": 200,
+      "90d": 600
+    },
+    "name": "John Doe",
+    "repositories_touched": {
+      "1y": 5,
+      "30d": 1,
+      "90d": 3
+    },
+    "username": "jdoe"
+  }
+  '''
+# ---
+# name: TestAuthorMetricsSnapshots.test_author_metrics_empty_name_snapshot[author_empty_name]
+  '''
+  {
+    "commits": {},
+    "domain": "unknown",
+    "email": "unknown@example.com",
+    "lines_added": {},
+    "lines_net": {},
+    "lines_removed": {},
+    "name": "unknown@example.com",
+    "repositories_touched": {},
+    "username": ""
+  }
+  '''
+# ---
+# name: TestAuthorMetricsSnapshots.test_author_metrics_minimal_snapshot[author_minimal]
+  '''
+  {
+    "commits": {},
+    "domain": "unknown",
+    "email": "jane@example.com",
+    "lines_added": {},
+    "lines_net": {},
+    "lines_removed": {},
+    "name": "Jane Smith",
+    "repositories_touched": {},
+    "username": ""
+  }
+  '''
+# ---
+# name: TestAuthorMetricsSnapshots.test_author_metrics_unicode_snapshot[author_unicode]
+  '''
+  {
+    "commits": {
+      "1y": 50
+    },
+    "domain": "unknown",
+    "email": "jose@example.com",
+    "lines_added": {},
+    "lines_net": {},
+    "lines_removed": {},
+    "name": "José García-Pérez (北京)",
+    "repositories_touched": {},
+    "username": ""
+  }
+  '''
+# ---
+# name: TestCompositeStructureSnapshots.test_author_list_snapshot[author_list]
+  '''
+  [
+    {
+      "commits": {
+        "1y": 200
+      },
+      "domain": "unknown",
+      "email": "alice@example.com",
+      "lines_added": {
+        "1y": 10000
+      },
+      "lines_net": {
+        "1y": 5000
+      },
+      "lines_removed": {
+        "1y": 5000
+      },
+      "name": "Alice Developer",
+      "repositories_touched": {},
+      "username": ""
+    },
+    {
+      "commits": {
+        "1y": 150
+      },
+      "domain": "unknown",
+      "email": "bob@example.com",
+      "lines_added": {
+        "1y": 7500
+      },
+      "lines_net": {
+        "1y": 4500
+      },
+      "lines_removed": {
+        "1y": 3000
+      },
+      "name": "Bob Engineer",
+      "repositories_touched": {},
+      "username": ""
+    }
+  ]
+  '''
+# ---
+# name: TestCompositeStructureSnapshots.test_multiple_time_windows_snapshot[multiple_windows]
+  '''
+  {
+    "1y": {
+      "days": 365,
+      "end": "2024-01-01T00:00:00Z",
+      "start": "2023-01-01T00:00:00Z"
+    },
+    "30d": {
+      "days": 30,
+      "end": "2024-01-01T00:00:00Z",
+      "start": "2023-12-02T00:00:00Z"
+    },
+    "90d": {
+      "days": 90,
+      "end": "2024-01-01T00:00:00Z",
+      "start": "2023-10-03T00:00:00Z"
+    }
+  }
+  '''
+# ---
+# name: TestCompositeStructureSnapshots.test_repository_list_snapshot[repo_list]
+  '''
+  [
+    {
+      "activity_status": "current",
+      "authors": [],
+      "commit_counts": {},
+      "days_since_last_commit": null,
+      "errors": [],
+      "features": {},
+      "gerrit_host": "gerrit.example.com",
+      "gerrit_project": "project-a",
+      "gerrit_url": "https://gerrit.example.com/project-a",
+      "has_any_commits": true,
+      "last_commit_timestamp": null,
+      "loc_stats": {},
+      "local_path": "/repos/project-a",
+      "total_commits_ever": 1000,
+      "unique_contributors": {}
+    },
+    {
+      "activity_status": "active",
+      "authors": [],
+      "commit_counts": {},
+      "days_since_last_commit": null,
+      "errors": [],
+      "features": {},
+      "gerrit_host": "gerrit.example.com",
+      "gerrit_project": "project-b",
+      "gerrit_url": "https://gerrit.example.com/project-b",
+      "has_any_commits": true,
+      "last_commit_timestamp": null,
+      "loc_stats": {},
+      "local_path": "/repos/project-b",
+      "total_commits_ever": 500,
+      "unique_contributors": {}
+    }
+  ]
+  '''
+# ---
+# name: TestEdgeCaseSnapshots.test_long_repository_path_snapshot[long_path]
+  '''
+  {
+    "activity_status": "inactive",
+    "authors": [],
+    "commit_counts": {},
+    "days_since_last_commit": null,
+    "errors": [],
+    "features": {},
+    "gerrit_host": "gerrit.example.com",
+    "gerrit_project": "org/team/subteam/project/very/deep/nested/repository",
+    "gerrit_url": "https://gerrit.example.com/org/team/subteam/project/very/deep/nested/repository",
+    "has_any_commits": false,
+    "last_commit_timestamp": null,
+    "loc_stats": {},
+    "local_path": "/very/long/path/to/repositories/org/team/subteam/project/very/deep/nested/repository",
+    "total_commits_ever": 0,
+    "unique_contributors": {}
+  }
+  '''
+# ---
+# name: TestEdgeCaseSnapshots.test_negative_net_lines_snapshot[negative_net_lines]
+  '''
+  {
+    "commits": 50,
+    "contributors": 10,
+    "lines_added": 1000,
+    "lines_net": -2000,
+    "lines_removed": 3000
+  }
+  '''
+# ---
+# name: TestEdgeCaseSnapshots.test_special_characters_in_names_snapshot[special_characters]
+  '''
+  {
+    "commits": {},
+    "domain": "unknown",
+    "email": "obrien@example.com",
+    "lines_added": {},
+    "lines_net": {},
+    "lines_removed": {},
+    "name": "O'Brien-Smith & Co. <dev@example.com>",
+    "repositories_touched": {},
+    "username": ""
+  }
+  '''
+# ---
+# name: TestEdgeCaseSnapshots.test_very_large_numbers_snapshot[very_large_numbers]
+  '''
+  {
+    "commits": 1000000,
+    "contributors": 50000,
+    "lines_added": 999999999,
+    "lines_net": 499999999,
+    "lines_removed": 500000000
+  }
+  '''
+# ---
+# name: TestEdgeCaseSnapshots.test_zero_everything_snapshot[zero_everything]
+  '''
+  {
+    "commits": 0,
+    "lines_added": 0,
+    "lines_net": 0,
+    "lines_removed": 0
+  }
+  '''
+# ---
+# name: TestRegressionPreventionSnapshots.test_empty_collections_snapshot[empty_collections]
+  '''
+  {
+    "commits": {},
+    "domain": "unknown",
+    "email": "new@example.com",
+    "lines_added": {},
+    "lines_net": {},
+    "lines_removed": {},
+    "name": "New Author",
+    "repositories_touched": {},
+    "username": ""
+  }
+  '''
+# ---
+# name: TestRegressionPreventionSnapshots.test_field_order_stability_snapshot[field_order_stable]
+  '''
+  {
+    "activity_status": "active",
+    "authors": [],
+    "commit_counts": {},
+    "days_since_last_commit": null,
+    "errors": [],
+    "features": {},
+    "gerrit_host": "gerrit.example.com",
+    "gerrit_project": "test-repo",
+    "gerrit_url": "https://gerrit.example.com/test-repo",
+    "has_any_commits": true,
+    "last_commit_timestamp": null,
+    "loc_stats": {},
+    "local_path": "/tmp/test-repo",
+    "total_commits_ever": 100,
+    "unique_contributors": {}
+  }
+  '''
+# ---
+# name: TestRegressionPreventionSnapshots.test_time_window_name_not_in_dict_snapshot[window_name_not_in_dict]
+  '''
+  {
+    "days": 30,
+    "end": "2024-01-31T00:00:00Z",
+    "start": "2024-01-01T00:00:00Z"
+  }
+  '''
+# ---
+# name: TestRepositoryMetricsSnapshots.test_repository_metrics_active_snapshot[repo_active]
+  '''
+  {
+    "activity_status": "current",
+    "authors": [],
+    "commit_counts": {
+      "1y": 1500,
+      "30d": 120,
+      "90d": 400
+    },
+    "days_since_last_commit": 10,
+    "errors": [],
+    "features": {
+      "has_github_actions": true,
+      "has_jenkins": false
+    },
+    "gerrit_host": "review.opendev.org",
+    "gerrit_project": "openstack/nova",
+    "gerrit_url": "https://review.opendev.org/openstack/nova",
+    "has_any_commits": true,
+    "last_commit_timestamp": "2024-01-15T14:30:00Z",
+    "loc_stats": {
+      "1y": {
+        "added": 50000,
+        "net": 20000,
+        "removed": 30000
+      },
+      "30d": {
+        "added": 5000,
+        "net": 2000,
+        "removed": 3000
+      },
+      "90d": {
+        "added": 15000,
+        "net": 5000,
+        "removed": 10000
+      }
+    },
+    "local_path": "/repos/openstack/nova",
+    "total_commits_ever": 50000,
+    "unique_contributors": {
+      "1y": 150,
+      "30d": 20,
+      "90d": 50
+    }
+  }
+  '''
+# ---
+# name: TestRepositoryMetricsSnapshots.test_repository_metrics_empty_snapshot[repo_empty]
+  '''
+  {
+    "activity_status": "inactive",
+    "authors": [],
+    "commit_counts": {},
+    "days_since_last_commit": null,
+    "errors": [],
+    "features": {},
+    "gerrit_host": "gerrit.example.com",
+    "gerrit_project": "new/empty-repo",
+    "gerrit_url": "https://gerrit.example.com/new/empty-repo",
+    "has_any_commits": false,
+    "last_commit_timestamp": null,
+    "loc_stats": {},
+    "local_path": "/repos/new/empty-repo",
+    "total_commits_ever": 0,
+    "unique_contributors": {}
+  }
+  '''
+# ---
+# name: TestRepositoryMetricsSnapshots.test_repository_metrics_inactive_snapshot[repo_inactive]
+  '''
+  {
+    "activity_status": "inactive",
+    "authors": [],
+    "commit_counts": {
+      "1y": 0,
+      "30d": 0,
+      "90d": 0
+    },
+    "days_since_last_commit": 1300,
+    "errors": [],
+    "features": {},
+    "gerrit_host": "gerrit.example.com",
+    "gerrit_project": "archived/old-project",
+    "gerrit_url": "https://gerrit.example.com/archived/old-project",
+    "has_any_commits": true,
+    "last_commit_timestamp": "2020-06-01T10:00:00Z",
+    "loc_stats": {
+      "1y": {
+        "added": 0,
+        "net": 0,
+        "removed": 0
+      },
+      "30d": {
+        "added": 0,
+        "net": 0,
+        "removed": 0
+      },
+      "90d": {
+        "added": 0,
+        "net": 0,
+        "removed": 0
+      }
+    },
+    "local_path": "/repos/archived/old-project",
+    "total_commits_ever": 500,
+    "unique_contributors": {
+      "1y": 0,
+      "30d": 0,
+      "90d": 0
+    }
+  }
+  '''
+# ---
+# name: TestRepositoryMetricsSnapshots.test_repository_metrics_with_errors_snapshot[repo_with_errors]
+  '''
+  {
+    "activity_status": "inactive",
+    "authors": [],
+    "commit_counts": {},
+    "days_since_last_commit": null,
+    "errors": [
+      "Failed to parse commit: abc123",
+      "Invalid author email: malformed@",
+      "Timeout during git log operation"
+    ],
+    "features": {},
+    "gerrit_host": "gerrit.example.com",
+    "gerrit_project": "problem/repo",
+    "gerrit_url": "https://gerrit.example.com/problem/repo",
+    "has_any_commits": false,
+    "last_commit_timestamp": null,
+    "loc_stats": {},
+    "local_path": "/repos/problem/repo",
+    "total_commits_ever": 0,
+    "unique_contributors": {}
+  }
+  '''
+# ---
+# name: TestTimeWindowSnapshots.test_time_window_stats_to_dict_snapshot[time_window_stats]
+  '''
+  {
+    "commits": 150,
+    "contributors": 25,
+    "lines_added": 5000,
+    "lines_net": 3000,
+    "lines_removed": 2000
+  }
+  '''
+# ---
+# name: TestTimeWindowSnapshots.test_time_window_stats_zero_contributors_snapshot[stats_zero_contributors]
+  '''
+  {
+    "commits": 10,
+    "lines_added": 100,
+    "lines_net": 50,
+    "lines_removed": 50
+  }
+  '''
+# ---
+# name: TestTimeWindowSnapshots.test_time_window_to_dict_snapshot[time_window]
+  '''
+  {
+    "days": 365,
+    "end": "2024-01-01T00:00:00Z",
+    "start": "2023-01-01T00:00:00Z"
+  }
+  '''
+# ---

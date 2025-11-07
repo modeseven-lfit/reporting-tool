@@ -1,0 +1,79 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2025 The Linux Foundation
+
+# Valid INFO.yaml file for testing
+---
+project: 'Test Project'
+project_creation_date: '2020-01-15'
+project_category: ''
+lifecycle_state: 'Active'
+project_lead:
+  name: 'John Doe'
+  email: 'john.doe@example.com'
+  id: 'jdoe'
+  company: 'Example Corp'
+  timezone: 'America/Los_Angeles'
+
+technical_steering_committee:
+  - name: 'Jane Smith'
+    email: 'jane.smith@example.com'
+    id: 'jsmith'
+    company: 'Tech Industries'
+    timezone: 'America/New_York'
+
+committers:
+  - name: 'Alice Johnson'
+    email: 'alice.johnson@example.com'
+    id: 'ajohnson'
+    company: 'Developer Inc'
+    timezone: 'Europe/London'
+  - name: 'Bob Williams'
+    email: 'bob.williams@example.com'
+    id: 'bwilliams'
+    company: 'Code Solutions'
+    timezone: 'Asia/Tokyo'
+  - name: 'Carol Martinez'
+    email: 'carol.martinez@example.com'
+    id: 'cmartinez'
+    company: 'Software Co'
+    timezone: 'America/Chicago'
+
+repositories:
+  - test/repo1
+  - test/repo2
+  - test/core
+
+issue_tracking:
+  type: 'jira'
+  url: 'https://jira.example.org/projects/TEST'
+  key: 'TEST'
+
+mailing_list:
+  - type: 'dev'
+    url: 'https://lists.example.org/g/test-dev'
+  - type: 'announce'
+    url: 'https://lists.example.org/g/test-announce'
+
+realtime_discussion:
+  - type: 'irc'
+    server: 'irc.freenode.net'
+    channel: '#test-project'
+  - type: 'slack'
+    server: 'example.slack.com'
+    channel: '#test'
+
+meetings:
+  - type: 'TSC'
+    agenda: 'https://wiki.example.org/test/meetings'
+    url: 'https://zoom.us/j/123456789'
+    server: 'zoom'
+    channel: 'test-tsc'
+    repeats: 'weekly'
+    time: '16:00 UTC'
+
+committer_diversity:
+  - 'Example Corp'
+  - 'Tech Industries'
+  - 'Developer Inc'
+  - 'Code Solutions'
+  - 'Software Co'

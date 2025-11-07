@@ -1,0 +1,17 @@
+{
+  "activity_status": "inactive",
+  "authors": [],
+  "commit_counts": {},
+  "days_since_last_commit": null,
+  "errors": [],
+  "features": {},
+  "gerrit_host": "gerrit.example.com",
+  "gerrit_project": "new/empty-repo",
+  "gerrit_url": "https://gerrit.example.com/new/empty-repo",
+  "has_any_commits": false,
+  "last_commit_timestamp": null,
+  "loc_stats": {},
+  "local_path": "/repos/new/empty-repo",
+  "total_commits_ever": 0,
+  "unique_contributors": {}
+}

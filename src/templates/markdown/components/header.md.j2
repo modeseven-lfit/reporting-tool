@@ -1,0 +1,39 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Component: Section Header -#}
+{#- Renders a consistent section header with optional metadata -#}
+{#-
+    Parameters:
+        - title (str): Section title (required)
+        - level (int): Heading level (1-6, default: 2)
+        - subtitle (str): Optional subtitle
+        - count (int): Optional item count to display
+        - metadata (dict): Optional metadata to display (key-value pairs)
+
+    Example usage:
+        {% set title = "Repository Analysis" %}
+        {% set count = 42 %}
+        {% include 'markdown/components/header.md.j2' with context %}
+-#}
+
+{% if level is not defined or not level %}
+    {% set level = 2 %}
+{% endif %}
+
+{#- Generate heading marks based on level -#}
+{% set heading_marks = '#' * level %}
+
+{{ heading_marks }} {{ title }}{% if count is defined and count %} ({{ count }}){% endif %}
+
+{% if subtitle is defined and subtitle %}
+*{{ subtitle }}*
+{% endif %}
+
+{% if metadata is defined and metadata %}
+{% for key, value in metadata.items() %}
+**{{ key }}:** {{ value }}
+{% endfor %}
+{% endif %}

@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2025 The Linux Foundation
+
+[codespell]
+# Ignore false positives
+ignore-words-list = caf,nd
+
+# Skip certain files
+skip = .git,*.pyc,*.pyo,__pycache__,*.egg-info,.tox,.pytest_cache,.mypy_cache,node_modules,venv,.venv,dist,build
+
+# Check hidden files
+check-hidden = true

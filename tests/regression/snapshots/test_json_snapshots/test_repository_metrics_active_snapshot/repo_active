@@ -1,0 +1,44 @@
+{
+  "activity_status": "current",
+  "authors": [],
+  "commit_counts": {
+    "1y": 1500,
+    "30d": 120,
+    "90d": 400
+  },
+  "days_since_last_commit": 10,
+  "errors": [],
+  "features": {
+    "has_github_actions": true,
+    "has_jenkins": false
+  },
+  "gerrit_host": "review.opendev.org",
+  "gerrit_project": "openstack/nova",
+  "gerrit_url": "https://review.opendev.org/openstack/nova",
+  "has_any_commits": true,
+  "last_commit_timestamp": "2024-01-15T14:30:00Z",
+  "loc_stats": {
+    "1y": {
+      "added": 50000,
+      "net": 20000,
+      "removed": 30000
+    },
+    "30d": {
+      "added": 5000,
+      "net": 2000,
+      "removed": 3000
+    },
+    "90d": {
+      "added": 15000,
+      "net": 5000,
+      "removed": 10000
+    }
+  },
+  "local_path": "/repos/openstack/nova",
+  "total_commits_ever": 50000,
+  "unique_contributors": {
+    "1y": 150,
+    "30d": 20,
+    "90d": 50
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "activity_status": "inactive",
+  "authors": [],
+  "commit_counts": {},
+  "days_since_last_commit": null,
+  "errors": [],
+  "features": {},
+  "gerrit_host": "gerrit.example.com",
+  "gerrit_project": "org/team/subteam/project/very/deep/nested/repository",
+  "gerrit_url": "https://gerrit.example.com/org/team/subteam/project/very/deep/nested/repository",
+  "has_any_commits": false,
+  "last_commit_timestamp": null,
+  "loc_stats": {},
+  "local_path": "/very/long/path/to/repositories/org/team/subteam/project/very/deep/nested/repository",
+  "total_commits_ever": 0,
+  "unique_contributors": {}
+}

@@ -1,0 +1,40 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Component: Contributor Table -#}
+{#- Renders a table of contributor information -#}
+{#-
+    Parameters:
+        - contributors (list): List of contributor dicts
+        - sort_by (str): Sort criterion ('commits' or 'loc', default: 'commits')
+        - title (str): Optional section title
+        - limit (int): Optional limit on number of rows
+
+    Example usage:
+        {% set sort_by = 'commits' %}
+        {% include 'markdown/components/contributor_table.md.j2' with context %}
+-#}
+
+{% if title is defined and title %}
+### {{ title }}
+{% endif %}
+
+{% if not sort_by %}
+    {% set sort_by = 'commits' %}
+{% endif %}
+
+{% if sort_by == 'commits' %}
+| Rank | Contributor | Email | Commits | Repositories |
+|------|-------------|-------|---------|--------------|
+{% for contributor in contributor_list[:limit] if limit and contributor_list is defined else (contributors[:limit] if limit else contributors) %}
+| {{ loop.index }} | {{ contributor.name }} | {{ contributor.email }} | {{ contributor.total_commits | format_number }} | {{ contributor.repositories_count | default(0) }} |
+{% endfor %}
+{% elif sort_by == 'loc' %}
+| Rank | Contributor | Email | Lines Added | Lines Removed | Net Lines |
+|------|-------------|-------|-------------|---------------|-----------|
+{% for contributor in contributor_list[:limit] if limit and contributor_list is defined else (contributors[:limit] if limit else contributors) %}
+| {{ loop.index }} | {{ contributor.name }} | {{ contributor.email }} | {{ contributor.total_lines_added | format_number }} | {{ contributor.total_lines_removed | format_number }} | {{ contributor.net_lines | format_number }} |
+{% endfor %}
+{% endif %}

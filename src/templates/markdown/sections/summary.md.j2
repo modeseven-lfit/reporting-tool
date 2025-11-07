@@ -1,0 +1,80 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Section: Summary Statistics -#}
+{#- Renders the summary section with global repository statistics -#}
+{#-
+    Context required:
+        - summary (dict): Summary statistics
+        - config (dict): Configuration options
+
+    This section displays:
+        - Global statistics table
+        - Repository counts by activity status
+        - Lines of code metrics
+-#}
+
+{% if config.include_sections.summary %}
+## Summary
+
+### Global Statistics
+
+{% set stats = [
+    {
+        'metric': 'Repositories Analyzed',
+        'value': summary.repositories_analyzed,
+        'total': summary.total_repositories
+    },
+    {
+        'metric': 'Contributors (Unique)',
+        'value': summary.unique_contributors,
+        'total': '-'
+    },
+    {
+        'metric': 'Total Commits',
+        'value': summary.total_commits_formatted,
+        'total': '-'
+    },
+    {
+        'metric': 'Total Organizations',
+        'value': summary.total_organizations,
+        'total': '-'
+    },
+    {
+        'metric': 'Active Repositories',
+        'value': summary.active_count,
+        'total': summary.repositories_analyzed
+    },
+    {
+        'metric': 'Inactive Repositories',
+        'value': summary.inactive_count,
+        'total': '-'
+    },
+    {
+        'metric': 'No Commit Repositories',
+        'value': summary.no_commit_count,
+        'total': '-'
+    },
+    {
+        'metric': 'Total Lines Added',
+        'value': summary.total_lines_added_formatted,
+        'total': '-'
+    },
+    {
+        'metric': 'Total Lines Removed',
+        'value': summary.total_lines_removed_formatted,
+        'total': '-'
+    },
+    {
+        'metric': 'Net Lines of Code',
+        'value': summary.net_lines_formatted,
+        'total': '-'
+    }
+] %}
+
+{% include 'markdown/components/stats_table.md.j2' %}
+
+---
+{% endif %}

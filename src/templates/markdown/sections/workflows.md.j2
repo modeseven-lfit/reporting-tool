@@ -1,0 +1,39 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Section: Workflows (CI/CD Jobs) -#}
+{#- Renders the workflows section with deployed CI/CD job information -#}
+{#-
+    Context required:
+        - workflows (dict): CI/CD job data and status counts
+        - config (dict): Configuration options
+
+    This section displays:
+        - Job counts by status
+        - All deployed CI/CD jobs table
+        - Job status summaries
+-#}
+
+{% if config.include_sections.workflows and workflows.has_workflows %}
+## Deployed CI/CD Jobs
+
+### Jobs by Status
+
+{% for status, count in workflows.status_counts.items() %}
+- **{{ status }}:** {{ count }} jobs
+{% endfor %}
+
+### All Jobs
+
+| Job Name | Repository | Status |
+|----------|------------|--------|
+{% for job in workflows.all %}
+| {{ job.name }} | {{ job.repo }} | {{ job.status }} |
+{% endfor %}
+
+**Total Jobs:** {{ workflows.total_count }}
+
+---
+{% endif %}

@@ -1,0 +1,33 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Section: Contributors -#}
+{#- Renders the contributors section with top contributor tables -#}
+{#-
+    Context required:
+        - contributors (dict): Contributor data and lists
+        - config (dict): Configuration options
+
+    This section displays:
+        - Top contributors by commit count
+        - Top contributors by lines of code
+        - Contributor statistics and rankings
+-#}
+
+{% if config.include_sections.contributors and contributors.has_contributors %}
+## Top Contributors
+
+{% set title = "By Commit Count" %}
+{% set sort_by = "commits" %}
+{% set contributor_list = contributors.top_by_commits %}
+{% include 'markdown/components/contributor_table.md.j2' %}
+
+{% set title = "By Lines of Code" %}
+{% set sort_by = "loc" %}
+{% set contributor_list = contributors.top_by_loc %}
+{% include 'markdown/components/contributor_table.md.j2' %}
+
+---
+{% endif %}

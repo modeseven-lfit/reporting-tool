@@ -1,0 +1,62 @@
+{#
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+#}
+
+{#- Section: Features (HTML) -#}
+{#- Renders the features section with repository feature matrix -#}
+{#-
+    Context required:
+        - features (dict): Feature detection data and matrix
+        - config (dict): Configuration options
+
+    This section displays:
+        - Repository feature matrix showing which features are detected
+        - Feature counts and statistics
+        - Visual indicators for feature presence/absence
+-#}
+
+{% if config.include_sections.features and features.has_features %}
+<section id="features" class="report-section features-section">
+    <h2>Repository Feature Matrix</h2>
+
+    <div class="feature-matrix-wrapper">
+        <table class="feature-matrix">
+            <thead>
+                <tr>
+                    <th scope="col">Repository</th>
+                    {% for feature in features.features_list %}
+                    <th scope="col" class="feature-col">{{ feature }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for repo_data in features.matrix %}
+                <tr>
+                    <td class="repo-name">{{ repo_data.repo_name }}</td>
+                    {% for feature in features.features_list %}
+                    <td class="feature-indicator">
+                        {% if repo_data.features[feature] %}
+                        <span class="feature-present" title="{{ feature }} detected">✓</span>
+                        {% else %}
+                        <span class="feature-absent" title="{{ feature }} not detected">✗</span>
+                        {% endif %}
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="feature-summary">
+        <p>
+            <strong>Features Detected:</strong> {{ features.feature_count }}
+        </p>
+        <p>
+            <strong>Repositories Analyzed:</strong> {{ features.repositories_count }}
+        </p>
+    </div>
+
+</section>
+{% endif %}

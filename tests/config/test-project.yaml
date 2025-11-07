@@ -1,0 +1,15 @@
+---
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2025 The Linux Foundation
+
+project: test-project
+time_windows:
+  reporting_window_days: 365
+  recent_activity_days: 90
+  active_contributor_days: 90
+output:
+  directory: output
+  formats:
+    - json
+    - md
+    - html
