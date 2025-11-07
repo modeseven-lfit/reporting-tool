@@ -41,33 +41,37 @@ reporting-tool generate \
 ## 📚 Documentation
 
 ### 🎯 Getting Started
+
 - **[Quick Start Guide](docs/QUICK_START.md)** - Get up and running in minutes
 - **[CLI Cheat Sheet](docs/CLI_CHEAT_SHEET.md)** - Common commands at a glance
 - **[CLI Guide](docs/CLI_GUIDE.md)** - Complete user guide with examples
 - **[Usage Examples](docs/USAGE_EXAMPLES.md)** - Real-world scenarios
 
 ### ⚙️ Setup & Configuration
+
 - **[Installation & Setup](docs/PRODUCTION_DEPLOYMENT_GUIDE.md)** - Production deployment guide
 - **[CLI Reference](docs/CLI_REFERENCE.md)** - Complete command reference
 - **[Configuration Guide](docs/CONFIG_WIZARD_GUIDE.md)** - Configuration options and best practices
 - **[GitHub Token Setup](docs/GITHUB_TOKEN_REQUIREMENTS.md)** - Required API tokens
 
 ### 🔧 Advanced Usage
+
 - **[Performance Guide](docs/PERFORMANCE_GUIDE.md)** - Optimization and tuning
 - **[Feature Discovery](docs/FEATURE_DISCOVERY_GUIDE.md)** - Understanding feature detection
 - **[CI/CD Integration](docs/CI_CD_INTEGRATION.md)** - GitHub Actions and automation
 - **[Troubleshooting](docs/TROUBLESHOOTING.md)** - Common issues and solutions
 
 ### 👨‍💻 Development
+
 - **[Developer Guide](docs/DEVELOPER_QUICK_REFERENCE.md)** - Architecture and contribution guide
 - **[Testing Guide](docs/TESTING_GUIDE.md)** - Running and writing tests
-
 
 ---
 
 ## 💻 Installation
 
 ### Using UV (Recommended)
+
 ```bash
 # Install UV
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -80,6 +84,7 @@ uv run reporting-tool generate --project my-project --repos-path ./repos
 ```
 
 ### Using pip
+
 ```bash
 # Install from source
 pip install .
@@ -123,6 +128,7 @@ reports/
 ## 🔌 CI/CD Integration
 
 ### GitHub Actions
+
 ```yaml
 - name: Generate Report
   run: |

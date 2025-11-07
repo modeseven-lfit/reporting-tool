@@ -19,7 +19,7 @@ import sys
 class ErrorContext:
     """
     Rich error context with recovery information.
-    
+
     Attributes:
         error_type: Type of error that occurred
         message: Error message
@@ -29,7 +29,7 @@ class ErrorContext:
         related_errors: Related common errors
         doc_links: Relevant documentation links
     """
-    
+
     def __init__(
         self,
         error_type: str,
@@ -48,58 +48,58 @@ class ErrorContext:
         self.examples = examples or []
         self.related_errors = related_errors or []
         self.doc_links = doc_links or []
-    
+
     def format(self, verbose: bool = False) -> str:
         """
         Format error context for display.
-        
+
         Args:
             verbose: Include all details
-            
+
         Returns:
             Formatted error message
         """
         lines = []
-        
+
         # Error header
         lines.append(f"❌ {self.error_type}: {self.message}")
         lines.append("")
-        
+
         # Context information
         if self.context:
             lines.append("📋 Context:")
             for key, value in self.context.items():
                 lines.append(f"  • {key}: {value}")
             lines.append("")
-        
+
         # Recovery hints
         if self.recovery_hints:
             lines.append("🔧 How to fix:")
             for i, hint in enumerate(self.recovery_hints, 1):
                 lines.append(f"  {i}. {hint}")
             lines.append("")
-        
+
         # Examples
         if self.examples and verbose:
             lines.append("💡 Examples:")
             for example in self.examples:
                 lines.append(f"  {example}")
             lines.append("")
-        
+
         # Related errors
         if self.related_errors and verbose:
             lines.append("🔗 Related issues:")
             for error in self.related_errors:
                 lines.append(f"  • {error}")
             lines.append("")
-        
+
         # Documentation links
         if self.doc_links:
             lines.append("📖 Documentation:")
             for link in self.doc_links:
                 lines.append(f"  • {link}")
             lines.append("")
-        
+
         return "\n".join(lines)
 
 
@@ -131,7 +131,7 @@ def detect_missing_config() -> ErrorContext:
 def detect_invalid_yaml(file_path: Path, line: Optional[int] = None) -> ErrorContext:
     """
     Create context for invalid YAML syntax.
-    
+
     Args:
         file_path: Path to YAML file
         line: Line number with error (if available)
@@ -140,10 +140,10 @@ def detect_invalid_yaml(file_path: Path, line: Optional[int] = None) -> ErrorCon
         "file": str(file_path),
         "common_causes": "indentation, tabs, special characters"
     }
-    
+
     if line:
         context["line"] = line
-    
+
     return ErrorContext(
         error_type="YAML Syntax Error",
         message=f"Invalid YAML syntax in {file_path}",
@@ -204,14 +204,14 @@ def detect_missing_repos_path(path: Path) -> ErrorContext:
 def detect_github_auth_error(status_code: Optional[int] = None) -> ErrorContext:
     """
     Create context for GitHub authentication errors.
-    
+
     Args:
         status_code: HTTP status code (401, 403, etc.)
     """
     context = {"api": "GitHub"}
     if status_code:
         context["status_code"] = status_code
-    
+
     if status_code == 401:
         message = "GitHub API authentication failed - invalid token"
         hints = [
@@ -236,7 +236,7 @@ def detect_github_auth_error(status_code: Optional[int] = None) -> ErrorContext:
             "Required scopes: repo, read:org",
             "Add to environment: export GITHUB_TOKEN=ghp_..."
         ]
-    
+
     return ErrorContext(
         error_type="API Authentication Error",
         message=message,
@@ -268,7 +268,7 @@ def detect_github_auth_error(status_code: Optional[int] = None) -> ErrorContext:
 def detect_rate_limit_error(api_name: str, reset_time: Optional[int] = None) -> ErrorContext:
     """
     Create context for API rate limit errors.
-    
+
     Args:
         api_name: Name of API (GitHub, Gerrit, etc.)
         reset_time: Unix timestamp when rate limit resets
@@ -278,7 +278,7 @@ def detect_rate_limit_error(api_name: str, reset_time: Optional[int] = None) -> 
         from datetime import datetime
         reset_dt = datetime.fromtimestamp(reset_time)
         context["rate_limit_reset"] = reset_dt.strftime("%Y-%m-%d %H:%M:%S")
-    
+
     return ErrorContext(
         error_type="API Rate Limit",
         message=f"{api_name} API rate limit exceeded",
@@ -313,7 +313,7 @@ def detect_rate_limit_error(api_name: str, reset_time: Optional[int] = None) -> 
 def detect_network_error(url: Optional[str] = None, error_type: Optional[str] = None) -> ErrorContext:
     """
     Create context for network connectivity errors.
-    
+
     Args:
         url: URL that failed
         error_type: Type of network error (timeout, connection, dns, etc.)
@@ -323,10 +323,10 @@ def detect_network_error(url: Optional[str] = None, error_type: Optional[str] = 
         context["url"] = url
     if error_type:
         context["error_type"] = error_type
-    
+
     hints = ["Check your internet connection"]
     examples = []
-    
+
     if error_type == "timeout":
         hints.extend([
             "Increase timeout with --timeout 300",
@@ -362,7 +362,7 @@ def detect_network_error(url: Optional[str] = None, error_type: Optional[str] = 
             "Test connectivity: curl -I https://api.github.com"
         ])
         examples.append("curl -I https://api.github.com")
-    
+
     # Build message with error type
     msg_parts = []
     if error_type:
@@ -370,9 +370,9 @@ def detect_network_error(url: Optional[str] = None, error_type: Optional[str] = 
     msg_parts.append("network connectivity error" if not error_type else "error")
     if url:
         msg_parts.append(f"for {url}")
-    
+
     message = " ".join(msg_parts) if msg_parts else "Network connectivity error"
-    
+
     return ErrorContext(
         error_type="Network Error",
         message=message,
@@ -389,7 +389,7 @@ def detect_network_error(url: Optional[str] = None, error_type: Optional[str] = 
 def detect_permission_error(path: Path, operation: str = "access") -> ErrorContext:
     """
     Create context for file permission errors.
-    
+
     Args:
         path: Path that couldn't be accessed
         operation: Operation that failed (read, write, execute)
@@ -399,18 +399,18 @@ def detect_permission_error(path: Path, operation: str = "access") -> ErrorConte
         stat_info = path.stat()
     except:
         pass
-    
+
     context = {
         "path": str(path),
         "operation": operation,
         "current_user": os.getenv("USER", "unknown")
     }
-    
+
     if stat_info:
         import stat as stat_module
         mode = stat_module.filemode(stat_info.st_mode)
         context["permissions"] = mode
-    
+
     return ErrorContext(
         error_type="Permission Error",
         message=f"Permission denied: cannot {operation} {path}",
@@ -449,7 +449,7 @@ def detect_disk_space_error(path: Path) -> ErrorContext:
         }
     except:
         context = {"path": str(path)}
-    
+
     return ErrorContext(
         error_type="Disk Space Error",
         message=f"Insufficient disk space at {path}",
@@ -484,7 +484,7 @@ def detect_validation_error(
 ) -> ErrorContext:
     """
     Create context for validation errors.
-    
+
     Args:
         field: Field that failed validation
         value: Invalid value
@@ -496,10 +496,10 @@ def detect_validation_error(
         "provided_value": str(value),
         "expected_format": expected
     }
-    
+
     if config_path:
         context["config_file"] = str(config_path)
-    
+
     return ErrorContext(
         error_type="Validation Error",
         message=f"Invalid value for '{field}'",
@@ -527,36 +527,36 @@ def detect_validation_error(
 def auto_detect_error_context(error: Exception, **kwargs) -> ErrorContext:
     """
     Automatically detect error context based on exception.
-    
+
     Args:
         error: The exception that was raised
         **kwargs: Additional context (path, api_name, etc.)
-        
+
     Returns:
         ErrorContext with appropriate recovery information
     """
     error_str = str(error).lower()
     error_type = type(error).__name__
-    
+
     # File not found errors
     if isinstance(error, FileNotFoundError) or "not found" in error_str:
         if "config" in error_str:
             return detect_missing_config()
         elif "path" in kwargs:
             return detect_missing_repos_path(Path(kwargs["path"]))
-    
+
     # YAML errors
     if "yaml" in error_type.lower() or "yaml" in error_str:
         path = kwargs.get("path", Path("config.yaml"))
         line = kwargs.get("line")
         return detect_invalid_yaml(Path(path), line)
-    
+
     # Permission errors
     if isinstance(error, PermissionError) or "permission" in error_str:
         path = kwargs.get("path", Path("."))
         operation = kwargs.get("operation", "access")
         return detect_permission_error(Path(path), operation)
-    
+
     # Network errors
     if "network" in error_str or "connection" in error_str or "timeout" in error_str:
         url = kwargs.get("url")
@@ -567,13 +567,13 @@ def auto_detect_error_context(error: Exception, **kwargs) -> ErrorContext:
             net_error_type = "dns"
         elif "ssl" in error_str or "certificate" in error_str:
             net_error_type = "ssl"
-        
+
         ctx = detect_network_error(url, net_error_type)
         # Preserve original error message if it has more detail
         if len(str(error)) > len(ctx.message):
             ctx.message = str(error)
         return ctx
-    
+
     # API errors
     if "401" in error_str or "unauthorized" in error_str:
         return detect_github_auth_error(401)
@@ -584,12 +584,12 @@ def auto_detect_error_context(error: Exception, **kwargs) -> ErrorContext:
             return detect_rate_limit_error(api_name, reset_time)
         else:
             return detect_github_auth_error(403)
-    
+
     # Disk space errors
     if "disk" in error_str or "space" in error_str or isinstance(error, OSError):
         path = kwargs.get("path", Path("."))
         return detect_disk_space_error(Path(path))
-    
+
     # Generic fallback
     return ErrorContext(
         error_type=error_type,

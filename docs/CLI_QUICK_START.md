@@ -2,8 +2,8 @@
 
 **Get Started in 5 Minutes**
 
-Version: 3.0  
-Last Updated: 2025-01-30  
+Version: 3.0
+Last Updated: 2025-01-30
 Phase: 15 - Typer CLI Migration
 
 ---
@@ -85,6 +85,7 @@ reporting-tool generate \
 ```
 
 **Templates available:**
+
 - `minimal` - Basic setup, fastest analysis
 - `standard` - Recommended for most projects ⭐
 - `full` - Comprehensive analysis, all features
@@ -105,6 +106,7 @@ reporting-tool generate \
 ```
 
 **Benefits:**
+
 - ⚡ 80% faster on subsequent runs
 - 📊 Detailed progress output
 - 🔄 Perfect for config tweaking
@@ -124,6 +126,7 @@ reporting-tool generate \
 ```
 
 **Benefits:**
+
 - 🚀 Maximum speed (parallel + cache)
 - 📝 Minimal log noise
 - ✅ Exit codes for automation
@@ -142,6 +145,7 @@ reporting-tool generate \
 ```
 
 **Benefits:**
+
 - 🔍 See everything that's happening
 - 🐛 Easier to track down issues
 - 📄 Saved to debug.log for review
@@ -236,6 +240,7 @@ reporting-tool --install-completion fish
 ### Rich Console Output
 
 The new CLI uses **Rich** for beautiful, colorized output:
+
 - 🎨 Syntax-highlighted code
 - 📊 Progress bars
 - ✅ Success/error indicators
@@ -309,6 +314,7 @@ Report generation failed?
 After your first successful report:
 
 **1. Optimize Performance**
+
 ```bash
 # Add caching and parallel processing
 reporting-tool generate --project my-project --repos-path ./repos \
@@ -316,12 +322,14 @@ reporting-tool generate --project my-project --repos-path ./repos \
 ```
 
 **2. Explore Features**
+
 ```bash
 # See all available feature detectors
 reporting-tool list-features
 ```
 
 **3. Customize Configuration**
+
 ```bash
 # View your current config
 reporting-tool generate --project my-project --repos-path ./repos --show-config
@@ -331,12 +339,14 @@ vim config/my-project.yaml
 ```
 
 **4. Validate Configuration**
+
 ```bash
 # Check config file for errors
 reporting-tool validate --config config/my-project.yaml
 ```
 
 **5. Automate**
+
 - Set up CI/CD integration
 - Create scheduled reports
 - Integrate with monitoring
@@ -355,18 +365,21 @@ reporting-tool validate --config config/my-project.yaml
 ## 💡 Pro Tips
 
 ### Tip #1: Always validate first
+
 ```bash
 # Before a long run, do a dry run
 reporting-tool generate --project my-project --repos-path ./repos --dry-run
 ```
 
 ### Tip #2: Use caching in development
+
 ```bash
 # Massive speedup for iteration
 reporting-tool generate --project my-project --repos-path ./repos --cache
 ```
 
 ### Tip #3: Quiet mode in production
+
 ```bash
 # Less noise, check exit codes
 reporting-tool generate --project my-project --repos-path ./repos --quiet
@@ -374,12 +387,14 @@ echo $?
 ```
 
 ### Tip #4: Enable shell completion
+
 ```bash
 # Tab-complete commands and options
 reporting-tool --install-completion
 ```
 
 ### Tip #5: Save your favorite commands
+
 ```bash
 # Create shell aliases
 alias report-dev='reporting-tool generate --cache -v'
@@ -394,15 +409,16 @@ alias report-init='reporting-tool init --template standard'
 If you're upgrading from the old `reporting-tool generate` syntax:
 
 **Old way:**
+
 ```bash
 reporting-tool generate --project my-project --repos-path ./repos
 ```
 
 **New way:**
+
 ```bash
 reporting-tool generate --project my-project --repos-path ./repos
 ```
-
 
 ---
 
@@ -422,27 +438,32 @@ You'll know you're successful when:
 ## 🆘 Getting Help
 
 **Command-line help:**
+
 ```bash
 reporting-tool --help
 reporting-tool generate --help
 ```
 
 **Check version:**
+
 ```bash
 reporting-tool --version
 ```
 
 **List available features:**
+
 ```bash
 reporting-tool list-features
 ```
 
 **Validate configuration:**
+
 ```bash
 reporting-tool validate --config config/my-project.yaml
 ```
 
 **Community support:**
+
 - Open an issue on GitHub
 - Check the [CLI FAQ](CLI_FAQ.md)
 - Review [troubleshooting guide](CLI_GUIDE.md#troubleshooting)
@@ -470,5 +491,5 @@ reporting-tool generate \
 
 ---
 
-**Last Updated:** 2025-01-30  
+**Last Updated:** 2025-01-30
 **Version:** 3.0 (Phase 15 - Typer CLI Migration)

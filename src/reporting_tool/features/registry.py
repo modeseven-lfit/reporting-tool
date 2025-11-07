@@ -30,17 +30,17 @@ from api.github_client import GitHubAPIClient
 class FeatureRegistry:
     """
     Registry for repository feature detection functions.
-    
+
     This class maintains a registry of feature detection functions and provides
     methods to scan repositories for various features like CI/CD configurations,
     documentation setups, dependency management, and project types.
-    
+
     Features are detected by examining:
     - Configuration files (e.g., .github/dependabot.yml)
     - Project structure (e.g., presence of docs/ directory)
     - Git configuration (e.g., .gitreview for Gerrit)
     - GitHub API (e.g., workflow run status)
-    
+
     Example:
         >>> config = {"features": {"enabled": ["dependabot", "workflows"]}}
         >>> logger = logging.getLogger(__name__)
@@ -53,7 +53,7 @@ class FeatureRegistry:
     def __init__(self, config: Dict[str, Any], logger: logging.Logger) -> None:
         """
         Initialize the feature registry.
-        
+
         Args:
             config: Configuration dictionary containing feature settings
             logger: Logger instance for debug/info/warning messages
@@ -61,22 +61,22 @@ class FeatureRegistry:
         self.config = config
         self.logger = logger
         self.checks: Dict[str, Callable] = {}
-        
+
         # Get GitHub organization from config (already determined centrally in main())
         self.github_org = self.config.get("github", "")
         self.github_org_source = self.config.get("_github_org_source", "not_configured")
-        
+
         if self.github_org:
             self.logger.debug(
                 f"GitHub organization: '{self.github_org}' (source: {self.github_org_source})"
             )
-        
+
         self._register_default_checks()
 
     def register(self, feature_name: str, check_function: Callable) -> None:
         """
         Register a feature detection function.
-        
+
         Args:
             feature_name: Unique name for the feature
             check_function: Callable that takes a Path and returns feature info dict
@@ -99,13 +99,13 @@ class FeatureRegistry:
     def detect_features(self, repo_path: Path) -> Dict[str, Any]:
         """
         Scan repository for all enabled features.
-        
+
         Args:
             repo_path: Path to the repository to scan
-            
+
         Returns:
             Dictionary mapping feature names to their detection results
-            
+
         Example:
             >>> features = registry.detect_features(Path("./repo"))
             >>> if features["dependabot"]["present"]:
@@ -129,10 +129,10 @@ class FeatureRegistry:
     def _check_dependabot(self, repo_path: Path) -> Dict[str, Any]:
         """
         Check for Dependabot configuration.
-        
+
         Args:
             repo_path: Path to the repository
-            
+
         Returns:
             Dict with keys: present (bool), files (list)
         """
@@ -149,10 +149,10 @@ class FeatureRegistry:
     def _check_github2gerrit_workflow(self, repo_path: Path) -> Dict[str, Any]:
         """
         Check for GitHub to Gerrit workflow patterns.
-        
+
         Args:
             repo_path: Path to the repository
-            
+
         Returns:
             Dict with keys: present (bool), workflows (list of dicts)
         """
@@ -214,10 +214,10 @@ class FeatureRegistry:
     def _check_g2g(self, repo_path: Path) -> Dict[str, Any]:
         """
         Check for specific GitHub to Gerrit workflow files.
-        
+
         Args:
             repo_path: Path to the repository
-            
+
         Returns:
             Dict with keys: present (bool), file_paths (list), file_path (str or None)
         """
@@ -239,10 +239,10 @@ class FeatureRegistry:
     def _check_pre_commit(self, repo_path: Path) -> Dict[str, Any]:
         """
         Check for pre-commit configuration.
-        
+
         Args:
             repo_path: Path to the repository
-            
+
         Returns:
             Dict with keys: present (bool), config_file (str or None), repos_count (int)
         """
@@ -279,10 +279,10 @@ class FeatureRegistry:
     def _check_readthedocs(self, repo_path: Path) -> Dict[str, Any]:
         """
         Check for Read the Docs configuration.
-        
+
         Args:
             repo_path: Path to the repository
-            
+
         Returns:
             Dict with keys: present (bool), config_type (str or None), config_files (list)
         """
@@ -330,10 +330,10 @@ class FeatureRegistry:
     def _check_sonatype_config(self, repo_path: Path) -> Dict[str, Any]:
         """
         Check for Sonatype configuration files.
-        
+
         Args:
             repo_path: Path to the repository
-            
+
         Returns:
             Dict with keys: present (bool), config_files (list)
         """
@@ -357,10 +357,10 @@ class FeatureRegistry:
     def _check_project_types(self, repo_path: Path) -> Dict[str, Any]:
         """
         Detect project types based on configuration files and repository characteristics.
-        
+
         Args:
             repo_path: Path to the repository
-            
+
         Returns:
             Dict with keys: detected_types (list), primary_type (str), details (list)
         """
@@ -459,10 +459,10 @@ class FeatureRegistry:
     def _is_documentation_repository(self, repo_path: Path) -> bool:
         """
         Determine if a repository is primarily for documentation (fallback only).
-        
+
         Args:
             repo_path: Path to the repository
-            
+
         Returns:
             True if repository appears to be primarily documentation
         """
@@ -487,10 +487,10 @@ class FeatureRegistry:
     def _get_doc_indicators(self, repo_path: Path) -> List[str]:
         """
         Get list of documentation indicators found in the repository.
-        
+
         Args:
             repo_path: Path to the repository
-            
+
         Returns:
             List of documentation indicator file/directory names
         """
@@ -559,10 +559,10 @@ class FeatureRegistry:
     def _check_workflows(self, repo_path: Path) -> Dict[str, Any]:
         """
         Analyze GitHub workflows with optional GitHub API integration.
-        
+
         Args:
             repo_path: Path to the repository
-            
+
         Returns:
             Dict with workflow count, classification, and optional runtime status
         """
@@ -670,7 +670,7 @@ class FeatureRegistry:
                     # Merge GitHub API data with static analysis
                     result["github_api_data"] = github_status
                     result["has_runtime_status"] = True
-                    
+
                     self.logger.debug(
                         f"Retrieved GitHub workflow status for {owner}/{repo_name}"
                     )
@@ -705,12 +705,12 @@ class FeatureRegistry:
     ) -> Dict[str, Any]:
         """
         Analyze a single workflow file for classification.
-        
+
         Args:
             workflow_file: Path to the workflow file
             verify_patterns: List of patterns indicating verify/test workflows
             merge_patterns: List of patterns indicating merge/release workflows
-            
+
         Returns:
             Dict with workflow information and classification
         """
@@ -785,10 +785,10 @@ class FeatureRegistry:
     def _check_github_mirror(self, repo_path: Path) -> Dict[str, Any]:
         """
         Check if repository has a GitHub mirror that actually exists.
-        
+
         Args:
             repo_path: Path to the repository
-            
+
         Returns:
             Dict with keys: exists (bool), owner (str), repo (str), reason (str)
         """
@@ -836,10 +836,10 @@ class FeatureRegistry:
     def _is_github_repository(self, repo_path: Path) -> bool:
         """
         Check if repository is hosted on GitHub by examining git remotes.
-        
+
         Args:
             repo_path: Path to the repository
-            
+
         Returns:
             True if repository has GitHub indicators
         """
@@ -872,10 +872,10 @@ class FeatureRegistry:
     def _check_github_mirror_exists(self, repo_path: Path) -> bool:
         """
         Check if repository actually exists on GitHub by making an API call.
-        
+
         Args:
             repo_path: Path to the repository
-            
+
         Returns:
             True if repository exists on GitHub
         """
@@ -922,11 +922,11 @@ class FeatureRegistry:
     ) -> Tuple[str, str]:
         """
         Extract GitHub owner and repo name from git remote or configuration.
-        
+
         Args:
             repo_path: Path to the repository
             github_org: GitHub organization name from configuration (for Gerrit mirrors)
-            
+
         Returns:
             Tuple of (owner, repo_name)
         """
@@ -966,14 +966,14 @@ class FeatureRegistry:
     ) -> Tuple[str, str]:
         """
         Infer GitHub owner/repo from repository path for mirrored repos.
-        
+
         For Gerrit repos mirrored to GitHub, the path structure is typically:
         ./gerrit.example.org/repo-name -> github_org/repo-name
-        
+
         Args:
             repo_path: Path to the repository
             github_org: GitHub organization name from configuration
-            
+
         Returns:
             Tuple of (owner, repo_name)
         """
@@ -983,19 +983,19 @@ class FeatureRegistry:
                     f"Cannot infer GitHub info for {repo_path.name}: github_org not provided"
                 )
                 return "", ""
-            
+
             # Get just the repository name from the path
             # For paths like ./gerrit.onap.org/aai/babel, we want "aai-babel"
             # For paths like ./gerrit.onap.org/simple-repo, we want "simple-repo"
             path_parts = repo_path.parts
-            
+
             # Find the Gerrit host in the path (e.g., "gerrit.onap.org")
             gerrit_host_index = -1
             for i, part in enumerate(path_parts):
                 if "gerrit" in part.lower() or "git" in part.lower():
                     gerrit_host_index = i
                     break
-            
+
             if gerrit_host_index >= 0 and gerrit_host_index < len(path_parts) - 1:
                 # Get all path components after the gerrit host
                 repo_parts = path_parts[gerrit_host_index + 1:]
@@ -1007,7 +1007,7 @@ class FeatureRegistry:
                         f"Inferred GitHub repo: {github_org}/{repo_name} from path {repo_path}"
                     )
                     return github_org, repo_name
-            
+
             # Fallback: use just the repo name
             repo_name = repo_path.name
             self.logger.debug(
@@ -1024,10 +1024,10 @@ class FeatureRegistry:
     def _check_gitreview(self, repo_path: Path) -> Dict[str, Any]:
         """
         Check for .gitreview configuration file.
-        
+
         Args:
             repo_path: Path to the repository
-            
+
         Returns:
             Dict with keys: present (bool), file (str or None), config (dict)
         """

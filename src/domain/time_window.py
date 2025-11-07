@@ -16,19 +16,19 @@ from ..cli.error_helpers import wrap_validation_error
 class TimeWindow:
     """
     Represents a named time period for metrics aggregation.
-    
+
     Attributes:
         name: Human-readable window name (e.g., "1y", "90d", "30d")
         days: Number of days in the window
         start_date: ISO 8601 timestamp for window start (inclusive)
         end_date: ISO 8601 timestamp for window end (exclusive)
     """
-    
+
     name: str
     days: int
     start_date: str  # ISO 8601 format
     end_date: str    # ISO 8601 format
-    
+
     def __post_init__(self) -> None:
         """Validate time window parameters."""
         if self.days <= 0:
@@ -38,13 +38,13 @@ class TimeWindow:
                 value=str(self.days),
                 expected="integer > 0"
             )
-        
+
         if not self.name:
             raise wrap_validation_error(
                 "cannot be empty",
                 field="TimeWindow.name"
             )
-        
+
         # Validate ISO 8601 format by attempting to parse
         try:
             datetime.fromisoformat(self.start_date.replace('Z', '+00:00'))
@@ -55,7 +55,7 @@ class TimeWindow:
                 value=self.start_date,
                 expected="ISO 8601 timestamp (e.g., '2024-01-01T00:00:00Z')"
             ) from e
-        
+
         try:
             datetime.fromisoformat(self.end_date.replace('Z', '+00:00'))
         except (ValueError, AttributeError) as e:
@@ -65,11 +65,11 @@ class TimeWindow:
                 value=self.end_date,
                 expected="ISO 8601 timestamp (e.g., '2024-12-31T23:59:59Z')"
             ) from e
-    
+
     def to_dict(self) -> Dict[str, Any]:
         """
         Convert to dictionary for JSON serialization.
-        
+
         Returns:
             Dictionary matching legacy schema format.
         """
@@ -78,16 +78,16 @@ class TimeWindow:
             "start": self.start_date,
             "end": self.end_date,
         }
-    
+
     @classmethod
     def from_dict(cls, name: str, data: Dict[str, Any]) -> "TimeWindow":
         """
         Create TimeWindow from legacy dictionary format.
-        
+
         Args:
             name: Window name (e.g., "1y")
             data: Dictionary with "days", "start", "end" keys
-            
+
         Returns:
             TimeWindow instance
         """
@@ -103,10 +103,10 @@ class TimeWindow:
 class TimeWindowStats:
     """
     Container for metrics aggregated over a time window.
-    
+
     This provides a typed alternative to raw dictionaries for per-window metrics
     like commit counts, LOC changes, etc.
-    
+
     Attributes:
         commits: Number of commits in the window
         lines_added: Lines of code added
@@ -114,13 +114,13 @@ class TimeWindowStats:
         lines_net: Net change in lines (added - removed)
         contributors: Number of unique contributors (optional)
     """
-    
+
     commits: int = 0
     lines_added: int = 0
     lines_removed: int = 0
     lines_net: int = 0
     contributors: int = 0
-    
+
     def __post_init__(self) -> None:
         """Validate metrics are non-negative where appropriate."""
         if self.commits < 0:
@@ -151,7 +151,7 @@ class TimeWindowStats:
                 value=str(self.contributors),
                 expected="integer >= 0"
             )
-        
+
         # lines_net can be negative (net deletion)
         # Validate consistency: net = added - removed
         expected_net = self.lines_added - self.lines_removed
@@ -162,11 +162,11 @@ class TimeWindowStats:
                 value=str(self.lines_net),
                 expected=f"{expected_net}"
             )
-    
+
     def to_dict(self) -> Dict[str, int]:
         """
         Convert to dictionary for JSON serialization.
-        
+
         Returns:
             Dictionary with all metrics.
         """
@@ -176,20 +176,20 @@ class TimeWindowStats:
             "lines_removed": self.lines_removed,
             "lines_net": self.lines_net,
         }
-        
+
         if self.contributors > 0:
             result["contributors"] = self.contributors
-        
+
         return result
-    
+
     @classmethod
     def from_dict(cls, data: Dict[str, int]) -> "TimeWindowStats":
         """
         Create TimeWindowStats from dictionary.
-        
+
         Args:
             data: Dictionary with metric keys
-            
+
         Returns:
             TimeWindowStats instance
         """
@@ -200,12 +200,12 @@ class TimeWindowStats:
             lines_net=data.get("lines_net", 0),
             contributors=data.get("contributors", 0),
         )
-    
+
     def __add__(self, other: "TimeWindowStats") -> "TimeWindowStats":
         """Add two TimeWindowStats together for aggregation."""
         if not isinstance(other, TimeWindowStats):
             return NotImplemented
-        
+
         return TimeWindowStats(
             commits=self.commits + other.commits,
             lines_added=self.lines_added + other.lines_added,

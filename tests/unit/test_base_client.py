@@ -13,15 +13,14 @@ Tests cover:
 """
 
 import logging
-import time
-from unittest.mock import Mock, MagicMock, patch
-import pytest
+from unittest.mock import Mock
 
+import pytest
 from src.api.base_client import (
-    APIResponse,
     APIError,
-    ErrorType,
+    APIResponse,
     BaseAPIClient,
+    ErrorType,
 )
 
 
@@ -29,15 +28,13 @@ from src.api.base_client import (
 # Test APIError
 # ============================================================================
 
+
 class TestAPIError:
     """Test APIError data class."""
 
     def test_error_creation_minimal(self):
         """Test creating error with minimal fields."""
-        error = APIError(
-            type=ErrorType.NETWORK,
-            message="Connection failed"
-        )
+        error = APIError(type=ErrorType.NETWORK, message="Connection failed")
         assert error.type == ErrorType.NETWORK
         assert error.message == "Connection failed"
         assert error.status_code is None
@@ -49,7 +46,7 @@ class TestAPIError:
             type=ErrorType.HTTP_CLIENT,
             message="Bad request",
             status_code=400,
-            details={"field": "email", "issue": "invalid"}
+            details={"field": "email", "issue": "invalid"},
         )
         assert error.type == ErrorType.HTTP_CLIENT
         assert error.message == "Bad request"
@@ -63,11 +60,7 @@ class TestAPIError:
 
     def test_error_str_with_status(self):
         """Test string representation with status code."""
-        error = APIError(
-            ErrorType.HTTP_CLIENT,
-            "Not found",
-            status_code=404
-        )
+        error = APIError(ErrorType.HTTP_CLIENT, "Not found", status_code=404)
         assert str(error) == "http_client: Not found (HTTP 404)"
 
     def test_error_to_dict(self):
@@ -76,14 +69,14 @@ class TestAPIError:
             type=ErrorType.RATE_LIMIT,
             message="Rate limit exceeded",
             status_code=429,
-            details={"retry_after": 60}
+            details={"retry_after": 60},
         )
         result = error.to_dict()
         assert result == {
             "type": "rate_limit",
             "message": "Rate limit exceeded",
             "status_code": 429,
-            "details": {"retry_after": 60}
+            "details": {"retry_after": 60},
         }
 
     def test_all_error_types(self):
@@ -107,16 +100,13 @@ class TestAPIError:
 # Test APIResponse
 # ============================================================================
 
+
 class TestAPIResponse:
     """Test APIResponse envelope pattern."""
 
     def test_success_response_creation(self):
         """Test creating a success response."""
-        response = APIResponse(
-            ok=True,
-            data={"result": "success"},
-            meta={"status_code": 200}
-        )
+        response = APIResponse(ok=True, data={"result": "success"}, meta={"status_code": 200})
         assert response.ok is True
         assert response.data == {"result": "success"}
         assert response.error is None
@@ -125,11 +115,7 @@ class TestAPIResponse:
     def test_failure_response_creation(self):
         """Test creating a failure response."""
         error = APIError(ErrorType.HTTP_SERVER, "Server error", 500)
-        response = APIResponse(
-            ok=False,
-            error=error,
-            meta={"status_code": 500}
-        )
+        response = APIResponse(ok=False, error=error, meta={"status_code": 500})
         assert response.ok is False
         assert response.data is None
         assert response.error == error
@@ -181,16 +167,9 @@ class TestAPIResponse:
 
     def test_to_dict_success(self):
         """Test to_dict() for success response."""
-        response = APIResponse.success(
-            {"count": 5},
-            {"request_id": "abc123"}
-        )
+        response = APIResponse.success({"count": 5}, {"request_id": "abc123"})
         result = response.to_dict()
-        assert result == {
-            "ok": True,
-            "data": {"count": 5},
-            "meta": {"request_id": "abc123"}
-        }
+        assert result == {"ok": True, "data": {"count": 5}, "meta": {"request_id": "abc123"}}
 
     def test_to_dict_failure(self):
         """Test to_dict() for failure response."""
@@ -203,9 +182,9 @@ class TestAPIResponse:
                 "type": "http_client",
                 "message": "Bad request",
                 "status_code": 400,
-                "details": {}
+                "details": {},
             },
-            "meta": {"request_id": "xyz789"}
+            "meta": {"request_id": "xyz789"},
         }
 
     def test_generic_type_hint(self):
@@ -221,6 +200,7 @@ class TestAPIResponse:
 # ============================================================================
 # Test BaseAPIClient
 # ============================================================================
+
 
 class TestBaseAPIClientInitialization:
     """Test BaseAPIClient initialization and configuration."""
@@ -239,11 +219,7 @@ class TestBaseAPIClientInitialization:
         mock_stats = Mock()
         mock_logger = Mock()
         client = BaseAPIClient(
-            timeout=60.0,
-            max_retries=5,
-            retry_delay=2.0,
-            stats=mock_stats,
-            logger=mock_logger
+            timeout=60.0, max_retries=5, retry_delay=2.0, stats=mock_stats, logger=mock_logger
         )
         assert client.timeout == 60.0
         assert client.max_retries == 5
@@ -354,17 +330,17 @@ class TestRetryDelay:
     def test_exponential_backoff_default(self):
         """Test exponential backoff with default delay."""
         client = BaseAPIClient(retry_delay=1.0)
-        assert client._calculate_retry_delay(0) == 1.0   # 1 * 2^0
-        assert client._calculate_retry_delay(1) == 2.0   # 1 * 2^1
-        assert client._calculate_retry_delay(2) == 4.0   # 1 * 2^2
-        assert client._calculate_retry_delay(3) == 8.0   # 1 * 2^3
+        assert client._calculate_retry_delay(0) == 1.0  # 1 * 2^0
+        assert client._calculate_retry_delay(1) == 2.0  # 1 * 2^1
+        assert client._calculate_retry_delay(2) == 4.0  # 1 * 2^2
+        assert client._calculate_retry_delay(3) == 8.0  # 1 * 2^3
 
     def test_exponential_backoff_custom_delay(self):
         """Test exponential backoff with custom initial delay."""
         client = BaseAPIClient(retry_delay=0.5)
-        assert client._calculate_retry_delay(0) == 0.5   # 0.5 * 2^0
-        assert client._calculate_retry_delay(1) == 1.0   # 0.5 * 2^1
-        assert client._calculate_retry_delay(2) == 2.0   # 0.5 * 2^2
+        assert client._calculate_retry_delay(0) == 0.5  # 0.5 * 2^0
+        assert client._calculate_retry_delay(1) == 1.0  # 0.5 * 2^1
+        assert client._calculate_retry_delay(2) == 2.0  # 0.5 * 2^2
 
     def test_exponential_backoff_progression(self):
         """Test that delay increases exponentially."""
@@ -372,7 +348,7 @@ class TestRetryDelay:
         delays = [client._calculate_retry_delay(i) for i in range(5)]
         # Each delay should be double the previous
         for i in range(1, len(delays)):
-            assert delays[i] == delays[i-1] * 2
+            assert delays[i] == delays[i - 1] * 2
 
 
 class TestStatisticsTracking:
@@ -460,11 +436,10 @@ class TestContextManager:
         client.close()
 
 
-
-
 # ============================================================================
 # Integration Tests
 # ============================================================================
+
 
 class TestBaseAPIClientIntegration:
     """Integration tests for complete client behavior."""
@@ -472,37 +447,33 @@ class TestBaseAPIClientIntegration:
     def test_complete_retry_scenario(self):
         """Test complete retry scenario with backoff."""
         mock_stats = Mock()
-        client = BaseAPIClient(
-            max_retries=3,
-            retry_delay=0.1,
-            stats=mock_stats
-        )
-        
+        client = BaseAPIClient(max_retries=3, retry_delay=0.1, stats=mock_stats)
+
         # Simulate retryable error
         error_type = ErrorType.HTTP_SERVER
-        
+
         # Attempt 0 - should retry
         assert client._should_retry(error_type, 0)
         delay0 = client._calculate_retry_delay(0)
         assert delay0 == 0.1
-        
+
         # Attempt 1 - should retry with increased delay
         assert client._should_retry(error_type, 1)
         delay1 = client._calculate_retry_delay(1)
         assert delay1 == 0.2
-        
+
         # Attempt 2 - should retry with further increased delay
         assert client._should_retry(error_type, 2)
         delay2 = client._calculate_retry_delay(2)
         assert delay2 == 0.4
-        
+
         # Attempt 3 - should NOT retry (at max_retries)
         assert not client._should_retry(error_type, 3)
 
     def test_error_type_to_retry_decision(self):
         """Test mapping from error types to retry decisions."""
         client = BaseAPIClient(max_retries=3)
-        
+
         # Should retry
         retryable = [
             ErrorType.RATE_LIMIT,
@@ -512,7 +483,7 @@ class TestBaseAPIClientIntegration:
         ]
         for error_type in retryable:
             assert client._should_retry(error_type, 0), f"{error_type} should be retryable"
-        
+
         # Should NOT retry
         non_retryable = [
             ErrorType.HTTP_CLIENT,
@@ -524,15 +495,15 @@ class TestBaseAPIClientIntegration:
         """Test stats tracking through a complete request lifecycle."""
         mock_stats = Mock()
         client = BaseAPIClient(stats=mock_stats)
-        
+
         # Simulate successful request
         client._record_success("api_call")
         assert mock_stats.record_success.call_count == 1
-        
+
         # Simulate failed request
         client._record_error("api_call", 500)
         assert mock_stats.record_error.call_count == 1
-        
+
         # Simulate exception
         client._record_exception("api_call", "network")
         assert mock_stats.record_exception.call_count == 1

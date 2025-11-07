@@ -35,25 +35,25 @@ from .base_client import (
 class GitHubAPIClient(BaseAPIClient):
     """
     Client for interacting with GitHub API to fetch workflow run status.
-    
+
     Provides methods to:
     - List workflows for a repository
     - Get workflow run status
     - Get comprehensive workflow status summaries
-    
+
     Uses standardized response envelope pattern for consistent error handling.
     """
 
     def __init__(
-        self, 
-        token: str, 
-        timeout: float = 30.0, 
+        self,
+        token: str,
+        timeout: float = 30.0,
         stats: Optional[Any] = None,
         use_envelope: bool = False
     ):
         """
         Initialize GitHub API client with token.
-        
+
         Args:
             token: GitHub Personal Access Token
             timeout: Request timeout in seconds
@@ -61,11 +61,11 @@ class GitHubAPIClient(BaseAPIClient):
             use_envelope: If True, use new envelope pattern; if False, use legacy dicts
         """
         super().__init__(timeout=timeout, stats=stats)
-        
+
         self.token = token
         self.base_url = "https://api.github.com"
         self.use_envelope = use_envelope
-        
+
         # Create httpx client with authentication
         self.client = httpx.Client(
             base_url=self.base_url,
@@ -77,7 +77,7 @@ class GitHubAPIClient(BaseAPIClient):
                 "User-Agent": "repository-reports/1.0.0",
             },
         )
-        
+
         self.logger = logging.getLogger(__name__)
 
     def close(self):
@@ -88,7 +88,7 @@ class GitHubAPIClient(BaseAPIClient):
     def _write_to_step_summary(self, message: str) -> None:
         """
         Write a message to GitHub Step Summary if running in GitHub Actions.
-        
+
         Args:
             message: Message to write to step summary
         """
@@ -101,17 +101,17 @@ class GitHubAPIClient(BaseAPIClient):
                 self.logger.debug(f"Could not write to GITHUB_STEP_SUMMARY: {e}")
 
     def get_repository_workflows(
-        self, 
-        owner: str, 
+        self,
+        owner: str,
         repo: str
     ) -> List[Dict[str, Any]]:
         """
         Get all workflows for a repository.
-        
+
         Args:
             owner: Repository owner (user or organization)
             repo: Repository name
-            
+
         Returns:
             List of workflow dictionaries (empty list on error)
         """
@@ -132,7 +132,7 @@ class GitHubAPIClient(BaseAPIClient):
                 )
                 self._write_to_step_summary(error_msg)
                 return []
-                
+
             elif response.status_code == 403:
                 self._record_error("github", 403)
                 error_msg = (
@@ -144,7 +144,7 @@ class GitHubAPIClient(BaseAPIClient):
                     error_msg += f"Error: {error_message}\n\n"
                 except Exception:
                     error_msg += f"Error: {response.text}\n\n"
-                    
+
                 error_msg += (
                     "**Likely Cause:** The GitHub token lacks required permissions.\n\n"
                     "**Required Scopes:**\n"
@@ -157,7 +157,7 @@ class GitHubAPIClient(BaseAPIClient):
                 )
                 self._write_to_step_summary(error_msg)
                 return []
-                
+
             elif response.status_code == 200:
                 self._record_success("github")
                 data = response.json()
@@ -200,7 +200,7 @@ class GitHubAPIClient(BaseAPIClient):
                 self._record_error("github", 404)
                 self.logger.debug(f"Repository {owner}/{repo} not found or no access")
                 return []
-                
+
             else:
                 self._record_error("github", response.status_code)
                 self.logger.warning(
@@ -225,13 +225,13 @@ class GitHubAPIClient(BaseAPIClient):
     ) -> Dict[str, Any]:
         """
         Get recent workflow runs for a specific workflow to determine status.
-        
+
         Args:
             owner: Repository owner
             repo: Repository name
             workflow_id: Workflow ID
             limit: Maximum number of runs to fetch
-            
+
         Returns:
             Dictionary with workflow status information (empty dict on error)
         """
@@ -248,7 +248,7 @@ class GitHubAPIClient(BaseAPIClient):
                     f"workflow {workflow_id} in {owner}/{repo}"
                 )
                 return {"status": "auth_error", "last_run": None}
-                
+
             elif response.status_code == 403:
                 self._record_error("github", 403)
                 self.logger.error(
@@ -256,7 +256,7 @@ class GitHubAPIClient(BaseAPIClient):
                     f"workflow {workflow_id} in {owner}/{repo}"
                 )
                 return {"status": "permission_error", "last_run": None}
-                
+
             elif response.status_code == 200:
                 self._record_success("github")
                 data = response.json()
@@ -293,7 +293,7 @@ class GitHubAPIClient(BaseAPIClient):
                         ),
                     },
                 }
-                
+
             else:
                 self._record_error("github", response.status_code)
                 self.logger.warning(
@@ -316,11 +316,11 @@ class GitHubAPIClient(BaseAPIClient):
     ) -> Dict[str, Any]:
         """
         Get comprehensive workflow status summary for a repository.
-        
+
         Args:
             owner: Repository owner
             repo: Repository name
-            
+
         Returns:
             Dictionary with comprehensive workflow status information
         """
@@ -420,14 +420,14 @@ class GitHubAPIClient(BaseAPIClient):
         """
         Convert GitHub workflow conclusion and run status to standardized status.
 
-        GitHub conclusions: success, failure, neutral, cancelled, skipped, 
+        GitHub conclusions: success, failure, neutral, cancelled, skipped,
                           timed_out, action_required
         GitHub run statuses: queued, in_progress, completed
-        
+
         Args:
             conclusion: GitHub workflow conclusion
             run_status: GitHub workflow run status
-            
+
         Returns:
             Standardized status string
         """

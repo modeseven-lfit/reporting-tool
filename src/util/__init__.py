@@ -23,10 +23,10 @@ __all__ = [
     'format_number',
     'format_age',
     'UNKNOWN_AGE',
-    
+
     # ZIP bundling
     'create_report_bundle',
-    
+
     # GitHub organization detection
     'determine_github_org',
 ]

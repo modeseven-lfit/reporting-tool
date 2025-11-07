@@ -4,7 +4,7 @@
     Context required:
         - features (dict): Feature detection data and matrix
         - config (dict): Configuration options
-    
+
     This section displays:
         - Repository feature matrix showing which features are detected
         - Feature counts and statistics
@@ -20,7 +20,7 @@
 | {{ repo_data.repo_name }} | {% for feature in features.features_list %}{{ '✓' if repo_data.features[feature] else '✗' }} | {% endfor %}
 {% endfor %}
 
-**Features Detected:** {{ features.feature_count }}  
+**Features Detected:** {{ features.feature_count }}
 **Repositories Analyzed:** {{ features.repositories_count }}
 
 ---

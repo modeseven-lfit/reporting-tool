@@ -40,6 +40,7 @@ window = TimeWindow.from_dict("1y", {
 ```
 
 **Validation Rules:**
+
 - `days` must be positive
 - `name` cannot be empty
 - Dates must be valid ISO 8601 format
@@ -64,6 +65,7 @@ total = stats1 + stats2
 ```
 
 **Validation Rules:**
+
 - `commits`, `lines_added`, `lines_removed`, `contributors` must be non-negative
 - `lines_net` = `lines_added` - `lines_removed` (validated automatically)
 - `lines_net` can be negative (net deletion)
@@ -99,6 +101,7 @@ loc_stats = metrics.get_loc_stats_for_window("1y")
 ```
 
 **Validation Rules:**
+
 - Required fields: `gerrit_project`, `gerrit_host`, `gerrit_url`, `local_path`
 - `activity_status` must be one of: `"current"`, `"active"`, `"inactive"`
 - `total_commits_ever` must be non-negative
@@ -135,12 +138,14 @@ if author.is_affiliated:
 ```
 
 **Validation Rules:**
+
 - `email` cannot be empty (primary identifier)
 - If `name` is empty, defaults to `email`
 - All commit/line counts must be non-negative
 - Per-window consistency: `lines_net` = `lines_added` - `lines_removed`
 
 **Legacy Compatibility:**
+
 - `from_dict()` automatically converts repository sets to counts
 
 ### OrganizationMetrics
@@ -166,6 +171,7 @@ if org.is_known_org:
 ```
 
 **Validation Rules:**
+
 - `domain` cannot be empty
 - `contributor_count` must be non-negative
 - All metric counts must be non-negative
@@ -192,12 +198,13 @@ status = WorkflowStatus(
 if status.has_any_ci:
     systems = status.get_detected_systems()
     print(f"Detected CI systems: {', '.join(systems)}")
-    
+
 if status.has_multiple_ci_systems:
     print("Warning: Multiple CI systems configured")
 ```
 
 **Validation Rules:**
+
 - `primary_ci_system` must be one of: `"github_actions"`, `"jenkins"`, `"circleci"`, `"travis"`, `"gitlab_ci"`, or `None`
 - Auto-detects primary CI if not specified (priority: GitHub Actions > Jenkins > CircleCI > Travis > GitLab CI)
 

@@ -10,8 +10,6 @@ Tests validation, serialization, and convenience methods for all domain models:
 """
 
 import pytest
-from datetime import datetime, timezone
-
 from src.cli.errors import ValidationError
 from src.domain import (
     AuthorMetrics,
@@ -34,7 +32,7 @@ class TestTimeWindow:
             start_date="2023-01-01T00:00:00Z",
             end_date="2024-01-01T00:00:00Z",
         )
-        
+
         assert window.name == "1y"
         assert window.days == 365
         assert window.start_date == "2023-01-01T00:00:00Z"
@@ -48,7 +46,7 @@ class TestTimeWindow:
             start_date="2023-10-01T00:00:00Z",
             end_date="2023-12-30T00:00:00Z",
         )
-        
+
         result = window.to_dict()
         assert result == {
             "days": 90,
@@ -63,7 +61,7 @@ class TestTimeWindow:
             "start": "2023-12-01T00:00:00Z",
             "end": "2023-12-31T00:00:00Z",
         }
-        
+
         window = TimeWindow.from_dict("30d", data)
         assert window.name == "30d"
         assert window.days == 30
@@ -79,7 +77,7 @@ class TestTimeWindow:
                 start_date="2023-01-01T00:00:00Z",
                 end_date="2023-12-31T00:00:00Z",
             )
-        
+
         with pytest.raises(ValidationError, match="days.*must be positive"):
             TimeWindow(
                 name="invalid",
@@ -121,7 +119,7 @@ class TestTimeWindowStats:
             lines_net=800,
             contributors=5,
         )
-        
+
         assert stats.commits == 42
         assert stats.lines_added == 1000
         assert stats.lines_removed == 200
@@ -131,7 +129,7 @@ class TestTimeWindowStats:
     def test_default_values(self):
         """Test default zero values."""
         stats = TimeWindowStats()
-        
+
         assert stats.commits == 0
         assert stats.lines_added == 0
         assert stats.lines_removed == 0
@@ -180,7 +178,7 @@ class TestTimeWindowStats:
             lines_net=400,
             contributors=3,
         )
-        
+
         result = stats.to_dict()
         assert result == {
             "commits": 10,
@@ -205,7 +203,7 @@ class TestTimeWindowStats:
             "lines_net": 500,
             "contributors": 7,
         }
-        
+
         stats = TimeWindowStats.from_dict(data)
         assert stats.commits == 20
         assert stats.lines_added == 800
@@ -215,9 +213,13 @@ class TestTimeWindowStats:
 
     def test_addition(self):
         """Test adding two TimeWindowStats together."""
-        stats1 = TimeWindowStats(commits=10, lines_added=100, lines_removed=20, lines_net=80, contributors=2)
-        stats2 = TimeWindowStats(commits=5, lines_added=50, lines_removed=10, lines_net=40, contributors=1)
-        
+        stats1 = TimeWindowStats(
+            commits=10, lines_added=100, lines_removed=20, lines_net=80, contributors=2
+        )
+        stats2 = TimeWindowStats(
+            commits=5, lines_added=50, lines_removed=10, lines_net=40, contributors=1
+        )
+
         result = stats1 + stats2
         assert result.commits == 15
         assert result.lines_added == 150
@@ -240,7 +242,7 @@ class TestRepositoryMetrics:
             has_any_commits=True,
             total_commits_ever=100,
         )
-        
+
         assert metrics.gerrit_project == "foo/bar"
         assert metrics.gerrit_host == "gerrit.example.com"
         assert metrics.is_active is True
@@ -324,7 +326,7 @@ class TestRepositoryMetrics:
             commit_counts={"1y": 25},
             loc_stats={"1y": {"added": 500, "removed": 100, "net": 400}},
         )
-        
+
         result = metrics.to_dict()
         assert result["gerrit_project"] == "test/repo"
         assert result["total_commits_ever"] == 50
@@ -342,7 +344,7 @@ class TestRepositoryMetrics:
             "commit_counts": {"1y": 30},
             "errors": ["test error"],
         }
-        
+
         metrics = RepositoryMetrics.from_dict(data)
         assert metrics.gerrit_project == "test/repo"
         assert metrics.total_commits_ever == 75
@@ -369,7 +371,7 @@ class TestRepositoryMetrics:
             local_path="/tmp/test-repo",
             commit_counts={"1y": 100, "90d": 50},
         )
-        
+
         assert metrics.get_commits_in_window("1y") == 100
         assert metrics.get_commits_in_window("90d") == 50
         assert metrics.get_commits_in_window("30d") == 0
@@ -390,7 +392,7 @@ class TestAuthorMetrics:
             lines_removed={"1y": 200},
             lines_net={"1y": 800},
         )
-        
+
         assert metrics.name == "John Doe"
         assert metrics.email == "john@example.com"
         assert metrics.domain == "example.com"
@@ -452,7 +454,7 @@ class TestAuthorMetrics:
             lines_net={"1y": 400},
             repositories_touched={"1y": 3},
         )
-        
+
         result = metrics.to_dict()
         assert result["name"] == "Jane Smith"
         assert result["email"] == "jane@example.com"
@@ -471,7 +473,7 @@ class TestAuthorMetrics:
             "lines_net": {"1y": 250},
             "repositories_touched": {"1y": 2},
         }
-        
+
         metrics = AuthorMetrics.from_dict(data)
         assert metrics.name == "Bob Jones"
         assert metrics.total_commits == 15
@@ -486,7 +488,7 @@ class TestAuthorMetrics:
             "lines_removed": {"1y": 20},
             "lines_net": {"1y": 80},
         }
-        
+
         metrics = AuthorMetrics.from_dict(data)
         assert metrics.repositories_touched == {"1y": 3}
 
@@ -500,7 +502,7 @@ class TestAuthorMetrics:
             lines_removed={"1y": 20, "90d": 10, "30d": 5},
             lines_net={"1y": 80, "90d": 40, "30d": 15},
         )
-        
+
         assert metrics.total_commits == 17
         assert metrics.total_lines_added == 170
         assert metrics.total_lines_removed == 35
@@ -517,7 +519,7 @@ class TestAuthorMetrics:
             lines_net={"1y": 800},
             repositories_touched={"1y": 5},
         )
-        
+
         assert metrics.get_commits_in_window("1y") == 100
         assert metrics.get_lines_added_in_window("1y") == 1000
         assert metrics.get_lines_removed_in_window("1y") == 200
@@ -540,7 +542,7 @@ class TestOrganizationMetrics:
             lines_net={"1y": 8000},
             repositories_count={"1y": 15},
         )
-        
+
         assert metrics.domain == "example.com"
         assert metrics.contributor_count == 10
         assert metrics.is_known_org is True
@@ -593,7 +595,7 @@ class TestOrganizationMetrics:
             lines_net={"1y": 15000},
             repositories_count={"1y": 20},
         )
-        
+
         result = metrics.to_dict()
         assert result["domain"] == "acme.com"
         assert result["contributor_count"] == 25
@@ -610,7 +612,7 @@ class TestOrganizationMetrics:
             "lines_net": {"1y": 40000},
             "repositories_count": {"1y": 30},
         }
-        
+
         metrics = OrganizationMetrics.from_dict(data)
         assert metrics.domain == "bigcorp.com"
         assert metrics.contributor_count == 50
@@ -624,7 +626,7 @@ class TestOrganizationMetrics:
             lines_removed={"1y": 200, "90d": 100, "30d": 40},
             lines_net={"1y": 800, "90d": 400, "30d": 160},
         )
-        
+
         assert metrics.total_commits == 170
         assert metrics.total_lines_added == 1700
         assert metrics.total_lines_removed == 340
@@ -640,7 +642,7 @@ class TestOrganizationMetrics:
             lines_net={"1y": 4000},
             repositories_count={"1y": 10},
         )
-        
+
         assert metrics.get_commits_in_window("1y") == 500
         assert metrics.get_lines_added_in_window("1y") == 5000
         assert metrics.get_lines_removed_in_window("1y") == 1000
@@ -660,7 +662,7 @@ class TestWorkflowStatus:
             workflow_files=[".github/workflows/ci.yml"],
             primary_ci_system="github_actions",
         )
-        
+
         assert status.has_github_actions is True
         assert status.has_any_ci is True
         assert status.primary_ci_system == "github_actions"
@@ -685,7 +687,7 @@ class TestWorkflowStatus:
             has_jenkins=True,
             has_circleci=True,
         )
-        
+
         assert status.has_multiple_ci_systems is True
         assert status.ci_system_count == 3
         assert len(status.get_detected_systems()) == 3
@@ -704,7 +706,7 @@ class TestWorkflowStatus:
             primary_ci_system="github_actions",
             additional_metadata={"custom": "data"},
         )
-        
+
         result = status.to_dict()
         assert result["has_github_actions"] is True
         assert result["has_jenkins"] is True
@@ -716,7 +718,7 @@ class TestWorkflowStatus:
         """Test serialization with minimal data."""
         status = WorkflowStatus(has_github_actions=True)
         result = status.to_dict()
-        
+
         # Should include all boolean flags
         assert "has_github_actions" in result
         assert "has_jenkins" in result
@@ -734,7 +736,7 @@ class TestWorkflowStatus:
             "workflow_files": [".github/workflows/ci.yml", ".circleci/config.yml"],
             "primary_ci_system": "github_actions",
         }
-        
+
         status = WorkflowStatus.from_dict(data)
         assert status.has_github_actions is True
         assert status.has_circleci is True
@@ -747,7 +749,7 @@ class TestWorkflowStatus:
             has_jenkins=True,
             has_travis=True,
         )
-        
+
         systems = status.get_detected_systems()
         assert "github_actions" in systems
         assert "jenkins" in systems
@@ -769,7 +771,7 @@ class TestDomainModelsIntegration:
             lines_removed={"1y": 100},
             lines_net={"1y": 400},
         )
-        
+
         author2 = AuthorMetrics(
             name="Bob",
             email="bob@example.com",
@@ -778,7 +780,7 @@ class TestDomainModelsIntegration:
             lines_removed={"1y": 50},
             lines_net={"1y": 250},
         )
-        
+
         repo = RepositoryMetrics(
             gerrit_project="test/project",
             gerrit_host="gerrit.test.com",
@@ -788,7 +790,7 @@ class TestDomainModelsIntegration:
             has_any_commits=True,
             authors=[author1.to_dict(), author2.to_dict()],
         )
-        
+
         assert len(repo.authors) == 2
         assert repo.total_commits_ever == 80
 
@@ -803,13 +805,13 @@ class TestDomainModelsIntegration:
             lines_net={"1y": 800, "90d": 400},
             repositories_touched={"1y": 5, "90d": 3},
         )
-        
+
         # Serialize to dict
         as_dict = original.to_dict()
-        
+
         # Deserialize back
         restored = AuthorMetrics.from_dict(as_dict)
-        
+
         # Should be equal
         assert restored.name == original.name
         assert restored.email == original.email

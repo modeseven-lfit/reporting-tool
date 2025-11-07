@@ -16,13 +16,14 @@ Performance testing ensures that critical operations meet latency, throughput, a
 Tests cache operations meet performance requirements:
 
 - **Get operations**: < 1ms latency
-- **Set operations**: < 2ms latency  
+- **Set operations**: < 2ms latency
 - **Cleanup operations**: < 100ms
 - **Pattern invalidation**: < 5ms
 - **Throughput**: > 1000 ops/second
 - **Memory limits**: < 100MB total cache size
 
 Example:
+
 ```python
 def test_cache_get_within_threshold(temp_cache_dir, perf_thresholds):
     """Test cache get operation meets latency threshold."""
@@ -41,6 +42,7 @@ Tests parallel processing meets performance targets:
 - **Memory per item**: < 10MB
 
 Example:
+
 ```python
 def test_batch_processing_per_item_threshold(mock_repository_data, worker_count):
     """Test processing time per item in batch."""
@@ -59,6 +61,7 @@ Tests batch operations stay within limits:
 - **Memory overhead**: < 50MB
 
 Example:
+
 ```python
 def test_request_batching_within_threshold(mock_api_responses):
     """Test request batching performance."""
@@ -76,6 +79,7 @@ Tests integrated scenarios:
 - End-to-end workflows
 
 Example:
+
 ```python
 def test_end_to_end_cache_and_parallel_performance():
     """Test integrated cache and parallel processing."""
@@ -189,16 +193,16 @@ PERFORMANCE_THRESHOLDS = {
     "cache_set": 0.002,              # 2ms
     "cache_cleanup": 0.1,            # 100ms
     "cache_invalidate": 0.005,       # 5ms
-    
+
     # Parallel processing (seconds)
     "worker_pool_creation": 0.1,     # 100ms
     "batch_processing_per_item": 0.05, # 50ms per item
     "result_aggregation": 0.01,      # 10ms
-    
+
     # Memory limits (MB)
     "cache_max_size": 100,           # 100MB
     "worker_memory_per_item": 10,    # 10MB per item
-    
+
     # Throughput (items/second)
     "cache_ops_per_second": 1000,
     "batch_requests_per_second": 100,
@@ -293,10 +297,11 @@ pytest tests/performance/test_benchmarks.py \
 
 ### Threshold Test Results
 
-✅ **Pass**: Operation completed within threshold + 10% margin  
+✅ **Pass**: Operation completed within threshold + 10% margin
 ❌ **Fail**: Operation exceeded threshold + margin
 
 Example output:
+
 ```
 PASSED test_cache_get_within_threshold
   Cache get operation: 0.000523s <= 0.001100s (threshold: 0.001000s + 10% margin)
@@ -327,6 +332,7 @@ test_benchmark_cache_set      0.8123   1.2341   0.9234   0.0912   0.8976
 ### Adjusting Thresholds
 
 Thresholds should be:
+
 - Based on real-world measurements
 - Updated when optimizations are made
 - Conservative but achievable
@@ -354,6 +360,7 @@ Located in `TestPerformanceRegression` class:
 - Ensure throughput maintains levels
 
 Example:
+
 ```python
 def test_cache_performance_vs_baseline():
     """Verify cache performance hasn't regressed from baseline."""
@@ -366,13 +373,13 @@ def test_cache_performance_vs_baseline():
 
 Performance tests cover:
 
-✅ Cache operations (get, set, cleanup, invalidation)  
-✅ Parallel processing (worker pools, batching, aggregation)  
-✅ Batch operations (batching, deduplication, rate limiting)  
-✅ Integrated scenarios (cache + parallel, end-to-end)  
-✅ Memory constraints (size limits, memory usage)  
-✅ Throughput validation (ops/sec requirements)  
-✅ Regression detection (baseline comparisons)  
+✅ Cache operations (get, set, cleanup, invalidation)
+✅ Parallel processing (worker pools, batching, aggregation)
+✅ Batch operations (batching, deduplication, rate limiting)
+✅ Integrated scenarios (cache + parallel, end-to-end)
+✅ Memory constraints (size limits, memory usage)
+✅ Throughput validation (ops/sec requirements)
+✅ Regression detection (baseline comparisons)
 
 **Total Tests**: 47+ threshold tests, 30+ benchmark tests
 
@@ -399,6 +406,7 @@ mv .benchmarks/new_baseline .benchmarks/baseline
 ### Reviewing Performance
 
 Regularly review:
+
 - Benchmark trend graphs
 - Failed threshold tests
 - Memory usage patterns
@@ -406,7 +414,7 @@ Regularly review:
 
 ## References
 
-- **pytest-benchmark docs**: https://pytest-benchmark.readthedocs.io/
+- **pytest-benchmark docs**: <https://pytest-benchmark.readthedocs.io/>
 - **Performance testing best practices**: See project docs
 - **Profiling tools**: cProfile, memory_profiler, py-spy
 - **CI/CD integration**: See `.github/workflows/`
@@ -414,6 +422,7 @@ Regularly review:
 ## Support
 
 For performance issues:
+
 1. Check test output for specific failures
 2. Review benchmark comparison results
 3. Profile slow operations
@@ -422,7 +431,7 @@ For performance issues:
 
 ---
 
-**Last Updated**: Phase 11, Step 8 - Performance Threshold Tests  
-**Test Count**: 77+ tests (47 thresholds + 30 benchmarks)  
-**Coverage**: Critical performance paths (cache, parallel, batch)  
+**Last Updated**: Phase 11, Step 8 - Performance Threshold Tests
+**Test Count**: 77+ tests (47 thresholds + 30 benchmarks)
+**Coverage**: Critical performance paths (cache, parallel, batch)
 **Status**: ✅ All tests passing

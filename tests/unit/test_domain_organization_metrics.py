@@ -9,7 +9,6 @@ Tests cover:
 """
 
 import pytest
-
 from src.domain.organization_metrics import OrganizationMetrics
 
 
@@ -24,42 +23,27 @@ class TestOrganizationMetricsValidation:
     def test_negative_contributor_count_raises_error(self):
         """Negative contributor_count should raise ValueError."""
         with pytest.raises(ValueError, match="contributor_count must be non-negative"):
-            OrganizationMetrics(
-                domain="example.com",
-                contributor_count=-5
-            )
+            OrganizationMetrics(domain="example.com", contributor_count=-5)
 
     def test_negative_commits_raises_error(self):
         """Negative commit counts should raise ValueError."""
         with pytest.raises(ValueError, match="commits.*must be non-negative"):
-            OrganizationMetrics(
-                domain="example.com",
-                commits={"1y": -10}
-            )
+            OrganizationMetrics(domain="example.com", commits={"1y": -10})
 
     def test_negative_lines_added_raises_error(self):
         """Negative lines_added should raise ValueError."""
         with pytest.raises(ValueError, match="lines_added.*must be non-negative"):
-            OrganizationMetrics(
-                domain="example.com",
-                lines_added={"1y": -1000}
-            )
+            OrganizationMetrics(domain="example.com", lines_added={"1y": -1000})
 
     def test_negative_lines_removed_raises_error(self):
         """Negative lines_removed should raise ValueError."""
         with pytest.raises(ValueError, match="lines_removed.*must be non-negative"):
-            OrganizationMetrics(
-                domain="example.com",
-                lines_removed={"90d": -500}
-            )
+            OrganizationMetrics(domain="example.com", lines_removed={"90d": -500})
 
     def test_negative_repositories_count_raises_error(self):
         """Negative repositories_count should raise ValueError."""
         with pytest.raises(ValueError, match="repositories_count.*must be non-negative"):
-            OrganizationMetrics(
-                domain="example.com",
-                repositories_count={"30d": -3}
-            )
+            OrganizationMetrics(domain="example.com", repositories_count={"30d": -3})
 
     def test_inconsistent_lines_net_raises_error(self):
         """lines_net must equal lines_added - lines_removed."""
@@ -69,7 +53,7 @@ class TestOrganizationMetricsValidation:
                 commits={"1y": 100},
                 lines_added={"1y": 5000},
                 lines_removed={"1y": 1000},
-                lines_net={"1y": 3000}  # Should be 4000
+                lines_net={"1y": 3000},  # Should be 4000
             )
 
     def test_consistent_lines_net_valid(self):
@@ -79,7 +63,7 @@ class TestOrganizationMetricsValidation:
             commits={"1y": 100},
             lines_added={"1y": 5000},
             lines_removed={"1y": 1000},
-            lines_net={"1y": 4000}
+            lines_net={"1y": 4000},
         )
         assert org.lines_net["1y"] == 4000
 
@@ -89,7 +73,7 @@ class TestOrganizationMetricsValidation:
             domain="cleanup.com",
             lines_added={"1y": 500},
             lines_removed={"1y": 2000},
-            lines_net={"1y": -1500}  # Net deletion
+            lines_net={"1y": -1500},  # Net deletion
         )
         assert org.lines_net["1y"] == -1500
 
@@ -100,7 +84,7 @@ class TestOrganizationMetricsCreation:
     def test_minimal_organization(self):
         """Create organization with only domain."""
         org = OrganizationMetrics(domain="example.com")
-        
+
         assert org.domain == "example.com"
         assert org.contributor_count == 0
         assert org.commits == {}
@@ -118,9 +102,9 @@ class TestOrganizationMetricsCreation:
             lines_added={"1y": 250000, "90d": 60000, "30d": 20000},
             lines_removed={"1y": 100000, "90d": 25000, "30d": 8000},
             lines_net={"1y": 150000, "90d": 35000, "30d": 12000},
-            repositories_count={"1y": 25, "90d": 20, "30d": 15}
+            repositories_count={"1y": 25, "90d": 20, "30d": 15},
         )
-        
+
         assert org.domain == "acme.com"
         assert org.contributor_count == 50
         assert org.commits["1y"] == 5000
@@ -135,7 +119,7 @@ class TestOrganizationMetricsCreation:
             commits={"1y": 0},
             lines_added={"1y": 0},
             lines_removed={"1y": 0},
-            lines_net={"1y": 0}
+            lines_net={"1y": 0},
         )
         assert org.contributor_count == 0
         assert org.total_commits == 0
@@ -154,7 +138,7 @@ class TestOrganizationMetricsDictConversion:
         """Convert minimal organization to dictionary."""
         org = OrganizationMetrics(domain="test.com")
         data = org.to_dict()
-        
+
         assert data["domain"] == "test.com"
         assert data["contributor_count"] == 0
         assert data["commits"] == {}
@@ -172,10 +156,10 @@ class TestOrganizationMetricsDictConversion:
             lines_added={"1y": 500000, "90d": 125000},
             lines_removed={"1y": 200000, "90d": 50000},
             lines_net={"1y": 300000, "90d": 75000},
-            repositories_count={"1y": 50, "90d": 40}
+            repositories_count={"1y": 50, "90d": 40},
         )
         data = org.to_dict()
-        
+
         assert data["domain"] == "company.com"
         assert data["contributor_count"] == 100
         assert data["commits"]["1y"] == 10000
@@ -186,7 +170,7 @@ class TestOrganizationMetricsDictConversion:
         """Create organization from minimal dictionary."""
         data = {"domain": "minimal.com"}
         org = OrganizationMetrics.from_dict(data)
-        
+
         assert org.domain == "minimal.com"
         assert org.contributor_count == 0
         assert org.commits == {}
@@ -200,10 +184,10 @@ class TestOrganizationMetricsDictConversion:
             "lines_added": {"1y": 1000000, "90d": 250000},
             "lines_removed": {"1y": 400000, "90d": 100000},
             "lines_net": {"1y": 600000, "90d": 150000},
-            "repositories_count": {"1y": 100, "90d": 80}
+            "repositories_count": {"1y": 100, "90d": 80},
         }
         org = OrganizationMetrics.from_dict(data)
-        
+
         assert org.domain == "bigcorp.com"
         assert org.contributor_count == 200
         assert org.commits["90d"] == 5000
@@ -213,7 +197,7 @@ class TestOrganizationMetricsDictConversion:
         """from_dict should use defaults for missing fields."""
         data = {"domain": "defaults.com"}
         org = OrganizationMetrics.from_dict(data)
-        
+
         assert org.domain == "defaults.com"
         assert org.contributor_count == 0
         assert org.commits == {}
@@ -228,12 +212,12 @@ class TestOrganizationMetricsDictConversion:
             lines_added={"1y": 375000, "90d": 93750},
             lines_removed={"1y": 150000, "90d": 37500},
             lines_net={"1y": 225000, "90d": 56250},
-            repositories_count={"1y": 37, "90d": 30}
+            repositories_count={"1y": 37, "90d": 30},
         )
-        
+
         data = original.to_dict()
         restored = OrganizationMetrics.from_dict(data)
-        
+
         assert restored.domain == original.domain
         assert restored.contributor_count == original.contributor_count
         assert restored.commits == original.commits
@@ -248,10 +232,7 @@ class TestOrganizationMetricsProperties:
 
     def test_total_commits(self):
         """Sum commits across all windows."""
-        org = OrganizationMetrics(
-            domain="test.com",
-            commits={"1y": 1000, "90d": 250, "30d": 80}
-        )
+        org = OrganizationMetrics(domain="test.com", commits={"1y": 1000, "90d": 250, "30d": 80})
         assert org.total_commits == 1330
 
     def test_total_commits_empty(self):
@@ -262,24 +243,21 @@ class TestOrganizationMetricsProperties:
     def test_total_lines_added(self):
         """Sum lines_added across all windows."""
         org = OrganizationMetrics(
-            domain="test.com",
-            lines_added={"1y": 50000, "90d": 12500, "30d": 4000}
+            domain="test.com", lines_added={"1y": 50000, "90d": 12500, "30d": 4000}
         )
         assert org.total_lines_added == 66500
 
     def test_total_lines_removed(self):
         """Sum lines_removed across all windows."""
         org = OrganizationMetrics(
-            domain="test.com",
-            lines_removed={"1y": 20000, "90d": 5000, "30d": 1600}
+            domain="test.com", lines_removed={"1y": 20000, "90d": 5000, "30d": 1600}
         )
         assert org.total_lines_removed == 26600
 
     def test_total_lines_net(self):
         """Sum lines_net across all windows."""
         org = OrganizationMetrics(
-            domain="test.com",
-            lines_net={"1y": 30000, "90d": 7500, "30d": 2400}
+            domain="test.com", lines_net={"1y": 30000, "90d": 7500, "30d": 2400}
         )
         assert org.total_lines_net == 39900
 
@@ -289,7 +267,7 @@ class TestOrganizationMetricsProperties:
             domain="cleanup.com",
             lines_added={"1y": 1000},
             lines_removed={"1y": 5000},
-            lines_net={"1y": -4000}
+            lines_net={"1y": -4000},
         )
         assert org.total_lines_net == -4000
 
@@ -311,48 +289,33 @@ class TestOrganizationMetricsProperties:
 
     def test_get_commits_in_window(self):
         """Get commits for specific window."""
-        org = OrganizationMetrics(
-            domain="test.com",
-            commits={"1y": 1000, "90d": 250}
-        )
+        org = OrganizationMetrics(domain="test.com", commits={"1y": 1000, "90d": 250})
         assert org.get_commits_in_window("1y") == 1000
         assert org.get_commits_in_window("90d") == 250
         assert org.get_commits_in_window("30d") == 0  # Missing
 
     def test_get_lines_added_in_window(self):
         """Get lines_added for specific window."""
-        org = OrganizationMetrics(
-            domain="test.com",
-            lines_added={"1y": 50000, "90d": 12500}
-        )
+        org = OrganizationMetrics(domain="test.com", lines_added={"1y": 50000, "90d": 12500})
         assert org.get_lines_added_in_window("1y") == 50000
         assert org.get_lines_added_in_window("30d") == 0
 
     def test_get_lines_removed_in_window(self):
         """Get lines_removed for specific window."""
-        org = OrganizationMetrics(
-            domain="test.com",
-            lines_removed={"1y": 20000}
-        )
+        org = OrganizationMetrics(domain="test.com", lines_removed={"1y": 20000})
         assert org.get_lines_removed_in_window("1y") == 20000
         assert org.get_lines_removed_in_window("90d") == 0
 
     def test_get_lines_net_in_window(self):
         """Get lines_net for specific window."""
-        org = OrganizationMetrics(
-            domain="test.com",
-            lines_net={"1y": 30000, "90d": -500}
-        )
+        org = OrganizationMetrics(domain="test.com", lines_net={"1y": 30000, "90d": -500})
         assert org.get_lines_net_in_window("1y") == 30000
         assert org.get_lines_net_in_window("90d") == -500
         assert org.get_lines_net_in_window("30d") == 0
 
     def test_get_repositories_in_window(self):
         """Get repositories_count for specific window."""
-        org = OrganizationMetrics(
-            domain="test.com",
-            repositories_count={"1y": 50, "90d": 40}
-        )
+        org = OrganizationMetrics(domain="test.com", repositories_count={"1y": 50, "90d": 40})
         assert org.get_repositories_in_window("1y") == 50
         assert org.get_repositories_in_window("90d") == 40
         assert org.get_repositories_in_window("30d") == 0
@@ -368,10 +331,7 @@ class TestOrganizationMetricsEdgeCases:
 
     def test_very_large_contributor_count(self):
         """Handle very large contributor counts."""
-        org = OrganizationMetrics(
-            domain="opensource.org",
-            contributor_count=100000
-        )
+        org = OrganizationMetrics(domain="opensource.org", contributor_count=100000)
         assert org.contributor_count == 100000
 
     def test_very_large_metrics(self):
@@ -381,7 +341,7 @@ class TestOrganizationMetricsEdgeCases:
             commits={"1y": 10000000},
             lines_added={"1y": 1000000000},
             lines_removed={"1y": 500000000},
-            lines_net={"1y": 500000000}
+            lines_net={"1y": 500000000},
         )
         assert org.total_commits == 10000000
         assert org.total_lines_added == 1000000000
@@ -389,10 +349,7 @@ class TestOrganizationMetricsEdgeCases:
     def test_many_time_windows(self):
         """Handle many different time windows."""
         windows = {f"{i}d": i * 100 for i in range(1, 101)}
-        org = OrganizationMetrics(
-            domain="many-windows.com",
-            commits=windows
-        )
+        org = OrganizationMetrics(domain="many-windows.com", commits=windows)
         assert len(org.commits) == 100
         assert org.total_commits == sum(windows.values())
 
@@ -408,11 +365,7 @@ class TestOrganizationMetricsEdgeCases:
 
     def test_single_contributor(self):
         """Handle organization with single contributor."""
-        org = OrganizationMetrics(
-            domain="solo.com",
-            contributor_count=1,
-            commits={"1y": 100}
-        )
+        org = OrganizationMetrics(domain="solo.com", contributor_count=1, commits={"1y": 100})
         assert org.contributor_count == 1
 
     def test_mixed_positive_negative_net(self):
@@ -421,7 +374,7 @@ class TestOrganizationMetricsEdgeCases:
             domain="mixed.com",
             lines_added={"1y": 10000, "90d": 500, "30d": 100},
             lines_removed={"1y": 5000, "90d": 1000, "30d": 50},
-            lines_net={"1y": 5000, "90d": -500, "30d": 50}
+            lines_net={"1y": 5000, "90d": -500, "30d": 50},
         )
         assert org.lines_net["1y"] == 5000
         assert org.lines_net["90d"] == -500
@@ -435,7 +388,7 @@ class TestOrganizationMetricsEdgeCases:
             commits={"1y": 0},
             lines_added={"1y": 0},
             lines_removed={"1y": 0},
-            lines_net={"1y": 0}
+            lines_net={"1y": 0},
         )
         assert org.contributor_count == 10
         assert org.total_commits == 0
@@ -443,9 +396,7 @@ class TestOrganizationMetricsEdgeCases:
     def test_repositories_without_commits(self):
         """Handle case where repos exist but no commits."""
         org = OrganizationMetrics(
-            domain="repos.com",
-            repositories_count={"1y": 10},
-            commits={"1y": 0}
+            domain="repos.com", repositories_count={"1y": 10}, commits={"1y": 0}
         )
         assert org.repositories_count["1y"] == 10
         assert org.commits["1y"] == 0

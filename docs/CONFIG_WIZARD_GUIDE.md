@@ -23,6 +23,7 @@
 The Configuration Wizard helps you create valid configuration files for the Repository Reporting System without manual YAML editing. Choose from three templates based on your needs, or use the interactive wizard for guided setup.
 
 **Benefits:**
+
 - ✅ Zero to first report in <5 minutes
 - ✅ No YAML knowledge required
 - ✅ Smart defaults prevent errors
@@ -36,6 +37,7 @@ The Configuration Wizard helps you create valid configuration files for the Repo
 ### First-Time Users
 
 **Recommended: Interactive wizard**
+
 ```bash
 reporting-tool init
 ```
@@ -45,6 +47,7 @@ Follow the prompts to create your configuration. Takes ~2 minutes.
 ### Experienced Users
 
 **Quick setup with template**
+
 ```bash
 reporting-tool init --template standard --project my-project
 ```
@@ -58,11 +61,13 @@ Creates a configuration in 10 seconds.
 ### 1. Interactive Wizard Mode
 
 **Command:**
+
 ```bash
 reporting-tool init [--config-output PATH]
 ```
 
 **When to use:**
+
 - First time using the system
 - Want guided configuration
 - Need to customize settings
@@ -75,11 +80,13 @@ reporting-tool init [--config-output PATH]
 ### 2. Template-Based Mode
 
 **Command:**
+
 ```bash
 reporting-tool init --template TEMPLATE --project NAME [--config-output PATH]
 ```
 
 **When to use:**
+
 - Quick setup needed
 - Standard configuration sufficient
 - Automation/scripting
@@ -96,21 +103,25 @@ reporting-tool init --template TEMPLATE --project NAME [--config-output PATH]
 **Best for:** Quick testing, simple projects
 
 **Includes:**
+
 - Project name
 - Time windows (365/90 days)
 - Output settings (JSON, Markdown, HTML)
 
 **What's excluded:**
+
 - API integrations
 - Feature detection
 - Performance settings
 
 **Use when:**
+
 - Testing the system
 - Minimal analysis needed
 - Learning the basics
 
 **Command:**
+
 ```bash
 reporting-tool init --template minimal --project test-project
 ```
@@ -122,6 +133,7 @@ reporting-tool init --template minimal --project test-project
 **Best for:** Most projects
 
 **Includes:**
+
 - All minimal template features
 - GitHub API integration
 - Basic feature detection (CI/CD, security, docs)
@@ -129,16 +141,19 @@ reporting-tool init --template minimal --project test-project
 - Common time windows
 
 **What's excluded:**
+
 - Gerrit/Jenkins integrations
 - Advanced features (Maven, npm, SonarQube)
 - Performance tuning
 
 **Use when:**
+
 - Working with GitHub repositories
 - Need standard feature detection
 - Want recommended settings
 
 **Command:**
+
 ```bash
 reporting-tool init --template standard --project my-project
 ```
@@ -150,6 +165,7 @@ reporting-tool init --template standard --project my-project
 **Best for:** Production deployments, advanced users
 
 **Includes:**
+
 - All standard template features
 - All API integrations (GitHub, Gerrit, Jenkins)
 - All feature detection
@@ -157,12 +173,14 @@ reporting-tool init --template standard --project my-project
 - Extended time windows
 
 **Use when:**
+
 - Production deployment
 - Multiple API sources
 - Performance optimization needed
 - Advanced feature detection required
 
 **Command:**
+
 ```bash
 reporting-tool init --template full --project production-project
 ```
@@ -174,6 +192,7 @@ reporting-tool init --template full --project production-project
 ### Step-by-Step Flow
 
 #### Step 1: Template Selection
+
 ```
 Which template would you like to use?
   1. Minimal - Basic settings only (quickest setup)
@@ -186,11 +205,13 @@ Which template would you like to use?
 ---
 
 #### Step 2: Basic Settings
+
 ```
 Project name [my-project]: acme-tools
 ```
 
 **Tips:**
+
 - Use lowercase with hyphens (e.g., `acme-tools`)
 - Avoid spaces and special characters
 - Keep it short and descriptive
@@ -198,12 +219,14 @@ Project name [my-project]: acme-tools
 ---
 
 #### Step 3: Time Windows
+
 ```
 Use default reporting window (365 days / 1 year)? [Y/n]:
 Use default recent activity window (90 days)? [Y/n]:
 ```
 
 **Common configurations:**
+
 - **365/90 days:** Annual reports (default, recommended)
 - **90/30 days:** Quarterly reports
 - **30/7 days:** Monthly reports
@@ -212,6 +235,7 @@ Use default recent activity window (90 days)? [Y/n]:
 ---
 
 #### Step 4: Output Settings
+
 ```
 Output directory [output]: reports
 
@@ -224,6 +248,7 @@ Create ZIP bundle of all reports? [Y/n]: y
 ```
 
 **Recommendations:**
+
 - **All formats:** Most flexible (default)
 - **JSON only:** For programmatic use
 - **HTML only:** For human viewing
@@ -232,6 +257,7 @@ Create ZIP bundle of all reports? [Y/n]: y
 ---
 
 #### Step 5: API Integrations
+
 ```
 GitHub API:
   Enable GitHub API integration? [Y/n]: y
@@ -241,17 +267,20 @@ Gerrit API:
 ```
 
 **Environment detection:**
+
 - Automatically detects `GITHUB_TOKEN` environment variable
 - Shows success message if found
 - Warns if not found (optional for public repos)
 
 **Tips:**
+
 - Enable GitHub for better rate limits
 - Only enable Gerrit/Jenkins if you use them
 
 ---
 
 #### Step 6: Feature Detection
+
 ```
 Detect CI/CD systems (GitHub Actions, Jenkins, etc.)? [Y/n]: y
 Detect security tools (Dependabot, Snyk, etc.)? [Y/n]: y
@@ -259,12 +288,14 @@ Detect documentation tools (ReadTheDocs, etc.)? [Y/n]: y
 ```
 
 **Recommendations:**
+
 - Enable all for comprehensive analysis
 - Disable if you don't need specific categories
 
 ---
 
 #### Step 7: Performance Settings (Full template only)
+
 ```
 Concurrency:
   Enable parallel processing? [Y/n]: y
@@ -279,11 +310,13 @@ Caching:
 ---
 
 #### Step 8: Save Configuration
+
 ```
 Configuration file path [config/acme-tools.yaml]:
 ```
 
 **Path recommendations:**
+
 - Default: `config/{project}.yaml` (recommended)
 - Custom: Any path you prefer
 - Directories created automatically
@@ -314,16 +347,19 @@ The wizard shows you what to do next:
 ### Basic Usage
 
 **Minimal config:**
+
 ```bash
 reporting-tool init --template minimal --project my-project
 ```
 
 **Standard config:**
+
 ```bash
 reporting-tool init --template standard --project my-project
 ```
 
 **Full config:**
+
 ```bash
 reporting-tool init --template full --project my-project
 ```
@@ -333,6 +369,7 @@ reporting-tool init --template full --project my-project
 ### Custom Output Path
 
 **Specify output location:**
+
 ```bash
 reporting-tool init --template standard \
   --project my-project \
@@ -340,6 +377,7 @@ reporting-tool init --template standard \
 ```
 
 **Automatically created paths:**
+
 ```bash
 # Default path (if not specified)
 config/my-project.yaml
@@ -353,6 +391,7 @@ custom/path/config.yaml
 ### Programmatic Usage
 
 **From Python code:**
+
 ```python
 from cli.wizard import create_config_from_template
 
@@ -464,13 +503,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Create configuration
         run: |
           reporting-tool init --template standard \
             --project ${{ github.repository }} \
             --config-output /tmp/config.yaml
-      
+
       - name: Generate reports
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -479,7 +518,7 @@ jobs:
             --config /tmp/config.yaml \
             --repos-path ./repos \
             --quiet
-      
+
       - name: Upload reports
         uses: actions/upload-artifact@v3
         with:
@@ -519,6 +558,7 @@ done
 **Cause:** Terminal doesn't support interactive input
 
 **Solution:**
+
 ```bash
 # Use template-based creation instead
 reporting-tool init --template standard --project my-project
@@ -531,6 +571,7 @@ reporting-tool init --template standard --project my-project
 **Cause:** Environment variable not set
 
 **Solution:**
+
 ```bash
 # Set token (Linux/macOS)
 export GITHUB_TOKEN=ghp_your_token_here
@@ -549,6 +590,7 @@ reporting-tool init
 **Cause:** Output directory not writable
 
 **Solution:**
+
 ```bash
 # Use a writable directory
 reporting-tool init --config-output ~/config.yaml
@@ -564,6 +606,7 @@ reporting-tool init
 ### Problem: Want to change configuration after creation
 
 **Solution:**
+
 ```bash
 # Option 1: Edit the YAML file directly
 vim config/my-project.yaml
@@ -581,6 +624,7 @@ reporting-tool init --config-output config/my-project-v2.yaml
 ### Problem: Need to validate configuration
 
 **Solution:**
+
 ```bash
 # Use dry-run mode
 reporting-tool generate --config config/my-project.yaml --dry-run
@@ -599,16 +643,19 @@ reporting-tool generate --config config/my-project.yaml --dry-run
 ### After Creating Configuration
 
 1. **Review the configuration file**
+
    ```bash
    cat config/my-project.yaml
    ```
 
 2. **Validate your setup**
+
    ```bash
    reporting-tool generate --config config/my-project.yaml --dry-run
    ```
 
 3. **Generate your first report**
+
    ```bash
    reporting-tool generate --project my-project \
      --config config/my-project.yaml \
@@ -616,13 +663,14 @@ reporting-tool generate --config config/my-project.yaml --dry-run
    ```
 
 4. **Review the output**
+
    ```bash
    # JSON data
    cat output/my-project.json | jq .
-   
+
    # Markdown report
    cat output/my-project.md
-   
+
    # HTML report
    open output/my-project.html
    ```
@@ -660,6 +708,7 @@ reporting-tool generate --config config/my-project.yaml --dry-run
 ## Command Reference
 
 ### Interactive Mode
+
 ```bash
 reporting-tool init [OPTIONS]
 
@@ -668,6 +717,7 @@ Options:
 ```
 
 ### Template Mode
+
 ```bash
 reporting-tool init --template TEMPLATE --project NAME [OPTIONS]
 
@@ -684,55 +734,63 @@ Optional:
 ## Tips & Best Practices
 
 ### 1. Start Simple
+
 Begin with the **minimal** or **standard** template, then customize as needed.
 
 ### 2. Use Defaults
+
 The wizard's defaults are carefully chosen. Press Enter to accept them.
 
 ### 3. Review Before Running
+
 Always review the generated config file before your first report.
 
 ### 4. Validate First
+
 Use `--dry-run` to validate your configuration before generating reports.
 
 ### 5. Version Control
+
 Check your configuration files into version control for team consistency.
 
 ### 6. Template Reuse
+
 Save customized configs as templates for future projects.
 
 ### 7. Environment Variables
+
 Use `GITHUB_TOKEN` for better API rate limits (recommended).
 
 ### 8. Automation
+
 Use template mode (`--init-template`) for scripting and CI/CD.
 
 ---
 
 ## FAQ
 
-**Q: Can I run the wizard multiple times?**  
+**Q: Can I run the wizard multiple times?**
 A: Yes! It will overwrite the existing file. Make a backup first if needed.
 
-**Q: Do I need a GitHub token?**  
+**Q: Do I need a GitHub token?**
 A: Optional for public repos, recommended for private repos and better rate limits.
 
-**Q: Can I edit the config file after creation?**  
+**Q: Can I edit the config file after creation?**
 A: Yes! It's just a YAML file. Edit it with any text editor.
 
-**Q: Which template should I use?**  
+**Q: Which template should I use?**
 A: Standard template is recommended for most users.
 
-**Q: Can I use this in CI/CD?**  
+**Q: Can I use this in CI/CD?**
 A: Yes! Use `--init-template` for non-interactive creation.
 
-**Q: What if I make a mistake?**  
+**Q: What if I make a mistake?**
 A: Just run the wizard again, or edit the YAML file directly.
 
-**Q: Can I create multiple configurations?**  
+**Q: Can I create multiple configurations?**
 A: Yes! Use `--config-output` to specify different paths.
 
-**Q: Is the wizard required?**  
+**Q: Is the wizard required?**
 A: No, you can create config files manually. The wizard just makes it easier.
 
 ---
@@ -745,5 +803,5 @@ reporting-tool init
 
 ---
 
-*Configuration Wizard Guide - Phase 13, Step 5*  
+*Configuration Wizard Guide - Phase 13, Step 5*
 *Last Updated: 2025-01-XX*

@@ -10,10 +10,8 @@ Phase 8: Renderer Modernization
 import json
 import logging
 from pathlib import Path
-from typing import Any, Dict
 
 import pytest
-
 from src.rendering.legacy_adapter import LegacyRendererAdapter, create_legacy_renderer
 from src.rendering.renderer import ModernReportRenderer
 
@@ -122,7 +120,7 @@ class TestLegacyRendererAdapter:
         adapter.render_json_report(sample_data, output_path)
 
         assert output_path.exists()
-        with open(output_path, "r", encoding="utf-8") as f:
+        with open(output_path, encoding="utf-8") as f:
             loaded_data = json.load(f)
 
         assert loaded_data["project"] == "test-project"
@@ -142,7 +140,7 @@ class TestLegacyRendererAdapter:
         assert "test-project" in content
 
         # Verify content matches file
-        with open(output_path, "r", encoding="utf-8") as f:
+        with open(output_path, encoding="utf-8") as f:
             file_content = f.read()
         assert content == file_content
 
@@ -155,15 +153,13 @@ class TestLegacyRendererAdapter:
         adapter.render_html_report(sample_data, output_path)
 
         assert output_path.exists()
-        with open(output_path, "r", encoding="utf-8") as f:
+        with open(output_path, encoding="utf-8") as f:
             html_content = f.read()
 
         assert "<!DOCTYPE html>" in html_content
         assert "test-project" in html_content
 
-    def test_render_html_report_legacy_mode(
-        self, config, logger, sample_data, tmp_path, caplog
-    ):
+    def test_render_html_report_legacy_mode(self, config, logger, sample_data, tmp_path, caplog):
         """Test HTML rendering in legacy mode (convert from Markdown)."""
         adapter = LegacyRendererAdapter(config, logger)
         output_path = tmp_path / "report.html"
@@ -171,14 +167,12 @@ class TestLegacyRendererAdapter:
         markdown_content = "# Test Report\n\nSome content."
 
         # Legacy mode: provide markdown_content
-        adapter.render_html_report(
-            sample_data, output_path, markdown_content=markdown_content
-        )
+        adapter.render_html_report(sample_data, output_path, markdown_content=markdown_content)
 
         # Should log deprecation warning
         assert "deprecated" in caplog.text.lower()
         assert output_path.exists()
-        with open(output_path, "r", encoding="utf-8") as f:
+        with open(output_path, encoding="utf-8") as f:
             html_content = f.read()
 
         assert "<!DOCTYPE html>" in html_content
@@ -223,9 +217,7 @@ class TestLegacyRendererAdapter:
         assert isinstance(md_content, str)
         assert len(md_content) > 0
 
-    def test_adapter_uses_modern_renderer_internally(
-        self, config, logger, sample_data, tmp_path
-    ):
+    def test_adapter_uses_modern_renderer_internally(self, config, logger, sample_data, tmp_path):
         """Test that adapter delegates to modern renderer."""
         adapter = LegacyRendererAdapter(config, logger)
         output_path = tmp_path / "report.md"
@@ -234,7 +226,7 @@ class TestLegacyRendererAdapter:
         adapter.render_markdown_report(sample_data, output_path)
 
         # Should use modern template system
-        with open(output_path, "r", encoding="utf-8") as f:
+        with open(output_path, encoding="utf-8") as f:
             content = f.read()
 
         # Check for modern template characteristics
@@ -292,7 +284,7 @@ class TestIntegrationWithModernRenderer:
 
         adapter.render_html_report(sample_data, output_path)
 
-        with open(output_path, "r", encoding="utf-8") as f:
+        with open(output_path, encoding="utf-8") as f:
             html_content = f.read()
 
         # Should be valid HTML5
@@ -303,9 +295,7 @@ class TestIntegrationWithModernRenderer:
         assert "<body>" in html_content
         assert "test-project" in html_content
 
-    def test_adapter_and_modern_renderer_consistency(
-        self, config, logger, sample_data, tmp_path
-    ):
+    def test_adapter_and_modern_renderer_consistency(self, config, logger, sample_data, tmp_path):
         """Test that adapter and modern renderer produce consistent output."""
         # Create both renderers
         adapter = LegacyRendererAdapter(config, logger)

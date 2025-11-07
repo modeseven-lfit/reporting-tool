@@ -46,7 +46,7 @@ jobs:
       fail-fast: true
       matrix:
         python-version: ['3.10', '3.11', '3.12', '3.13']
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5d08a4e57e534c0b8c44a23f7a3cff84e3f # v2.13.2
@@ -93,7 +93,7 @@ jobs:
           # Run full matrix only on main branch
           - os: macos-latest
           - os: windows-latest
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5d08a4e57e534c0b8c44a23f7a3cff84e3f # v2.13.2
@@ -153,7 +153,7 @@ jobs:
     needs: smoke-tests
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5d08a4e57e534c0b8c44a23f7a3cff84e3f # v2.13.2
@@ -200,7 +200,7 @@ jobs:
     needs: smoke-tests
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5d08a4e57e534c0b8c44a23f7a3cff84e3f # v2.13.2
@@ -256,7 +256,7 @@ jobs:
     needs: smoke-tests
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5d08a4e57e534c0b8c44a23f7a3cff84e3f # v2.13.2
@@ -310,7 +310,7 @@ jobs:
     needs: smoke-tests
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5d08a4e57e534c0b8c44a23f7a3cff84e3f # v2.13.2
@@ -372,7 +372,7 @@ jobs:
     name: Code Quality
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5d08a4e57e534c0b8c44a23f7a3cff84e3f # v2.13.2
@@ -430,7 +430,7 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5d08a4e57e534c0b8c44a23f7a3cff84e3f # v2.13.2
@@ -468,9 +468,9 @@ jobs:
         run: |
           cat > test-summary.md << 'EOF'
           # Test Execution Summary
-          
+
           ## Results
-          
+
           | Test Suite | Status |
           |------------|--------|
           | Smoke Tests | ${{ needs.smoke-tests.result }} |
@@ -479,13 +479,13 @@ jobs:
           | Property Tests | ${{ needs.property-tests.result }} |
           | Regression Tests | ${{ needs.regression-tests.result }} |
           | Performance Tests | ${{ needs.performance-tests.result }} |
-          
+
           ## Coverage
-          
+
           See coverage-summary.md for details.
-          
+
           ## Workflow
-          
+
           - Run ID: ${{ github.run_id }}
           - Run Number: ${{ github.run_number }}
           - Triggered by: ${{ github.event_name }}
@@ -511,15 +511,15 @@ jobs:
           script: |
             const fs = require('fs');
             let summary = '# Test Results\n\n';
-            
+
             if (fs.existsSync('test-summary.md')) {
               summary += fs.readFileSync('test-summary.md', 'utf8');
             }
-            
+
             if (fs.existsSync('coverage-summary.md')) {
               summary += '\n\n' + fs.readFileSync('coverage-summary.md', 'utf8');
             }
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,

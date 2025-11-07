@@ -63,7 +63,7 @@ def safe_git_command(
 
 class GitDataCollector:
     """Handles Git repository analysis and metric collection.
-    
+
     Thread Safety:
         This class is designed for concurrent use via ThreadPoolExecutor.
         Jenkins job allocation is protected by instance-level JenkinsAllocationContext.
@@ -473,7 +473,7 @@ class GitDataCollector:
 
     def _get_jenkins_jobs_for_repo(self, repo_name: str) -> list[dict[str, Any]]:
         """Get Jenkins jobs for a specific repository with duplicate prevention.
-        
+
         Thread-safe: uses instance-level JenkinsAllocationContext.
         """
         if not self.jenkins_client or not self._jenkins_initialized:
@@ -493,7 +493,7 @@ class GitDataCollector:
             jobs = self.jenkins_client.get_jobs_for_project(
                 repo_name, self.jenkins_allocation_context.allocated_jobs
             )
-            
+
             if jobs:
                 self.logger.debug(
                     f"Found {len(jobs)} Jenkins jobs for {repo_name}: {[job.get('name') for job in jobs]}"
@@ -514,7 +514,7 @@ class GitDataCollector:
 
     def reset_jenkins_allocation_state(self) -> None:
         """Reset Jenkins job allocation state for a fresh start.
-        
+
         Thread-safe: uses instance-level JenkinsAllocationContext.
         """
         self.jenkins_allocation_context.reset()
@@ -522,7 +522,7 @@ class GitDataCollector:
 
     def get_jenkins_job_allocation_summary(self) -> dict[str, Any]:
         """Get summary of Jenkins job allocation for auditing purposes.
-        
+
         Thread-safe: uses instance-level JenkinsAllocationContext.
         """
         if not self.jenkins_client or not self._jenkins_initialized:
@@ -530,7 +530,7 @@ class GitDataCollector:
 
         # Get summary from allocation context (thread-safe)
         summary = self.jenkins_allocation_context.get_allocation_summary()
-        
+
         # Add percentage calculation
         total_jobs = summary["total_jobs"]
         allocated_count = summary["allocated_count"]

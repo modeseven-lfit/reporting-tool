@@ -33,7 +33,7 @@ class GerritConnectionError(Exception):
 class GerritAPIDiscovery:
     """
     Discovers the correct Gerrit API base URL for a given host.
-    
+
     Gerrit instances can be deployed with different path prefixes.
     This class tests common patterns to find the working API endpoint.
     """
@@ -50,7 +50,7 @@ class GerritAPIDiscovery:
     def __init__(self, timeout: float = 30.0):
         """
         Initialize discovery client.
-        
+
         Args:
             timeout: Request timeout in seconds
         """
@@ -80,15 +80,15 @@ class GerritAPIDiscovery:
     def discover_base_url(self, host: str) -> str:
         """
         Discover the correct API base URL for a Gerrit host.
-        
+
         Tries to follow redirects first, then tests common path patterns.
-        
+
         Args:
             host: Gerrit hostname
-            
+
         Returns:
             Working API base URL
-            
+
         Raises:
             GerritAPIError: If no working endpoint is found
         """
@@ -121,10 +121,10 @@ class GerritAPIDiscovery:
     def _discover_via_redirect(self, host: str) -> Optional[str]:
         """
         Attempt to discover the API path by following redirects.
-        
+
         Args:
             host: Gerrit hostname
-            
+
         Returns:
             Redirect path if found, None otherwise
         """
@@ -145,10 +145,10 @@ class GerritAPIDiscovery:
     def _test_projects_api(self, base_url: str) -> bool:
         """
         Test if the projects API is available at the given base URL.
-        
+
         Args:
             base_url: Base URL to test
-            
+
         Returns:
             True if projects API responds correctly
         """
@@ -166,10 +166,10 @@ class GerritAPIDiscovery:
     def _validate_projects_response(self, response_text: str) -> bool:
         """
         Validate that the response looks like a valid Gerrit projects API response.
-        
+
         Args:
             response_text: Raw response text
-            
+
         Returns:
             True if response is valid Gerrit projects data
         """
@@ -189,10 +189,10 @@ class GerritAPIDiscovery:
 class GerritAPIClient(BaseAPIClient):
     """
     Client for interacting with Gerrit REST API.
-    
+
     Provides methods to query project information from Gerrit Code Review.
     Handles automatic API endpoint discovery and Gerrit's JSON response format.
-    
+
     Features:
     - Auto-discovery of API base URL
     - Gerrit magic prefix handling (")]}'")
@@ -209,7 +209,7 @@ class GerritAPIClient(BaseAPIClient):
     ):
         """
         Initialize Gerrit API client.
-        
+
         Args:
             host: Gerrit hostname
             base_url: Optional base URL (auto-discovered if not provided)
@@ -254,13 +254,13 @@ class GerritAPIClient(BaseAPIClient):
     def get_project_info(self, project_name: str) -> Optional[Dict[str, Any]]:
         """
         Get detailed information about a specific project.
-        
+
         Args:
             project_name: Name of the Gerrit project (can contain slashes)
-            
+
         Returns:
             Project information dict, or None if not found
-            
+
         Example:
             >>> client = GerritAPIClient("gerrit.example.com")
             >>> info = client.get_project_info("foo/bar")
@@ -302,11 +302,11 @@ class GerritAPIClient(BaseAPIClient):
     def get_all_projects(self) -> Dict[str, Any]:
         """
         Get all projects with detailed information.
-        
+
         Returns:
             Dictionary mapping project names to project information.
             Returns empty dict on error.
-            
+
         Example:
             >>> client = GerritAPIClient("gerrit.example.com")
             >>> projects = client.get_all_projects()
@@ -338,13 +338,13 @@ class GerritAPIClient(BaseAPIClient):
     def _parse_json_response(self, response_text: str) -> Dict[str, Any]:
         """
         Parse Gerrit JSON response, handling magic prefix.
-        
+
         Gerrit prepends ")]}" to JSON responses as a security measure
         to prevent XSSI attacks. This method strips it before parsing.
-        
+
         Args:
             response_text: Raw response text from Gerrit API
-            
+
         Returns:
             Parsed JSON as dictionary
         """

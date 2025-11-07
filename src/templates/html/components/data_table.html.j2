@@ -7,13 +7,13 @@
         - rows (list): List of data dictionaries
         - table_class (str): Optional CSS class for the table
         - show_rank (bool): Whether to show rank column (default: false)
-    
+
     Column definition:
         - key: Data key to access in row dict
         - label: Column header label
         - class: Optional CSS class for column
         - format: Optional format filter name ('number', 'age', 'percentage', 'bytes')
-    
+
     Example usage:
         {% set columns = [
             {'key': 'name', 'label': 'Repository', 'class': 'repo-name'},

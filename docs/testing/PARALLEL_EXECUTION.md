@@ -1,7 +1,7 @@
 # Parallel Test Execution Guide
 
-**Version:** 1.0.0  
-**Last Updated:** 2025-01-XX  
+**Version:** 1.0.0
+**Last Updated:** 2025-01-XX
 **Status:** Production Ready
 
 ---
@@ -274,7 +274,7 @@ pytest -m serial
 class TestDatabaseOperations:
     def test_read(self):
         pass
-    
+
     def test_write(self):
         pass
 ```
@@ -293,7 +293,7 @@ def temp_dir(tmp_path, worker_id):
     if worker_id == "master":
         # Running sequentially
         return tmp_path
-    
+
     # Running in parallel - create worker-specific dir
     return tmp_path / worker_id
 ```
@@ -323,6 +323,7 @@ pytest -m benchmark --benchmark-only
 **Symptoms:** Tests pass sequentially but fail when run in parallel.
 
 **Causes:**
+
 1. Shared global state
 2. File system conflicts (same temp files)
 3. Port conflicts (hardcoded ports)
@@ -331,6 +332,7 @@ pytest -m benchmark --benchmark-only
 **Solutions:**
 
 1. **Check for global state:**
+
    ```python
    # Use the auto_reset fixture
    @pytest.fixture(autouse=True)
@@ -339,6 +341,7 @@ pytest -m benchmark --benchmark-only
    ```
 
 2. **Use worker-specific resources:**
+
    ```python
    @pytest.fixture
    def port_number(worker_id):
@@ -350,6 +353,7 @@ pytest -m benchmark --benchmark-only
    ```
 
 3. **Debug with single worker:**
+
    ```bash
    # Run with single worker to isolate issue
    pytest -n 1 -v
@@ -362,6 +366,7 @@ pytest -m benchmark --benchmark-only
 **Solutions:**
 
 1. **Mark as flaky:**
+
    ```python
    @pytest.mark.flaky(reruns=3, reruns_delay=1)
    def test_timing_sensitive():
@@ -369,6 +374,7 @@ pytest -m benchmark --benchmark-only
    ```
 
 2. **Increase timeouts:**
+
    ```python
    @pytest.mark.timeout(60)  # Increase from 30
    def test_slow_operation():
@@ -376,6 +382,7 @@ pytest -m benchmark --benchmark-only
    ```
 
 3. **Relax thresholds:**
+
    ```python
    def test_performance():
        # Use more lenient threshold for parallel execution
@@ -403,11 +410,13 @@ pytest -n auto --cov=src --cov-report=term-missing
 **Solutions:**
 
 1. **Use loadscope distribution:**
+
    ```bash
    pytest -n auto --dist loadscope
    ```
 
 2. **Group slow tests:**
+
    ```python
    @pytest.mark.xdist_group(name="slow_integration")
    class TestSlowIntegration:
@@ -421,17 +430,20 @@ pytest -n auto --cov=src --cov-report=term-missing
 **Solutions:**
 
 1. **Reduce worker count:**
+
    ```bash
    pytest -n 4  # Instead of -n auto
    ```
 
 2. **Increase memory limits:**
+
    ```bash
    ulimit -v unlimited
    pytest -n auto
    ```
 
 3. **Run problematic tests serially:**
+
    ```python
    @pytest.mark.serial
    def test_memory_intensive():
@@ -484,13 +496,13 @@ jobs:
     steps:
       - name: Run parallel-safe tests
         run: pytest -n auto -m "not serial and not slow"
-  
+
   serial-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Run serial tests
         run: pytest -m serial
-  
+
   benchmark-tests:
     runs-on: ubuntu-latest
     steps:
@@ -539,6 +551,7 @@ pytest -n auto -v --cov=src --cov-report=html
 **Impact:** Benchmark tests are automatically disabled when xdist is active.
 
 **Workaround:** Run benchmarks separately:
+
 ```bash
 pytest -m benchmark --benchmark-only
 ```
@@ -550,6 +563,7 @@ pytest -m benchmark --benchmark-only
 **Impact:** Test order randomization may differ between workers.
 
 **Workaround:** Use `--randomly-seed=<value>` for reproducibility:
+
 ```bash
 pytest -n auto --randomly-seed=12345
 ```
@@ -577,6 +591,7 @@ pytest -n auto --randomly-seed=12345
 **Impact:** Tests may fail due to resource exhaustion.
 
 **Workaround:** Limit worker count:
+
 ```bash
 pytest -n 4  # Use fixed worker count
 ```

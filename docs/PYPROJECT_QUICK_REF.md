@@ -29,6 +29,7 @@ uv build
 ## 📦 Installation Methods
 
 ### Method 1: UV (Recommended)
+
 ```bash
 uv sync                    # Install all dependencies
 uv sync --all-extras       # Include dev dependencies
@@ -36,11 +37,13 @@ uv sync --frozen           # Use locked versions (CI/CD)
 ```
 
 ### Method 2: Using pip
+
 ```bash
 pip install .                      # Install from pyproject.toml
 ```
 
 ### Method 3: Install as package
+
 ```bash
 uv pip install .           # Regular install
 uv pip install -e .        # Editable install (development)
@@ -50,6 +53,7 @@ uv pip install -e ".[dev]" # With dev dependencies
 ## 🔧 Common Commands
 
 ### Development
+
 ```bash
 uv run pytest              # Run tests
 uv run pytest -v           # Verbose tests
@@ -58,6 +62,7 @@ uv run mypy src/           # Type checking
 ```
 
 ### Package Management
+
 ```bash
 uv add httpx               # Add new dependency
 uv remove httpx            # Remove dependency
@@ -66,6 +71,7 @@ uv pip list                # List installed packages
 ```
 
 ### Building
+
 ```bash
 uv build                   # Build wheel and sdist
 uv build --wheel           # Build wheel only
@@ -73,6 +79,7 @@ uv build --sdist           # Build source dist only
 ```
 
 ### Version Management
+
 ```bash
 git tag v1.0.0             # Create version tag
 git push origin v1.0.0     # Push tag (triggers version)
@@ -82,16 +89,19 @@ git describe --tags        # Show current version
 ## 📋 Project Configuration
 
 ### Python Version
+
 - **Minimum:** 3.10
 - **Supported:** 3.10, 3.11, 3.12, 3.13
 - **Set in:** `pyproject.toml` → `requires-python = ">=3.10"`
 
 ### Dependencies
+
 - **Production:** `httpx`, `PyYAML`, `Jinja2`
 - **Development:** `pytest`, `mypy`, `hypothesis`, etc.
 - **Defined in:** `pyproject.toml` → `[project.dependencies]`
 
 ### Version Management
+
 - **Source:** Git tags via `hatchling-vcs`
 - **Format:** `v1.2.3` → version `1.2.3`
 - **Automatic:** No manual version updates needed
@@ -100,6 +110,7 @@ git describe --tags        # Show current version
 ## 🏗️ Build Configuration
 
 ### Build System
+
 ```toml
 [build-system]
 requires = ["hatchling>=1.21.0", "hatchling-vcs>=0.3.0"]
@@ -107,17 +118,20 @@ build-backend = "hatchling.build"
 ```
 
 ### Package Name
+
 - **PyPI name:** `repository-reports`
 - **Import name:** N/A (not a library, script-based)
 - **Command:** `repository-reports` (after installation)
 
 ### Entry Points
+
 ```toml
 [project.scripts]
 repository-reports = "generate_reports:main"
 ```
 
 After `uv pip install .`:
+
 ```bash
 repository-reports --help  # Works!
 ```
@@ -125,6 +139,7 @@ repository-reports --help  # Works!
 ## 🧪 Testing Configuration
 
 ### Pytest
+
 ```bash
 uv run pytest              # Run all tests
 uv run pytest -v           # Verbose
@@ -134,12 +149,14 @@ uv run pytest -m unit      # Specific markers
 ```
 
 ### Coverage
+
 ```bash
 uv run pytest --cov=src --cov-report=html
 open htmlcov/index.html    # View coverage report
 ```
 
 ### Test Markers
+
 - `unit` - Unit tests
 - `integration` - Integration tests
 - `property` - Property-based tests
@@ -150,6 +167,7 @@ open htmlcov/index.html    # View coverage report
 ## 🔄 CI/CD Integration
 
 ### GitHub Actions
+
 ```yaml
 - name: Install uv
   uses: astral-sh/setup-uv@v3
@@ -162,7 +180,9 @@ open htmlcov/index.html    # View coverage report
 ```
 
 ### Important: Git Depth
+
 For version detection to work in CI:
+
 ```yaml
 - uses: actions/checkout@v4
   with:
@@ -172,6 +192,7 @@ For version detection to work in CI:
 ## 📝 Version Tagging
 
 ### Creating a Release
+
 ```bash
 # 1. Update CHANGELOG.md
 vim CHANGELOG.md
@@ -193,6 +214,7 @@ uv run twine upload dist/*
 ```
 
 ### Version Formats
+
 - **Release:** `v1.2.3` → `1.2.3`
 - **Pre-release:** `v1.2.3-alpha1` → `1.2.3a1`
 - **Beta:** `v1.2.3-beta2` → `1.2.3b2`
@@ -213,6 +235,7 @@ Jinja2 = ">=3.1.0"
 ```
 
 After modifying `pyproject.toml`:
+
 ```bash
 uv sync  # Update installed packages
 ```
@@ -222,6 +245,7 @@ uv sync  # Update installed packages
 All in `pyproject.toml`:
 
 ### Pytest
+
 ```toml
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -229,6 +253,7 @@ markers = ["unit", "integration", "property", "regression", "performance", "slow
 ```
 
 ### Coverage
+
 ```toml
 [tool.coverage.run]
 source = ["src", "generate_reports.py"]
@@ -236,6 +261,7 @@ branch = true
 ```
 
 ### MyPy
+
 ```toml
 [tool.mypy]
 python_version = "3.10"
@@ -243,6 +269,7 @@ warn_return_any = true
 ```
 
 ### Ruff (Linting)
+
 ```toml
 [tool.ruff]
 line-length = 100
@@ -275,12 +302,14 @@ reporting-tool/
 ## 🔍 Troubleshooting
 
 ### UV not found
+
 ```bash
 export PATH="$HOME/.cargo/bin:$PATH"
 # Add to .bashrc or .zshrc
 ```
 
 ### Version shows 0.0.0
+
 ```bash
 # Ensure git tags are available
 git fetch --tags --unshallow
@@ -288,12 +317,14 @@ git tag v1.0.0  # Create initial tag if needed
 ```
 
 ### Dependencies not installing
+
 ```bash
 uv cache clean
 uv sync --reinstall
 ```
 
 ### Import errors
+
 ```bash
 # Check Python environment
 uv run python -c "import sys; print(sys.executable)"
@@ -319,17 +350,20 @@ uv pip install -e .
 ## ✅ Migration Checklist
 
 For new users:
+
 - [ ] Install UV
 - [ ] Run `uv sync`
 - [ ] Test with `uv run reporting-tool --help`
 - [ ] Run tests with `uv run pytest`
 
 For existing pip users:
+
 - [ ] Use `pip install .` instead of `pip install -r requirements.txt`
 - [ ] All dependencies now in `pyproject.toml`
 - [ ] Use new command: `reporting-tool generate` or `uv run reporting-tool generate`
 
 For contributors:
+
 - [ ] Install dev dependencies: `uv sync --all-extras`
 - [ ] Run tests: `uv run pytest`
 - [ ] Type check: `uv run mypy src/`
@@ -337,7 +371,7 @@ For contributors:
 
 ---
 
-**Last Updated:** January 30, 2025  
-**Python Version:** 3.10+  
-**Package Manager:** UV  
+**Last Updated:** January 30, 2025
+**Python Version:** 3.10+
+**Package Manager:** UV
 **Build Backend:** Hatchling

@@ -4,7 +4,7 @@
     Context required:
         - workflows (dict): CI/CD job data and status counts
         - config (dict): Configuration options
-    
+
     This section displays:
         - Job counts by status
         - All deployed CI/CD jobs table
@@ -14,23 +14,23 @@
 {% if config.include_sections.workflows and workflows.has_workflows %}
 <section id="workflows" class="report-section workflows-section">
     <h2>Deployed CI/CD Jobs</h2>
-    
+
     <div class="subsection">
         <h3>Jobs by Status</h3>
-        
+
         <ul class="status-summary">
             {% for status, count in workflows.status_counts.items() %}
             <li>
-                <strong>{{ status }}:</strong> 
+                <strong>{{ status }}:</strong>
                 <span class="count">{{ count }} {{ 'job' if count == 1 else 'jobs' }}</span>
             </li>
             {% endfor %}
         </ul>
     </div>
-    
+
     <div class="subsection">
         <h3>All Jobs</h3>
-        
+
         {% set columns = [
             {'key': 'name', 'label': 'Job Name', 'class': 'job-name'},
             {'key': 'repo', 'label': 'Repository', 'class': 'repo-name'},
@@ -39,11 +39,11 @@
         {% set rows = workflows.all %}
         {% set table_class = 'workflows-table' %}
         {% include 'html/components/data_table.html.j2' %}
-        
+
         <p class="total-count">
             <strong>Total Jobs:</strong> {{ workflows.total_count }}
         </p>
     </div>
-    
+
 </section>
 {% endif %}

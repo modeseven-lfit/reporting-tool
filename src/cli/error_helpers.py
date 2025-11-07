@@ -33,15 +33,15 @@ def wrap_config_error(
 ) -> ConfigurationError:
     """
     Create configuration error with context.
-    
+
     Args:
         message: Error message
         config_path: Path to configuration file
         suggestion: Optional custom suggestion
-        
+
     Returns:
         ConfigurationError with helpful context
-        
+
     Example:
         >>> raise wrap_config_error(
         ...     "Missing required field 'project'",
@@ -50,7 +50,7 @@ def wrap_config_error(
     """
     if config_path:
         message = f"{message} in {config_path}"
-    
+
     if not suggestion:
         # Try to suggest based on message content
         if "required field" in message.lower():
@@ -59,7 +59,7 @@ def wrap_config_error(
             suggestion = "Check YAML syntax - ensure proper indentation and no tabs"
         elif "not found" in message.lower():
             suggestion = "Create a config.yaml file using config.example.yaml as template"
-    
+
     return ConfigurationError(message, suggestion=suggestion)
 
 
@@ -70,15 +70,15 @@ def wrap_file_error(
 ) -> CLIError:
     """
     Create appropriate error for file operation failures.
-    
+
     Args:
         error: Original exception
         file_path: Path that caused the error
         operation: Operation being performed (read, write, access, etc.)
-        
+
     Returns:
         Appropriate CLI error based on exception type
-        
+
     Example:
         >>> try:
         ...     with open("config.yaml") as f:
@@ -87,10 +87,10 @@ def wrap_file_error(
         ...     raise wrap_file_error(e, "config.yaml", "read")
     """
     path_str = str(file_path)
-    
+
     if isinstance(error, FileNotFoundError):
         message = f"File not found: {path_str}"
-        
+
         if "config" in path_str.lower():
             return ConfigurationError(
                 message,
@@ -106,25 +106,25 @@ def wrap_file_error(
                 message,
                 suggestion=f"Verify the path exists and is accessible"
             )
-    
+
     elif isinstance(error, builtins.PermissionError):
         return CLIPermissionError(
             f"Cannot {operation} file: {path_str}",
             path=None  # Don't use path parameter to avoid message override
         )
-    
+
     elif isinstance(error, IsADirectoryError):
         return CLIError(
             f"Expected file but found directory: {path_str}",
             suggestion="Specify a file path, not a directory"
         )
-    
+
     elif "disk" in str(error).lower() or "space" in str(error).lower():
         return DiskSpaceError(
             f"Disk space error while trying to {operation} {path_str}",
             path=path_str
         )
-    
+
     else:
         # Generic file error
         return CLIError(
@@ -141,16 +141,16 @@ def wrap_validation_error(
 ) -> ValidationError:
     """
     Create validation error with context.
-    
+
     Args:
         message: Error message
         field: Field that failed validation
         value: Invalid value
         expected: Expected value or format
-        
+
     Returns:
         ValidationError with helpful context
-        
+
     Example:
         >>> raise wrap_validation_error(
         ...     "must be non-negative",
@@ -160,20 +160,20 @@ def wrap_validation_error(
         ... )
     """
     parts = []
-    
+
     if field:
         parts.append(f"Field '{field}'")
-    
+
     parts.append(message)
-    
+
     if value is not None:
         parts.append(f"(got: {value})")
-    
+
     if expected:
         parts.append(f"Expected: {expected}")
-    
+
     full_message = " ".join(parts)
-    
+
     return ValidationError(full_message, field=field)
 
 
@@ -185,16 +185,16 @@ def wrap_api_error(
 ) -> APIError:
     """
     Create API error with context.
-    
+
     Args:
         error: Original exception
         api_name: Name of the API (GitHub, Gerrit, Jenkins)
         endpoint: API endpoint that failed
         suggestion: Optional custom suggestion
-        
+
     Returns:
         APIError with helpful context
-        
+
     Example:
         >>> try:
         ...     response = github_client.get("/user")
@@ -202,11 +202,11 @@ def wrap_api_error(
         ...     raise wrap_api_error(e, "GitHub", "/user")
     """
     error_str = str(error)
-    
+
     message = error_str
     if endpoint:
         message = f"{endpoint}: {error_str}"
-    
+
     # Provide specific suggestions based on error type
     if not suggestion:
         if "401" in error_str or "unauthorized" in error_str.lower():
@@ -221,7 +221,7 @@ def wrap_api_error(
             suggestion = f"Check network connectivity to {api_name} API servers"
         elif "connection" in error_str.lower():
             suggestion = f"Verify network connectivity to {api_name} API servers"
-    
+
     return APIError(message, api_name=api_name, suggestion=suggestion)
 
 
@@ -232,15 +232,15 @@ def wrap_network_error(
 ) -> NetworkError:
     """
     Create network error with context.
-    
+
     Args:
         error: Original exception
         url: URL that failed
         suggestion: Optional custom suggestion
-        
+
     Returns:
         NetworkError with helpful context
-        
+
     Example:
         >>> try:
         ...     response = requests.get("https://api.github.com")
@@ -250,7 +250,7 @@ def wrap_network_error(
     message = str(error)
     if url:
         message = f"Failed to connect to {url}: {message}"
-    
+
     if not suggestion:
         error_str = str(error).lower()
         if "ssl" in error_str or "certificate" in error_str:
@@ -261,7 +261,7 @@ def wrap_network_error(
             suggestion = "Verify DNS settings and that the hostname is correct"
         elif "timeout" in error_str:
             suggestion = "Check network connectivity and firewall settings"
-    
+
     return NetworkError(message, suggestion=suggestion)
 
 
@@ -272,15 +272,15 @@ def format_error_context(
 ) -> str:
     """
     Format error with contextual information.
-    
+
     Args:
         error: Exception to format
         context: Additional context information
         include_traceback: Whether to include full traceback
-        
+
     Returns:
         Formatted error message with context
-        
+
     Example:
         >>> try:
         ...     process_data(data)
@@ -291,17 +291,17 @@ def format_error_context(
         ...     ))
     """
     lines = []
-    
+
     # Error type and message
     error_type = type(error).__name__
     lines.append(f"{error_type}: {error}")
-    
+
     # Context information
     if context:
         lines.append("\nContext:")
         for key, value in context.items():
             lines.append(f"  {key}: {value}")
-    
+
     # Suggestions
     if isinstance(error, CLIError):
         if error.suggestion:
@@ -312,26 +312,26 @@ def format_error_context(
         suggestion = suggest_common_fixes(error)
         if suggestion:
             lines.append(f"\nSuggestion: {suggestion}")
-    
+
     # Traceback
     if include_traceback:
         lines.append("\nTraceback:")
         lines.append(''.join(traceback.format_tb(error.__traceback__)))
-    
+
     return '\n'.join(lines)
 
 
 def safe_operation(operation_name: str, verbose: bool = False):
     """
     Decorator to wrap operations with enhanced error handling.
-    
+
     Args:
         operation_name: Name of the operation for error messages
         verbose: Whether to include verbose error information
-        
+
     Returns:
         Decorator function
-        
+
     Example:
         >>> @safe_operation("Loading configuration")
         ... def load_config(path):
@@ -359,33 +359,33 @@ def safe_operation(operation_name: str, verbose: bool = False):
                     context["args"] = args
                 if kwargs:
                     context["kwargs"] = kwargs
-                
+
                 if verbose:
                     sys.stderr.write(format_error_context(e, context, include_traceback=True))
-                
+
                 raise CLIError(
                     f"{operation_name} failed: {e}",
                     suggestion=suggest_common_fixes(e)
                 )
-        
+
         wrapper.__name__ = func.__name__
         wrapper.__doc__ = func.__doc__
         return wrapper
-    
+
     return decorator
 
 
 def handle_cli_error(error: Exception, verbose: bool = False) -> int:
     """
     Handle CLI error and return appropriate exit code.
-    
+
     Args:
         error: Exception that was raised
         verbose: Whether to show verbose error information
-        
+
     Returns:
         Exit code (0-255)
-        
+
     Example:
         >>> try:
         ...     run_cli()
@@ -395,11 +395,11 @@ def handle_cli_error(error: Exception, verbose: bool = False) -> int:
     if isinstance(error, CLIError):
         # CLI error with structured information
         print(f"\n❌ {error}", file=sys.stderr)
-        
+
         if verbose and hasattr(error, '__traceback__'):
             print("\nTraceback:", file=sys.stderr)
             traceback.print_tb(error.__traceback__, file=sys.stderr)
-        
+
         # Return specific exit codes based on error type
         if isinstance(error, ConfigurationError):
             return 2
@@ -417,19 +417,19 @@ def handle_cli_error(error: Exception, verbose: bool = False) -> int:
             return 6
         else:
             return 1
-    
+
     else:
         # Non-CLI error - convert and handle
         print(f"\n❌ Error: {error}", file=sys.stderr)
-        
+
         suggestion = suggest_common_fixes(error)
         if suggestion:
             print(f"💡 Suggestion: {suggestion}", file=sys.stderr)
-        
+
         if verbose:
             print("\nTraceback:", file=sys.stderr)
             traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
-        
+
         return 1
 
 

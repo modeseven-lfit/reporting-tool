@@ -4,17 +4,15 @@ Unit tests for error taxonomy and classification system.
 Tests error types, classification, tracking, and aggregation.
 """
 
-import pytest
-
 from src.observability.errors import (
+    ERROR_TYPE_CATEGORY_MAP,
+    ERROR_TYPE_SEVERITY_MAP,
     ClassifiedError,
     ErrorCategory,
     ErrorContext,
     ErrorSeverity,
     ErrorTracker,
     ErrorType,
-    ERROR_TYPE_CATEGORY_MAP,
-    ERROR_TYPE_SEVERITY_MAP,
     classify_exception,
 )
 
@@ -508,7 +506,7 @@ class TestIntegration:
 
         for repo in repos:
             ctx = ErrorContext(repository=repo, phase="collection")
-            
+
             # Different error types for different repos
             if repo == "repo1":
                 tracker.add_error(ErrorType.GIT_COMMAND_FAILED, "Git failed", context=ctx)

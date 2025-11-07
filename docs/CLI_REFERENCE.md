@@ -2,13 +2,13 @@
 
 **Complete Command-Line Interface Reference**
 
-Version: 2.0  
-Last Updated: 2025-01-25  
+Version: 2.0
+Last Updated: 2025-01-25
 Phase: 13 - CLI & UX Improvements
 
 **Repository Analysis Report Generator - Command Line Interface**
 
-Version: Phase 9 (Enhanced CLI)  
+Version: Phase 9 (Enhanced CLI)
 Last Updated: 2025-01-25
 
 ---
@@ -77,15 +77,17 @@ All options can be specified in any order, but `--project` and `--repos-path` ar
 
 ### `--project NAME`
 
-**Description:** Project name for reporting  
-**Required:** Yes  
-**Type:** String  
-**Purpose:** 
+**Description:** Project name for reporting
+**Required:** Yes
+**Type:** String
+**Purpose:**
+
 - Used for configuration overrides (looks for `{NAME}.config`)
 - Used in output file naming
 - Displayed in reports
 
 **Examples:**
+
 ```bash
 --project kubernetes
 --project my-awesome-project
@@ -93,6 +95,7 @@ All options can be specified in any order, but `--project` and `--repos-path` ar
 ```
 
 **Notes:**
+
 - Case-sensitive for configuration file matching
 - Falls back to case-insensitive search if exact match not found
 - Should match configuration file name (without `.config` extension)
@@ -101,15 +104,17 @@ All options can be specified in any order, but `--project` and `--repos-path` ar
 
 ### `--repos-path PATH`
 
-**Description:** Path to directory containing cloned repositories  
-**Required:** Yes  
-**Type:** Path (absolute or relative)  
-**Purpose:** 
+**Description:** Path to directory containing cloned repositories
+**Required:** Yes
+**Type:** Path (absolute or relative)
+**Purpose:**
+
 - Specifies where Git repositories are located
 - All immediate subdirectories are analyzed as repositories
 - Must be readable by the process
 
 **Examples:**
+
 ```bash
 --repos-path /workspace/repos
 --repos-path ./repositories
@@ -117,6 +122,7 @@ All options can be specified in any order, but `--project` and `--repos-path` ar
 ```
 
 **Notes:**
+
 - Path must exist and be accessible
 - Repositories should be Git repositories (contain `.git` directory)
 - Nested repository structures are supported
@@ -128,18 +134,20 @@ All options can be specified in any order, but `--project` and `--repos-path` ar
 
 ### `--config-dir PATH`
 
-**Description:** Configuration directory containing YAML config files  
-**Required:** No  
-**Default:** `./config`  
+**Description:** Configuration directory containing YAML config files
+**Required:** No
+**Default:** `./config`
 **Type:** Path
 
 **Examples:**
+
 ```bash
 --config-dir /etc/repo-reports/config
 --config-dir ./custom-config
 ```
 
 **Expected Files:**
+
 - `template.config` (required) - Base configuration
 - `{project}.config` (optional) - Project-specific overrides
 
@@ -149,18 +157,20 @@ All options can be specified in any order, but `--project` and `--repos-path` ar
 
 ### `--output-dir PATH`
 
-**Description:** Output directory for generated reports  
-**Required:** No  
-**Default:** `./output`  
+**Description:** Output directory for generated reports
+**Required:** No
+**Default:** `./output`
 **Type:** Path
 
 **Examples:**
+
 ```bash
 --output-dir /var/reports/output
 --output-dir ./reports/$(date +%Y-%m-%d)
 ```
 
 **Notes:**
+
 - Directory is created if it doesn't exist
 - Must have write permissions
 - Previous reports are overwritten
@@ -171,18 +181,20 @@ All options can be specified in any order, but `--project` and `--repos-path` ar
 
 ### `--init`
 
-**Description:** Run interactive configuration wizard  
-**Required:** No  
+**Description:** Run interactive configuration wizard
+**Required:** No
 **Type:** Flag (boolean)
 
 The configuration wizard guides you through creating a complete configuration file with smart defaults and validation.
 
 **Example:**
+
 ```bash
 reporting-tool init --project my-project
 ```
 
 **What it does:**
+
 - Prompts for all configuration options
 - Provides context-sensitive help
 - Validates input as you go
@@ -199,13 +211,14 @@ reporting-tool init --project my-project
 
 ### `--init-template TEMPLATE`
 
-**Description:** Create configuration from template without interactive prompts  
-**Required:** Requires `--project`  
+**Description:** Create configuration from template without interactive prompts
+**Required:** Requires `--project`
 **Type:** Choice (minimal, standard, full)
 
 Non-interactive alternative to `--init` for automation and CI/CD.
 
 **Example:**
+
 ```bash
 # Minimal configuration (essentials only)
 reporting-tool init --template minimal --project my-project
@@ -233,12 +246,13 @@ reporting-tool init --template full --project my-project
 
 ### `--config-output PATH`
 
-**Description:** Output path for configuration file (used with `--init` or `--init-template`)  
-**Required:** No  
-**Type:** File path  
+**Description:** Output path for configuration file (used with `--init` or `--init-template`)
+**Required:** No
+**Type:** File path
 **Default:** `config/{project}.yaml`
 
 **Example:**
+
 ```bash
 reporting-tool init \
   --init-template standard \
@@ -252,13 +266,14 @@ reporting-tool init \
 
 ### `--list-features`
 
-**Description:** List all available feature checks and exit  
-**Required:** No  
+**Description:** List all available feature checks and exit
+**Required:** No
 **Type:** Flag (boolean)
 
 Shows all features the reporting system can detect in your repositories, organized by category.
 
 **Example:**
+
 ```bash
 # Basic list
 reporting-tool list-features
@@ -271,6 +286,7 @@ reporting-tool list-features -vv
 ```
 
 **Output:**
+
 ```
 📦 Repository Reporting System - Available Features
 
@@ -282,16 +298,16 @@ Total: 24 features across 7 categories
 
   📦 docker
      Docker containerization
-     
+
   ⚙️  gradle
      Gradle build configuration
-     
+
   📦 maven
      Maven build configuration
-     
+
   📦 npm
      NPM package configuration
-     
+
   📦 sonatype
      Sonatype/Maven Central publishing
 
@@ -300,6 +316,7 @@ Total: 24 features across 7 categories
 ```
 
 **Categories:**
+
 - Build & Package (5 features)
 - CI/CD (4 features)
 - Code Quality (3 features)
@@ -314,16 +331,18 @@ Total: 24 features across 7 categories
 
 ### `--show-feature NAME`
 
-**Description:** Show detailed information about a specific feature and exit  
-**Required:** No  
+**Description:** Show detailed information about a specific feature and exit
+**Required:** No
 **Type:** String (feature name)
 
 **Example:**
+
 ```bash
 reporting-tool list-features --detail docker
 ```
 
 **Output:**
+
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📦 docker
@@ -367,12 +386,13 @@ Related Features:
 
 ### `--output-format FORMAT`
 
-**Description:** Specify which output format(s) to generate  
-**Required:** No  
-**Default:** `all`  
+**Description:** Specify which output format(s) to generate
+**Required:** No
+**Default:** `all`
 **Choices:** `json`, `md`, `html`, `all`
 
 **Examples:**
+
 ```bash
 --output-format html      # Only HTML reports
 --output-format json      # Only JSON data
@@ -381,6 +401,7 @@ Related Features:
 ```
 
 **Output Files:**
+
 - `json`: `{project}_report.json`
 - `md`: `{project}_report.md`
 - `html`: `{project}_report.html` (with CSS/JS)
@@ -390,12 +411,13 @@ Related Features:
 
 ### `--no-html`
 
-**Description:** Skip HTML report generation  
-**Required:** No  
-**Type:** Flag (boolean)  
+**Description:** Skip HTML report generation
+**Required:** No
+**Type:** Flag (boolean)
 **Deprecated:** Use `--output-format` instead
 
 **Example:**
+
 ```bash
 --no-html  # Deprecated: use --output-format json instead
 ```
@@ -404,16 +426,18 @@ Related Features:
 
 ### `--no-zip`
 
-**Description:** Skip ZIP bundle creation  
-**Required:** No  
+**Description:** Skip ZIP bundle creation
+**Required:** No
 **Type:** Flag (boolean)
 
 **Example:**
+
 ```bash
 --no-zip  # Don't create output.zip archive
 ```
 
 **Notes:**
+
 - By default, all outputs are bundled into `{project}_reports.zip`
 - Use this flag to skip ZIP creation (faster, less disk usage)
 
@@ -423,22 +447,25 @@ Related Features:
 
 ### `--cache`
 
-**Description:** Enable caching of git metrics  
-**Required:** No  
-**Type:** Flag (boolean)  
+**Description:** Enable caching of git metrics
+**Required:** No
+**Type:** Flag (boolean)
 **Default:** Disabled
 
 **Examples:**
+
 ```bash
 --cache  # Enable caching
 ```
 
 **Benefits:**
+
 - Speeds up subsequent runs (10-100x faster)
 - Useful during development and testing
 - Stores metrics in `.cache/repo-metrics/`
 
 **Caveats:**
+
 - Cache is not invalidated automatically
 - Manual cleanup may be needed: `rm -rf .cache/repo-metrics/`
 - Disk space usage increases
@@ -447,12 +474,13 @@ Related Features:
 
 ### `--workers N`
 
-**Description:** Number of worker threads for parallel processing  
-**Required:** No  
-**Default:** CPU count  
+**Description:** Number of worker threads for parallel processing
+**Required:** No
+**Default:** CPU count
 **Type:** Integer (1-64)
 
 **Examples:**
+
 ```bash
 --workers 4   # Use 4 threads
 --workers 1   # Single-threaded (useful for debugging)
@@ -460,6 +488,7 @@ Related Features:
 ```
 
 **Notes:**
+
 - More workers = faster processing (up to a point)
 - Diminishing returns beyond 2x CPU count
 - Single-threaded mode useful for debugging
@@ -473,16 +502,18 @@ Verbosity and quiet mode are mutually exclusive.
 
 ### `--verbose`, `-v`
 
-**Description:** Increase verbosity level  
-**Required:** No  
-**Type:** Count (can be used multiple times)  
+**Description:** Increase verbosity level
+**Required:** No
+**Type:** Count (can be used multiple times)
 **Levels:**
+
 - (none): WARNING and above
 - `-v`: INFO and above
 - `-vv`: DEBUG and above
 - `-vvv`: TRACE (maximum detail)
 
 **Examples:**
+
 ```bash
 reporting-tool generate --project test --repos-path ./repos -v     # INFO
 reporting-tool generate --project test --repos-path ./repos -vv    # DEBUG
@@ -490,6 +521,7 @@ reporting-tool generate --project test --repos-path ./repos -vvv   # TRACE
 ```
 
 **Use Cases:**
+
 - `-v`: Normal operation, want to see progress
 - `-vv`: Debugging issues, need detailed logs
 - `-vvv`: Deep troubleshooting, maximum information
@@ -498,16 +530,18 @@ reporting-tool generate --project test --repos-path ./repos -vvv   # TRACE
 
 ### `--quiet`, `-q`
 
-**Description:** Suppress non-error output  
-**Required:** No  
+**Description:** Suppress non-error output
+**Required:** No
 **Type:** Flag (boolean)
 
 **Example:**
+
 ```bash
 reporting-tool generate --project test --repos-path ./repos --quiet
 ```
 
 **Behavior:**
+
 - Only errors and warnings are displayed
 - No progress indicators or status messages
 - Useful for automation and scripts
@@ -519,16 +553,18 @@ reporting-tool generate --project test --repos-path ./repos --quiet
 
 ### `--dry-run`
 
-**Description:** Validate configuration without executing analysis  
-**Required:** No  
+**Description:** Validate configuration without executing analysis
+**Required:** No
 **Type:** Flag (boolean)
 
 **Example:**
+
 ```bash
 reporting-tool generate --project test --repos-path ./repos --dry-run
 ```
 
 **Validation Checks:**
+
 - ✓ Configuration file exists and is valid YAML
 - ✓ Required fields are present
 - ✓ Repository paths exist and are accessible
@@ -538,6 +574,7 @@ reporting-tool generate --project test --repos-path ./repos --dry-run
 - ✓ System resources are sufficient
 
 **Output:**
+
 ```
 🔍 Running pre-flight validation checks...
 
@@ -551,6 +588,7 @@ All checks passed! Ready to generate reports.
 ```
 
 **Exit Codes:**
+
 - `0`: All validations passed
 - `2`: Configuration errors
 - `6`: Validation failures
@@ -559,27 +597,27 @@ All checks passed! Ready to generate reports.
 
 ### `--validate-only`
 
-**Description:** Validate configuration file and exit  
-**Required:** No  
-**Type:** Flag (boolean)  
+**Description:** Validate configuration file and exit
+**Required:** No
+**Type:** Flag (boolean)
 **Alias for:** `--dry-run`
 
 ---
 
-
-
 ### `--show-config`
 
-**Description:** Display resolved configuration and exit  
-**Required:** No  
+**Description:** Display resolved configuration and exit
+**Required:** No
 **Type:** Flag (boolean)
 
 **Example:**
+
 ```bash
 reporting-tool generate --project test --repos-path ./repos --show-config
 ```
 
 **Output:**
+
 ```yaml
 # Resolved Configuration for project: test
 # Template: config/template.config
@@ -608,12 +646,13 @@ time_windows:
 
 ### `--log-level LEVEL`
 
-**Description:** Override log level from configuration  
-**Required:** No  
-**Choices:** `DEBUG`, `INFO`, `WARNING`, `ERROR`  
+**Description:** Override log level from configuration
+**Required:** No
+**Choices:** `DEBUG`, `INFO`, `WARNING`, `ERROR`
 **Default:** From configuration (usually `INFO`)
 
 **Examples:**
+
 ```bash
 --log-level DEBUG
 --log-level ERROR
@@ -623,12 +662,13 @@ time_windows:
 
 ### `--cache-dir PATH`
 
-**Description:** Custom cache directory  
-**Required:** No  
-**Default:** `.cache/repo-metrics`  
+**Description:** Custom cache directory
+**Required:** No
+**Default:** `.cache/repo-metrics`
 **Type:** Path
 
 **Example:**
+
 ```bash
 --cache-dir /tmp/repo-cache
 ```
@@ -637,11 +677,12 @@ time_windows:
 
 ### `--config-override KEY=VALUE`
 
-**Description:** Override specific configuration values  
-**Required:** No  
+**Description:** Override specific configuration values
+**Required:** No
 **Type:** Key=Value pair (can be used multiple times)
 
 **Examples:**
+
 ```bash
 --config-override activity_thresholds.active_days=180
 --config-override api.github.enabled=false
@@ -649,6 +690,7 @@ time_windows:
 ```
 
 **Notes:**
+
 - Use dot notation for nested keys
 - Quote values with spaces
 - Can be used multiple times
@@ -679,12 +721,14 @@ reporting-tool generate --project test --repos-path ./repos -vvv
 ### Output Levels
 
 #### Normal Mode (default)
+
 ```
 Report generated successfully!
 Total execution time: 45.2s
 ```
 
 #### Verbose Mode (-v)
+
 ```
 📊 Performance Summary
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -716,6 +760,7 @@ Total execution time: 45.2s
 #### Debug Mode (-vv, -vvv)
 
 Includes detailed operation profiling:
+
 ```
 🔬 Detailed Operation Profile:
    fetch_repository_data:    234 calls,  12.3s total,  52ms avg
@@ -728,23 +773,27 @@ Includes detailed operation profiling:
 ### Metrics Categories
 
 **Timing Breakdown:**
+
 - Repository analysis time
 - Report generation time
 - Validation time
 - Other operations
 
 **Resource Usage:**
+
 - Peak memory consumption
 - CPU time utilized
 - Disk I/O (read/write)
 
 **API Statistics:**
+
 - Total API calls
 - Cached calls
 - Cache hit rate
 - Average response time
 
 **Repository Metrics:**
+
 - Repositories analyzed
 - Throughput (repos/sec)
 - Average processing time
@@ -752,16 +801,19 @@ Includes detailed operation profiling:
 ### Performance Tips
 
 **Fast iterations:**
+
 ```bash
 --cache --workers 1 -v
 ```
 
 **Maximum performance:**
+
 ```bash
 --cache --workers auto --quiet
 ```
 
 **Debug slow runs:**
+
 ```bash
 -vv  # Shows timing breakdown and bottlenecks
 ```
@@ -791,6 +843,7 @@ The tool uses standardized exit codes for automation and scripting:
 - **Code 4 (SYSTEM_ERROR)**: Permission denied, out of disk space, missing system dependencies, or resource exhaustion
 
 **Usage in Scripts:**
+
 ```bash
 #!/bin/bash
 reporting-tool generate --project test --repos-path ./repos
@@ -809,6 +862,7 @@ exit $EXIT_CODE
 ```
 
 **Retry Logic:**
+
 ```bash
 #!/bin/bash
 # Retry on transient errors (codes 1, 2, 4)
@@ -818,11 +872,11 @@ RETRY=0
 while [ $RETRY -lt $MAX_RETRIES ]; do
   reporting-tool generate --project test --repos-path ./repos
   EXIT_CODE=$?
-  
+
   case $EXIT_CODE in
     0) echo "Success!"; exit 0 ;;
     3) echo "Usage error - won't retry"; exit 3 ;;
-    1|2|4) 
+    1|2|4)
       RETRY=$((RETRY + 1))
       echo "Attempt $RETRY failed (code $EXIT_CODE), retrying..."
       sleep 5
@@ -842,11 +896,12 @@ The following environment variables are supported:
 
 ### `GITHUB_TOKEN`
 
-**Description:** GitHub API personal access token  
-**Required:** If GitHub integration is enabled  
+**Description:** GitHub API personal access token
+**Required:** If GitHub integration is enabled
 **Format:** `ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
 
 **Example:**
+
 ```bash
 export GITHUB_TOKEN="ghp_abc123..."
 reporting-tool generate --project test --repos-path ./repos
@@ -858,10 +913,11 @@ reporting-tool generate --project test --repos-path ./repos
 
 ### `GERRIT_USERNAME` / `GERRIT_PASSWORD`
 
-**Description:** Gerrit API credentials  
+**Description:** Gerrit API credentials
 **Required:** If Gerrit integration is enabled
 
 **Example:**
+
 ```bash
 export GERRIT_USERNAME="myuser"
 export GERRIT_PASSWORD="mypass"
@@ -872,10 +928,11 @@ reporting-tool generate --project test --repos-path ./repos
 
 ### `NO_COLOR`
 
-**Description:** Disable colored output  
+**Description:** Disable colored output
 **Values:** Any non-empty value
 
 **Example:**
+
 ```bash
 NO_COLOR=1 reporting-tool generate --project test --repos-path ./repos
 ```
@@ -1040,6 +1097,7 @@ reporting-tool generate \
 ```
 
 **Solutions:**
+
 1. Create the configuration file
 2. Use `--config-dir` to specify alternate location
 3. Check project name matches config file name
@@ -1055,6 +1113,7 @@ reporting-tool generate \
 ```
 
 **Solutions:**
+
 1. Verify path exists: `ls -la /path/to/repos`
 2. Check permissions: `ls -ld /path/to/repos`
 3. Use absolute path instead of relative
@@ -1073,9 +1132,10 @@ reporting-tool generate \
 ```
 
 **Solutions:**
+
 1. Verify token is set: `echo $GITHUB_TOKEN`
 2. Check token has correct permissions
-3. Generate new token at https://github.com/settings/tokens
+3. Generate new token at <https://github.com/settings/tokens>
 4. Ensure token hasn't expired
 
 ---
@@ -1085,11 +1145,12 @@ reporting-tool generate \
 ```
 ❌ Error: Permission denied: output/reports.html
 
-💡 Suggestion: Check file/directory permissions. You may need to run with 
+💡 Suggestion: Check file/directory permissions. You may need to run with
    appropriate privileges or choose a different output directory.
 ```
 
 **Solutions:**
+
 1. Check directory permissions: `ls -ld output/`
 2. Create directory with correct permissions: `mkdir -p output && chmod 755 output`
 3. Use different output directory: `--output-dir /tmp/reports`
@@ -1099,11 +1160,12 @@ reporting-tool generate \
 #### "Validation failed for 'TimeWindow.days'"
 
 ```
-❌ Error: Validation failed for 'TimeWindow.days': Field 'TimeWindow.days' 
+❌ Error: Validation failed for 'TimeWindow.days': Field 'TimeWindow.days'
    must be positive (got: 0) Expected: integer > 0
 ```
 
 **Solutions:**
+
 1. Check configuration file for invalid values
 2. Ensure time window configurations are correct
 3. Run `--show-config` to see resolved values
@@ -1113,21 +1175,25 @@ reporting-tool generate \
 ### Getting Help
 
 **Run validation:**
+
 ```bash
 reporting-tool generate --project test --repos-path ./repos --dry-run
 ```
 
 **Enable verbose logging:**
+
 ```bash
 reporting-tool generate --project test --repos-path ./repos -vv
 ```
 
 **Check configuration:**
+
 ```bash
 reporting-tool generate --project test --repos-path ./repos --show-config
 ```
 
 **List available features:**
+
 ```bash
 reporting-tool list-features
 ```
@@ -1143,7 +1209,7 @@ reporting-tool list-features
 
 ---
 
-**Last Updated:** 2025-01-25  
-**Version:** 2.0 (Phase 13 - CLI & UX Improvements)  
+**Last Updated:** 2025-01-25
+**Version:** 2.0 (Phase 13 - CLI & UX Improvements)
 **Feedback:** Report issues or suggestions to the development team
 **Status:** Production Ready

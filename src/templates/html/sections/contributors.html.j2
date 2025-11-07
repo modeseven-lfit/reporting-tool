@@ -4,7 +4,7 @@
     Context required:
         - contributors (dict): Contributor data and lists
         - config (dict): Configuration options
-    
+
     This section displays:
         - Top contributors by commit count
         - Top contributors by lines of code
@@ -14,7 +14,7 @@
 {% if config.include_sections.contributors and contributors.has_contributors %}
 <section id="contributors" class="report-section contributors-section">
     <h2>Top Contributors</h2>
-    
+
     <div class="subsection">
         {% set title = "By Commit Count" %}
         {% set columns = [
@@ -28,7 +28,7 @@
         {% set table_class = 'contributors-table' %}
         {% include 'html/components/data_table.html.j2' %}
     </div>
-    
+
     <div class="subsection">
         {% set title = "By Lines of Code" %}
         {% set columns = [
@@ -43,6 +43,6 @@
         {% set table_class = 'contributors-table' %}
         {% include 'html/components/data_table.html.j2' %}
     </div>
-    
+
 </section>
 {% endif %}

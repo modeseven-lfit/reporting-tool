@@ -9,6 +9,7 @@ This directory contains example scripts and demonstrations for the Repository Re
 Demonstrates the comprehensive dry run validation feature added in Phase 9.
 
 **Usage:**
+
 ```bash
 # Run all demonstrations
 python examples/dry_run_demo.py
@@ -29,6 +30,7 @@ python examples/dry_run_demo.py --skip-network
 5. **Project Name Validation** - Shows edge cases for project name validation
 
 **Features Demonstrated:**
+
 - ✅ Configuration structure validation
 - ✅ Required field checking
 - ✅ Project name validation (length, characters)
@@ -41,6 +43,7 @@ python examples/dry_run_demo.py --skip-network
 - ✅ Custom result processing
 
 **Example Output:**
+
 ```
 ======================================================================
 🔍 DRY RUN VALIDATION RESULTS
@@ -98,11 +101,13 @@ When adding new examples:
 ## Requirements
 
 All examples require:
+
 - Python 3.10+
 - Repository reporting system source code
 - Dependencies from project root
 
 Run examples from the project root directory:
+
 ```bash
 cd project-reports
 python examples/dry_run_demo.py
@@ -111,6 +116,7 @@ python examples/dry_run_demo.py
 ## Support
 
 For questions or issues with examples:
+
 1. Check the related documentation (links above)
 2. Review the source code and tests
 3. Open an issue in the project repository

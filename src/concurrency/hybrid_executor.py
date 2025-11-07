@@ -18,7 +18,7 @@ import logging
 
 class OperationType(Enum):
     """Classification of operation types for optimal executor selection."""
-    
+
     CPU_BOUND = "cpu"      # Computation-heavy: use ProcessPoolExecutor
     IO_BOUND = "io"        # I/O-heavy: use ThreadPoolExecutor
     MIXED = "mixed"        # Mixed workload: use adaptive strategy
@@ -28,7 +28,7 @@ class OperationType(Enum):
 @dataclass
 class ExecutorStats:
     """Statistics for hybrid executor monitoring."""
-    
+
     cpu_tasks_submitted: int = 0
     io_tasks_submitted: int = 0
     cpu_tasks_completed: int = 0
@@ -40,28 +40,28 @@ class ExecutorStats:
 class HybridExecutor:
     """
     Executor that routes tasks to optimal executor based on operation type.
-    
+
     Uses ProcessPoolExecutor for CPU-bound tasks (computation-heavy) and
     ThreadPoolExecutor for I/O-bound tasks (network, disk operations).
-    
+
     Features:
         - Automatic workload routing
         - Separate pools for CPU and I/O
         - Statistics tracking
         - Context manager support
-    
+
     Example:
         >>> executor = HybridExecutor()
         >>> with executor:
         >>>     # I/O-bound tasks (API calls, file operations)
         >>>     io_future = executor.submit(OperationType.IO_BOUND, fetch_data)
-        >>>     
+        >>>
         >>>     # CPU-bound tasks (parsing, computation)
         >>>     cpu_future = executor.submit(OperationType.CPU_BOUND, parse_logs)
-        >>>     
+        >>>
         >>>     results = [io_future.result(), cpu_future.result()]
     """
-    
+
     def __init__(
         self,
         thread_workers: Optional[int] = None,
@@ -70,7 +70,7 @@ class HybridExecutor:
     ):
         """
         Initialize hybrid executor.
-        
+
         Args:
             thread_workers: Number of threads for I/O-bound tasks
                           (default: CPU count * 2)
@@ -80,29 +80,29 @@ class HybridExecutor:
                             (set False for debugging/testing, default: False)
         """
         cpu_count = os.cpu_count() or 1
-        
+
         self.thread_workers = thread_workers or (cpu_count * 2)
         self.process_workers = process_workers or cpu_count
         self.enable_processes = enable_processes
-        
+
         # Executors (created in __enter__)
         self._thread_pool: Optional[ThreadPoolExecutor] = None
         self._process_pool: Optional[ProcessPoolExecutor] = None
-        
+
         # Statistics
         self._stats = ExecutorStats()
         self._stats_lock = threading.Lock()
-        
+
         # Operation classification cache
         self._operation_types: Dict[str, OperationType] = {}
-        
+
         # Logger
         self.logger = logging.getLogger(__name__)
-    
+
     def __enter__(self):
         """Start executor pools."""
         self._thread_pool = ThreadPoolExecutor(max_workers=self.thread_workers)
-        
+
         if self.enable_processes:
             self._process_pool = ProcessPoolExecutor(max_workers=self.process_workers)
             self.logger.info(
@@ -114,16 +114,16 @@ class HybridExecutor:
                 f"Started hybrid executor: "
                 f"threads={self.thread_workers}, processes=disabled"
             )
-        
+
         return self
-    
+
     def __exit__(self, exc_type, exc_val, exc_tb):
         """Shutdown executor pools."""
         if self._thread_pool:
             self._thread_pool.shutdown(wait=True)
         if self._process_pool:
             self._process_pool.shutdown(wait=True)
-        
+
         # Log final stats
         stats = self.get_stats()
         self.logger.info(
@@ -132,7 +132,7 @@ class HybridExecutor:
             f"cpu_tasks={stats.cpu_tasks_completed}/{stats.cpu_tasks_submitted}"
         )
         return False
-    
+
     def submit(
         self,
         operation_type: OperationType,
@@ -142,27 +142,27 @@ class HybridExecutor:
     ) -> Future:
         """
         Submit a task to the appropriate executor.
-        
+
         Args:
             operation_type: Type of operation (CPU_BOUND, IO_BOUND, AUTO)
             fn: Callable to execute
             *args: Positional arguments for fn
             **kwargs: Keyword arguments for fn
-        
+
         Returns:
             Future representing the task
-        
+
         Raises:
             RuntimeError: If executor not started (use with statement)
         """
         if not self._thread_pool:
             raise RuntimeError("Executor not started. Use 'with' statement.")
-        
+
         # Auto-detect operation type if requested
         actual_op_type = operation_type
         if operation_type == OperationType.AUTO:
             actual_op_type = self._classify_operation(fn)
-        
+
         # Determine which executor to use and track submission
         if actual_op_type == OperationType.CPU_BOUND and self._process_pool:
             executor = self._process_pool
@@ -177,11 +177,11 @@ class HybridExecutor:
                     self._stats.cpu_tasks_submitted += 1
                 else:
                     self._stats.io_tasks_submitted += 1
-        
+
         # Wrap task to track completion
         wrapped_fn = self._wrap_task(fn, actual_op_type)
         return executor.submit(wrapped_fn, *args, **kwargs)
-    
+
     def _wrap_task(self, fn: Callable, op_type: OperationType) -> Callable:
         """Wrap task to track statistics."""
         def wrapper(*args, **kwargs):
@@ -200,80 +200,80 @@ class HybridExecutor:
                     else:
                         self._stats.io_tasks_failed += 1
                 raise
-        
+
         return wrapper
-    
+
     def _classify_operation(self, fn: Callable) -> OperationType:
         """
         Classify operation type based on function characteristics.
-        
+
         This is a heuristic-based classification. For better accuracy,
         explicit classification is recommended.
-        
+
         Args:
             fn: Function to classify
-        
+
         Returns:
             Classified operation type
         """
         fn_name = fn.__name__.lower()
-        
+
         # Check cache
         if fn_name in self._operation_types:
             return self._operation_types[fn_name]
-        
+
         # Heuristic classification based on function name
-        io_keywords = ['fetch', 'request', 'download', 'upload', 'read', 'write', 
+        io_keywords = ['fetch', 'request', 'download', 'upload', 'read', 'write',
                        'api', 'http', 'file', 'git', 'clone', 'pull', 'push']
         cpu_keywords = ['parse', 'compute', 'calculate', 'process', 'analyze',
                        'aggregate', 'transform', 'render', 'compile', 'build']
-        
+
         # Count keyword matches
         io_matches = sum(1 for kw in io_keywords if kw in fn_name)
         cpu_matches = sum(1 for kw in cpu_keywords if kw in fn_name)
-        
+
         if cpu_matches > io_matches:
             op_type = OperationType.CPU_BOUND
         else:
             # Default to I/O-bound (safer choice for repository analysis)
             op_type = OperationType.IO_BOUND
-        
+
         # Cache classification
         self._operation_types[fn_name] = op_type
         return op_type
-    
+
     def submit_io_bound(self, fn: Callable, *args, **kwargs) -> Future:
         """
         Convenience method for I/O-bound tasks.
-        
+
         Args:
             fn: Callable to execute
             *args: Positional arguments
             **kwargs: Keyword arguments
-        
+
         Returns:
             Future representing the task
         """
         return self.submit(OperationType.IO_BOUND, fn, *args, **kwargs)
-    
+
     def submit_cpu_bound(self, fn: Callable, *args, **kwargs) -> Future:
         """
         Convenience method for CPU-bound tasks.
-        
+
         Args:
             fn: Callable to execute
             *args: Positional arguments
             **kwargs: Keyword arguments
-        
+
         Returns:
             Future representing the task
         """
         return self.submit(OperationType.CPU_BOUND, fn, *args, **kwargs)
-    
+
     def get_stats(self) -> ExecutorStats:
         """
         Get current executor statistics.
-        
+
         Returns:
             ExecutorStats object with current metrics
         """

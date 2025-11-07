@@ -31,23 +31,27 @@ Each synthetic repository under `synthetic_repos/` is a minimal git repository
 designed to test specific scenarios:
 
 ### active_project
+
 - Recent commits (within last 30 days)
 - Multiple contributors
 - Has `.github/workflows/` directory
 - Activity status: "current"
 
 ### inactive_project
+
 - Last commit >3 years ago
 - Single contributor
 - No CI/CD workflows
 - Activity status: "inactive"
 
 ### no_commits
+
 - Initialized repository with no commits
 - Tests edge case handling
 - Activity status: "no_commits"
 
 ### multi_contributor
+
 - 5+ unique authors
 - Commits spanning multiple time windows
 - Mixed organizational domains
@@ -56,20 +60,26 @@ designed to test specific scenarios:
 ## Configuration Files
 
 ### minimal.yaml
+
 Bare minimum configuration required to run the system:
+
 - Project name
 - Time windows (defaults)
 - Basic feature toggles
 
 ### full_featured.yaml
+
 Complete configuration showcasing all available options:
+
 - All extensions enabled (GitHub API, Gerrit, Jenkins)
 - Custom time windows
 - Advanced rendering options
 - Performance tuning settings
 
 ### invalid.yaml
+
 Intentionally malformed configuration for testing validation:
+
 - Missing required fields
 - Invalid data types
 - Out-of-range values
@@ -77,10 +87,12 @@ Intentionally malformed configuration for testing validation:
 ## Expected Outputs
 
 ### baseline_schema.json
+
 SHA256 digest of the canonical JSON schema structure.
 Generated from a known-good run and frozen for regression testing.
 
 Format:
+
 ```json
 {
   "schema_version": "1.0.0",
@@ -99,6 +111,7 @@ Format:
 ```
 
 ### snapshots/
+
 Full JSON output snapshots for specific test scenarios.
 Used for byte-level comparison in regression tests.
 
@@ -107,13 +120,17 @@ Used for byte-level comparison in regression tests.
 Mock API responses allow testing without live API dependencies.
 
 ### Structure
+
 Each API mock directory contains:
+
 - `success/` - Valid successful responses
 - `errors/` - Error responses (404, 500, rate limit, etc.)
 - `edge_cases/` - Unusual but valid responses
 
 ### Usage
+
 Tests can load these fixtures using:
+
 ```python
 import json
 from pathlib import Path
@@ -131,12 +148,14 @@ def load_fixture(api_type, scenario, filename):
 1. Create directory: `mkdir -p synthetic_repos/my_test_repo`
 2. Initialize git: `cd synthetic_repos/my_test_repo && git init`
 3. Add commits with controlled metadata:
+
    ```bash
    GIT_AUTHOR_DATE="2024-01-15 12:00:00" \
    GIT_COMMITTER_DATE="2024-01-15 12:00:00" \
    git commit --allow-empty -m "Test commit" \
      --author="Test User <test@example.org>"
    ```
+
 4. Document the purpose in this README
 
 ### Adding Configuration Fixture
@@ -148,6 +167,7 @@ def load_fixture(api_type, scenario, filename):
 ### Updating Schema Digest
 
 After intentional schema changes:
+
 ```bash
 python generate_reports.py \
   --config-dir tests/fixtures/configs \

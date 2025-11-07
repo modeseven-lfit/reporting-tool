@@ -9,7 +9,6 @@ Tests cover:
 """
 
 import pytest
-
 from src.domain.repository_metrics import RepositoryMetrics
 
 
@@ -23,7 +22,7 @@ class TestRepositoryMetricsValidation:
                 gerrit_project="",
                 gerrit_host="gerrit.example.com",
                 gerrit_url="https://gerrit.example.com/foo/bar",
-                local_path="/tmp/repo"
+                local_path="/tmp/repo",
             )
 
     def test_empty_gerrit_host_raises_error(self):
@@ -33,7 +32,7 @@ class TestRepositoryMetricsValidation:
                 gerrit_project="foo/bar",
                 gerrit_host="",
                 gerrit_url="https://gerrit.example.com/foo/bar",
-                local_path="/tmp/repo"
+                local_path="/tmp/repo",
             )
 
     def test_empty_gerrit_url_raises_error(self):
@@ -43,7 +42,7 @@ class TestRepositoryMetricsValidation:
                 gerrit_project="foo/bar",
                 gerrit_host="gerrit.example.com",
                 gerrit_url="",
-                local_path="/tmp/repo"
+                local_path="/tmp/repo",
             )
 
     def test_empty_local_path_raises_error(self):
@@ -53,7 +52,7 @@ class TestRepositoryMetricsValidation:
                 gerrit_project="foo/bar",
                 gerrit_host="gerrit.example.com",
                 gerrit_url="https://gerrit.example.com/foo/bar",
-                local_path=""
+                local_path="",
             )
 
     def test_invalid_activity_status_raises_error(self):
@@ -64,7 +63,7 @@ class TestRepositoryMetricsValidation:
                 gerrit_host="gerrit.example.com",
                 gerrit_url="https://gerrit.example.com/foo/bar",
                 local_path="/tmp/repo",
-                activity_status="invalid"
+                activity_status="invalid",
             )
 
     def test_valid_activity_statuses(self):
@@ -75,7 +74,7 @@ class TestRepositoryMetricsValidation:
                 gerrit_host="gerrit.example.com",
                 gerrit_url="https://gerrit.example.com/foo/bar",
                 local_path="/tmp/repo",
-                activity_status=status
+                activity_status=status,
             )
             assert repo.activity_status == status
 
@@ -87,7 +86,7 @@ class TestRepositoryMetricsValidation:
                 gerrit_host="gerrit.example.com",
                 gerrit_url="https://gerrit.example.com/foo/bar",
                 local_path="/tmp/repo",
-                total_commits_ever=-5
+                total_commits_ever=-5,
             )
 
     def test_negative_days_since_last_commit_raises_error(self):
@@ -98,7 +97,7 @@ class TestRepositoryMetricsValidation:
                 gerrit_host="gerrit.example.com",
                 gerrit_url="https://gerrit.example.com/foo/bar",
                 local_path="/tmp/repo",
-                days_since_last_commit=-10
+                days_since_last_commit=-10,
             )
 
     def test_negative_commit_counts_raises_error(self):
@@ -109,7 +108,7 @@ class TestRepositoryMetricsValidation:
                 gerrit_host="gerrit.example.com",
                 gerrit_url="https://gerrit.example.com/foo/bar",
                 local_path="/tmp/repo",
-                commit_counts={"1y": -10}
+                commit_counts={"1y": -10},
             )
 
     def test_negative_loc_added_raises_error(self):
@@ -120,7 +119,7 @@ class TestRepositoryMetricsValidation:
                 gerrit_host="gerrit.example.com",
                 gerrit_url="https://gerrit.example.com/foo/bar",
                 local_path="/tmp/repo",
-                loc_stats={"1y": {"added": -1000, "removed": 0, "net": -1000}}
+                loc_stats={"1y": {"added": -1000, "removed": 0, "net": -1000}},
             )
 
     def test_negative_loc_removed_raises_error(self):
@@ -131,7 +130,7 @@ class TestRepositoryMetricsValidation:
                 gerrit_host="gerrit.example.com",
                 gerrit_url="https://gerrit.example.com/foo/bar",
                 local_path="/tmp/repo",
-                loc_stats={"1y": {"added": 1000, "removed": -500, "net": 1500}}
+                loc_stats={"1y": {"added": 1000, "removed": -500, "net": 1500}},
             )
 
     def test_inconsistent_loc_net_raises_error(self):
@@ -142,7 +141,7 @@ class TestRepositoryMetricsValidation:
                 gerrit_host="gerrit.example.com",
                 gerrit_url="https://gerrit.example.com/foo/bar",
                 local_path="/tmp/repo",
-                loc_stats={"1y": {"added": 1000, "removed": 200, "net": 500}}  # Should be 800
+                loc_stats={"1y": {"added": 1000, "removed": 200, "net": 500}},  # Should be 800
             )
 
     def test_consistent_loc_net_valid(self):
@@ -152,7 +151,7 @@ class TestRepositoryMetricsValidation:
             gerrit_host="gerrit.example.com",
             gerrit_url="https://gerrit.example.com/foo/bar",
             local_path="/tmp/repo",
-            loc_stats={"1y": {"added": 1000, "removed": 200, "net": 800}}
+            loc_stats={"1y": {"added": 1000, "removed": 200, "net": 800}},
         )
         assert repo.loc_stats["1y"]["net"] == 800
 
@@ -163,7 +162,7 @@ class TestRepositoryMetricsValidation:
             gerrit_host="gerrit.example.com",
             gerrit_url="https://gerrit.example.com/foo/bar",
             local_path="/tmp/repo",
-            loc_stats={"1y": {"added": 100, "removed": 500, "net": -400}}
+            loc_stats={"1y": {"added": 100, "removed": 500, "net": -400}},
         )
         assert repo.loc_stats["1y"]["net"] == -400
 
@@ -175,7 +174,7 @@ class TestRepositoryMetricsValidation:
                 gerrit_host="gerrit.example.com",
                 gerrit_url="https://gerrit.example.com/foo/bar",
                 local_path="/tmp/repo",
-                unique_contributors={"1y": -5}
+                unique_contributors={"1y": -5},
             )
 
     def test_inconsistent_has_commits_and_total_raises_error(self):
@@ -187,7 +186,7 @@ class TestRepositoryMetricsValidation:
                 gerrit_url="https://gerrit.example.com/foo/bar",
                 local_path="/tmp/repo",
                 has_any_commits=False,
-                total_commits_ever=100
+                total_commits_ever=100,
             )
 
     def test_consistent_has_commits_false_with_zero_total(self):
@@ -198,7 +197,7 @@ class TestRepositoryMetricsValidation:
             gerrit_url="https://gerrit.example.com/foo/bar",
             local_path="/tmp/repo",
             has_any_commits=False,
-            total_commits_ever=0
+            total_commits_ever=0,
         )
         assert repo.has_any_commits is False
         assert repo.total_commits_ever == 0
@@ -213,9 +212,9 @@ class TestRepositoryMetricsCreation:
             gerrit_project="foo/bar",
             gerrit_host="gerrit.example.com",
             gerrit_url="https://gerrit.example.com/foo/bar",
-            local_path="/tmp/repos/foo-bar"
+            local_path="/tmp/repos/foo-bar",
         )
-        
+
         assert repo.gerrit_project == "foo/bar"
         assert repo.gerrit_host == "gerrit.example.com"
         assert repo.gerrit_url == "https://gerrit.example.com/foo/bar"
@@ -247,14 +246,14 @@ class TestRepositoryMetricsCreation:
             commit_counts={"1y": 400, "90d": 100, "30d": 30},
             loc_stats={
                 "1y": {"added": 20000, "removed": 5000, "net": 15000},
-                "90d": {"added": 5000, "removed": 1000, "net": 4000}
+                "90d": {"added": 5000, "removed": 1000, "net": 4000},
             },
             unique_contributors={"1y": 15, "90d": 8, "30d": 5},
             features={"has_ci": True, "has_tests": True},
             authors=[{"email": "dev@example.com", "commits": 50}],
-            errors=[]
+            errors=[],
         )
-        
+
         assert repo.gerrit_project == "myproject"
         assert repo.activity_status == "current"
         assert repo.has_any_commits is True
@@ -270,9 +269,9 @@ class TestRepositoryMetricsCreation:
             gerrit_host="gerrit.example.com",
             gerrit_url="https://gerrit.example.com/problem/repo",
             local_path="/tmp/problem",
-            errors=["Failed to fetch commits", "Git log error"]
+            errors=["Failed to fetch commits", "Git log error"],
         )
-        
+
         assert len(repo.errors) == 2
         assert "Failed to fetch commits" in repo.errors
 
@@ -286,10 +285,10 @@ class TestRepositoryMetricsDictConversion:
             gerrit_project="simple",
             gerrit_host="gerrit.test.com",
             gerrit_url="https://gerrit.test.com/simple",
-            local_path="/tmp/simple"
+            local_path="/tmp/simple",
         )
         data = repo.to_dict()
-        
+
         assert data["gerrit_project"] == "simple"
         assert data["gerrit_host"] == "gerrit.test.com"
         assert data["gerrit_url"] == "https://gerrit.test.com/simple"
@@ -317,10 +316,10 @@ class TestRepositoryMetricsDictConversion:
             unique_contributors={"1y": 10},
             features={"ci": True},
             authors=[{"email": "dev@test.com"}],
-            errors=["warning"]
+            errors=["warning"],
         )
         data = repo.to_dict()
-        
+
         assert data["gerrit_project"] == "full"
         assert data["last_commit_timestamp"] == "2024-01-01T00:00:00Z"
         assert data["days_since_last_commit"] == 10
@@ -337,10 +336,10 @@ class TestRepositoryMetricsDictConversion:
             "gerrit_project": "test",
             "gerrit_host": "gerrit.test.com",
             "gerrit_url": "https://gerrit.test.com/test",
-            "local_path": "/tmp/test"
+            "local_path": "/tmp/test",
         }
         repo = RepositoryMetrics.from_dict(data)
-        
+
         assert repo.gerrit_project == "test"
         assert repo.gerrit_host == "gerrit.test.com"
         assert repo.activity_status == "inactive"
@@ -359,16 +358,14 @@ class TestRepositoryMetricsDictConversion:
             "has_any_commits": True,
             "total_commits_ever": 1000,
             "commit_counts": {"1y": 800, "90d": 200},
-            "loc_stats": {
-                "1y": {"added": 50000, "removed": 10000, "net": 40000}
-            },
+            "loc_stats": {"1y": {"added": 50000, "removed": 10000, "net": 40000}},
             "unique_contributors": {"1y": 25},
             "features": {"workflows": ["ci", "cd"]},
             "authors": [{"email": "a@test.com"}, {"email": "b@test.com"}],
-            "errors": []
+            "errors": [],
         }
         repo = RepositoryMetrics.from_dict(data)
-        
+
         assert repo.gerrit_project == "complex"
         assert repo.last_commit_timestamp == "2024-06-01T12:00:00Z"
         assert repo.days_since_last_commit == 3
@@ -389,12 +386,12 @@ class TestRepositoryMetricsDictConversion:
             total_commits_ever=150,
             commit_counts={"1y": 150},
             loc_stats={"1y": {"added": 7500, "removed": 1500, "net": 6000}},
-            unique_contributors={"1y": 12}
+            unique_contributors={"1y": 12},
         )
-        
+
         data = original.to_dict()
         restored = RepositoryMetrics.from_dict(data)
-        
+
         assert restored.gerrit_project == original.gerrit_project
         assert restored.gerrit_host == original.gerrit_host
         assert restored.activity_status == original.activity_status
@@ -413,7 +410,7 @@ class TestRepositoryMetricsProperties:
             gerrit_host="gerrit.test.com",
             gerrit_url="https://gerrit.test.com/test",
             local_path="/tmp/test",
-            activity_status="current"
+            activity_status="current",
         )
         assert repo.is_active is True
 
@@ -424,7 +421,7 @@ class TestRepositoryMetricsProperties:
             gerrit_host="gerrit.test.com",
             gerrit_url="https://gerrit.test.com/test",
             local_path="/tmp/test",
-            activity_status="active"
+            activity_status="active",
         )
         assert repo.is_active is True
 
@@ -435,7 +432,7 @@ class TestRepositoryMetricsProperties:
             gerrit_host="gerrit.test.com",
             gerrit_url="https://gerrit.test.com/test",
             local_path="/tmp/test",
-            activity_status="inactive"
+            activity_status="inactive",
         )
         assert repo.is_active is False
 
@@ -446,7 +443,7 @@ class TestRepositoryMetricsProperties:
             gerrit_host="gerrit.test.com",
             gerrit_url="https://gerrit.test.com/test",
             local_path="/tmp/test",
-            activity_status="current"
+            activity_status="current",
         )
         assert repo.is_current is True
 
@@ -458,7 +455,7 @@ class TestRepositoryMetricsProperties:
                 gerrit_host="gerrit.test.com",
                 gerrit_url="https://gerrit.test.com/test",
                 local_path="/tmp/test",
-                activity_status=status
+                activity_status=status,
             )
             assert repo.is_current is False
 
@@ -469,7 +466,7 @@ class TestRepositoryMetricsProperties:
             gerrit_host="gerrit.test.com",
             gerrit_url="https://gerrit.test.com/test",
             local_path="/tmp/test",
-            errors=["Error 1", "Error 2"]
+            errors=["Error 1", "Error 2"],
         )
         assert repo.has_errors is True
 
@@ -480,7 +477,7 @@ class TestRepositoryMetricsProperties:
             gerrit_host="gerrit.test.com",
             gerrit_url="https://gerrit.test.com/test",
             local_path="/tmp/test",
-            errors=[]
+            errors=[],
         )
         assert repo.has_errors is False
 
@@ -491,7 +488,7 @@ class TestRepositoryMetricsProperties:
             gerrit_host="gerrit.test.com",
             gerrit_url="https://gerrit.test.com/test",
             local_path="/tmp/test",
-            commit_counts={"1y": 100, "90d": 30, "30d": 10}
+            commit_counts={"1y": 100, "90d": 30, "30d": 10},
         )
         assert repo.get_commits_in_window("1y") == 100
         assert repo.get_commits_in_window("90d") == 30
@@ -506,15 +503,15 @@ class TestRepositoryMetricsProperties:
             local_path="/tmp/test",
             loc_stats={
                 "1y": {"added": 5000, "removed": 1000, "net": 4000},
-                "90d": {"added": 1500, "removed": 300, "net": 1200}
-            }
+                "90d": {"added": 1500, "removed": 300, "net": 1200},
+            },
         )
-        
+
         stats_1y = repo.get_loc_stats_for_window("1y")
         assert stats_1y["added"] == 5000
         assert stats_1y["removed"] == 1000
         assert stats_1y["net"] == 4000
-        
+
         stats_missing = repo.get_loc_stats_for_window("30d")
         assert stats_missing == {"added": 0, "removed": 0, "net": 0}
 
@@ -525,7 +522,7 @@ class TestRepositoryMetricsProperties:
             gerrit_host="gerrit.test.com",
             gerrit_url="https://gerrit.test.com/test",
             local_path="/tmp/test",
-            unique_contributors={"1y": 20, "90d": 12}
+            unique_contributors={"1y": 20, "90d": 12},
         )
         assert repo.get_contributor_count_for_window("1y") == 20
         assert repo.get_contributor_count_for_window("90d") == 12
@@ -541,7 +538,7 @@ class TestRepositoryMetricsEdgeCases:
             gerrit_project="проект/тест",
             gerrit_host="gerrit.example.com",
             gerrit_url="https://gerrit.example.com/проект/тест",
-            local_path="/tmp/проект-тест"
+            local_path="/tmp/проект-тест",
         )
         assert repo.gerrit_project == "проект/тест"
 
@@ -554,7 +551,7 @@ class TestRepositoryMetricsEdgeCases:
             local_path="/tmp/huge",
             has_any_commits=True,
             total_commits_ever=10000000,
-            commit_counts={"1y": 5000000}
+            commit_counts={"1y": 5000000},
         )
         assert repo.total_commits_ever == 10000000
 
@@ -565,9 +562,7 @@ class TestRepositoryMetricsEdgeCases:
             gerrit_host="gerrit.test.com",
             gerrit_url="https://gerrit.test.com/massive",
             local_path="/tmp/massive",
-            loc_stats={
-                "1y": {"added": 100000000, "removed": 50000000, "net": 50000000}
-            }
+            loc_stats={"1y": {"added": 100000000, "removed": 50000000, "net": 50000000}},
         )
         assert repo.loc_stats["1y"]["added"] == 100000000
 
@@ -579,7 +574,7 @@ class TestRepositoryMetricsEdgeCases:
             gerrit_host="gerrit.test.com",
             gerrit_url="https://gerrit.test.com/many-windows",
             local_path="/tmp/many",
-            commit_counts=windows
+            commit_counts=windows,
         )
         assert len(repo.commit_counts) == 100
 
@@ -591,7 +586,7 @@ class TestRepositoryMetricsEdgeCases:
             gerrit_host="gerrit.test.com",
             gerrit_url="https://gerrit.test.com/buggy",
             local_path="/tmp/buggy",
-            errors=errors
+            errors=errors,
         )
         assert len(repo.errors) == 100
         assert repo.has_errors is True
@@ -604,7 +599,7 @@ class TestRepositoryMetricsEdgeCases:
             gerrit_url="https://gerrit.test.com/empty",
             local_path="/tmp/empty",
             has_any_commits=False,
-            total_commits_ever=0
+            total_commits_ever=0,
         )
         assert repo.has_any_commits is False
         assert repo.total_commits_ever == 0
@@ -617,13 +612,10 @@ class TestRepositoryMetricsEdgeCases:
             gerrit_url="https://gerrit.test.com/complex",
             local_path="/tmp/complex",
             features={
-                "ci": {
-                    "github_actions": True,
-                    "workflows": ["test.yml", "deploy.yml"]
-                },
+                "ci": {"github_actions": True, "workflows": ["test.yml", "deploy.yml"]},
                 "languages": ["python", "javascript"],
-                "metrics": {"coverage": 85.5}
-            }
+                "metrics": {"coverage": 85.5},
+            },
         )
         assert repo.features["ci"]["github_actions"] is True
         assert len(repo.features["ci"]["workflows"]) == 2
@@ -636,7 +628,7 @@ class TestRepositoryMetricsEdgeCases:
             gerrit_url="https://gerrit.test.com/fresh",
             local_path="/tmp/fresh",
             days_since_last_commit=0,
-            activity_status="current"
+            activity_status="current",
         )
         assert repo.days_since_last_commit == 0
 
@@ -648,6 +640,6 @@ class TestRepositoryMetricsEdgeCases:
             gerrit_url="https://gerrit.test.com/ancient",
             local_path="/tmp/ancient",
             days_since_last_commit=3650,  # 10 years
-            activity_status="inactive"
+            activity_status="inactive",
         )
         assert repo.days_since_last_commit == 3650

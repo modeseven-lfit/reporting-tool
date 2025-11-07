@@ -2,8 +2,8 @@
 
 **Repository Reporting System - Command Line Interface FAQ**
 
-Version: 2.0  
-Last Updated: 2025-01-26  
+Version: 2.0
+Last Updated: 2025-01-26
 Phase: 14 - CLI Documentation Polish
 
 ---
@@ -50,16 +50,19 @@ reporting-tool generate --project my-project --repos-path ./repos
 **A:** Follow this 3-step process:
 
 **Step 1: Run the configuration wizard**
+
 ```bash
 reporting-tool init --project my-project
 ```
 
 **Step 2: Validate your setup**
+
 ```bash
 reporting-tool generate --project my-project --repos-path ./repos --dry-run
 ```
 
 **Step 3: Generate the report**
+
 ```bash
 reporting-tool generate --project my-project --repos-path ./repos
 ```
@@ -70,7 +73,7 @@ Your report will be in the `output/` directory.
 
 ### Q: What's the difference between `--init` and `--init-template`?
 
-**A:** 
+**A:**
 
 - **`--init`**: Interactive wizard that asks you questions
   - Best for: First-time users, custom configurations
@@ -84,6 +87,7 @@ Your report will be in the `output/` directory.
   - Example: `reporting-tool init --template standard --project my-project`
 
 **When to use which:**
+
 - Use `--init` if you're new or need custom settings
 - Use `--init-template standard` for most projects
 - Use `--init-template minimal` for quick tests
@@ -104,6 +108,7 @@ output/
 ```
 
 You can customize with:
+
 ```bash
 --output-dir /custom/path
 ```
@@ -146,11 +151,13 @@ reporting-tool generate --project test --repos-path ./repos --quiet
 ```
 
 For example, if `--project my-project`, the file should be:
+
 ```
 ./config/my-project.yaml
 ```
 
 You can customize the directory with:
+
 ```bash
 --config-dir /custom/config/path
 ```
@@ -177,6 +184,7 @@ reporting-tool generate \
 ```
 
 **Common overrides:**
+
 - `time_windows.90d.days=60` - Change time window
 - `workers=8` - Set worker count
 - `cache.enabled=true` - Enable caching
@@ -195,6 +203,7 @@ reporting-tool generate \
 5. **Built-in defaults**
 
 **Example:**
+
 ```bash
 # Configuration file says: workers=4
 # Command line says: --workers 8
@@ -263,6 +272,7 @@ reporting-tool generate \
 ```
 
 **Performance tips:**
+
 - First run: ~25 minutes (100 repos)
 - With `--cache`: ~5 minutes (subsequent runs)
 - With `--workers auto`: ~20% faster
@@ -279,6 +289,7 @@ reporting-tool generate \
 ```
 
 Manual settings:
+
 ```bash
 --workers 1       # Single-threaded (debugging)
 --workers 4       # 4 parallel workers
@@ -287,6 +298,7 @@ Manual settings:
 ```
 
 **Guidelines:**
+
 - **Development:** `--workers 1` (easier debugging)
 - **CI/CD:** `--workers auto` (maximize speed)
 - **Production:** `--workers auto` (best performance)
@@ -299,23 +311,27 @@ Manual settings:
 **A:** **Almost always!** Caching provides massive speedups:
 
 **Use caching when:**
+
 - ✅ Running multiple reports on same repositories
 - ✅ Iterating on configuration changes
 - ✅ Repository data hasn't changed
 - ✅ You want faster subsequent runs
 
 **Don't use caching when:**
+
 - ❌ First-time report generation (no cache exists yet)
 - ❌ Repositories have been updated (will use stale data)
 - ❌ Testing cache-related issues
 
 **Enable caching:**
+
 ```bash
 --cache                          # Use default cache location
 --cache --cache-dir /tmp/cache   # Use custom cache location
 ```
 
 **Cache invalidation:**
+
 ```bash
 # Clear cache
 rm -rf .cache/repo-metrics
@@ -335,6 +351,7 @@ rm -rf /custom/cache/path
 - **Improvement:** ~20% faster (saves 5+ minutes)
 
 **Combined with caching:**
+
 - **First run (no cache):** 25:54
 - **Cached + parallel:** ~4:00
 - **Total improvement:** ~84% faster
@@ -348,6 +365,7 @@ rm -rf /custom/cache/path
 **A:** Follow this diagnostic flowchart:
 
 **Step 1: Check exit code**
+
 ```bash
 reporting-tool generate --project test --repos-path ./repos
 echo $?
@@ -360,11 +378,13 @@ echo $?
 - **Exit 4:** System error → Check permissions/disk space
 
 **Step 2: Run with debug logging**
+
 ```bash
 reporting-tool generate --project test --repos-path ./repos -vvv 2>&1 | tee debug.log
 ```
 
 **Step 3: Validate configuration**
+
 ```bash
 reporting-tool generate --project test --repos-path ./repos --dry-run
 ```
@@ -373,9 +393,10 @@ reporting-tool generate --project test --repos-path ./repos --dry-run
 
 ### Q: How do I debug API errors?
 
-**A:** 
+**A:**
 
 **Step 1: Check authentication**
+
 ```bash
 # Verify GitHub token is set
 echo $GITHUB_TOKEN
@@ -385,6 +406,7 @@ export GITHUB_TOKEN="ghp_your_token_here"
 ```
 
 **Step 2: Run with API logging**
+
 ```bash
 reporting-tool generate \
   --project test \
@@ -393,10 +415,12 @@ reporting-tool generate \
 ```
 
 **Step 3: Check token permissions**
+
 - GitHub: Needs `repo` or `public_repo` scope
 - Gerrit: Needs valid username/password
 
 **Common API errors:**
+
 - `401 Unauthorized`: Invalid or expired token
 - `403 Forbidden`: Insufficient permissions
 - `404 Not Found`: Repository doesn't exist
@@ -406,7 +430,7 @@ reporting-tool generate \
 
 ### Q: What do different exit codes mean?
 
-**A:** 
+**A:**
 
 | Code | Meaning | What to Do |
 |------|---------|------------|
@@ -419,6 +443,7 @@ reporting-tool generate \
 **Detailed diagnosis:**
 
 **Exit 1 (ERROR):**
+
 ```bash
 # Run validation
 reporting-tool validate --project test --repos-path ./repos --validate-only
@@ -431,6 +456,7 @@ reporting-tool generate --project test --repos-path ./repos -vv
 ```
 
 **Exit 2 (PARTIAL):**
+
 ```bash
 # Check which repositories failed
 grep -i "error\|warn" output/logs/*.log
@@ -440,6 +466,7 @@ less output/{project}_report.json
 ```
 
 **Exit 3 (USAGE_ERROR):**
+
 ```bash
 # Check required arguments
 reporting-tool --help
@@ -449,6 +476,7 @@ reporting-tool generate --project test --repos-path ./repos --dry-run
 ```
 
 **Exit 4 (SYSTEM_ERROR):**
+
 ```bash
 # Check permissions
 ls -la output/
@@ -465,9 +493,10 @@ pip list | grep -E "PyYAML|httpx|jsonschema"
 
 ### Q: The tool is running very slowly. What should I check?
 
-**A:** 
+**A:**
 
 **Quick fixes (try first):**
+
 ```bash
 # Enable caching (biggest impact)
 --cache
@@ -482,18 +511,21 @@ pip list | grep -E "PyYAML|httpx|jsonschema"
 **Diagnostic steps:**
 
 **1. Check cache status**
+
 ```bash
 # Run with -v to see cache hit rate
 reporting-tool generate --project test --repos-path ./repos --cache -v | grep cache
 ```
 
 **2. Check worker utilization**
+
 ```bash
 # Run with top/htop in another terminal
 reporting-tool generate --project test --repos-path ./repos --workers auto
 ```
 
 **3. Profile performance**
+
 ```bash
 # Use Python profiler
 python -m cProfile -o profile.stats -m reporting_tool.main \
@@ -501,6 +533,7 @@ python -m cProfile -o profile.stats -m reporting_tool.main \
 ```
 
 **4. Check network latency**
+
 ```bash
 # Test API connectivity
 time curl -s https://api.github.com/rate_limit
@@ -510,9 +543,10 @@ time curl -s https://api.github.com/rate_limit
 
 ### Q: How do I fix "Configuration file not found" error?
 
-**A:** 
+**A:**
 
 **Error message:**
+
 ```
 ❌ Configuration file not found: my-project.yaml
    Searched in: ./config
@@ -521,18 +555,21 @@ time curl -s https://api.github.com/rate_limit
 **Solutions:**
 
 **Option 1: Create the configuration file**
+
 ```bash
 # Run the wizard
 reporting-tool init --project my-project
 ```
 
 **Option 2: Use a template**
+
 ```bash
 # Create from template
 reporting-tool init --template standard --project my-project
 ```
 
 **Option 3: Specify custom config directory**
+
 ```bash
 # If config is elsewhere
 reporting-tool generate \
@@ -542,6 +579,7 @@ reporting-tool generate \
 ```
 
 **Option 4: Check file naming**
+
 ```bash
 # File must match project name
 # If --project my-project, file should be:
@@ -602,6 +640,7 @@ config = load_config(args)
 **A:** Use non-interactive mode with templates:
 
 **GitHub Actions:**
+
 ```yaml
 - name: Generate Report
   run: |
@@ -609,7 +648,7 @@ config = load_config(args)
       --init-template standard \
       --project ${{ matrix.project }} \
       --config-output /tmp/config.yaml
-    
+
     reporting-tool generate \
       --project ${{ matrix.project }} \
       --repos-path ./repos \
@@ -621,6 +660,7 @@ config = load_config(args)
 ```
 
 **GitLab CI:**
+
 ```yaml
 generate-report:
   script:
@@ -632,6 +672,7 @@ generate-report:
 ```
 
 **Jenkins:**
+
 ```groovy
 sh """
   reporting-tool init --template standard --project ${PROJECT_NAME}
@@ -672,6 +713,7 @@ reporting-tool generate \
 ```
 
 **Skip ZIP archive:**
+
 ```bash
 --no-zip
 ```
@@ -694,6 +736,7 @@ repositories:
 ```
 
 **Alternative:** Pre-filter the repos directory:
+
 ```bash
 # Create temporary directory with only desired repos
 mkdir -p /tmp/filtered-repos
@@ -710,6 +753,7 @@ reporting-tool generate --project test --repos-path /tmp/filtered-repos
 **A:** Yes! Use cron or system schedulers:
 
 **Crontab (Linux/Mac):**
+
 ```bash
 # Edit crontab
 crontab -e
@@ -724,6 +768,7 @@ crontab -e
 ```
 
 **systemd timer (Linux):**
+
 ```ini
 # /etc/systemd/system/repo-report.timer
 [Unit]
@@ -738,6 +783,7 @@ WantedBy=timers.target
 ```
 
 **Windows Task Scheduler:**
+
 ```powershell
 schtasks /create /tn "Repository Report" /tr "reporting-tool generate --project daily --repos-path C:\repos --cache --quiet" /sc daily /st 02:00
 ```
@@ -763,6 +809,7 @@ setx GITHUB_TOKEN "ghp_your_token_here"
 ```
 
 **Token requirements:**
+
 - **Scope:** `repo` (for private repos) or `public_repo` (for public repos)
 - **Type:** Classic token or fine-grained token
 - **See:** [GITHUB_TOKEN_REQUIREMENTS.md](../GITHUB_TOKEN_REQUIREMENTS.md)
@@ -774,12 +821,14 @@ setx GITHUB_TOKEN "ghp_your_token_here"
 **A:** No, it depends on your repositories:
 
 **GitHub only:**
+
 ```bash
 export GITHUB_TOKEN="ghp_xxx"
 # No Gerrit credentials needed
 ```
 
 **Gerrit only:**
+
 ```bash
 export GERRIT_USERNAME="your-username"
 export GERRIT_PASSWORD="your-password"
@@ -787,6 +836,7 @@ export GERRIT_PASSWORD="your-password"
 ```
 
 **Both:**
+
 ```bash
 export GITHUB_TOKEN="ghp_xxx"
 export GERRIT_USERNAME="your-username"
@@ -818,6 +868,7 @@ env $(cat .env | xargs) reporting-tool generate --project test --repos-path ./re
 ```
 
 **Using python-dotenv (if installed):**
+
 ```python
 from dotenv import load_dotenv
 load_dotenv()
@@ -834,25 +885,28 @@ load_dotenv()
 **A:** Depends on the exit code:
 
 **Retry these (transient errors):**
+
 - Exit 1 (ERROR) - Network/API issues may resolve
 - Exit 2 (PARTIAL) - Some repos may succeed on retry
 - Exit 4 (SYSTEM_ERROR) - Resource issues may clear
 
 **Don't retry these (permanent errors):**
+
 - Exit 3 (USAGE_ERROR) - Syntax won't improve on retry
 
 **Example retry logic:**
+
 ```bash
 for i in 1 2 3; do
   reporting-tool generate --project test --repos-path ./repos
   CODE=$?
-  
+
   # Success - exit
   [ $CODE -eq 0 ] && exit 0
-  
+
   # Usage error - don't retry
   [ $CODE -eq 3 ] && echo "Fix command syntax" && exit 3
-  
+
   # Other errors - retry
   echo "Attempt $i failed (code $CODE), retrying in 5s..."
   sleep 5
@@ -873,6 +927,7 @@ exit 1
 - **Exit 1:** Errors occurred - report may be invalid
 
 **Review warnings:**
+
 ```bash
 # Check for warnings in output
 reporting-tool generate --project test --repos-path ./repos -v 2>&1 | grep -i warn
@@ -886,14 +941,14 @@ reporting-tool generate --project test --repos-path ./repos --quiet 2>&1 | tee r
 ## See Also
 
 - [CLI Reference](CLI_REFERENCE.md) - Complete command documentation
-- [CLI Guide](CLI_GUIDE.md) - Comprehensive user guide  
+- [CLI Guide](CLI_GUIDE.md) - Comprehensive user guide
 - [CLI Cheat Sheet](CLI_CHEAT_SHEET.md) - Quick reference
 - [Usage Examples](USAGE_EXAMPLES.md) - Real-world scenarios
 - [Configuration Wizard Guide](CONFIG_WIZARD_GUIDE.md) - Configuration help
 
 ---
 
-**Last Updated:** 2025-01-26  
+**Last Updated:** 2025-01-26
 **Version:** 2.0 (Phase 14)
 
 **Have more questions?** Open an issue or check the [CLI Guide](CLI_GUIDE.md) for detailed information.

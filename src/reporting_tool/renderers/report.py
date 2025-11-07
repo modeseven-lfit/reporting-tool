@@ -72,7 +72,7 @@ class ReportRenderer:
         Package all report outputs into a ZIP file.
 
         Creates a ZIP containing JSON, Markdown, HTML, and configuration files.
-        
+
         This now delegates to create_report_bundle for unified implementation.
         """
         return create_report_bundle(output_dir, project, self.logger)
@@ -1706,15 +1706,14 @@ class ReportRenderer:
 
     def _format_number(self, num: Union[int, float], signed: bool = False) -> str:
         """Format number with K/M/B abbreviation.
-        
+
         Delegates to unified format_number utility.
         """
         return format_number(num, signed=signed)
 
     def _format_age(self, days: int) -> str:
         """Format age in days to actual date.
-        
+
         Delegates to unified format_age utility.
         """
         return format_age(days)
-

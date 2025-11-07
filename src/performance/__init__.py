@@ -19,30 +19,30 @@ Classes:
     MemoryTracker: Memory usage monitoring
     ProfileReport: Performance report generation
     OperationCategory: Enum for operation categories
-    
+
     ParallelRepositoryProcessor: Parallel processing coordinator
     WorkerPool: Worker pool management
     ResultAggregator: Result aggregation
-    
+
     GitOptimizer: Git operation optimizer
     ReferenceRepository: Reference repository manager
     ShallowCloneStrategy: Shallow clone strategy
-    
+
     CacheManager: Main cache coordinator
     RepositoryCache: Repository metadata caching
     GitOperationCache: Git operation result caching
     APIResponseCache: API response caching
     AnalysisResultCache: Analysis result caching
-    
+
     MemoryOptimizer: Main memory optimization coordinator
     LazyLoader: Lazy loading for deferred data access
     StreamProcessor: Stream processing for large files
     MemoryMonitor: Memory usage tracking and alerting
-    
+
     BatchProcessor: Batch processing coordinator
     RateLimitOptimizer: Smart rate limit tracking
     RequestBatcher: Request grouping and parallel execution
-    
+
     PerformanceReporter: Performance monitoring and reporting
     MetricsCollector: Metrics collection from components
     MetricsVisualizer: Performance metrics visualization
@@ -163,24 +163,24 @@ __all__ = [
     "OperationTimer",
     "MemoryTracker",
     "ProfileReport",
-    
+
     # Profiling data classes
     "OperationCategory",
     "OperationMetric",
     "AggregatedMetrics",
-    
+
     # Parallel processing classes
     "ParallelRepositoryProcessor",
     "WorkerPool",
     "ResultAggregator",
-    
+
     # Parallel processing data classes
     "WorkerConfig",
     "ProcessingResult",
     "AggregatedResults",
     "WorkerType",
     "ProcessingStatus",
-    
+
     # Git optimization classes
     "GitOptimizer",
     "ReferenceRepository",
@@ -189,51 +189,51 @@ __all__ = [
     "GitOperationResult",
     "CloneStrategy",
     "GitOperationType",
-    
+
     # Caching classes
     "CacheManager",
     "RepositoryCache",
     "GitOperationCache",
     "APIResponseCache",
     "AnalysisResultCache",
-    
+
     # Caching data classes
     "CacheEntry",
     "CacheStats",
     "CacheType",
     "CacheKey",
-    
+
     # Memory optimization classes
     "MemoryOptimizer",
     "LazyLoader",
     "StreamProcessor",
     "MemoryMonitor",
-    
+
     # Memory optimization data classes
     "MemoryStats",
     "MemorySnapshot",
     "LazyProxy",
     "MemoryContext",
     "MemoryUnit",
-    
+
     # Batch processing classes
     "BatchProcessor",
     "RateLimitOptimizer",
     "RequestBatcher",
     "RequestQueue",
-    
+
     # Batch processing data classes
     "RateLimitInfo",
     "APIRequest",
     "BatchResult",
     "RequestPriority",
     "RetryStrategy",
-    
+
     # Reporting classes
     "PerformanceReporter",
     "MetricsCollector",
     "MetricsVisualizer",
-    
+
     # Reporting data classes
     "PerformanceReport",
     "Metric",
@@ -242,7 +242,7 @@ __all__ = [
     "AlertRule",
     "MetricType",
     "AlertSeverity",
-    
+
     # Utility functions
     "profile_operation",
     "parallel_map",

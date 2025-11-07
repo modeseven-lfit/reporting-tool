@@ -1,7 +1,7 @@
 # Test Prerequisites and Environment Setup
 
-**Purpose:** Document all requirements, dependencies, and setup steps for running tests  
-**Target Audience:** Developers, CI/CD engineers, contributors  
+**Purpose:** Document all requirements, dependencies, and setup steps for running tests
+**Target Audience:** Developers, CI/CD engineers, contributors
 **Status:** ✅ Production Ready
 
 ---
@@ -45,21 +45,25 @@ pytest tests/
 ### Operating System
 
 **Supported:**
+
 - ✅ Linux (Ubuntu 20.04+, RHEL 8+, Debian 11+)
 - ✅ macOS (11+)
 - ✅ Windows 10+ with WSL2
 
 **Partially Supported:**
+
 - ⚠️ Windows native (some tests may skip due to filesystem differences)
 
 ### Hardware
 
 **Minimum:**
+
 - CPU: 2 cores
 - RAM: 2GB available
 - Disk: 1GB free space (for test artifacts and coverage data)
 
 **Recommended:**
+
 - CPU: 4+ cores (for parallel test execution)
 - RAM: 4GB+ available
 - Disk: 5GB free space
@@ -68,11 +72,13 @@ pytest tests/
 ### Filesystem Requirements
 
 **Required Features:**
+
 - ✅ Case-sensitive filesystem (recommended)
 - ✅ Symlink support (for some integration tests)
 - ✅ POSIX permissions (Unix-like systems)
 
 **Notes:**
+
 - Some tests will skip on filesystems without symlink support
 - Case-insensitive filesystems may cause unexpected behavior
 
@@ -87,6 +93,7 @@ pytest tests/
 **Why:** Core language for the project
 
 **Check version:**
+
 ```bash
 python --version
 # or
@@ -94,6 +101,7 @@ python3 --version
 ```
 
 **Install:**
+
 - **Ubuntu/Debian:** `sudo apt-get install python3.10 python3.10-dev`
 - **macOS:** `brew install python@3.10`
 - **Windows:** Download from [python.org](https://www.python.org/downloads/)
@@ -103,22 +111,26 @@ python3 --version
 **Why:** Version control and repository analysis
 
 **Check version:**
+
 ```bash
 git --version
 ```
 
 **Required for:**
+
 - Repository fixture creation
 - Integration tests
 - Git command testing
 - Performance benchmarks
 
 **Install:**
+
 - **Ubuntu/Debian:** `sudo apt-get install git`
 - **macOS:** `brew install git` (or use Xcode tools)
 - **Windows:** Download from [git-scm.com](https://git-scm.com/)
 
 **Minimum version rationale:**
+
 - Git 2.25+ provides consistent behavior for `git log --oneline`
 - Earlier versions may have incompatible output formats
 
@@ -127,16 +139,19 @@ git --version
 **Why:** Test framework
 
 **Check version:**
+
 ```bash
 pytest --version
 ```
 
 **Install:**
+
 ```bash
 pip install pytest>=7.0
 ```
 
 **Required plugins:**
+
 - `pytest-cov>=4.0` - Coverage reporting
 - `pytest-asyncio>=0.21` - Async test support
 - `pytest-randomly>=3.12` - Random test order
@@ -145,11 +160,13 @@ pip install pytest>=7.0
 ### Python Package Dependencies
 
 **Install all at once:**
+
 ```bash
 pip install -r requirements-dev.txt
 ```
 
 **Core dependencies:**
+
 ```txt
 # Test framework
 pytest>=7.0
@@ -196,6 +213,7 @@ source venv/bin/activate
 ```
 
 **Why use virtual environments:**
+
 - Isolates project dependencies
 - Prevents version conflicts
 - Makes dependency management easier
@@ -231,6 +249,7 @@ git config user.email "test@example.com"
 ```
 
 **Why this matters:**
+
 - Test fixtures create git repositories
 - Git requires user.name and user.email to be set
 - Without this, repository creation tests will fail
@@ -246,6 +265,7 @@ pip install pytest-xdist>=3.0
 ```
 
 **Usage:**
+
 ```bash
 # Run tests in parallel (auto-detect cores)
 pytest -n auto
@@ -255,10 +275,12 @@ pytest -n 4
 ```
 
 **Benefits:**
+
 - Faster test execution (can reduce runtime by 50-70%)
 - Better resource utilization
 
 **Caveats:**
+
 - Some tests may be incompatible with parallel execution
 - Requires more RAM (one process per worker)
 
@@ -269,6 +291,7 @@ pip install pytest-timeout>=2.1
 ```
 
 **Usage:**
+
 ```bash
 # Set global timeout
 pytest --timeout=300
@@ -278,6 +301,7 @@ pytest --timeout=30
 ```
 
 **Benefits:**
+
 - Prevents hanging tests
 - Ensures CI/CD pipeline doesn't stall
 
@@ -288,6 +312,7 @@ pip install pytest-html>=3.1
 ```
 
 **Usage:**
+
 ```bash
 # Generate HTML report
 pytest --html=report.html --self-contained-html
@@ -331,6 +356,7 @@ Manage test data files more easily.
 **Note:** Tests requiring these variables will skip gracefully if not provided.
 
 **Example test skip:**
+
 ```python
 @pytest.mark.skipif(
     not os.getenv('GITHUB_TOKEN'),
@@ -350,6 +376,7 @@ def test_github_api():
 ### Setting Environment Variables
 
 **Linux/macOS:**
+
 ```bash
 # Temporary (current session)
 export GITHUB_TOKEN="your-token-here"
@@ -360,6 +387,7 @@ source ~/.bashrc
 ```
 
 **Windows (PowerShell):**
+
 ```powershell
 # Temporary (current session)
 $env:GITHUB_TOKEN = "your-token-here"
@@ -425,6 +453,7 @@ load_dotenv()
 **Cause:** Source directory not in Python path
 
 **Solution:**
+
 ```bash
 # Install in editable mode
 pip install -e .
@@ -438,6 +467,7 @@ export PYTHONPATH="${PYTHONPATH}:$(pwd)/src"
 **Cause:** Git user not configured
 
 **Solution:**
+
 ```bash
 git config user.name "Test User"
 git config user.email "test@example.com"
@@ -448,6 +478,7 @@ git config user.email "test@example.com"
 **Cause:** Subprocess without timeout, network issues, or infinite loops
 
 **Solutions:**
+
 1. Check for network connectivity issues
 2. Verify git is working: `git --version`
 3. Use timeout flag: `pytest --timeout=300`
@@ -458,6 +489,7 @@ git config user.email "test@example.com"
 **Cause:** Insufficient filesystem permissions
 
 **Solutions:**
+
 1. Check directory permissions: `ls -la`
 2. Ensure test_artifacts/ is writable
 3. Run tests with appropriate user permissions
@@ -468,6 +500,7 @@ git config user.email "test@example.com"
 **Cause:** Symlinks require admin privileges on Windows or specific filesystem settings
 
 **Solutions:**
+
 1. Run as administrator
 2. Enable Developer Mode in Windows Settings
 3. Tests will skip gracefully if symlinks not supported
@@ -477,6 +510,7 @@ git config user.email "test@example.com"
 **Cause:** Test artifacts accumulating
 
 **Solution:**
+
 ```bash
 # Clean up old test artifacts
 rm -rf test_artifacts/
@@ -492,6 +526,7 @@ find . -type f -name "*.pyc" -delete
 #### Issue: Tests pass locally but fail in CI
 
 **Possible causes:**
+
 1. Environment variable differences
 2. Python/Git version differences
 3. Timezone differences
@@ -499,6 +534,7 @@ find . -type f -name "*.pyc" -delete
 5. Parallel execution issues
 
 **Solutions:**
+
 1. Run tests with same random seed: `pytest --randomly-seed=12345`
 2. Run tests in same order: `pytest --randomly-dont-shuffle`
 3. Check CI environment variables
@@ -511,11 +547,13 @@ find . -type f -name "*.pyc" -delete
 ### Running Tests in Docker
 
 **Benefits:**
+
 - Consistent environment
 - No local setup needed
 - Matches CI environment
 
 **Example Dockerfile:**
+
 ```dockerfile
 FROM python:3.11-slim
 
@@ -540,6 +578,7 @@ CMD ["pytest", "tests/"]
 ```
 
 **Build and run:**
+
 ```bash
 docker build -t project-reports-tests .
 docker run --rm project-reports-tests
@@ -550,31 +589,36 @@ docker run --rm project-reports-tests
 **For faster test execution:**
 
 1. **Use parallel execution:**
+
    ```bash
    pytest -n auto
    ```
 
 2. **Run only changed tests:**
+
    ```bash
    pytest --lf  # Last failed
    pytest --ff  # Failed first
    ```
 
 3. **Use pytest-xdist with optimal workers:**
+
    ```bash
    # Auto-detect (recommended)
    pytest -n auto
-   
+
    # Or specify (cores - 1 is often optimal)
    pytest -n 3  # On 4-core machine
    ```
 
 4. **Disable coverage for faster iteration:**
+
    ```bash
    pytest --no-cov
    ```
 
 5. **Run specific test categories:**
+
    ```bash
    pytest -m "unit"  # Fast unit tests only
    ```
@@ -677,6 +721,6 @@ pytest -n auto --timeout=300
 
 ---
 
-**Last Updated:** 2025-01-05  
-**Maintainer:** Test Infrastructure Team  
+**Last Updated:** 2025-01-05
+**Maintainer:** Test Infrastructure Team
 **Status:** ✅ Production Ready

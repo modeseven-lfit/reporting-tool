@@ -13,16 +13,17 @@ Tests cover:
 - Pagination scenarios
 """
 
-import pytest
-from unittest.mock import Mock, MagicMock, patch
-import httpx
+from unittest.mock import Mock, patch
 
+import httpx
+import pytest
 from src.api.github_client import GitHubAPIClient
 
 
 # ============================================================================
 # Fixtures
 # ============================================================================
+
 
 @pytest.fixture
 def mock_stats():
@@ -37,11 +38,7 @@ def mock_stats():
 @pytest.fixture
 def github_client(mock_stats):
     """Create a GitHubAPIClient instance for testing."""
-    client = GitHubAPIClient(
-        token="test_token_12345",
-        timeout=30.0,
-        stats=mock_stats
-    )
+    client = GitHubAPIClient(token="test_token_12345", timeout=30.0, stats=mock_stats)
     yield client
     client.close()
 
@@ -55,7 +52,7 @@ def create_mock_workflow_run(
     updated_at="2025-01-27T10:30:00Z",
     html_url="https://github.com/test/repo/actions/runs/123",
     head_branch="main",
-    head_sha="abc123def456"
+    head_sha="abc123def456",
 ):
     """Helper to create mock workflow run data."""
     return {
@@ -75,6 +72,7 @@ def create_mock_workflow_run(
 # Test get_workflow_runs_status
 # ============================================================================
 
+
 class TestGetWorkflowRunsStatus:
     """Test workflow runs status fetching."""
 
@@ -84,26 +82,14 @@ class TestGetWorkflowRunsStatus:
         mock_response.status_code = 200
         mock_response.json.return_value = {
             "workflow_runs": [
-                create_mock_workflow_run(
-                    run_id=100,
-                    conclusion="success",
-                    status="completed"
-                ),
-                create_mock_workflow_run(
-                    run_id=99,
-                    conclusion="failure",
-                    status="completed"
-                ),
+                create_mock_workflow_run(run_id=100, conclusion="success", status="completed"),
+                create_mock_workflow_run(run_id=99, conclusion="failure", status="completed"),
             ]
         }
 
         github_client.client.get = Mock(return_value=mock_response)
 
-        result = github_client.get_workflow_runs_status(
-            "test-owner",
-            "test-repo",
-            workflow_id=42
-        )
+        result = github_client.get_workflow_runs_status("test-owner", "test-repo", workflow_id=42)
 
         assert result["status"] == "success"
         assert result["conclusion"] == "success"
@@ -120,11 +106,7 @@ class TestGetWorkflowRunsStatus:
 
         github_client.client.get = Mock(return_value=mock_response)
 
-        result = github_client.get_workflow_runs_status(
-            "test-owner",
-            "test-repo",
-            workflow_id=42
-        )
+        result = github_client.get_workflow_runs_status("test-owner", "test-repo", workflow_id=42)
 
         assert result["status"] == "no_runs"
         assert result["last_run"] is None
@@ -137,11 +119,7 @@ class TestGetWorkflowRunsStatus:
 
         github_client.client.get = Mock(return_value=mock_response)
 
-        result = github_client.get_workflow_runs_status(
-            "test-owner",
-            "test-repo",
-            workflow_id=42
-        )
+        result = github_client.get_workflow_runs_status("test-owner", "test-repo", workflow_id=42)
 
         assert result["status"] == "auth_error"
         assert result["last_run"] is None
@@ -154,11 +132,7 @@ class TestGetWorkflowRunsStatus:
 
         github_client.client.get = Mock(return_value=mock_response)
 
-        result = github_client.get_workflow_runs_status(
-            "test-owner",
-            "test-repo",
-            workflow_id=42
-        )
+        result = github_client.get_workflow_runs_status("test-owner", "test-repo", workflow_id=42)
 
         assert result["status"] == "permission_error"
         assert result["last_run"] is None
@@ -171,11 +145,7 @@ class TestGetWorkflowRunsStatus:
 
         github_client.client.get = Mock(return_value=mock_response)
 
-        result = github_client.get_workflow_runs_status(
-            "test-owner",
-            "test-repo",
-            workflow_id=42
-        )
+        result = github_client.get_workflow_runs_status("test-owner", "test-repo", workflow_id=42)
 
         assert result["status"] == "api_error"
         assert result["last_run"] is None
@@ -185,11 +155,7 @@ class TestGetWorkflowRunsStatus:
         """Test exception handling during runs fetch."""
         github_client.client.get = Mock(side_effect=Exception("Network error"))
 
-        result = github_client.get_workflow_runs_status(
-            "test-owner",
-            "test-repo",
-            workflow_id=42
-        )
+        result = github_client.get_workflow_runs_status("test-owner", "test-repo", workflow_id=42)
 
         assert result["status"] == "error"
         assert result["last_run"] is None
@@ -203,12 +169,7 @@ class TestGetWorkflowRunsStatus:
 
         github_client.client.get = Mock(return_value=mock_response)
 
-        github_client.get_workflow_runs_status(
-            "test-owner",
-            "test-repo",
-            workflow_id=42,
-            limit=25
-        )
+        github_client.get_workflow_runs_status("test-owner", "test-repo", workflow_id=42, limit=25)
 
         # Verify params were passed correctly
         call_args = github_client.client.get.call_args
@@ -220,19 +181,13 @@ class TestGetWorkflowRunsStatus:
         mock_response.status_code = 200
         mock_response.json.return_value = {
             "workflow_runs": [
-                create_mock_workflow_run(
-                    head_sha="abc123def456789012345678901234567890"
-                )
+                create_mock_workflow_run(head_sha="abc123def456789012345678901234567890")
             ]
         }
 
         github_client.client.get = Mock(return_value=mock_response)
 
-        result = github_client.get_workflow_runs_status(
-            "test-owner",
-            "test-repo",
-            workflow_id=42
-        )
+        result = github_client.get_workflow_runs_status("test-owner", "test-repo", workflow_id=42)
 
         assert result["last_run"]["head_sha"] == "abc123d"
 
@@ -258,11 +213,7 @@ class TestGetWorkflowRunsStatus:
 
         github_client.client.get = Mock(return_value=mock_response)
 
-        result = github_client.get_workflow_runs_status(
-            "test-owner",
-            "test-repo",
-            workflow_id=42
-        )
+        result = github_client.get_workflow_runs_status("test-owner", "test-repo", workflow_id=42)
 
         assert result["last_run"]["head_sha"] is None
 
@@ -270,6 +221,7 @@ class TestGetWorkflowRunsStatus:
 # ============================================================================
 # Test Status Computation
 # ============================================================================
+
 
 class TestWorkflowStatusComputation:
     """Test workflow status computation logic."""
@@ -354,6 +306,7 @@ class TestWorkflowStatusComputation:
 # Test Color Computation from Runtime Status
 # ============================================================================
 
+
 class TestColorComputationFromRuntimeStatus:
     """Test color computation from runtime status."""
 
@@ -400,6 +353,7 @@ class TestColorComputationFromRuntimeStatus:
 # Test Color Computation from State
 # ============================================================================
 
+
 class TestColorComputationFromState:
     """Test color computation from workflow state."""
 
@@ -437,6 +391,7 @@ class TestColorComputationFromState:
 # ============================================================================
 # Test get_repository_workflow_status_summary
 # ============================================================================
+
 
 class TestWorkflowStatusSummary:
     """Test workflow status summary generation."""
@@ -494,10 +449,7 @@ class TestWorkflowStatusSummary:
 
         github_client.get_workflow_runs_status = Mock(side_effect=mock_runs_status)
 
-        result = github_client.get_repository_workflow_status_summary(
-            "test-owner",
-            "test-repo"
-        )
+        result = github_client.get_repository_workflow_status_summary("test-owner", "test-repo")
 
         assert result["has_workflows"] is True
         assert result["total_workflows"] == 2
@@ -515,10 +467,7 @@ class TestWorkflowStatusSummary:
         """Test summary generation when there are no workflows."""
         github_client.get_repository_workflows = Mock(return_value=[])
 
-        result = github_client.get_repository_workflow_status_summary(
-            "test-owner",
-            "test-repo"
-        )
+        result = github_client.get_repository_workflow_status_summary("test-owner", "test-repo")
 
         assert isinstance(result, dict)
         assert result["has_workflows"] is False
@@ -544,17 +493,16 @@ class TestWorkflowStatusSummary:
         ]
 
         github_client.get_repository_workflows = Mock(return_value=workflows)
-        github_client.get_workflow_runs_status = Mock(return_value={
-            "status": "success",
-            "conclusion": "success",
-            "run_status": "completed",
-            "last_run": {"id": 100},
-        })
-
-        result = github_client.get_repository_workflow_status_summary(
-            "test-owner",
-            "test-repo"
+        github_client.get_workflow_runs_status = Mock(
+            return_value={
+                "status": "success",
+                "conclusion": "success",
+                "run_status": "completed",
+                "last_run": {"id": 100},
+            }
         )
+
+        result = github_client.get_repository_workflow_status_summary("test-owner", "test-repo")
 
         assert result["has_workflows"] is True
         assert result["total_workflows"] == 1
@@ -565,12 +513,16 @@ class TestWorkflowStatusSummary:
         assert result["workflows"][0]["path"] == ".github/workflows/ci.yml"
         assert result["workflows"][0]["state"] == "active"
         assert result["workflows"][0]["status"] == "success"
-        assert result["workflows"][0]["urls"]["workflow_page"] == "https://github.com/owner/repo/actions/workflows/ci.yml"
+        assert (
+            result["workflows"][0]["urls"]["workflow_page"]
+            == "https://github.com/owner/repo/actions/workflows/ci.yml"
+        )
 
 
 # ============================================================================
 # Test Edge Cases and Error Scenarios
 # ============================================================================
+
 
 class TestEdgeCases:
     """Test edge cases and error scenarios."""
@@ -667,6 +619,7 @@ class TestEdgeCases:
 # Test Client Lifecycle
 # ============================================================================
 
+
 class TestClientLifecycle:
     """Test client lifecycle management."""
 
@@ -704,7 +657,7 @@ class TestClientLifecycle:
         client = GitHubAPIClient(token="test_token")
         client.close()
         # After close, client should still exist but be closed
-        assert hasattr(client, 'client')
+        assert hasattr(client, "client")
 
     def test_client_custom_timeout(self):
         """Test client with custom timeout."""
@@ -716,6 +669,7 @@ class TestClientLifecycle:
 # ============================================================================
 # Test Write to Step Summary
 # ============================================================================
+
 
 class TestWriteToStepSummary:
     """Test GitHub step summary writing."""

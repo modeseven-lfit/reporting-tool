@@ -37,16 +37,16 @@ __all__ = [
     'APIResponse',
     'APIError',
     'BaseAPIClient',
-    
+
     # GitHub API
     'GitHubAPIClient',
-    
+
     # Gerrit API
     'GerritAPIClient',
     'GerritAPIDiscovery',
     'GerritAPIError',
     'GerritConnectionError',
-    
+
     # Jenkins API
     'JenkinsAPIClient',
 ]

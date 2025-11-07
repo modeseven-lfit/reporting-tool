@@ -26,7 +26,7 @@ def demo_valid_config():
     print("\n" + "="*70)
     print("DEMO 1: Valid Configuration")
     print("="*70)
-    
+
     config = {
         'project': {
             'name': 'example-project'
@@ -50,7 +50,7 @@ def demo_valid_config():
             'enabled': False
         }
     }
-    
+
     exit_code = dry_run(config, skip_network=True)
     return exit_code
 
@@ -60,13 +60,13 @@ def demo_invalid_config():
     print("\n" + "="*70)
     print("DEMO 2: Invalid Configuration (Missing Fields)")
     print("="*70)
-    
+
     config = {
         'project': {},  # Missing name
         'paths': {},    # Missing repos
         'output': {}    # Missing dir
     }
-    
+
     exit_code = dry_run(config, skip_network=True)
     return exit_code
 
@@ -76,7 +76,7 @@ def demo_warnings():
     print("\n" + "="*70)
     print("DEMO 3: Configuration with Warnings")
     print("="*70)
-    
+
     config = {
         'project': {
             'name': 'test-project'
@@ -92,7 +92,7 @@ def demo_warnings():
             'enabled': False
         }
     }
-    
+
     exit_code = dry_run(config, skip_network=True)
     return exit_code
 
@@ -102,7 +102,7 @@ def demo_advanced_usage():
     print("\n" + "="*70)
     print("DEMO 4: Advanced Validator Usage")
     print("="*70)
-    
+
     config = {
         'project': {'name': 'advanced-demo'},
         'paths': {'repos': '.'},
@@ -110,37 +110,37 @@ def demo_advanced_usage():
         'api': {},
         'cache': {'enabled': False}
     }
-    
+
     # Create validator
     validator = DryRunValidator(config)
-    
+
     # Run validation
     success, results = validator.validate_all(skip_network=True)
-    
+
     # Custom result processing
     print("\nCustom Result Processing:")
     print("-" * 70)
-    
+
     errors = [r for r in results if not r.passed and r.severity == 'error']
     warnings = [r for r in results if r.severity == 'warning']
     successes = [r for r in results if r.passed and r.severity not in ['warning', 'info']]
-    
+
     print(f"\nSummary:")
     print(f"  Total checks: {len(results)}")
     print(f"  Errors: {len(errors)}")
     print(f"  Warnings: {len(warnings)}")
     print(f"  Passed: {len(successes)}")
-    
+
     if errors:
         print(f"\nFirst error: {errors[0].message}")
         if errors[0].suggestion:
             print(f"Suggestion: {errors[0].suggestion}")
-    
+
     print("\n" + "="*70)
     print("Full validation output:")
     print("="*70)
     validator.print_results(results)
-    
+
     return 0 if success else 1
 
 
@@ -149,7 +149,7 @@ def demo_project_name_validation():
     print("\n" + "="*70)
     print("DEMO 5: Project Name Validation")
     print("="*70)
-    
+
     test_cases = [
         ('valid-project', True, "Valid: alphanumeric and dashes"),
         ('', False, "Invalid: empty name"),
@@ -157,11 +157,11 @@ def demo_project_name_validation():
         ('test/project', False, "Invalid: contains slash"),
         ('test:project', False, "Invalid: contains colon"),
     ]
-    
+
     for name, should_pass, description in test_cases:
         print(f"\n{description}")
         print(f"Project name: '{name[:50]}{'...' if len(name) > 50 else ''}'")
-        
+
         config = {
             'project': {'name': name},
             'paths': {'repos': '.'},
@@ -169,10 +169,10 @@ def demo_project_name_validation():
             'api': {},
             'cache': {'enabled': False}
         }
-        
+
         validator = DryRunValidator(config)
         result = validator._validate_project_name()
-        
+
         status = "✓ PASS" if result.passed else "✗ FAIL"
         print(f"Result: {status}")
         if not result.passed:
@@ -184,7 +184,7 @@ def demo_project_name_validation():
 def main():
     """Run all demonstrations."""
     import argparse
-    
+
     parser = argparse.ArgumentParser(description="Dry run validation demonstration")
     parser.add_argument(
         '--skip-network',
@@ -197,15 +197,15 @@ def main():
         choices=[1, 2, 3, 4, 5],
         help='Run specific demo (1-5), or all if not specified'
     )
-    
+
     args = parser.parse_args()
-    
+
     print("\n" + "="*70)
     print("DRY RUN VALIDATION DEMONSTRATION")
     print("="*70)
     print("\nThis script demonstrates the dry run validation feature.")
     print("It shows various validation scenarios and output formats.")
-    
+
     demos = [
         (1, demo_valid_config),
         (2, demo_invalid_config),
@@ -213,7 +213,7 @@ def main():
         (4, demo_advanced_usage),
         (5, demo_project_name_validation),
     ]
-    
+
     if args.demo:
         # Run specific demo
         for num, demo_func in demos:
@@ -225,7 +225,7 @@ def main():
         for num, demo_func in demos:
             demo_func()
             print()  # Extra spacing between demos
-    
+
     print("\n" + "="*70)
     print("DEMONSTRATION COMPLETE")
     print("="*70)

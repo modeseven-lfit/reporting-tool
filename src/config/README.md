@@ -289,13 +289,13 @@ class ValidationResult:
     errors: List[ValidationIssue]
     warnings: List[ValidationIssue]
     infos: List[ValidationIssue]
-    
+
     @property
     def has_errors(self) -> bool: ...
-    
+
     @property
     def has_warnings(self) -> bool: ...
-    
+
     def add_error(message, category, path, suggestion): ...
     def add_warning(message, category, path, suggestion): ...
     def add_info(message, category, path, suggestion): ...
@@ -311,7 +311,7 @@ class ValidationIssue:
     message: str
     path: str                   # Dot-notation path (e.g., "gerrit.host")
     suggestion: Optional[str]   # Helpful fix suggestion
-    
+
     def __str__(self) -> str: ...
 ```
 
@@ -326,15 +326,15 @@ def load_configuration(config_path: Path) -> Dict[str, Any]:
     """Load and validate configuration."""
     # Validate before loading
     result = validate_config_file(config_path)
-    
+
     if not result.is_valid:
         print_validation_result(result)
         raise ValueError("Invalid configuration")
-    
+
     # Print warnings but continue
     if result.has_warnings:
         print_validation_result(result)
-    
+
     # Load and return config
     with open(config_path) as f:
         return yaml.safe_load(f)
@@ -462,15 +462,15 @@ Suggestion: Set gerrit.host to your Gerrit server hostname
 def load_configuration(config_path):
     with open(config_path) as f:
         config = yaml.safe_load(f)
-    
+
     # Manual checks scattered throughout code
     if "project" not in config:
         raise ValueError("Missing project")
-    
+
     if config.get("activity_thresholds", {}).get("current_days", 0) >= \
        config.get("activity_thresholds", {}).get("active_days", 999):
         raise ValueError("Invalid thresholds")
-    
+
     # ... many more checks
     return config
 ```
@@ -483,11 +483,11 @@ from src.config import validate_config_file
 def load_configuration(config_path):
     # Single validation call
     result = validate_config_file(config_path)
-    
+
     if not result.is_valid:
         print_validation_result(result)
         raise ValueError("Invalid configuration")
-    
+
     with open(config_path) as f:
         return yaml.safe_load(f)
 ```

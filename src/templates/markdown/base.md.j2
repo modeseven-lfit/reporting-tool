@@ -3,7 +3,7 @@
 {#-
     This template orchestrates the complete report by including modular sections.
     Each section is self-contained and can be enabled/disabled via configuration.
-    
+
     Context required:
         - project: Project metadata (name, generated_at, schema_version)
         - summary: Summary statistics
@@ -20,7 +20,7 @@
 {#- Report Header -#}
 # {{ project.name }}
 
-**Generated:** {{ project.generated_at_formatted }}  
+**Generated:** {{ project.generated_at_formatted }}
 **Schema Version:** {{ project.schema_version }}
 
 ---

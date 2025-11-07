@@ -1,7 +1,7 @@
 # Regression Tests
 
-**Purpose:** Prevent previously fixed bugs from recurring  
-**Framework:** pytest with pytest-snapshot  
+**Purpose:** Prevent previously fixed bugs from recurring
+**Framework:** pytest with pytest-snapshot
 **Status:** ✅ Production Ready
 
 ---
@@ -11,6 +11,7 @@
 Regression tests ensure that bugs that have been fixed stay fixed. Each test documents a specific issue that was discovered and resolved, serving as both validation and documentation of the fix.
 
 **Key Benefits:**
+
 - Prevents bugs from being reintroduced
 - Documents historical issues and their fixes
 - Validates output stability over time
@@ -25,6 +26,7 @@ Regression tests ensure that bugs that have been fixed stay fixed. Each test doc
 Tests for specific bugs that were previously fixed, organized by category:
 
 **Data Validation Regressions (5 tests):**
+
 - ISSUE-001: TimeWindow accepted negative days
 - ISSUE-002: Inconsistent net lines value accepted
 - ISSUE-003: Empty author name caused crashes
@@ -32,6 +34,7 @@ Tests for specific bugs that were previously fixed, organized by category:
 - ISSUE-005: Negative contributor count accepted
 
 **Edge Case Handling (5 tests):**
+
 - ISSUE-006: Empty repository list caused division by zero
 - ISSUE-007: Single author aggregation failed
 - ISSUE-008: Zero lines changed caused percentage errors
@@ -39,29 +42,35 @@ Tests for specific bugs that were previously fixed, organized by category:
 - ISSUE-010: Unicode author names broke JSON export
 
 **Serialization Regressions (3 tests):**
+
 - ISSUE-011: TimeWindow name lost in serialization
 - ISSUE-012: Zero contributors omitted from JSON
 - ISSUE-013: Repository sets not serializable
 
 **Aggregation Regressions (3 tests):**
+
 - ISSUE-014: Merge commits counted twice
 - ISSUE-015: Float arithmetic lost precision
 - ISSUE-016: Cross-window aggregation wrong
 
 **CLI Argument Parsing (2 tests):**
+
 - ISSUE-017: Empty string arguments accepted
 - ISSUE-018: Negative window days accepted
 
 **Error Handling (3 tests):**
+
 - ISSUE-019: Exception context lost
 - ISSUE-020: Errors field missing from output
 - ISSUE-021: Invalid ISO date crashed without helpful error
 
 **Performance (2 tests):**
+
 - ISSUE-022: Quadratic author lookup
 - ISSUE-023: Redundant git operations
 
 **Data Consistency (2 tests):**
+
 - ISSUE-024: has_commits=True but total=0
 - ISSUE-025: Activity status mismatch
 
@@ -70,17 +79,20 @@ Tests for specific bugs that were previously fixed, organized by category:
 Tests that capture snapshots of JSON output to detect structural changes:
 
 **Domain Model Snapshots (8 tests):**
+
 - TimeWindow serialization
 - TimeWindowStats serialization (with/without contributors)
 - AuthorMetrics basic/minimal/unicode
 - RepositoryMetrics active/inactive/empty/with errors
 
 **Composite Structure Snapshots (3 tests):**
+
 - Multiple time windows dictionary
 - Author list structure
 - Repository list structure
 
 **Edge Case Snapshots (5 tests):**
+
 - Negative net lines
 - All zeros
 - Very large numbers
@@ -88,6 +100,7 @@ Tests that capture snapshots of JSON output to detect structural changes:
 - Long repository paths
 
 **Regression Prevention Snapshots (3 tests):**
+
 - TimeWindow name not in dict
 - Empty collections handling
 - Field order stability
@@ -95,6 +108,7 @@ Tests that capture snapshots of JSON output to detect structural changes:
 ### 3. Baseline Schema Tests (`test_baseline_json_schema.py`)
 
 Existing tests for overall JSON schema validation:
+
 - Required field presence
 - Field type validation
 - Schema digest stability
@@ -193,6 +207,7 @@ git diff tests/regression/__snapshots__/
 ### When to Add a Regression Test
 
 Add a regression test when:
+
 1. You fix a bug
 2. You discover an edge case
 3. Output format changes (intentionally)
@@ -204,11 +219,11 @@ Add a regression test when:
 def test_issue_XXX_descriptive_name(self):
     """
     ISSUE-XXX: Brief description of the bug
-    
+
     Bug: Detailed explanation of what went wrong
-    
+
     Fixed: How it was fixed
-    
+
     Regression risk: High/Medium/Low - why it might recur
     """
     # Test the fix
@@ -222,12 +237,12 @@ def test_issue_XXX_descriptive_name(self):
 def test_issue_026_allows_invalid_email(self):
     """
     ISSUE-026: AuthorMetrics accepted invalid email format
-    
+
     Bug: Email validation was missing, allowing malformed emails
     like "not-an-email" to be accepted.
-    
+
     Fixed: Added email format validation in __post_init__
-    
+
     Regression risk: Medium - validation could be removed
     """
     with pytest.raises(ValidationError):
@@ -243,11 +258,11 @@ def test_issue_026_allows_invalid_email(self):
 def test_new_feature_output_snapshot(self, snapshot):
     """
     Snapshot: New feature output structure
-    
+
     Captures the expected output format for the new feature.
     """
     result = new_feature_function()
-    
+
     output = result.to_dict()
     snapshot.assert_match(
         json.dumps(output, indent=2, sort_keys=True)
@@ -278,6 +293,7 @@ def test_new_feature_output_snapshot(self, snapshot):
 ### Documentation
 
 Each test includes:
+
 1. **Issue number:** Unique identifier
 2. **Description:** What went wrong
 3. **Bug details:** How it manifested
@@ -331,12 +347,14 @@ git commit -m "Update snapshots for feature X"
 ### When to Update Snapshots
 
 **✅ Update when:**
+
 - Intentionally changed output format
 - Added new fields to output
 - Fixed incorrect output
 - Refactored serialization (same output)
 
 **❌ Don't update when:**
+
 - Tests fail unexpectedly
 - You don't understand why output changed
 - Changes are unintentional
@@ -364,6 +382,7 @@ git commit -m "Update snapshots for feature X"
 ### Pull Request Checks
 
 Regression tests ensure:
+
 - No known bugs reintroduced
 - Output format stable
 - Schema unchanged (unless intended)
@@ -376,12 +395,14 @@ Regression tests ensure:
 ### Regular Reviews
 
 **Monthly:** Review regression tests for:
+
 - Tests that always pass (may be redundant)
 - Documentation accuracy
 - New bugs to add
 - Obsolete tests to archive
 
 **Quarterly:** Review snapshots for:
+
 - Unused snapshots
 - Outdated structures
 - Missing coverage
@@ -402,12 +423,14 @@ def test_issue_XXX_old_feature():
 ## Metrics
 
 **Current Status:**
+
 - Known Issues Tests: 25 tests
 - JSON Snapshot Tests: 19 tests
 - Baseline Schema Tests: 1 test (existing)
 - Total Regression Tests: 45 tests
 
 **Coverage:**
+
 - Data validation: 100%
 - Edge cases: 100%
 - Serialization: 100%
@@ -461,11 +484,13 @@ git diff tests/regression/__snapshots__/
 ## References
 
 ### Internal Documentation
+
 - [Phase 11 Progress](../../PHASE_11_PROGRESS.md)
 - [Test Infrastructure](../README.md)
 - [Known Issues Log](../../docs/KNOWN_ISSUES.md)
 
 ### External Resources
+
 - [pytest-snapshot Documentation](https://pypi.org/project/pytest-snapshot/)
 - [Regression Testing Guide](https://martinfowler.com/bliki/RegressionTest.html)
 
@@ -483,6 +508,6 @@ When adding regression tests:
 
 ---
 
-**Last Updated:** 2025-01-25  
-**Maintainer:** Repository Reporting System Team  
+**Last Updated:** 2025-01-25
+**Maintainer:** Repository Reporting System Team
 **Status:** ✅ Production Ready

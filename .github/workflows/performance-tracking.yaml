@@ -29,7 +29,7 @@ jobs:
     name: Full Benchmark Suite
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5d08a4e57e534c0b8c44a23f7a3cff84e3f # v2.13.2
@@ -83,47 +83,47 @@ jobs:
         run: |
           cat > performance-report.md << 'EOF'
           # Performance Tracking Report
-          
+
           **Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
           **Commit:** ${{ github.sha }}
           **Branch:** ${{ github.ref_name }}
           **Run:** ${{ github.run_number }}
-          
+
           ## Benchmark Results
-          
+
           See benchmark-results.json for detailed metrics.
-          
+
           ## Performance Metrics
-          
+
           ### Cache Operations
           - Cache Get: Target < 1ms
           - Cache Set: Target < 2ms
           - Cache Cleanup: Target < 100ms
           - Cache Invalidation: Target < 5ms
-          
+
           ### Worker Pool
           - Pool Creation: Target < 100ms
           - Task Execution: Efficient parallel processing
-          
+
           ### Batch Operations
           - Rate Limit Check: Target < 1ms
           - Queue Operations: Target < 100ms
-          
+
           ### Throughput
           - Cache Operations: Target > 1000 ops/sec
           - Batch Requests: Target > 100 req/sec
           - Parallel Items: Target > 50 items/sec
-          
+
           ## Trend Analysis
-          
+
           Historical performance data is tracked in the benchmark artifacts.
-          
+
           ## Action Items
-          
+
           - ✅ All benchmarks completed
           - 📊 Results archived for historical comparison
           - 📈 Performance trends available in artifacts
-          
+
           EOF
 
       - name: Upload benchmark results
@@ -164,29 +164,29 @@ jobs:
         run: |
           echo "⚠️ Performance threshold violations detected!"
           echo "threshold_failures=true" >> $GITHUB_OUTPUT
-          
+
           cat > threshold-alert.md << 'EOF'
           # ⚠️ Performance Alert
-          
+
           Performance threshold violations detected in this run.
-          
+
           **Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
           **Run:** ${{ github.run_number }}
           **Commit:** ${{ github.sha }}
-          
+
           ## Action Required
-          
+
           1. Review threshold test results in artifacts
           2. Investigate performance degradation
           3. Profile slow operations
           4. Consider optimization or threshold adjustment
-          
+
           ## Resources
-          
+
           - Benchmark results: See artifacts
           - Threshold tests: tests/performance/test_thresholds.py
           - Performance docs: tests/performance/README.md
-          
+
           EOF
 
       - name: Create performance issue
@@ -196,7 +196,7 @@ jobs:
           script: |
             const fs = require('fs');
             const alert = fs.readFileSync('threshold-alert.md', 'utf8');
-            
+
             const issue = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -204,7 +204,7 @@ jobs:
               body: alert,
               labels: ['performance', 'automated', 'needs-investigation']
             });
-            
+
             console.log(`Created issue #${issue.data.number}`);
 
       - name: Comment on recent PRs
@@ -220,12 +220,12 @@ jobs:
               direction: 'desc',
               per_page: 5
             });
-            
+
             const comment = `⚠️ **Performance Alert**\n\n` +
               `Recent performance tracking run detected threshold violations.\n` +
               `Run: ${{ github.run_number }}\n` +
               `Please review if your changes may have impacted performance.`;
-            
+
             for (const pr of prs) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
@@ -239,7 +239,7 @@ jobs:
     name: Memory Profiling
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5d08a4e57e534c0b8c44a23f7a3cff84e3f # v2.13.2
@@ -269,23 +269,23 @@ jobs:
             --no-cov \
             --tb=short \
             -k "memory" || true
-          
+
           # Generate memory report
           cat > memory-report.md << 'EOF'
           # Memory Profiling Report
-          
+
           **Date:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
-          
+
           ## Memory Constraints
-          
+
           - Cache Max Size: 100 MB
           - Worker Memory/Item: 10 MB
           - Batch Overhead: 50 MB
-          
+
           ## Analysis
-          
+
           Memory usage patterns documented in test artifacts.
-          
+
           EOF
 
       - name: Upload memory profiles
@@ -305,7 +305,7 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5d08a4e57e534c0b8c44a23f7a3cff84e3f # v2.13.2
@@ -333,47 +333,47 @@ jobs:
         run: |
           cat > performance-dashboard.md << 'EOF'
           # Performance Dashboard
-          
+
           **Last Updated:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")
           **Run Number:** ${{ github.run_number }}
-          
+
           ## Status
-          
+
           | Component | Status | Last Check |
           |-----------|--------|------------|
           | Benchmarks | ${{ needs.benchmark-suite.result }} | $(date -u +"%Y-%m-%d") |
           | Memory Profiling | ${{ needs.memory-profiling.result }} | $(date -u +"%Y-%m-%d") |
-          
+
           ## Latest Results
-          
+
           See artifacts for detailed performance data:
           - Benchmark results: performance-tracking-${{ github.run_number }}
           - Memory profiles: memory-profiles
           - Historical data: benchmark-history
-          
+
           ## Trends
-          
+
           Performance trends tracked over the last 90 days.
           Weekly automated benchmarking ensures consistent monitoring.
-          
+
           ## Quick Reference
-          
+
           ### Performance Thresholds
           - Cache operations: < 2ms
           - Worker pool: < 100ms creation
           - Throughput: > 1000 ops/sec
-          
+
           ### Memory Limits
           - Cache: 100 MB max
           - Worker overhead: 10 MB/item
           - Batch processing: 50 MB overhead
-          
+
           ## Resources
-          
+
           - [Performance Tests](tests/performance/)
           - [Threshold Definitions](tests/performance/conftest.py)
           - [Benchmark Documentation](tests/performance/README.md)
-          
+
           EOF
 
       - name: Upload dashboard

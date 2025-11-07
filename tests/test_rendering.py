@@ -8,27 +8,27 @@ This module tests the template-based rendering system including:
 - Template output correctness
 """
 
-import pytest
-from pathlib import Path
 from datetime import datetime, timezone
-from unittest.mock import Mock, MagicMock
+from pathlib import Path
+from unittest.mock import Mock
 
-from src.rendering import RenderContext, TemplateRenderer, ModernReportRenderer
+import pytest
+from src.rendering import ModernReportRenderer, RenderContext, TemplateRenderer
 from src.rendering.formatters import (
+    format_age,
+    format_bytes,
+    format_date,
     format_number,
     format_percentage,
-    format_date,
-    format_age,
-    truncate,
-    format_bytes,
-    format_timestamp,
     slugify,
+    truncate,
 )
 
 
 # ============================================================================
 # Formatter Tests
 # ============================================================================
+
 
 class TestFormatters:
     """Test template filter functions."""
@@ -115,7 +115,7 @@ class TestFormatters:
         """Test basic text truncation."""
         assert truncate("short", 10) == "short"
         assert truncate("this is a very long text", 10) == "this is..."
-        
+
     def test_truncate_custom_suffix(self):
         """Test truncation with custom suffix."""
         result = truncate("this is a very long string", 10, suffix="…")
@@ -137,6 +137,7 @@ class TestFormatters:
 # RenderContext Tests
 # ============================================================================
 
+
 class TestRenderContext:
     """Test RenderContext data preparation."""
 
@@ -156,9 +157,9 @@ class TestRenderContext:
         result = context.build()
 
         assert isinstance(result, dict)
-        assert 'project' in result
-        assert 'summary' in result
-        assert 'repositories' in result
+        assert "project" in result
+        assert "summary" in result
+        assert "repositories" in result
 
     def test_render_context_build_with_data(self):
         """Test building context with actual data."""
@@ -170,51 +171,47 @@ class TestRenderContext:
                     "total_commits": 100,
                 }
             ],
-            "metadata": {
-                "generated_at": "2025-01-16T14:30:00Z"
-            }
+            "metadata": {"generated_at": "2025-01-16T14:30:00Z"},
         }
         config = {}
-        
+
         context = RenderContext(data, config)
         result = context.build()
 
-        assert result['project']['name'] == 'test-project'
-        assert 'repositories' in result
+        assert result["project"]["name"] == "test-project"
+        assert "repositories" in result
 
     def test_render_context_project_metadata(self):
         """Test project metadata extraction."""
         data = {
             "project": "my-project",
             "schema_version": "2.0.0",
-            "metadata": {
-                "generated_at": "2025-01-16T14:30:00Z",
-                "report_version": "1.5.0"
-            }
+            "metadata": {"generated_at": "2025-01-16T14:30:00Z", "report_version": "1.5.0"},
         }
         config = {}
-        
+
         context = RenderContext(data, config)
         result = context.build()
 
-        assert result['project']['name'] == 'my-project'
-        assert result['project']['schema_version'] == '2.0.0'
+        assert result["project"]["name"] == "my-project"
+        assert result["project"]["schema_version"] == "2.0.0"
 
     def test_render_context_includes_filters(self):
         """Test that context includes template filters."""
         data = {"project": "test"}
         config = {}
-        
+
         context = RenderContext(data, config)
         result = context.build()
 
-        assert 'filters' in result
-        assert isinstance(result['filters'], dict)
+        assert "filters" in result
+        assert isinstance(result["filters"], dict)
 
 
 # ============================================================================
 # TemplateRenderer Tests
 # ============================================================================
+
 
 class TestTemplateRenderer:
     """Test TemplateRenderer functionality."""
@@ -231,9 +228,9 @@ class TestTemplateRenderer:
         renderer = TemplateRenderer(template_dir=templates_dir)
 
         # Check that custom filters are registered
-        assert 'format_number' in renderer.env.filters
-        assert 'format_date' in renderer.env.filters
-        assert 'format_age' in renderer.env.filters
+        assert "format_number" in renderer.env.filters
+        assert "format_date" in renderer.env.filters
+        assert "format_age" in renderer.env.filters
 
     def test_template_renderer_render_simple(self):
         """Test rendering a simple template string."""
@@ -274,16 +271,15 @@ class TestTemplateRenderer:
         data = {
             "project": "test-project",
             "repositories": [],
-            "metadata": {
-                "generated_at": "2025-01-16T14:30:00Z"
-            }
+            "metadata": {"generated_at": "2025-01-16T14:30:00Z"},
         }
         config = {}
-        
+
         from src.rendering import RenderContext
+
         render_context = RenderContext(data, config)
         context = render_context.build()
-        
+
         # Render should work without errors
         result = renderer.render("markdown/base.md.j2", context)
         assert isinstance(result, str)
@@ -293,6 +289,7 @@ class TestTemplateRenderer:
 # ============================================================================
 # ModernReportRenderer Tests
 # ============================================================================
+
 
 class TestModernReportRenderer:
     """Test ModernReportRenderer integration."""
@@ -310,10 +307,7 @@ class TestModernReportRenderer:
         logger = Mock()
         renderer = ModernReportRenderer(config, logger)
 
-        data = {
-            "project": "test-project",
-            "repositories": []
-        }
+        data = {"project": "test-project", "repositories": []}
 
         result = renderer.render_markdown(data)
 
@@ -335,9 +329,7 @@ class TestModernReportRenderer:
                     "total_commits": 100,
                 }
             ],
-            "metadata": {
-                "generated_at": "2025-01-16T14:30:00Z"
-            }
+            "metadata": {"generated_at": "2025-01-16T14:30:00Z"},
         }
 
         result = renderer.render_markdown(data)
@@ -360,11 +352,7 @@ class TestModernReportRenderer:
 
     def test_modern_renderer_with_config(self):
         """Test renderer with custom configuration."""
-        config = {
-            "render": {
-                "theme": "dark"
-            }
-        }
+        config = {"render": {"theme": "dark"}}
         logger = Mock()
         renderer = ModernReportRenderer(config, logger)
 
@@ -378,6 +366,7 @@ class TestModernReportRenderer:
 # ============================================================================
 # Integration Tests
 # ============================================================================
+
 
 class TestRenderingIntegration:
     """Integration tests for the complete rendering pipeline."""
@@ -397,9 +386,7 @@ class TestRenderingIntegration:
                     "total_commits": 75,
                 },
             ],
-            "metadata": {
-                "generated_at": "2025-01-16T14:30:00Z"
-            }
+            "metadata": {"generated_at": "2025-01-16T14:30:00Z"},
         }
 
         config = {}
@@ -418,19 +405,17 @@ class TestRenderingIntegration:
         # Build context
         data = {
             "project": "test-project",
-            "repositories": [
-                {"name": "repo1", "total_commits": 100}
-            ]
+            "repositories": [{"name": "repo1", "total_commits": 100}],
         }
         config = {}
-        
+
         render_context = RenderContext(data, config)
         context = render_context.build()
 
         # Render with context
         templates_dir = Path(__file__).parent.parent / "src" / "templates"
         template_renderer = TemplateRenderer(template_dir=templates_dir)
-        
+
         result = template_renderer.render("markdown/base.md.j2", context)
 
         # Validate
@@ -442,6 +427,7 @@ class TestRenderingIntegration:
 # Performance Tests
 # ============================================================================
 
+
 class TestRenderingPerformance:
     """Performance tests for rendering."""
 
@@ -452,16 +438,15 @@ class TestRenderingPerformance:
         # Generate large dataset
         repositories = []
         for i in range(100):
-            repositories.append({
-                'name': f'project-{i}',
-                'total_commits': 1000,
-            })
+            repositories.append(
+                {
+                    "name": f"project-{i}",
+                    "total_commits": 1000,
+                }
+            )
 
-        data = {
-            "project": "large-project",
-            "repositories": repositories
-        }
-        
+        data = {"project": "large-project", "repositories": repositories}
+
         config = {}
         logger = Mock()
         renderer = ModernReportRenderer(config, logger)
@@ -493,5 +478,5 @@ class TestRenderingPerformance:
         assert len(result2) > 0
 
 
-if __name__ == '__main__':
-    pytest.main([__file__, '-v'])
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])

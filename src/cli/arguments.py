@@ -26,7 +26,7 @@ class OutputFormat(Enum):
     MARKDOWN = 'md'
     HTML = 'html'
     ALL = 'all'
-    
+
     def __str__(self):
         return self.value
 
@@ -43,10 +43,10 @@ class VerbosityLevel(Enum):
 def create_argument_parser() -> argparse.ArgumentParser:
     """
     Create enhanced argument parser with improved help text.
-    
+
     Returns:
         Configured ArgumentParser instance
-        
+
     Example:
         >>> parser = create_argument_parser()
         >>> args = parser.parse_args(['--project', 'test', '--repos-path', '.'])
@@ -94,7 +94,7 @@ Exit Codes:
 For more information, see docs/CLI_REFERENCE.md
         '''
     )
-    
+
     # Required arguments (except in special modes)
     required = parser.add_argument_group('required arguments')
     required.add_argument(
@@ -118,7 +118,7 @@ For more information, see docs/CLI_REFERENCE.md
         Example: --repos-path /workspace/repos
         '''
     )
-    
+
     # Configuration options
     config = parser.add_argument_group('configuration options')
     config.add_argument(
@@ -141,7 +141,7 @@ For more information, see docs/CLI_REFERENCE.md
         Example: --output-dir /var/reports/output
         '''
     )
-    
+
     # Output format options
     output = parser.add_argument_group('output options')
     output.add_argument(
@@ -163,7 +163,7 @@ For more information, see docs/CLI_REFERENCE.md
         action='store_true',
         help='Skip ZIP bundle creation'
     )
-    
+
     # Behavioral options
     behavior = parser.add_argument_group('behavioral options')
     behavior.add_argument(
@@ -181,7 +181,7 @@ For more information, see docs/CLI_REFERENCE.md
         Example: --workers 8
         '''
     )
-    
+
     # Verbosity options (mutually exclusive)
     verbosity = parser.add_mutually_exclusive_group()
     verbosity.add_argument(
@@ -198,7 +198,7 @@ For more information, see docs/CLI_REFERENCE.md
         action='store_true',
         help='Suppress non-error output (errors and warnings only)'
     )
-    
+
     # Special modes
     modes = parser.add_argument_group('special modes')
     modes.add_argument(
@@ -261,7 +261,7 @@ For more information, see docs/CLI_REFERENCE.md
         action='store_true',
         help='Display resolved configuration and exit'
     )
-    
+
     # Advanced options
     advanced = parser.add_argument_group('advanced options')
     advanced.add_argument(
@@ -286,23 +286,23 @@ For more information, see docs/CLI_REFERENCE.md
         Example: --config-override api.github.token=ghp_xxx
         '''
     )
-    
+
     return parser
 
 
 def parse_arguments(args: Optional[list[str]] = None) -> argparse.Namespace:
     """
     Parse and validate command-line arguments.
-    
+
     Args:
         args: Optional list of arguments (defaults to sys.argv)
-        
+
     Returns:
         Parsed arguments namespace
-        
+
     Raises:
         InvalidArgumentError: If arguments are invalid or conflicting
-        
+
     Example:
         >>> args = parse_arguments(['--project', 'test', '--repos-path', '.'])
         >>> print(args.project)
@@ -310,20 +310,20 @@ def parse_arguments(args: Optional[list[str]] = None) -> argparse.Namespace:
     """
     parser = create_argument_parser()
     parsed_args = parser.parse_args(args)
-    
+
     # Post-parse validation
     validate_arguments(parsed_args)
-    
+
     return parsed_args
 
 
 def validate_arguments(args: argparse.Namespace) -> None:
     """
     Validate parsed arguments for consistency and correctness.
-    
+
     Args:
         args: Parsed arguments namespace
-        
+
     Raises:
         InvalidArgumentError: If arguments are invalid or conflicting
     """
@@ -333,7 +333,7 @@ def validate_arguments(args: argparse.Namespace) -> None:
         getattr(args, 'show_feature', None) is not None or
         getattr(args, 'init', False)
     )
-    
+
     # For --init-template, we need --project but not --repos-path
     template_mode = getattr(args, 'init_template', None) is not None
     if template_mode and not getattr(args, 'project', None):
@@ -341,7 +341,7 @@ def validate_arguments(args: argparse.Namespace) -> None:
             "The --init-template mode requires --project",
             suggestion="Provide --project with your project name when using --init-template"
         )
-    
+
     # Require --project and --repos-path unless in special mode or template mode
     if not special_mode and not template_mode:
         if not hasattr(args, 'project') or not args.project:
@@ -355,7 +355,7 @@ def validate_arguments(args: argparse.Namespace) -> None:
                 suggestion="Provide --repos-path with the path to your repositories directory"
             )
 
-    
+
     # Validate paths exist where required
     if hasattr(args, 'repos_path') and args.repos_path:
         if not args.repos_path.exists():
@@ -368,7 +368,7 @@ def validate_arguments(args: argparse.Namespace) -> None:
                 f"Repository path is not a directory: {args.repos_path}",
                 suggestion="Provide a path to a directory containing repositories"
             )
-    
+
     # Validate worker count
     if hasattr(args, 'workers') and args.workers is not None:
         if args.workers < 1:
@@ -381,7 +381,7 @@ def validate_arguments(args: argparse.Namespace) -> None:
                 f"Worker count seems too high: {args.workers}",
                 suggestion="Consider using --workers 16 or lower for stability"
             )
-    
+
     # Handle validate-only as alias for dry-run
     if hasattr(args, 'validate_only') and args.validate_only:
         args.dry_run = True
@@ -390,13 +390,13 @@ def validate_arguments(args: argparse.Namespace) -> None:
 def get_verbosity_level(args: argparse.Namespace) -> VerbosityLevel:
     """
     Determine verbosity level from arguments.
-    
+
     Args:
         args: Parsed arguments
-        
+
     Returns:
         VerbosityLevel enum value
-        
+
     Example:
         >>> args = parse_arguments(['-vv'])
         >>> level = get_verbosity_level(args)
@@ -405,7 +405,7 @@ def get_verbosity_level(args: argparse.Namespace) -> VerbosityLevel:
     """
     if hasattr(args, 'quiet') and args.quiet:
         return VerbosityLevel.QUIET
-    
+
     if hasattr(args, 'verbose'):
         verbose_count = args.verbose
         if verbose_count == 0:
@@ -416,20 +416,20 @@ def get_verbosity_level(args: argparse.Namespace) -> VerbosityLevel:
             return VerbosityLevel.DEBUG
         else:
             return VerbosityLevel.TRACE
-    
+
     return VerbosityLevel.NORMAL
 
 
 def get_log_level(args: argparse.Namespace) -> str:
     """
     Determine log level from arguments.
-    
+
     Args:
         args: Parsed arguments
-        
+
     Returns:
         Log level string (DEBUG, INFO, WARNING, ERROR)
-        
+
     Example:
         >>> args = parse_arguments(['-v'])
         >>> level = get_log_level(args)
@@ -439,10 +439,10 @@ def get_log_level(args: argparse.Namespace) -> str:
     # Explicit log level takes precedence
     if hasattr(args, 'log_level') and args.log_level:
         return args.log_level
-    
+
     # Otherwise determine from verbosity
     verbosity = get_verbosity_level(args)
-    
+
     if verbosity == VerbosityLevel.QUIET:
         return 'WARNING'
     elif verbosity == VerbosityLevel.NORMAL:
@@ -458,13 +458,13 @@ def get_log_level(args: argparse.Namespace) -> str:
 def get_output_formats(args: argparse.Namespace) -> list[OutputFormat]:
     """
     Determine which output formats to generate.
-    
+
     Args:
         args: Parsed arguments
-        
+
     Returns:
         List of OutputFormat enum values
-        
+
     Example:
         >>> args = parse_arguments(['--output-format', 'html'])
         >>> formats = get_output_formats(args)
@@ -475,7 +475,7 @@ def get_output_formats(args: argparse.Namespace) -> list[OutputFormat]:
     # Handle --output-format
     if hasattr(args, 'output_format'):
         format_str = args.output_format.lower()
-        
+
         if format_str == 'all':
             return [OutputFormat.JSON, OutputFormat.MARKDOWN, OutputFormat.HTML]
         elif format_str == 'json':
@@ -484,7 +484,7 @@ def get_output_formats(args: argparse.Namespace) -> list[OutputFormat]:
             return [OutputFormat.MARKDOWN]
         elif format_str == 'html':
             return [OutputFormat.HTML]
-    
+
     # Default: all formats
     return [OutputFormat.JSON, OutputFormat.MARKDOWN, OutputFormat.HTML]
 
@@ -492,10 +492,10 @@ def get_output_formats(args: argparse.Namespace) -> list[OutputFormat]:
 def should_generate_zip(args: argparse.Namespace) -> bool:
     """
     Determine if ZIP bundle should be generated.
-    
+
     Args:
         args: Parsed arguments
-        
+
     Returns:
         True if ZIP should be generated, False otherwise
     """
@@ -505,12 +505,12 @@ def should_generate_zip(args: argparse.Namespace) -> bool:
 def is_special_mode(args: argparse.Namespace) -> bool:
     """
     Check if running in a special mode (dry-run, list-features, etc.).
-    
+
     Special modes exit early without full analysis.
-    
+
     Args:
         args: Parsed arguments
-        
+
     Returns:
         True if in special mode, False otherwise
     """
@@ -521,10 +521,10 @@ def is_special_mode(args: argparse.Namespace) -> bool:
 def is_wizard_mode(args: argparse.Namespace) -> bool:
     """
     Check if running in wizard mode (--init or --init-template).
-    
+
     Args:
         args: Parsed arguments
-        
+
     Returns:
         True if in wizard mode, False otherwise
     """

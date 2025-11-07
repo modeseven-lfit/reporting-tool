@@ -1,7 +1,7 @@
 # CI/CD Integration Guide
 
-**Version:** 1.0  
-**Last Updated:** 2025-01-27  
+**Version:** 1.0
+**Last Updated:** 2025-01-27
 **Phase:** 11 - Test Coverage Expansion, Step 9
 
 ---
@@ -81,11 +81,12 @@ This document describes the CI/CD integration for the Repository Reporting Syste
 
 ### 1. Pre-commit Checks (`.github/workflows/pre-commit.yaml`)
 
-**Trigger:** Pull request opened, synchronized, or reopened  
-**Duration:** < 5 minutes  
+**Trigger:** Pull request opened, synchronized, or reopened
+**Duration:** < 5 minutes
 **Purpose:** Fast feedback for developers
 
 **Jobs:**
+
 - `quick-checks`: Smoke tests and validation
 - `fast-tests`: Unit tests without coverage
 - `lint-and-format`: Code style and formatting
@@ -93,6 +94,7 @@ This document describes the CI/CD integration for the Repository Reporting Syste
 - `pr-comment`: Summary posted to PR
 
 **Example Usage:**
+
 ```yaml
 on:
   pull_request:
@@ -100,6 +102,7 @@ on:
 ```
 
 **What It Validates:**
+
 - ✅ Smoke tests pass
 - ✅ No syntax errors
 - ✅ No debugging statements left in code
@@ -109,11 +112,12 @@ on:
 
 ### 2. Comprehensive Tests (`.github/workflows/tests.yaml`)
 
-**Trigger:** Push to main/develop, pull requests  
-**Duration:** < 30 minutes  
+**Trigger:** Push to main/develop, pull requests
+**Duration:** < 30 minutes
 **Purpose:** Full test suite execution
 
 **Jobs:**
+
 - `smoke-tests`: Quick validation (Python 3.10, 3.11, 3.12)
 - `unit-tests`: Full unit test suite with coverage
 - `integration-tests`: Component integration tests
@@ -124,6 +128,7 @@ on:
 - `test-summary`: Combined results and coverage
 
 **Test Matrix:**
+
 ```yaml
 strategy:
   matrix:
@@ -132,22 +137,25 @@ strategy:
 ```
 
 **Coverage Requirements:**
+
 - Unit tests: 85%+ coverage
 - Integration tests: Combined coverage tracked
 - Reports uploaded to Codecov
 
 ### 3. Performance Tracking (`.github/workflows/performance-tracking.yaml`)
 
-**Trigger:** Weekly schedule (Monday 00:00 UTC) or manual dispatch  
-**Duration:** < 30 minutes  
+**Trigger:** Weekly schedule (Monday 00:00 UTC) or manual dispatch
+**Duration:** < 30 minutes
 **Purpose:** Long-term performance monitoring
 
 **Jobs:**
+
 - `benchmark-suite`: Full benchmark execution
 - `memory-profiling`: Memory usage analysis
 - `performance-dashboard`: Dashboard generation
 
 **Benchmark Configuration:**
+
 ```yaml
 --benchmark-min-rounds=10
 --benchmark-warmup-iterations=3
@@ -156,6 +164,7 @@ strategy:
 ```
 
 **Alerting:**
+
 - Creates GitHub issue on threshold violations
 - Comments on recent PRs if performance degraded
 - Archives results for 90 days (trends) and 365 days (history)
@@ -175,12 +184,14 @@ strategy:
 ### Test Categories
 
 #### 1. Smoke Tests
-**Purpose:** Fast validation of critical paths  
-**Marker:** `@pytest.mark.smoke`  
-**Duration:** < 1 minute  
+
+**Purpose:** Fast validation of critical paths
+**Marker:** `@pytest.mark.smoke`
+**Duration:** < 1 minute
 **Coverage:** Basic functionality only
 
 **Example:**
+
 ```python
 @pytest.mark.smoke
 def test_basic_import():
@@ -190,34 +201,40 @@ def test_basic_import():
 ```
 
 #### 2. Unit Tests
-**Purpose:** Test individual functions/classes  
-**Marker:** `@pytest.mark.unit`  
-**Duration:** < 10 minutes  
+
+**Purpose:** Test individual functions/classes
+**Marker:** `@pytest.mark.unit`
+**Duration:** < 10 minutes
 **Coverage:** 85%+ of module code
 
 **Execution:**
+
 ```bash
 pytest tests/unit/ -v -m unit --cov=src
 ```
 
 #### 3. Integration Tests
-**Purpose:** Test component interactions  
-**Marker:** `@pytest.mark.integration`  
-**Duration:** < 15 minutes  
+
+**Purpose:** Test component interactions
+**Marker:** `@pytest.mark.integration`
+**Duration:** < 15 minutes
 **Coverage:** Workflow scenarios
 
 **Execution:**
+
 ```bash
 pytest tests/integration/ -v -m integration
 ```
 
 #### 4. Property-Based Tests
-**Purpose:** Validate invariants  
-**Marker:** `@pytest.mark.property`  
-**Duration:** < 10 minutes  
+
+**Purpose:** Validate invariants
+**Marker:** `@pytest.mark.property`
+**Duration:** < 10 minutes
 **Coverage:** 74 properties tested
 
 **Configuration:**
+
 ```python
 # Hypothesis settings for CI
 settings.register_profile("ci", max_examples=1000, deadline=None)
@@ -225,23 +242,27 @@ settings.load_profile("ci")
 ```
 
 #### 5. Regression Tests
-**Purpose:** Prevent known issues from recurring  
-**Marker:** `@pytest.mark.regression`  
-**Duration:** < 5 minutes  
+
+**Purpose:** Prevent known issues from recurring
+**Marker:** `@pytest.mark.regression`
+**Duration:** < 5 minutes
 **Coverage:** 56 regression tests
 
 **Includes:**
+
 - Known issue tests (25 tests)
 - JSON snapshot tests (22 tests)
 - Baseline schema validation (9 tests)
 
 #### 6. Performance Tests
-**Purpose:** Ensure performance thresholds met  
-**Marker:** `@pytest.mark.performance` or `@pytest.mark.benchmark`  
-**Duration:** < 5 minutes (thresholds), ~10 minutes (benchmarks)  
+
+**Purpose:** Ensure performance thresholds met
+**Marker:** `@pytest.mark.performance` or `@pytest.mark.benchmark`
+**Duration:** < 5 minutes (thresholds), ~10 minutes (benchmarks)
 **Coverage:** 47 performance tests
 
 **Execution:**
+
 ```bash
 # Threshold validation (fast)
 pytest tests/performance/test_thresholds.py -v -m performance
@@ -271,6 +292,7 @@ strategy:
 ```
 
 **Benefits:**
+
 - Faster feedback (5-10x speedup)
 - Independent failure isolation
 - Resource optimization
@@ -290,12 +312,12 @@ PERFORMANCE_THRESHOLDS = {
     "cache_set": 0.002,              # 2ms
     "cache_cleanup": 0.1,            # 100ms
     "cache_invalidate": 0.005,       # 5ms
-    
+
     # Throughput (items/second)
     "cache_ops_per_second": 1000,
     "batch_requests_per_second": 100,
     "parallel_items_per_second": 50,
-    
+
     # Memory limits (MB)
     "cache_max_size": 100,
     "worker_memory_per_item": 10,
@@ -304,12 +326,14 @@ PERFORMANCE_THRESHOLDS = {
 
 ### Benchmark Tracking
 
-**Frequency:** Weekly (automated) + on-demand  
-**Retention:** 
+**Frequency:** Weekly (automated) + on-demand
+**Retention:**
+
 - Detailed results: 90 days
 - Historical data: 365 days
 
 **Metrics Tracked:**
+
 - Min/Max/Mean/Median latency
 - Standard deviation
 - Operations per second
@@ -317,6 +341,7 @@ PERFORMANCE_THRESHOLDS = {
 - Throughput
 
 **Comparison:**
+
 - Against previous run
 - Against baseline (main branch)
 - Trend analysis over time
@@ -324,16 +349,19 @@ PERFORMANCE_THRESHOLDS = {
 ### Performance Alerts
 
 **Trigger Conditions:**
+
 - Threshold violation in performance tests
 - Benchmark regression > 10%
 - Memory usage exceeds limits
 
 **Actions:**
+
 - GitHub issue created automatically
 - Comment on recent PRs
 - Alert in Slack (if configured)
 
 **Example Alert:**
+
 ```markdown
 ⚠️ Performance Alert: Threshold Violations
 
@@ -360,42 +388,48 @@ Commit: abc123def
 All code must pass before merge:
 
 #### 1. Formatting (Black)
+
 ```bash
 black --check src/ tests/
 ```
 
-**Configuration:** Default Black style  
-**Line Length:** 88 characters  
+**Configuration:** Default Black style
+**Line Length:** 88 characters
 **Action:** `continue-on-error: true` (advisory)
 
 #### 2. Import Sorting (isort)
+
 ```bash
 isort --check-only src/ tests/
 ```
 
-**Configuration:** Compatible with Black  
+**Configuration:** Compatible with Black
 **Action:** `continue-on-error: true` (advisory)
 
 #### 3. Linting (Flake8)
+
 ```bash
 flake8 src/ tests/ --max-line-length=120
 ```
 
 **Ignored Rules:**
+
 - E203: Whitespace before ':'
 - W503: Line break before binary operator
 
 **Action:** `continue-on-error: true` (advisory)
 
 #### 4. Type Checking (MyPy)
+
 ```bash
 mypy src/ --ignore-missing-imports
 ```
 
-**Configuration:** Non-strict mode  
+**Configuration:** Non-strict mode
 **Action:** `continue-on-error: true` (advisory)
 
 #### 5. Security (Bandit)
+
 ```bash
 bandit -r src/ -f json
 ```
@@ -405,6 +439,7 @@ bandit -r src/ -f json
 ### Quality Metrics
 
 **Target Metrics:**
+
 - Test Coverage: 85%+
 - Type Hints: 70%+
 - Documentation: All public APIs
@@ -416,8 +451,8 @@ bandit -r src/ -f json
 
 ### Dependency Scanning
 
-**Tool:** Safety  
-**Frequency:** Every PR, daily on main  
+**Tool:** Safety
+**Frequency:** Every PR, daily on main
 **Database:** PyUp Safety DB
 
 ```bash
@@ -428,22 +463,22 @@ safety check --json
 
 ### Code Scanning
 
-**Tool:** Bandit  
-**Frequency:** Every PR  
+**Tool:** Bandit
+**Frequency:** Every PR
 **Severity Levels:** Low, Medium, High, Critical
 
 ```bash
 bandit -r src/ -ll  # Low level and above
 ```
 
-**Critical Issues:** Block merge  
-**High Issues:** Require review  
+**Critical Issues:** Block merge
+**High Issues:** Require review
 **Medium/Low:** Advisory
 
 ### Secret Scanning
 
-**Tool:** GitHub Secret Scanning (built-in)  
-**Scope:** All commits, all branches  
+**Tool:** GitHub Secret Scanning (built-in)
+**Scope:** All commits, all branches
 **Action:** Automatic alerts, prevent push
 
 ---
@@ -464,17 +499,20 @@ bandit -r src/ -ll  # Low level and above
 ### Artifact Access
 
 **Via GitHub UI:**
+
 1. Go to Actions tab
 2. Select workflow run
 3. Scroll to "Artifacts" section
 4. Download desired artifact
 
 **Via CLI:**
+
 ```bash
 gh run download <run-id> -n <artifact-name>
 ```
 
 **Example:**
+
 ```bash
 gh run download 12345 -n coverage-combined
 ```
@@ -482,6 +520,7 @@ gh run download 12345 -n coverage-combined
 ### Artifact Structure
 
 **Coverage Report:**
+
 ```
 coverage-combined/
 ├── coverage-summary.md
@@ -492,6 +531,7 @@ coverage-combined/
 ```
 
 **Benchmark Results:**
+
 ```
 benchmark-results/
 ├── benchmark-results.json
@@ -508,6 +548,7 @@ benchmark-results/
 ### GitHub Actions Notifications
 
 **Default Behavior:**
+
 - Email on first failure
 - Email when fixed
 - Email if workflow re-run fails
@@ -518,12 +559,14 @@ Settings → Notifications → Actions → Configure
 ### PR Comments
 
 Automated comments on PRs:
+
 - Pre-commit check summary
 - Test coverage report
 - Performance comparison
 - Security scan results
 
 **Example:**
+
 ```markdown
 ## Pre-commit Check Results
 
@@ -541,11 +584,13 @@ Some checks failed. Please review the logs.
 ### Performance Alerts
 
 Triggered on:
+
 - Threshold violations
 - Benchmark regressions > 10%
 - Memory limit violations
 
 **Recipients:**
+
 - GitHub issue (labeled: performance, automated)
 - Comments on recent open PRs
 - Optional: Slack webhook (if configured)
@@ -557,6 +602,7 @@ Triggered on:
 ### Running Tests Locally
 
 #### Quick Validation
+
 ```bash
 # Smoke tests
 PYTHONPATH=. pytest -v -m smoke --no-cov
@@ -566,6 +612,7 @@ PYTHONPATH=. pytest tests/unit/ -v --no-cov
 ```
 
 #### Full Test Suite
+
 ```bash
 # All tests with coverage
 PYTHONPATH=. pytest -v --cov=src --cov-report=html
@@ -575,6 +622,7 @@ PYTHONPATH=. pytest -v -m integration
 ```
 
 #### Performance Tests
+
 ```bash
 # Threshold validation (fast)
 PYTHONPATH=. pytest tests/performance/test_thresholds.py -v
@@ -593,6 +641,7 @@ pre-commit install
 ```
 
 **Hooks run automatically:**
+
 - Black formatting
 - isort import sorting
 - Flake8 linting
@@ -622,8 +671,9 @@ act -j unit-tests
 
 #### 1. Tests Fail Locally but Pass in CI
 
-**Cause:** Environment differences  
+**Cause:** Environment differences
 **Solution:**
+
 ```bash
 # Ensure clean environment
 uv sync  # or: pip install . --force-reinstall
@@ -637,8 +687,9 @@ export PYTHONPATH=.
 
 #### 2. Coverage Too Low
 
-**Cause:** Missing test files or markers  
+**Cause:** Missing test files or markers
 **Solution:**
+
 ```bash
 # Check what's covered
 pytest --cov=src --cov-report=term-missing
@@ -649,8 +700,9 @@ pytest --cov=src --cov-report=term-missing
 
 #### 3. Performance Tests Fail
 
-**Cause:** Resource contention on local machine  
+**Cause:** Resource contention on local machine
 **Solution:**
+
 ```bash
 # Close background applications
 # Run with increased margins
@@ -661,8 +713,9 @@ pytest tests/performance/ -v --tb=short
 
 #### 4. Benchmark Comparison Fails
 
-**Cause:** No baseline exists  
+**Cause:** No baseline exists
 **Solution:**
+
 ```bash
 # Create baseline
 pytest tests/performance/test_benchmarks.py \
@@ -677,8 +730,9 @@ pytest tests/performance/test_benchmarks.py \
 
 #### 5. Workflow Not Triggering
 
-**Cause:** Path filters or branch restrictions  
+**Cause:** Path filters or branch restrictions
 **Solution:**
+
 ```yaml
 # Check workflow triggers
 on:
@@ -690,6 +744,7 @@ on:
 ```
 
 **Verify:**
+
 - Changed files match path filters
 - Branch is in trigger list
 - Workflow file is in `.github/workflows/`
@@ -699,11 +754,13 @@ on:
 Enable debug logging:
 
 **In GitHub Actions:**
+
 1. Repository Settings → Secrets → Actions
 2. Add secret: `ACTIONS_STEP_DEBUG` = `true`
 3. Re-run workflow
 
 **In pytest:**
+
 ```bash
 pytest -vv --log-cli-level=DEBUG
 ```
@@ -711,12 +768,14 @@ pytest -vv --log-cli-level=DEBUG
 ### Getting Help
 
 **Resources:**
-- GitHub Actions Docs: https://docs.github.com/actions
-- pytest Docs: https://docs.pytest.org
-- pytest-benchmark: https://pytest-benchmark.readthedocs.io
-- Hypothesis: https://hypothesis.readthedocs.io
+
+- GitHub Actions Docs: <https://docs.github.com/actions>
+- pytest Docs: <https://docs.pytest.org>
+- pytest-benchmark: <https://pytest-benchmark.readthedocs.io>
+- Hypothesis: <https://hypothesis.readthedocs.io>
 
 **Contact:**
+
 - File an issue: Project repository issues
 - Internal docs: `tests/README.md`
 - Performance docs: `tests/performance/README.md`
@@ -726,26 +785,31 @@ pytest -vv --log-cli-level=DEBUG
 ## Best Practices
 
 ### 1. Fast Feedback
+
 - Keep smoke tests < 1 minute
 - Run unit tests before integration tests
 - Use fail-fast strategically
 
 ### 2. Resource Efficiency
+
 - Cache pip dependencies
 - Use concurrency for independent jobs
 - Set appropriate timeouts
 
 ### 3. Maintainability
+
 - Use descriptive job names
 - Add comments to complex steps
 - Keep workflows DRY (use composite actions)
 
 ### 4. Security
+
 - Pin action versions with SHA
 - Use step-security/harden-runner
 - Scan dependencies regularly
 
 ### 5. Observability
+
 - Upload artifacts for debugging
 - Generate summary reports
 - Track metrics over time
@@ -757,16 +821,19 @@ pytest -vv --log-cli-level=DEBUG
 ### Regular Tasks
 
 **Weekly:**
+
 - Review performance tracking results
 - Check for workflow deprecation warnings
 - Update action versions if security issues
 
 **Monthly:**
+
 - Review artifact retention policies
 - Analyze test execution times
 - Optimize slow tests
 
 **Quarterly:**
+
 - Update Python version matrix
 - Review and update thresholds
 - Audit security scan results
@@ -774,6 +841,7 @@ pytest -vv --log-cli-level=DEBUG
 ### Version Updates
 
 **Action Updates:**
+
 ```bash
 # Check for updates
 gh api repos/{owner}/{repo}/actions/workflows
@@ -784,6 +852,7 @@ uses: actions/checkout@<new-sha>  # v4.2.1
 ```
 
 **Python Version Updates:**
+
 ```yaml
 # Add new Python version to matrix
 python-version: ['3.10', '3.11', '3.12', '3.13']
@@ -827,7 +896,7 @@ See `tests/performance/conftest.py` for complete list.
 
 ---
 
-**Document Version:** 1.0  
-**Last Review:** 2025-01-27  
-**Next Review:** 2025-04-27  
+**Document Version:** 1.0
+**Last Review:** 2025-01-27
+**Next Review:** 2025-04-27
 **Owner:** Development Team

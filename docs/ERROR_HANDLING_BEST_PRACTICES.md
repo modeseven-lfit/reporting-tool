@@ -2,8 +2,8 @@
 
 **Repository Reporting System - Error Handling Guide**
 
-Version: 2.0  
-Last Updated: 2025-01-26  
+Version: 2.0
+Last Updated: 2025-01-26
 Phase: 14 - Test Suite Reliability & Documentation
 
 ---
@@ -121,6 +121,7 @@ except FileNotFoundError:
 ```
 
 **Output:**
+
 ```
 ❌ Error: Configuration file not found: config/my-project.yaml
 
@@ -156,6 +157,7 @@ except requests.HTTPError as e:
 ```
 
 **Output:**
+
 ```
 ❌ Error: GitHub API error: Failed to fetch repository: my-repo
 
@@ -185,19 +187,19 @@ try:
     config = load_and_validate_config(args)
     result = process_repositories(config)
     sys.exit(ExitCode.SUCCESS)
-    
+
 except ConfigurationError as e:
     logger.error(str(e))
     sys.exit(ExitCode.ERROR)
-    
+
 except InvalidArgumentError as e:
     logger.error(str(e))
     sys.exit(ExitCode.USAGE_ERROR)
-    
+
 except PermissionError as e:
     logger.error(str(e))
     sys.exit(ExitCode.SYSTEM_ERROR)
-    
+
 except Exception as e:
     logger.error(f"Unexpected error: {e}", exc_info=True)
     sys.exit(ExitCode.ERROR)
@@ -225,7 +227,7 @@ from test_utils import (
 def test_create_commits(temp_git_repo):
     # Perform operation
     create_test_commits(temp_git_repo, count=5)
-    
+
     # Validate with rich assertion
     assert_repository_state(
         temp_git_repo,
@@ -236,6 +238,7 @@ def test_create_commits(temp_git_repo):
 ```
 
 **On Failure:**
+
 ```
 AssertionError: Repository state validation failed
 
@@ -278,7 +281,7 @@ def test_branch_workflow(temp_git_repo):
             ["git", "checkout", "-b", "feature"],
             cwd=temp_git_repo
         )
-    
+
     with assert_git_operation("add commits to feature", temp_git_repo):
         create_file(temp_git_repo / "feature.txt")
         run_git_command_safe(["git", "add", "."], cwd=temp_git_repo)
@@ -289,6 +292,7 @@ def test_branch_workflow(temp_git_repo):
 ```
 
 **On Failure:**
+
 ```
 AssertionError: Git operation failed: add commits to feature
 
@@ -332,6 +336,7 @@ def test_complex_workflow(temp_git_repo):
 
 **On Failure:**
 Automatically saves to `test_artifacts/test_complex_workflow_TIMESTAMP/`:
+
 - `error.txt` - Error message and traceback
 - `git_log.txt` - Recent commits
 - `git_status.txt` - Working directory status
@@ -357,17 +362,17 @@ def api_call_with_retry(url, max_retries=3):
             response = requests.get(url, timeout=30)
             response.raise_for_status()
             return response.json()
-            
+
         except requests.exceptions.HTTPError as e:
             status_code = e.response.status_code
-            
+
             # Rate limit - exponential backoff
             if status_code == 429:
                 wait_time = 2 ** attempt  # 1s, 2s, 4s
                 logger.warning(f"Rate limited, waiting {wait_time}s")
                 time.sleep(wait_time)
                 continue
-            
+
             # Server errors - retry with linear backoff
             elif status_code >= 500:
                 if attempt < max_retries - 1:
@@ -380,7 +385,7 @@ def api_call_with_retry(url, max_retries=3):
                         status_code=status_code,
                         context={"url": url}
                     )
-            
+
             # Client errors - don't retry
             else:
                 raise APIError(
@@ -389,7 +394,7 @@ def api_call_with_retry(url, max_retries=3):
                     status_code=status_code,
                     context={"url": url}
                 )
-        
+
         except requests.exceptions.Timeout:
             if attempt < max_retries - 1:
                 logger.warning(f"Timeout, attempt {attempt + 1}/{max_retries}")
@@ -400,7 +405,7 @@ def api_call_with_retry(url, max_retries=3):
                     f"Request timeout after {max_retries} attempts",
                     context={"url": url}
                 )
-    
+
     raise APIError(
         f"API request failed after {max_retries} attempts",
         context={"url": url}
@@ -414,7 +419,7 @@ def handle_rate_limit(response_headers):
     """Check and handle GitHub rate limits."""
     remaining = int(response_headers.get('X-RateLimit-Remaining', 1))
     reset_time = int(response_headers.get('X-RateLimit-Reset', 0))
-    
+
     if remaining == 0:
         wait_time = reset_time - time.time()
         if wait_time > 0:
@@ -434,7 +439,7 @@ def verify_authentication(token):
         )
         response.raise_for_status()
         return True
-        
+
     except requests.exceptions.HTTPError as e:
         if e.response.status_code == 401:
             raise APIError(
@@ -467,24 +472,24 @@ def process_repositories(repos, config):
     errors = []
     successes = []
     warnings = []
-    
+
     for repo in repos:
         try:
             # Try to analyze repository
             result = analyze_repository(repo, config)
             successes.append(result)
             logger.info(f"✓ Processed {repo.name}")
-            
+
         except CriticalError as e:
             # Critical errors should stop processing
             logger.error(f"Critical error in {repo.name}: {e}")
             raise
-            
+
         except Exception as e:
             # Non-critical errors - log and continue
             errors.append({"repo": repo.name, "error": str(e)})
             logger.error(f"✗ Failed to process {repo.name}: {e}")
-            
+
             # Try fallback method
             try:
                 result = analyze_repository_basic(repo)
@@ -493,14 +498,14 @@ def process_repositories(repos, config):
                 logger.warning(f"⚠ Used fallback for {repo.name}")
             except Exception as fallback_error:
                 logger.error(f"Fallback also failed for {repo.name}: {fallback_error}")
-    
+
     # Determine exit code based on results
     total = len(repos)
     success_count = len(successes)
     error_count = len(errors)
-    
+
     logger.info(f"Results: {success_count} succeeded, {error_count} failed of {total} total")
-    
+
     if error_count == total:
         # Total failure
         logger.error("All repositories failed to process")
@@ -526,11 +531,11 @@ Collect errors for batch reporting:
 ```python
 class ErrorCollector:
     """Collect and aggregate errors for reporting."""
-    
+
     def __init__(self):
         self.errors = []
         self.warnings = []
-    
+
     def add_error(self, context: str, error: Exception):
         """Add an error with context."""
         self.errors.append({
@@ -539,7 +544,7 @@ class ErrorCollector:
             "type": type(error).__name__,
             "timestamp": datetime.now().isoformat()
         })
-    
+
     def add_warning(self, context: str, message: str):
         """Add a warning with context."""
         self.warnings.append({
@@ -547,25 +552,25 @@ class ErrorCollector:
             "message": message,
             "timestamp": datetime.now().isoformat()
         })
-    
+
     def has_errors(self) -> bool:
         """Check if any errors were collected."""
         return len(self.errors) > 0
-    
+
     def generate_report(self) -> str:
         """Generate error report."""
         lines = []
-        
+
         if self.errors:
             lines.append(f"\n❌ Errors ({len(self.errors)}):")
             for i, error in enumerate(self.errors, 1):
                 lines.append(f"  {i}. [{error['context']}] {error['error']}")
-        
+
         if self.warnings:
             lines.append(f"\n⚠ Warnings ({len(self.warnings)}):")
             for i, warning in enumerate(self.warnings, 1):
                 lines.append(f"  {i}. [{warning['context']}] {warning['message']}")
-        
+
         return '\n'.join(lines)
 
 # Usage
@@ -741,17 +746,17 @@ def fetch_with_cache_invalidation(key, fetch_func, cache):
         # Try cache first
         if key in cache:
             return cache[key]
-        
+
         # Fetch fresh data
         data = fetch_func()
         cache[key] = data
         return data
-        
+
     except DataValidationError as e:
         # Data is corrupted, invalidate cache
         logger.warning(f"Invalid cached data for {key}, invalidating")
         cache.pop(key, None)
-        
+
         # Retry fetch
         data = fetch_func()
         cache[key] = data
@@ -768,7 +773,7 @@ def prompt_for_recovery(error_message, recovery_options):
     for i, option in enumerate(recovery_options, 1):
         print(f"  {i}. {option['description']}")
     print(f"  {len(recovery_options) + 1}. Abort")
-    
+
     while True:
         try:
             choice = int(input("\nChoose an option: "))
@@ -795,27 +800,27 @@ def test_configuration_error_handling():
     """Test that configuration errors are handled properly."""
     with pytest.raises(ConfigurationError) as exc_info:
         load_config("nonexistent.yaml")
-    
+
     # Verify error message is helpful
     error = exc_info.value
     assert "not found" in str(error).lower()
     assert error.recovery_hints
     assert len(error.recovery_hints) > 0
-    
+
     # Verify context is included
     assert "searched_paths" in error.context
 
 def test_api_error_with_retry():
     """Test that API errors trigger retry logic."""
     call_count = 0
-    
+
     def failing_api_call():
         nonlocal call_count
         call_count += 1
         if call_count < 3:
             raise TransientError("Temporary failure")
         return "success"
-    
+
     result = retry_with_backoff(failing_api_call, max_retries=3)
     assert result == "success"
     assert call_count == 3  # Should retry twice
@@ -835,16 +840,16 @@ def test_error_message_quality():
         )
     except ConfigurationError as e:
         error_str = str(e)
-        
+
         # Should have emoji
         assert "❌" in error_str
-        
+
         # Should have recovery hints
         assert "🔧" in error_str or "💡" in error_str
-        
+
         # Should have specific hints
         assert "Fix the config" in error_str
-        
+
         # Should have documentation link
         assert "📚" in error_str or "Documentation" in error_str
 ```
@@ -858,16 +863,16 @@ def test_fallback_recovery():
     """Test fallback recovery mechanism."""
     def primary_always_fails(data):
         raise Exception("Primary failed")
-    
+
     def fallback_succeeds(data):
         return f"Fallback result: {data}"
-    
+
     result = process_with_fallback(
         "test_data",
         primary_always_fails,
         fallback_succeeds
     )
-    
+
     assert result == "Fallback result: test_data"
 ```
 
@@ -988,7 +993,7 @@ from src.cli.errors import ConfigurationError
 def load_configuration(project_name, config_dir=Path("./config")):
     """Load configuration with helpful error on missing file."""
     config_path = config_dir / f"{project_name}.yaml"
-    
+
     if not config_path.exists():
         # Build list of searched paths
         searched_paths = [
@@ -996,7 +1001,7 @@ def load_configuration(project_name, config_dir=Path("./config")):
             str(Path.home() / ".config" / "reports"),
             "/etc/reports/config"
         ]
-        
+
         raise ConfigurationError(
             f"Configuration file not found: {config_path}",
             context={
@@ -1010,7 +1015,7 @@ def load_configuration(project_name, config_dir=Path("./config")):
                 f"Specify directory: --config-dir /custom/path"
             ]
         )
-    
+
     return load_yaml(config_path)
 ```
 
@@ -1037,7 +1042,7 @@ def authenticate_github(token):
                 "Required scopes: 'repo' or 'public_repo'"
             ]
         )
-    
+
     try:
         # Verify token works
         response = requests.get(
@@ -1046,7 +1051,7 @@ def authenticate_github(token):
             timeout=10
         )
         response.raise_for_status()
-        
+
     except requests.exceptions.HTTPError as e:
         if e.response.status_code == 401:
             raise APIError(
@@ -1074,12 +1079,12 @@ def ensure_writable_directory(path: Path):
     try:
         # Create directory if it doesn't exist
         path.mkdir(parents=True, exist_ok=True)
-        
+
         # Test write permission
         test_file = path / ".write_test"
         test_file.touch()
         test_file.unlink()
-        
+
     except OSError as e:
         raise CLIPermissionError(
             f"Cannot write to directory: {path}",
@@ -1101,7 +1106,7 @@ def validate_time_window(config):
     """Validate time window configuration."""
     for window_name, window_config in config.get("time_windows", {}).items():
         days = window_config.get("days")
-        
+
         if not isinstance(days, int):
             raise ValidationError(
                 f"Time window 'days' must be an integer, got {type(days).__name__}",
@@ -1117,7 +1122,7 @@ def validate_time_window(config):
                     "See config/example.yaml for valid format"
                 ]
             )
-        
+
         if days <= 0:
             raise ValidationError(
                 f"Time window 'days' must be positive, got {days}",
@@ -1200,46 +1205,46 @@ def main():
     try:
         # Parse arguments
         args = parse_arguments()
-        
+
         # Validate arguments
         try:
             validate_arguments(args)
         except InvalidArgumentError as e:
             logger.error(str(e))
             return ExitCode.USAGE_ERROR
-        
+
         # Load configuration
         try:
             config = load_configuration(args.project, args.config_dir)
         except ConfigurationError as e:
             logger.error(str(e))
             return ExitCode.ERROR
-        
+
         # Process repositories
         try:
             result = process_repositories(args.repos_path, config)
             return result  # Returns appropriate ExitCode
-            
+
         except PermissionError as e:
             logger.error(str(e))
             return ExitCode.SYSTEM_ERROR
-            
+
         except DiskSpaceError as e:
             logger.error(str(e))
             return ExitCode.SYSTEM_ERROR
-            
+
         except APIError as e:
             logger.error(str(e))
             return ExitCode.ERROR
-            
+
         except NetworkError as e:
             logger.error(str(e))
             return ExitCode.ERROR
-    
+
     except KeyboardInterrupt:
         logger.warning("\n⚠ Operation cancelled by user")
         return ExitCode.ERROR
-    
+
     except Exception as e:
         logger.critical(f"Unexpected error: {e}", exc_info=True)
         return ExitCode.ERROR
@@ -1255,23 +1260,23 @@ def batch_process_repositories(repo_list, config):
     """Process multiple repositories with error collection."""
     collector = ErrorCollector()
     results = []
-    
+
     logger.info(f"Processing {len(repo_list)} repositories")
-    
+
     for i, repo in enumerate(repo_list, 1):
         logger.info(f"[{i}/{len(repo_list)}] Processing {repo.name}")
-        
+
         try:
             # Analyze repository
             result = analyze_repository(repo, config)
             results.append(result)
             logger.info(f"✓ Completed {repo.name}")
-            
+
         except ValidationError as e:
             # Data validation errors - continue with warning
             collector.add_warning(repo.name, f"Validation issue: {e}")
             logger.warning(f"⚠ {repo.name}: {e}")
-            
+
         except APIError as e:
             # API errors - retry once
             logger.warning(f"API error for {repo.name}, retrying...")
@@ -1283,12 +1288,12 @@ def batch_process_repositories(repo_list, config):
             except Exception as retry_error:
                 collector.add_error(repo.name, retry_error)
                 logger.error(f"✗ {repo.name} failed: {retry_error}")
-        
+
         except Exception as e:
             # Unexpected errors - log and continue
             collector.add_error(repo.name, e)
             logger.error(f"✗ {repo.name} failed: {e}")
-    
+
     # Generate summary
     logger.info(f"\n{'='*60}")
     logger.info(f"Batch Processing Summary:")
@@ -1296,10 +1301,10 @@ def batch_process_repositories(repo_list, config):
     logger.info(f"  Success: {len(results)}")
     logger.info(f"  Failed: {len(collector.errors)}")
     logger.info(f"  Warnings: {len(collector.warnings)}")
-    
+
     if collector.has_errors():
         logger.error(collector.generate_report())
-    
+
     # Determine exit code
     if len(results) == 0:
         return ExitCode.ERROR
@@ -1316,6 +1321,7 @@ def batch_process_repositories(repo_list, config):
 ### ❌ Anti-Pattern 1: Silent Failures
 
 **Don't:**
+
 ```python
 try:
     critical_operation()
@@ -1324,6 +1330,7 @@ except Exception:
 ```
 
 **Do:**
+
 ```python
 try:
     critical_operation()
@@ -1335,6 +1342,7 @@ except Exception as e:
 ### ❌ Anti-Pattern 2: Catching Too Broadly
 
 **Don't:**
+
 ```python
 try:
     operation()
@@ -1343,6 +1351,7 @@ except Exception:  # Too broad
 ```
 
 **Do:**
+
 ```python
 try:
     operation()
@@ -1358,11 +1367,13 @@ except Exception as e:
 ### ❌ Anti-Pattern 3: Generic Error Messages
 
 **Don't:**
+
 ```python
 raise Exception("Error occurred")
 ```
 
 **Do:**
+
 ```python
 raise ConfigurationError(
     "Invalid time window configuration: 'days' must be positive",
@@ -1375,6 +1386,7 @@ raise ConfigurationError(
 ### ❌ Anti-Pattern 4: Infinite Retries
 
 **Don't:**
+
 ```python
 while True:
     try:
@@ -1384,6 +1396,7 @@ while True:
 ```
 
 **Do:**
+
 ```python
 for attempt in range(max_retries):
     try:
@@ -1397,6 +1410,7 @@ for attempt in range(max_retries):
 ### ❌ Anti-Pattern 5: Swallowing Important Errors
 
 **Don't:**
+
 ```python
 try:
     result = process_data()
@@ -1407,6 +1421,7 @@ return result
 ```
 
 **Do:**
+
 ```python
 try:
     result = process_data()
@@ -1424,6 +1439,7 @@ return result
 ### ❌ Anti-Pattern 6: Logging and Re-raising
 
 **Don't:**
+
 ```python
 try:
     operation()
@@ -1433,6 +1449,7 @@ except Exception as e:
 ```
 
 **Do:**
+
 ```python
 # Either log at the catch site:
 try:
@@ -1452,6 +1469,7 @@ except Exception:
 ### ❌ Anti-Pattern 7: Not Cleaning Up Resources
 
 **Don't:**
+
 ```python
 file = open("data.txt")
 process_file(file)
@@ -1459,6 +1477,7 @@ file.close()  # Won't run if process_file fails
 ```
 
 **Do:**
+
 ```python
 with open("data.txt") as file:
     process_file(file)  # Automatically closes even on error
@@ -1532,6 +1551,6 @@ recovery_hints=[
 
 ---
 
-**Last Updated:** 2025-01-26  
-**Version:** 2.0 (Phase 14)  
+**Last Updated:** 2025-01-26
+**Version:** 2.0 (Phase 14)
 **Status:** ✅ Production Ready

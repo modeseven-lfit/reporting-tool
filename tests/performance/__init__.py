@@ -28,4 +28,4 @@ __all__ = [
     "BENCHMARK_CONFIG",
 ]
 
-from .conftest import PERFORMANCE_THRESHOLDS, BENCHMARK_CONFIG
+from .conftest import BENCHMARK_CONFIG, PERFORMANCE_THRESHOLDS

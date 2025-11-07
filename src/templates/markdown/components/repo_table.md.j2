@@ -5,7 +5,7 @@
         - repositories (list): List of repository dicts
         - columns (list): Optional list of columns to display
         - title (str): Optional section title
-    
+
     Available columns:
         - name: Repository name
         - age: Last commit age
@@ -16,7 +16,7 @@
         - lines_added: Lines added
         - lines_removed: Lines removed
         - net_lines: Net lines of code
-    
+
     Example usage:
         {% set columns = ['name', 'age', 'commits', 'contributors', 'status'] %}
         {% include 'markdown/components/repo_table.md.j2' with context %}

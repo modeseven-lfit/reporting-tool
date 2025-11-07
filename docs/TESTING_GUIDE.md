@@ -1,7 +1,7 @@
 # Testing Guide
 
-**Version:** 1.1  
-**Last Updated:** 2025-11-03  
+**Version:** 1.1
+**Last Updated:** 2025-11-03
 **Phase:** 12 - Integration & System Tests, Step 5 Complete
 
 ---
@@ -98,12 +98,13 @@ PYTHONPATH=. pytest tests/performance/test_thresholds.py -v --no-cov
 
 ### 1. Smoke Tests
 
-**Purpose:** Fast validation of critical paths  
-**Marker:** `@pytest.mark.smoke`  
-**Duration:** < 1 minute  
+**Purpose:** Fast validation of critical paths
+**Marker:** `@pytest.mark.smoke`
+**Duration:** < 1 minute
 **Count:** ~10 tests
 
 **Example:**
+
 ```python
 @pytest.mark.smoke
 def test_basic_import():
@@ -120,46 +121,49 @@ def test_cache_basic_operations():
 ```
 
 **When to use:**
+
 - Pre-commit validation
 - Quick sanity checks
 - CI/CD fast feedback
 
 ### 2. Unit Tests
 
-**Purpose:** Test individual functions/classes in isolation  
-**Marker:** `@pytest.mark.unit`  
-**Duration:** < 10 minutes  
-**Count:** ~300 tests  
+**Purpose:** Test individual functions/classes in isolation
+**Marker:** `@pytest.mark.unit`
+**Duration:** < 10 minutes
+**Count:** ~300 tests
 **Coverage Target:** 85%+
 
 **Example:**
+
 ```python
 @pytest.mark.unit
 def test_cache_manager_set_and_get():
     """Test cache set and get operations."""
     cache = CacheManager(cache_dir=temp_dir, max_size_mb=10)
-    
+
     key = CacheKey.repository("owner", "repo")
     value = {"data": "test"}
-    
+
     cache.set(key, value, ttl=3600)
     result = cache.get(key)
-    
+
     assert result == value
 
 @pytest.mark.unit
 def test_cache_expiration():
     """Test cache entry expiration."""
     cache = CacheManager(cache_dir=temp_dir, max_size_mb=10)
-    
+
     key = CacheKey.repository("owner", "repo")
     cache.set(key, {"data": "test"}, ttl=0)  # Expired
-    
+
     result = cache.get(key)
     assert result is None
 ```
 
 **Best practices:**
+
 - Mock external dependencies
 - Test edge cases and error conditions
 - Use descriptive test names
@@ -167,18 +171,19 @@ def test_cache_expiration():
 
 ### 3. Integration Tests
 
-**Purpose:** Test component interactions and workflows  
-**Marker:** `@pytest.mark.integration`  
-**Duration:** < 15 minutes  
+**Purpose:** Test component interactions and workflows
+**Marker:** `@pytest.mark.integration`
+**Duration:** < 15 minutes
 **Count:** ~50 tests
 
 **Example:**
+
 ```python
 @pytest.mark.integration
 def test_cache_with_parallel_processing():
     """Test cache integration with parallel processing."""
     cache = CacheManager(cache_dir=temp_dir, max_size_mb=20)
-    
+
     def cached_processor(item):
         cache_key = CacheKey.repository("owner", item["name"])
         cached = cache.get(cache_key)
@@ -187,14 +192,15 @@ def test_cache_with_parallel_processing():
         result = process_item(item)
         cache.set(cache_key, result, ttl=3600)
         return result
-    
+
     with WorkerPool(max_workers=4) as pool:
         results = pool.map(cached_processor, items)
-    
+
     assert len(results) == len(items)
 ```
 
 **Best practices:**
+
 - Test realistic workflows
 - Use representative test data
 - Clean up resources after tests
@@ -202,12 +208,13 @@ def test_cache_with_parallel_processing():
 
 ### 4. Property-Based Tests
 
-**Purpose:** Validate invariants and mathematical properties  
-**Marker:** `@pytest.mark.property`  
-**Duration:** < 10 minutes  
+**Purpose:** Validate invariants and mathematical properties
+**Marker:** `@pytest.mark.property`
+**Duration:** < 10 minutes
 **Count:** 74 tests
 
 **Example:**
+
 ```python
 from hypothesis import given, strategies as st
 
@@ -217,9 +224,9 @@ def test_time_window_duration_non_negative(seconds):
     """Duration should always be non-negative."""
     start_time = time.time()
     end_time = start_time + seconds
-    
+
     window = TimeWindow(start_time=start_time, end_time=end_time)
-    
+
     assert window.duration_seconds >= 0
 
 @pytest.mark.property
@@ -228,11 +235,12 @@ def test_aggregation_idempotent(values):
     """Aggregating twice should equal aggregating once."""
     result1 = aggregate(aggregate(values))
     result2 = aggregate(values)
-    
+
     assert result1 == result2
 ```
 
 **Best practices:**
+
 - Test mathematical invariants
 - Use diverse input strategies
 - Keep properties simple and clear
@@ -240,26 +248,27 @@ def test_aggregation_idempotent(values):
 
 ### 5. Regression Tests
 
-**Purpose:** Prevent known issues from recurring  
-**Marker:** `@pytest.mark.regression`  
-**Duration:** < 5 minutes  
+**Purpose:** Prevent known issues from recurring
+**Marker:** `@pytest.mark.regression`
+**Duration:** < 5 minutes
 **Count:** 56 tests (25 known issues + 22 snapshots + 9 baseline)
 
 **Example:**
+
 ```python
 @pytest.mark.regression
 def test_issue_001_empty_repository_handling():
     """
     ISSUE-001: Empty repositories should not cause crashes.
-    
+
     Previously, processing empty repositories would raise
     AttributeError when accessing commit statistics.
     """
     repo = {"name": "empty", "commits": []}
-    
+
     # Should not raise exception
     result = process_repository(repo)
-    
+
     assert result["commit_count"] == 0
     assert result["lines_added"] == 0
 
@@ -268,11 +277,12 @@ def test_json_snapshot_repository_output(snapshot):
     """Ensure JSON output format remains stable."""
     repo_data = generate_test_repository()
     result = format_repository_json(repo_data)
-    
+
     snapshot.assert_match(result, "repository_output.json")
 ```
 
 **Best practices:**
+
 - Document the original issue
 - Include issue tracking number
 - Test the fix, not just the symptom
@@ -280,12 +290,13 @@ def test_json_snapshot_repository_output(snapshot):
 
 ### 6. Performance Tests
 
-**Purpose:** Ensure operations meet performance thresholds  
-**Marker:** `@pytest.mark.performance`  
-**Duration:** < 5 minutes  
+**Purpose:** Ensure operations meet performance thresholds
+**Marker:** `@pytest.mark.performance`
+**Duration:** < 5 minutes
 **Count:** 16 threshold tests
 
 **Example:**
+
 ```python
 @pytest.mark.performance
 def test_cache_get_within_threshold(temp_cache_dir, perf_thresholds):
@@ -293,20 +304,21 @@ def test_cache_get_within_threshold(temp_cache_dir, perf_thresholds):
     cache = CacheManager(cache_dir=temp_cache_dir, max_size_mb=10)
     key = CacheKey.repository("owner", "repo")
     cache.set(key, {"data": "test"}, ttl=3600)
-    
+
     start = time.perf_counter()
     result = cache.get(key)
     duration = time.perf_counter() - start
-    
+
     assert result is not None
     assert_within_threshold(
-        duration, 
-        perf_thresholds["cache_get"], 
+        duration,
+        perf_thresholds["cache_get"],
         "Cache get operation"
     )
 ```
 
 **Best practices:**
+
 - Test realistic workloads
 - Use consistent hardware for comparison
 - Set reasonable thresholds with margins
@@ -314,12 +326,13 @@ def test_cache_get_within_threshold(temp_cache_dir, perf_thresholds):
 
 ### 7. Benchmark Tests
 
-**Purpose:** Track performance over time with statistical analysis  
-**Marker:** `@pytest.mark.benchmark`  
-**Duration:** ~10 minutes  
+**Purpose:** Track performance over time with statistical analysis
+**Marker:** `@pytest.mark.benchmark`
+**Duration:** ~10 minutes
 **Count:** 31 benchmark tests
 
 **Example:**
+
 ```python
 @pytest.mark.benchmark
 def test_benchmark_cache_get(benchmark, temp_cache_dir):
@@ -327,12 +340,13 @@ def test_benchmark_cache_get(benchmark, temp_cache_dir):
     cache = CacheManager(cache_dir=temp_cache_dir, max_size_mb=10)
     key = CacheKey.repository("owner", "repo")
     cache.set(key, {"data": "test"}, ttl=3600)
-    
+
     result = benchmark(cache.get, key)
     assert result is not None
 ```
 
 **Best practices:**
+
 - Use warmup iterations
 - Run multiple rounds for statistical significance
 - Compare against baselines
@@ -457,29 +471,29 @@ pytestmark = pytest.mark.unit
 
 class TestCacheManager:
     """Tests for CacheManager class."""
-    
+
     def test_basic_operations(self, temp_cache_dir):
         """Test basic cache get/set operations."""
         cache = CacheManager(cache_dir=temp_cache_dir, max_size_mb=10)
-        
+
         # Test setup
         key = CacheKey.repository("owner", "repo")
         value = {"data": "test"}
-        
+
         # Execute
         cache.set(key, value, ttl=3600)
         result = cache.get(key)
-        
+
         # Verify
         assert result == value
-    
+
     def test_expiration(self, temp_cache_dir):
         """Test cache entry expiration."""
         cache = CacheManager(cache_dir=temp_cache_dir, max_size_mb=10)
-        
+
         key = CacheKey.repository("owner", "repo")
         cache.set(key, {"data": "test"}, ttl=0)  # Already expired
-        
+
         result = cache.get(key)
         assert result is None
 ```
@@ -525,7 +539,7 @@ def test_with_fixtures(temp_cache_dir, sample_repository):
     """Test using fixtures."""
     cache = CacheManager(cache_dir=temp_cache_dir)
     cache.set("repo", sample_repository, ttl=3600)
-    
+
     result = cache.get("repo")
     assert result == sample_repository
 ```
@@ -542,7 +556,7 @@ def test_cache_expiration_scenarios(temp_cache_dir, ttl, should_exist):
     """Test various expiration scenarios."""
     cache = CacheManager(cache_dir=temp_cache_dir)
     cache.set("key", "value", ttl=ttl)
-    
+
     result = cache.get("key")
     if should_exist:
         assert result == "value"
@@ -562,11 +576,11 @@ def test_with_mocked_dependency(mocker):
     mock_api.return_value.get_repository.return_value = {
         "name": "test-repo"
     }
-    
+
     # Test code that uses the mocked API
     client = GitHubClient()
     result = client.get_repository("owner", "repo")
-    
+
     assert result["name"] == "test-repo"
     mock_api.return_value.get_repository.assert_called_once()
 ```
@@ -665,6 +679,7 @@ PYTHONPATH=. pytest --cov=src.performance --cov-report=term-missing
 ### Coverage Configuration
 
 In `pytest.ini`:
+
 ```ini
 [pytest]
 addopts =
@@ -676,10 +691,11 @@ addopts =
 ```
 
 In `.coveragerc`:
+
 ```ini
 [run]
 source = src
-omit = 
+omit =
     */tests/*
     */venv/*
     */__pycache__/*
@@ -708,11 +724,11 @@ def test_cache_get_within_threshold(temp_cache_dir, perf_thresholds):
     cache = CacheManager(cache_dir=temp_cache_dir, max_size_mb=10)
     key = CacheKey.repository("owner", "repo")
     cache.set(key, {"data": "test"}, ttl=3600)
-    
+
     start = time.perf_counter()
     result = cache.get(key)
     duration = time.perf_counter() - start
-    
+
     assert_within_threshold(
         duration,
         perf_thresholds["cache_get"],
@@ -732,7 +748,7 @@ def test_benchmark_cache_get(benchmark, temp_cache_dir):
     cache = CacheManager(cache_dir=temp_cache_dir, max_size_mb=10)
     key = CacheKey.repository("owner", "repo")
     cache.set(key, {"data": "test"}, ttl=3600)
-    
+
     # benchmark() runs the function multiple times
     # and collects statistics
     result = benchmark(cache.get, key)
@@ -749,10 +765,10 @@ PERFORMANCE_THRESHOLDS = {
     "cache_get": 0.001,              # 1ms
     "cache_set": 0.002,              # 2ms
     "cache_cleanup": 0.1,            # 100ms
-    
+
     # Throughput (ops/sec)
     "cache_ops_per_second": 1000,
-    
+
     # Memory (MB)
     "cache_max_size": 100,
 }
@@ -765,6 +781,7 @@ PERFORMANCE_THRESHOLDS = {
 ### GitHub Actions
 
 Tests run automatically on:
+
 - Every pull request
 - Push to main/develop
 - Weekly performance tracking
@@ -917,6 +934,7 @@ def test_cache_with_special_characters():
 **Cause:** Environment differences
 
 **Solution:**
+
 ```bash
 # Match CI Python version
 python --version  # Should be 3.11
@@ -933,6 +951,7 @@ export PYTHONPATH=.
 **Cause:** Missing tests or unmarked test files
 
 **Solution:**
+
 ```bash
 # Find uncovered code
 pytest --cov=src --cov-report=term-missing
@@ -949,6 +968,7 @@ pytest --markers
 **Cause:** System under load or thresholds too strict
 
 **Solution:**
+
 ```bash
 # Close background apps
 # Run tests in isolation
@@ -963,6 +983,7 @@ pytest tests/performance/test_thresholds.py -v
 **Cause:** PYTHONPATH not set
 
 **Solution:**
+
 ```bash
 # Always set PYTHONPATH
 export PYTHONPATH=.
@@ -977,6 +998,7 @@ pip install -e .
 **Cause:** Fixture in wrong conftest.py
 
 **Solution:**
+
 - Move fixture to appropriate conftest.py
 - Global fixtures: `tests/conftest.py`
 - Category fixtures: `tests/<category>/conftest.py`
@@ -1009,7 +1031,7 @@ pip install -e .
 
 ---
 
-**Last Updated:** 2025-01-27  
-**Phase:** 11 - Test Coverage Expansion  
-**Version:** 1.0  
+**Last Updated:** 2025-01-27
+**Phase:** 11 - Test Coverage Expansion
+**Version:** 1.0
 **Status:** ✅ Complete

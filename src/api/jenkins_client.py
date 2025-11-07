@@ -22,10 +22,10 @@ from .base_client import BaseAPIClient
 class JenkinsAPIClient(BaseAPIClient):
     """
     Client for interacting with Jenkins REST API.
-    
+
     Provides methods to query job information from Jenkins CI/CD servers.
     Handles automatic API endpoint discovery, job matching, and caching.
-    
+
     Features:
     - Auto-discovery of API base path
     - Job-to-project matching with scoring algorithm
@@ -42,7 +42,7 @@ class JenkinsAPIClient(BaseAPIClient):
     ):
         """
         Initialize Jenkins API client.
-        
+
         Args:
             host: Jenkins hostname
             timeout: Request timeout in seconds
@@ -78,7 +78,7 @@ class JenkinsAPIClient(BaseAPIClient):
     def _discover_api_base_path(self):
         """
         Discover the correct API base path for this Jenkins server.
-        
+
         Jenkins instances can be deployed with different path prefixes.
         This method tests common patterns to find the working API endpoint.
         """
@@ -130,11 +130,11 @@ class JenkinsAPIClient(BaseAPIClient):
     def get_all_jobs(self) -> Dict[str, Any]:
         """
         Get all jobs from Jenkins with caching.
-        
+
         Returns:
             Dictionary containing jobs array and metadata.
             Returns empty dict on error.
-            
+
         Example:
             >>> client = JenkinsAPIClient("jenkins.example.com")
             >>> jobs_data = client.get_all_jobs()
@@ -191,17 +191,17 @@ class JenkinsAPIClient(BaseAPIClient):
     ) -> List[Dict[str, Any]]:
         """
         Get jobs related to a specific Gerrit project with duplicate prevention.
-        
+
         Uses a scoring algorithm to match Jenkins job names to Gerrit project names.
         Prevents duplicate allocation by tracking allocated jobs.
-        
+
         Args:
             project_name: Name of the Gerrit project (e.g., "foo/bar")
             allocated_jobs: Set of job names already allocated to other projects
-            
+
         Returns:
             List of job detail dictionaries for matched jobs
-            
+
         Example:
             >>> client = JenkinsAPIClient("jenkins.example.com")
             >>> allocated = set()
@@ -277,21 +277,21 @@ class JenkinsAPIClient(BaseAPIClient):
     ) -> int:
         """
         Calculate a match score for Jenkins job attribution using STRICT PREFIX MATCHING ONLY.
-        
+
         This prevents duplicate allocation by ensuring jobs can only match one project.
         Higher scores indicate better matches. Returns 0 for no match.
-        
+
         Job name must either:
         1. Be exactly equal to project name, OR
         2. Start with project name followed by a dash (-)
-        
+
         This prevents sdc-tosca-* from matching sdc.
-        
+
         Args:
             job_name: Jenkins job name
             project_name: Original Gerrit project name (with slashes)
             project_job_name: Project name converted to job format (slashes -> dashes)
-            
+
         Returns:
             Match score (0 = no match, higher = better match)
         """
@@ -345,14 +345,14 @@ class JenkinsAPIClient(BaseAPIClient):
     def get_job_details(self, job_name: str) -> Dict[str, Any]:
         """
         Get detailed information about a specific job.
-        
+
         Args:
             job_name: Name of the Jenkins job
-            
+
         Returns:
             Dictionary with job details including status, state, color, URLs, and last build info.
             Returns empty dict on error.
-            
+
         Example:
             >>> client = JenkinsAPIClient("jenkins.example.com")
             >>> details = client.get_job_details("my-project-verify")
@@ -459,10 +459,10 @@ class JenkinsAPIClient(BaseAPIClient):
         - grey: not built/disabled
         - aborted: aborted
         - *_anime: building (animated versions)
-        
+
         Args:
             color: Jenkins color code
-            
+
         Returns:
             Standardized status string
         """
@@ -492,10 +492,10 @@ class JenkinsAPIClient(BaseAPIClient):
     def get_last_build_info(self, job_name: str) -> Dict[str, Any]:
         """
         Get information about the last build of a job.
-        
+
         Args:
             job_name: Name of the Jenkins job
-            
+
         Returns:
             Dictionary with last build information (result, duration, timestamp, etc.)
             Returns empty dict if no build exists or on error.

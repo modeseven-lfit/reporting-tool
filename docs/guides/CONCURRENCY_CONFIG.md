@@ -1,8 +1,9 @@
 # Concurrency Configuration Guide
+
 ## Repository Reporting System - Quick Reference
 
-**Version:** 2.0  
-**Last Updated:** January 29, 2025  
+**Version:** 2.0
+**Last Updated:** January 29, 2025
 **Type:** Quick Reference
 
 ---
@@ -14,6 +15,7 @@ This quick reference covers concurrency configuration for the Repository Reporti
 ### Default Behavior
 
 The system is **pre-configured with optimal defaults**:
+
 - ✅ Adaptive thread pool sizing
 - ✅ Automatic CPU/IO separation
 - ✅ Enhanced error handling with retry
@@ -121,12 +123,14 @@ executor.submit_io_bound(
 ### When to Use Each
 
 **CPU-bound (Processes):**
+
 - Data processing
 - Calculations
 - Parsing large files
 - Heavy algorithms
 
 **I/O-bound (Threads):**
+
 - API calls
 - File I/O
 - Network requests
@@ -185,7 +189,7 @@ from src.concurrency.resource_monitor import ResourceMonitor
 # Stop operations at 80% memory usage
 with ResourceMonitor(max_memory_percent=80) as monitor:
     process_large_dataset(data)
-    
+
     # Check current usage
     if monitor.memory_usage > 0.7:
         print("Warning: High memory usage")
@@ -356,6 +360,7 @@ print(profiler.get_stats())
 **Symptom:** System slows down with many workers
 
 **Solution:**
+
 ```python
 # Reduce worker count
 pool = AdaptiveThreadPool(max_workers=8)  # Try fewer
@@ -369,6 +374,7 @@ renderer = ModernReportRenderer(concurrent=False)
 **Symptom:** Operations fail with timeout errors
 
 **Solution:**
+
 ```python
 # Increase retry attempts and delays
 handler = ErrorHandler(
@@ -383,6 +389,7 @@ handler = ErrorHandler(
 **Symptom:** Memory grows continuously
 
 **Solution:**
+
 ```python
 # Enable memory monitoring
 with ResourceMonitor(max_memory_percent=70):
@@ -402,6 +409,7 @@ for batch in BatchProcessor(batch_size=50).process(data):
 **Symptom:** System stops responding
 
 **Solution:**
+
 ```python
 # Add timeout to operations
 import signal
@@ -451,7 +459,7 @@ from concurrent.futures import ThreadPoolExecutor
 def test_thread_safety():
     """Test that operations are thread-safe."""
     renderer = ModernReportRenderer(concurrent=True)
-    
+
     # Run same operation from multiple threads
     with ThreadPoolExecutor(max_workers=10) as executor:
         futures = [
@@ -459,7 +467,7 @@ def test_thread_safety():
             for _ in range(100)
         ]
         results = [f.result() for f in futures]
-    
+
     # All should succeed
     assert len(results) == 100
     assert all(r is not None for r in results)
@@ -471,10 +479,10 @@ def test_thread_safety():
 def stress_test_concurrency():
     """Stress test with many concurrent operations."""
     pool = AdaptiveThreadPool(max_workers=32)
-    
+
     # Submit many tasks
     tasks = [pool.submit(process_item, i) for i in range(1000)]
-    
+
     # All should complete
     results = [t.result() for t in tasks]
     assert len(results) == 1000
@@ -485,18 +493,21 @@ def stress_test_concurrency():
 ## Configuration Checklist
 
 **Basic Setup:**
+
 - [ ] Decide if concurrency is needed (usually yes)
 - [ ] Use default settings initially
 - [ ] Enable error handling with retry
 - [ ] Add resource monitoring for production
 
 **Optimization (if needed):**
+
 - [ ] Profile to find bottlenecks
 - [ ] Adjust worker counts based on testing
 - [ ] Tune retry settings for your use case
 - [ ] Set appropriate resource limits
 
 **Production:**
+
 - [ ] Enable comprehensive logging
 - [ ] Monitor pool statistics
 - [ ] Set up alerts for failures
@@ -528,15 +539,18 @@ def stress_test_concurrency():
 ## Resources
 
 ### Documentation
+
 - Performance Guide: `docs/guides/PERFORMANCE_OPTIMIZATION.md`
 - Architecture Docs: `docs/architecture/`
 - API Documentation: See docstrings
 
 ### Code Examples
+
 - `tests/test_concurrency/` - Test examples
 - `examples/concurrent_rendering.py` - Usage examples
 
 ### Getting Help
+
 1. Check logs for errors
 2. Review stats with `pool.get_stats()`
 3. Enable debug logging
@@ -544,6 +558,6 @@ def stress_test_concurrency():
 
 ---
 
-**Document Status:** Complete  
-**Last Reviewed:** January 29, 2025  
+**Document Status:** Complete
+**Last Reviewed:** January 29, 2025
 **Next Review:** As needed

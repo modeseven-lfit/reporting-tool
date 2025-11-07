@@ -26,7 +26,7 @@ logger = create_structured_logger("my_app")
 # Add context for all subsequent logs
 with logger.context(repository="foo/bar", phase=LogPhase.COLLECTION):
     logger.info("Starting collection")
-    
+
     # Nested contexts merge
     with logger.context(window="1y"):
         logger.info("Processing window")
@@ -198,11 +198,13 @@ Error severity levels:
 Detailed error types (40+ types across all categories):
 
 **Network Errors:**
+
 - `NETWORK_TIMEOUT` - Network timeout
 - `NETWORK_CONNECTION` - Connection failure
 - `NETWORK_DNS` - DNS resolution failure
 
 **API Errors:**
+
 - `API_HTTP_CLIENT` - HTTP 4xx errors
 - `API_HTTP_SERVER` - HTTP 5xx errors
 - `API_RATE_LIMIT` - Rate limit exceeded
@@ -214,6 +216,7 @@ Detailed error types (40+ types across all categories):
 - `API_UNKNOWN` - Unknown API error
 
 **Git Errors:**
+
 - `GIT_NOT_FOUND` - Repository not found
 - `GIT_COMMAND_FAILED` - Git command failed
 - `GIT_PARSE_ERROR` - Git output parse error
@@ -222,6 +225,7 @@ Detailed error types (40+ types across all categories):
 - `GIT_CHECKOUT_FAILED` - Checkout operation failed
 
 **Validation Errors:**
+
 - `VALIDATION_DOMAIN_MODEL` - Domain model validation
 - `VALIDATION_SCHEMA` - Schema validation
 - `VALIDATION_CONSTRAINT` - Constraint violation
@@ -229,23 +233,27 @@ Detailed error types (40+ types across all categories):
 - `VALIDATION_REQUIRED_FIELD` - Required field missing
 
 **Configuration Errors:**
+
 - `CONFIG_MISSING` - Configuration not found
 - `CONFIG_INVALID` - Invalid configuration
 - `CONFIG_PARSE` - Configuration parse error
 - `CONFIG_SCHEMA` - Configuration schema error
 
 **Data Errors:**
+
 - `DATA_MISSING` - Data not found
 - `DATA_CORRUPT` - Data corruption
 - `DATA_INCONSISTENT` - Data inconsistency
 - `DATA_CONVERSION` - Data conversion error
 
 **Rendering Errors:**
+
 - `RENDER_TEMPLATE` - Template rendering error
 - `RENDER_FORMAT` - Format error
 - `RENDER_OUTPUT` - Output generation error
 
 **System Errors:**
+
 - `SYSTEM_IO` - I/O error
 - `SYSTEM_PERMISSION` - Permission denied
 - `SYSTEM_RESOURCE` - Resource exhaustion
@@ -340,7 +348,7 @@ logger = create_structured_logger("reporting_system")
 # Log with automatic context
 with logger.context(phase=LogPhase.INITIALIZATION):
     logger.info("System initializing")
-    
+
     # Add more context
     with logger.context(repository="foo/bar"):
         logger.info("Processing repository")
@@ -357,7 +365,7 @@ tracker = ErrorTracker()
 # Track errors during processing
 for repo in repositories:
     ctx = ErrorContext(repository=repo.name, phase="collection")
-    
+
     try:
         process_repository(repo)
     except Exception as e:
@@ -390,7 +398,7 @@ logger = create_structured_logger("reporting")
 with logger.context(phase=LogPhase.COLLECTION):
     with logger.timed("clone_repositories"):
         clone_all_repositories()
-    
+
     with logger.timed("analyze_commits"):
         analyze_all_commits()
 
@@ -418,17 +426,17 @@ error_tracker = ErrorTracker()
 def process_repository(repo_name):
     with logger.context(repository=repo_name, phase=LogPhase.COLLECTION):
         logger.info("Starting repository processing")
-        
+
         try:
             with logger.timed("git_operations"):
                 # Perform git operations
                 pass
-            
+
             logger.info("Repository processed successfully")
-            
+
         except Exception as e:
             logger.error(f"Failed to process repository: {e}")
-            
+
             ctx = ErrorContext(
                 repository=repo_name,
                 phase="collection",
@@ -492,6 +500,7 @@ pytest tests/test_structured_logging.py tests/test_errors.py -v
 ```
 
 **Test Coverage:**
+
 - 40 tests for structured logging
 - 50 tests for error taxonomy
 - 90+ total tests, 100% passing
@@ -544,6 +553,7 @@ with logger.context(repository=repo_name):
 ```
 
 Benefits:
+
 - Automatic context tracking
 - Performance metrics
 - Error aggregation

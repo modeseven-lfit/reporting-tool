@@ -10,9 +10,8 @@ Tests cover:
 """
 
 import pytest
-
-from src.domain.time_window import TimeWindow, TimeWindowStats
 from src.cli.errors import ValidationError
+from src.domain.time_window import TimeWindow, TimeWindowStats
 
 
 class TestTimeWindowValidation:
@@ -25,7 +24,7 @@ class TestTimeWindowValidation:
                 name="0d",
                 days=0,
                 start_date="2024-01-01T00:00:00Z",
-                end_date="2024-01-01T00:00:00Z"
+                end_date="2024-01-01T00:00:00Z",
             )
 
     def test_negative_days_raises_error(self):
@@ -35,46 +34,34 @@ class TestTimeWindowValidation:
                 name="invalid",
                 days=-30,
                 start_date="2024-01-01T00:00:00Z",
-                end_date="2024-01-31T00:00:00Z"
+                end_date="2024-01-31T00:00:00Z",
             )
 
     def test_empty_name_raises_error(self):
         """Empty name should raise error."""
         with pytest.raises(ValidationError):
             TimeWindow(
-                name="",
-                days=30,
-                start_date="2024-01-01T00:00:00Z",
-                end_date="2024-01-31T00:00:00Z"
+                name="", days=30, start_date="2024-01-01T00:00:00Z", end_date="2024-01-31T00:00:00Z"
             )
 
     def test_invalid_start_date_format_raises_error(self):
         """Invalid ISO 8601 start_date should raise error."""
         with pytest.raises(ValidationError):
             TimeWindow(
-                name="30d",
-                days=30,
-                start_date="not-a-date",
-                end_date="2024-01-31T00:00:00Z"
+                name="30d", days=30, start_date="not-a-date", end_date="2024-01-31T00:00:00Z"
             )
 
     def test_invalid_end_date_format_raises_error(self):
         """Invalid ISO 8601 end_date should raise error."""
         with pytest.raises(ValidationError):
             TimeWindow(
-                name="30d",
-                days=30,
-                start_date="2024-01-01T00:00:00Z",
-                end_date="2024-13-99"
+                name="30d", days=30, start_date="2024-01-01T00:00:00Z", end_date="2024-13-99"
             )
 
     def test_valid_iso_8601_with_z_suffix(self):
         """ISO 8601 with Z suffix should be valid."""
         window = TimeWindow(
-            name="30d",
-            days=30,
-            start_date="2024-01-01T00:00:00Z",
-            end_date="2024-01-31T23:59:59Z"
+            name="30d", days=30, start_date="2024-01-01T00:00:00Z", end_date="2024-01-31T23:59:59Z"
         )
         assert window.start_date == "2024-01-01T00:00:00Z"
         assert window.end_date == "2024-01-31T23:59:59Z"
@@ -85,17 +72,14 @@ class TestTimeWindowValidation:
             name="1y",
             days=365,
             start_date="2023-01-01T00:00:00+00:00",
-            end_date="2024-01-01T00:00:00+00:00"
+            end_date="2024-01-01T00:00:00+00:00",
         )
         assert window.days == 365
 
     def test_valid_iso_8601_no_timezone(self):
         """ISO 8601 without timezone should be valid."""
         window = TimeWindow(
-            name="90d",
-            days=90,
-            start_date="2024-01-01T00:00:00",
-            end_date="2024-03-31T23:59:59"
+            name="90d", days=90, start_date="2024-01-01T00:00:00", end_date="2024-03-31T23:59:59"
         )
         assert window.name == "90d"
 
@@ -106,10 +90,7 @@ class TestTimeWindowCreation:
     def test_minimal_window(self):
         """Create window with minimal valid parameters."""
         window = TimeWindow(
-            name="7d",
-            days=7,
-            start_date="2024-01-01T00:00:00Z",
-            end_date="2024-01-08T00:00:00Z"
+            name="7d", days=7, start_date="2024-01-01T00:00:00Z", end_date="2024-01-08T00:00:00Z"
         )
         assert window.name == "7d"
         assert window.days == 7
@@ -119,28 +100,19 @@ class TestTimeWindowCreation:
     def test_standard_windows(self):
         """Create standard time windows (30d, 90d, 1y)."""
         w30 = TimeWindow(
-            name="30d",
-            days=30,
-            start_date="2024-01-01T00:00:00Z",
-            end_date="2024-01-31T00:00:00Z"
+            name="30d", days=30, start_date="2024-01-01T00:00:00Z", end_date="2024-01-31T00:00:00Z"
         )
         assert w30.name == "30d"
         assert w30.days == 30
 
         w90 = TimeWindow(
-            name="90d",
-            days=90,
-            start_date="2023-10-03T00:00:00Z",
-            end_date="2024-01-01T00:00:00Z"
+            name="90d", days=90, start_date="2023-10-03T00:00:00Z", end_date="2024-01-01T00:00:00Z"
         )
         assert w90.name == "90d"
         assert w90.days == 90
 
         w1y = TimeWindow(
-            name="1y",
-            days=365,
-            start_date="2023-01-01T00:00:00Z",
-            end_date="2024-01-01T00:00:00Z"
+            name="1y", days=365, start_date="2023-01-01T00:00:00Z", end_date="2024-01-01T00:00:00Z"
         )
         assert w1y.name == "1y"
         assert w1y.days == 365
@@ -148,10 +120,7 @@ class TestTimeWindowCreation:
     def test_frozen_dataclass(self):
         """TimeWindow should be immutable (frozen)."""
         window = TimeWindow(
-            name="30d",
-            days=30,
-            start_date="2024-01-01T00:00:00Z",
-            end_date="2024-01-31T00:00:00Z"
+            name="30d", days=30, start_date="2024-01-01T00:00:00Z", end_date="2024-01-31T00:00:00Z"
         )
         with pytest.raises(Exception):  # FrozenInstanceError
             window.days = 60
@@ -163,10 +132,7 @@ class TestTimeWindowDictConversion:
     def test_to_dict(self):
         """Convert TimeWindow to dictionary."""
         window = TimeWindow(
-            name="90d",
-            days=90,
-            start_date="2024-01-01T00:00:00Z",
-            end_date="2024-03-31T23:59:59Z"
+            name="90d", days=90, start_date="2024-01-01T00:00:00Z", end_date="2024-03-31T23:59:59Z"
         )
         data = window.to_dict()
 
@@ -177,11 +143,7 @@ class TestTimeWindowDictConversion:
 
     def test_from_dict(self):
         """Create TimeWindow from dictionary."""
-        data = {
-            "days": 365,
-            "start": "2023-01-01T00:00:00Z",
-            "end": "2024-01-01T00:00:00Z"
-        }
+        data = {"days": 365, "start": "2023-01-01T00:00:00Z", "end": "2024-01-01T00:00:00Z"}
         window = TimeWindow.from_dict("1y", data)
 
         assert window.name == "1y"
@@ -192,10 +154,7 @@ class TestTimeWindowDictConversion:
     def test_round_trip_conversion(self):
         """Test to_dict -> from_dict preserves data."""
         original = TimeWindow(
-            name="30d",
-            days=30,
-            start_date="2024-06-01T00:00:00Z",
-            end_date="2024-07-01T00:00:00Z"
+            name="30d", days=30, start_date="2024-06-01T00:00:00Z", end_date="2024-07-01T00:00:00Z"
         )
 
         data = original.to_dict()
@@ -236,17 +195,12 @@ class TestTimeWindowStatsValidation:
             TimeWindowStats(
                 lines_added=200,
                 lines_removed=50,
-                lines_net=100  # Should be 150
+                lines_net=100,  # Should be 150
             )
 
     def test_consistent_lines_net_valid(self):
         """Correctly calculated lines_net should be valid."""
-        stats = TimeWindowStats(
-            commits=10,
-            lines_added=200,
-            lines_removed=50,
-            lines_net=150
-        )
+        stats = TimeWindowStats(commits=10, lines_added=200, lines_removed=50, lines_net=150)
         assert stats.lines_net == 150
 
     def test_negative_lines_net_valid_if_consistent(self):
@@ -254,7 +208,7 @@ class TestTimeWindowStatsValidation:
         stats = TimeWindowStats(
             lines_added=50,
             lines_removed=200,
-            lines_net=-150  # Net deletion
+            lines_net=-150,  # Net deletion
         )
         assert stats.lines_net == -150
 
@@ -286,7 +240,7 @@ class TestTimeWindowStatsCreation:
             commits=25,
             lines_added=1000,
             lines_removed=0,
-            lines_net=1000  # Must be explicitly provided
+            lines_net=1000,  # Must be explicitly provided
         )
         assert stats.commits == 25
         assert stats.lines_added == 1000
@@ -297,11 +251,7 @@ class TestTimeWindowStatsCreation:
     def test_full_values(self):
         """Create stats with all values."""
         stats = TimeWindowStats(
-            commits=100,
-            lines_added=5000,
-            lines_removed=2000,
-            lines_net=3000,
-            contributors=15
+            commits=100, lines_added=5000, lines_removed=2000, lines_net=3000, contributors=15
         )
         assert stats.commits == 100
         assert stats.lines_added == 5000
@@ -316,11 +266,7 @@ class TestTimeWindowStatsDictConversion:
     def test_to_dict_with_contributors(self):
         """Convert stats with contributors to dictionary."""
         stats = TimeWindowStats(
-            commits=50,
-            lines_added=2000,
-            lines_removed=500,
-            lines_net=1500,
-            contributors=10
+            commits=50, lines_added=2000, lines_removed=500, lines_net=1500, contributors=10
         )
         data = stats.to_dict()
 
@@ -332,12 +278,7 @@ class TestTimeWindowStatsDictConversion:
 
     def test_to_dict_without_contributors(self):
         """Convert stats without contributors to dictionary."""
-        stats = TimeWindowStats(
-            commits=20,
-            lines_added=1000,
-            lines_removed=200,
-            lines_net=800
-        )
+        stats = TimeWindowStats(commits=20, lines_added=1000, lines_removed=200, lines_net=800)
         data = stats.to_dict()
 
         assert data["commits"] == 20
@@ -353,7 +294,7 @@ class TestTimeWindowStatsDictConversion:
             "lines_added": 3000,
             "lines_removed": 1000,
             "lines_net": 2000,
-            "contributors": 12
+            "contributors": 12,
         }
         stats = TimeWindowStats.from_dict(data)
 
@@ -365,12 +306,7 @@ class TestTimeWindowStatsDictConversion:
 
     def test_from_dict_partial(self):
         """Create stats from partial dictionary."""
-        data = {
-            "commits": 30,
-            "lines_added": 1500,
-            "lines_removed": 0,
-            "lines_net": 1500
-        }
+        data = {"commits": 30, "lines_added": 1500, "lines_removed": 0, "lines_net": 1500}
         stats = TimeWindowStats.from_dict(data)
 
         assert stats.commits == 30
@@ -391,11 +327,7 @@ class TestTimeWindowStatsDictConversion:
     def test_round_trip_conversion(self):
         """Test to_dict -> from_dict preserves data."""
         original = TimeWindowStats(
-            commits=42,
-            lines_added=2100,
-            lines_removed=700,
-            lines_net=1400,
-            contributors=8
+            commits=42, lines_added=2100, lines_removed=700, lines_net=1400, contributors=8
         )
 
         data = original.to_dict()
@@ -414,18 +346,10 @@ class TestTimeWindowStatsAddition:
     def test_add_two_stats(self):
         """Add two TimeWindowStats together."""
         stats1 = TimeWindowStats(
-            commits=50,
-            lines_added=2000,
-            lines_removed=500,
-            lines_net=1500,
-            contributors=5
+            commits=50, lines_added=2000, lines_removed=500, lines_net=1500, contributors=5
         )
         stats2 = TimeWindowStats(
-            commits=30,
-            lines_added=1000,
-            lines_removed=300,
-            lines_net=700,
-            contributors=3
+            commits=30, lines_added=1000, lines_removed=300, lines_net=700, contributors=3
         )
 
         result = stats1 + stats2
@@ -439,11 +363,7 @@ class TestTimeWindowStatsAddition:
     def test_add_with_zero_stats(self):
         """Add stats to zero stats (identity)."""
         stats = TimeWindowStats(
-            commits=25,
-            lines_added=1000,
-            lines_removed=200,
-            lines_net=800,
-            contributors=4
+            commits=25, lines_added=1000, lines_removed=200, lines_net=800, contributors=4
         )
         zero = TimeWindowStats()
 
@@ -470,16 +390,8 @@ class TestTimeWindowStatsAddition:
 
     def test_add_with_negative_net(self):
         """Add stats with negative net values."""
-        stats1 = TimeWindowStats(
-            lines_added=100,
-            lines_removed=500,
-            lines_net=-400
-        )
-        stats2 = TimeWindowStats(
-            lines_added=200,
-            lines_removed=100,
-            lines_net=100
-        )
+        stats1 = TimeWindowStats(lines_added=100, lines_removed=500, lines_net=-400)
+        stats2 = TimeWindowStats(lines_added=200, lines_removed=100, lines_net=100)
 
         result = stats1 + stats2
 
@@ -514,27 +426,21 @@ class TestTimeWindowEdgeCases:
             name="10y",
             days=3650,
             start_date="2014-01-01T00:00:00Z",
-            end_date="2024-01-01T00:00:00Z"
+            end_date="2024-01-01T00:00:00Z",
         )
         assert window.days == 3650
 
     def test_single_day_window(self):
         """Handle single day window."""
         window = TimeWindow(
-            name="1d",
-            days=1,
-            start_date="2024-01-01T00:00:00Z",
-            end_date="2024-01-02T00:00:00Z"
+            name="1d", days=1, start_date="2024-01-01T00:00:00Z", end_date="2024-01-02T00:00:00Z"
         )
         assert window.days == 1
 
     def test_unicode_window_name(self):
         """Handle unicode in window name."""
         window = TimeWindow(
-            name="año",
-            days=365,
-            start_date="2023-01-01T00:00:00Z",
-            end_date="2024-01-01T00:00:00Z"
+            name="año", days=365, start_date="2023-01-01T00:00:00Z", end_date="2024-01-01T00:00:00Z"
         )
         assert window.name == "año"
 
@@ -544,7 +450,7 @@ class TestTimeWindowEdgeCases:
             name="quarter_1_2024",
             days=91,
             start_date="2024-01-01T00:00:00Z",
-            end_date="2024-04-01T00:00:00Z"
+            end_date="2024-04-01T00:00:00Z",
         )
         assert custom.name == "quarter_1_2024"
 
@@ -559,25 +465,17 @@ class TestTimeWindowStatsEdgeCases:
             lines_added=100000000,
             lines_removed=50000000,
             lines_net=50000000,
-            contributors=10000
+            contributors=10000,
         )
         assert stats.commits == 1000000
         assert stats.lines_added == 100000000
 
     def test_large_negative_net(self):
         """Handle large negative net (major code deletion)."""
-        stats = TimeWindowStats(
-            lines_added=1000,
-            lines_removed=1000000,
-            lines_net=-999000
-        )
+        stats = TimeWindowStats(lines_added=1000, lines_removed=1000000, lines_net=-999000)
         assert stats.lines_net == -999000
 
     def test_equal_added_and_removed(self):
         """Handle case where added equals removed (net zero)."""
-        stats = TimeWindowStats(
-            lines_added=5000,
-            lines_removed=5000,
-            lines_net=0
-        )
+        stats = TimeWindowStats(lines_added=5000, lines_removed=5000, lines_net=0)
         assert stats.lines_net == 0

@@ -18,11 +18,11 @@ Key Features:
 Usage:
     From command line:
         $ reporting-tool generate --project my-project --repos-path ./repos
-    
+
     From Python:
         >>> from reporting_tool import generate_report
         >>> generate_report(project="my-project", repos_path="./repos")
-    
+
     With configuration:
         $ reporting-tool generate --project my-project --config-dir ./config
 

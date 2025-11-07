@@ -13,7 +13,7 @@ Classes:
 
 Example:
     >>> from src.performance import GitOptimizer
-    >>> 
+    >>>
     >>> optimizer = GitOptimizer(use_shallow=True, use_references=True)
     >>> repo_path = optimizer.clone_optimized(
     ...     url="https://github.com/user/repo.git",
@@ -55,7 +55,7 @@ class GitOperationType(Enum):
 class GitConfig:
     """
     Configuration for git optimization.
-    
+
     Attributes:
         shallow_clone: Enable shallow clones
         shallow_depth: Depth for shallow clones
@@ -72,7 +72,7 @@ class GitConfig:
     parallel_fetch: int = 4
     compression: int = 9
     http_post_buffer: int = 524288000  # 500MB
-    
+
     def validate(self):
         """Validate configuration."""
         if self.shallow_depth < 1:
@@ -94,12 +94,12 @@ class GitOperationResult:
     output: str = ""
     error: str = ""
     strategy: Optional[CloneStrategy] = None
-    
+
     @property
     def is_success(self) -> bool:
         """Check if operation was successful."""
         return self.success
-    
+
     @property
     def is_failure(self) -> bool:
         """Check if operation failed."""
@@ -109,20 +109,20 @@ class GitOperationResult:
 class ShallowCloneStrategy:
     """
     Strategy for determining when and how to use shallow clones.
-    
+
     Shallow clones are faster and use less disk space but have limitations
     for certain operations (e.g., full history analysis).
     """
-    
+
     def __init__(self, default_depth: int = 1):
         """
         Initialize shallow clone strategy.
-        
+
         Args:
             default_depth: Default depth for shallow clones
         """
         self.default_depth = default_depth
-    
+
     def should_use_shallow(
         self,
         analysis_type: str = "basic",
@@ -131,37 +131,37 @@ class ShallowCloneStrategy:
     ) -> bool:
         """
         Determine if shallow clone is appropriate.
-        
+
         Args:
             analysis_type: Type of analysis to perform
             needs_history: Whether full history is needed
             needs_branches: Whether branch information is needed
-            
+
         Returns:
             True if shallow clone is safe to use
         """
         # Don't use shallow if full history needed
         if needs_history:
             return False
-        
+
         # Don't use shallow if branch analysis needed
         if needs_branches:
             return False
-        
+
         # Safe for basic analysis (file structure, current state)
         if analysis_type in ("basic", "structure", "files", "current"):
             return True
-        
+
         # Default to shallow for most cases
         return True
-    
+
     def get_depth(self, analysis_type: str = "basic") -> int:
         """
         Get appropriate depth for shallow clone.
-        
+
         Args:
             analysis_type: Type of analysis to perform
-            
+
         Returns:
             Depth for shallow clone
         """
@@ -173,35 +173,35 @@ class ShallowCloneStrategy:
             "commits": 50,
             "history": 100,
         }
-        
+
         return depth_map.get(analysis_type, self.default_depth)
 
 
 class ReferenceRepository:
     """
     Manage reference repositories for faster clones.
-    
+
     Reference repositories store git objects locally and are referenced
     during clone operations to avoid re-downloading common objects.
     """
-    
+
     def __init__(self, reference_dir: str = "./.git-references"):
         """
         Initialize reference repository manager.
-        
+
         Args:
             reference_dir: Directory to store reference repositories
         """
         self.reference_dir = Path(reference_dir)
         self.reference_dir.mkdir(parents=True, exist_ok=True)
-    
+
     def _get_reference_path(self, repo_url: str) -> Path:
         """
         Get path for reference repository.
-        
+
         Args:
             repo_url: Repository URL
-            
+
         Returns:
             Path to reference repository
         """
@@ -210,37 +210,37 @@ class ReferenceRepository:
         # Extract repo name from URL
         repo_name = repo_url.rstrip('/').split('/')[-1].replace('.git', '')
         return self.reference_dir / f"{repo_name}_{url_hash}"
-    
+
     def has_reference(self, repo_url: str) -> bool:
         """
         Check if reference repository exists.
-        
+
         Args:
             repo_url: Repository URL
-            
+
         Returns:
             True if reference exists
         """
         ref_path = self._get_reference_path(repo_url)
         return ref_path.exists() and (ref_path / ".git").exists()
-    
+
     def create_reference(self, repo_url: str, update: bool = False) -> Optional[Path]:
         """
         Create or update reference repository.
-        
+
         Args:
             repo_url: Repository URL
             update: Update existing reference if True
-            
+
         Returns:
             Path to reference repository, or None on failure
         """
         ref_path = self._get_reference_path(repo_url)
-        
+
         try:
             if ref_path.exists() and not update:
                 return ref_path
-            
+
             if ref_path.exists() and update:
                 # Update existing reference
                 subprocess.run(
@@ -251,7 +251,7 @@ class ReferenceRepository:
                     timeout=300
                 )
                 return ref_path
-            
+
             # Create new reference (bare clone)
             ref_path.parent.mkdir(parents=True, exist_ok=True)
             subprocess.run(
@@ -260,74 +260,74 @@ class ReferenceRepository:
                 capture_output=True,
                 timeout=600
             )
-            
+
             return ref_path
-            
+
         except (subprocess.CalledProcessError, subprocess.TimeoutExpired, Exception) as e:
             # Reference creation failed, not critical
             return None
-    
+
     def get_reference(self, repo_url: str, auto_create: bool = True) -> Optional[Path]:
         """
         Get reference repository path.
-        
+
         Args:
             repo_url: Repository URL
             auto_create: Create reference if it doesn't exist
-            
+
         Returns:
             Path to reference repository, or None if not available
         """
         if self.has_reference(repo_url):
             return self._get_reference_path(repo_url)
-        
+
         if auto_create:
             return self.create_reference(repo_url)
-        
+
         return None
-    
+
     def cleanup_old_references(self, max_age_days: int = 30) -> int:
         """
         Clean up old reference repositories.
-        
+
         Args:
             max_age_days: Maximum age in days
-            
+
         Returns:
             Number of references cleaned up
         """
         if not self.reference_dir.exists():
             return 0
-        
+
         count = 0
         now = time.time()
         max_age_seconds = max_age_days * 24 * 60 * 60
-        
+
         for ref_path in self.reference_dir.iterdir():
             if not ref_path.is_dir():
                 continue
-            
+
             # Check age
             mtime = ref_path.stat().st_mtime
             age = now - mtime
-            
+
             if age > max_age_seconds:
                 try:
                     shutil.rmtree(ref_path)
                     count += 1
                 except Exception:
                     pass
-        
+
         return count
 
 
 class GitOptimizer:
     """
     Main coordinator for git operation optimizations.
-    
+
     This class provides optimized git operations including shallow clones,
     reference repositories, and efficient git configuration.
-    
+
     Example:
         >>> optimizer = GitOptimizer(use_shallow=True, use_references=True)
         >>> result = optimizer.clone_optimized(
@@ -337,7 +337,7 @@ class GitOptimizer:
         >>> if result.is_success:
         ...     print(f"Cloned in {result.duration:.2f}s")
     """
-    
+
     def __init__(
         self,
         config: Optional[GitConfig] = None,
@@ -345,7 +345,7 @@ class GitOptimizer:
     ):
         """
         Initialize git optimizer.
-        
+
         Args:
             config: Git configuration (uses defaults if None)
             profiler: Optional performance profiler
@@ -353,22 +353,22 @@ class GitOptimizer:
         self.config = config or GitConfig()
         self.config.validate()
         self.profiler = profiler
-        
+
         # Initialize sub-components
         self.shallow_strategy = ShallowCloneStrategy(
             default_depth=self.config.shallow_depth
         )
-        
+
         self.reference_repo = None
         if self.config.use_reference_repos:
             self.reference_repo = ReferenceRepository(
                 reference_dir=self.config.reference_dir
             )
-    
+
     def _apply_git_config(self, repo_path: str):
         """
         Apply optimized git configuration to repository.
-        
+
         Args:
             repo_path: Path to repository
         """
@@ -377,7 +377,7 @@ class GitOptimizer:
             ("core.compression", str(self.config.compression)),
             ("http.postBuffer", str(self.config.http_post_buffer)),
         ]
-        
+
         for key, value in configs:
             try:
                 subprocess.run(
@@ -390,7 +390,7 @@ class GitOptimizer:
             except Exception:
                 # Non-critical, continue
                 pass
-    
+
     def _run_git_command(
         self,
         args: List[str],
@@ -400,18 +400,18 @@ class GitOptimizer:
     ) -> GitOperationResult:
         """
         Run a git command with timing and error handling.
-        
+
         Args:
             args: Git command arguments
             operation: Type of git operation
             cwd: Working directory
             timeout: Timeout in seconds
-            
+
         Returns:
             GitOperationResult
         """
         start_time = time.perf_counter()
-        
+
         try:
             result = subprocess.run(
                 args,
@@ -420,9 +420,9 @@ class GitOptimizer:
                 timeout=timeout,
                 text=True
             )
-            
+
             duration = time.perf_counter() - start_time
-            
+
             return GitOperationResult(
                 operation=operation,
                 success=result.returncode == 0,
@@ -430,7 +430,7 @@ class GitOptimizer:
                 output=result.stdout,
                 error=result.stderr if result.returncode != 0 else ""
             )
-            
+
         except subprocess.TimeoutExpired:
             duration = time.perf_counter() - start_time
             return GitOperationResult(
@@ -439,7 +439,7 @@ class GitOptimizer:
                 duration=duration,
                 error=f"Command timed out after {timeout}s"
             )
-        
+
         except Exception as e:
             duration = time.perf_counter() - start_time
             return GitOperationResult(
@@ -448,7 +448,7 @@ class GitOptimizer:
                 duration=duration,
                 error=str(e)
             )
-    
+
     def clone_optimized(
         self,
         url: str,
@@ -458,13 +458,13 @@ class GitOptimizer:
     ) -> GitOperationResult:
         """
         Clone repository with optimizations.
-        
+
         Args:
             url: Repository URL
             destination: Destination path
             strategy: Clone strategy (auto-detect if None)
             branch: Specific branch to clone
-            
+
         Returns:
             GitOperationResult
         """
@@ -478,29 +478,29 @@ class GitOptimizer:
                 strategy = CloneStrategy.SHALLOW
             else:
                 strategy = CloneStrategy.FULL
-        
+
         # Build git clone command
         cmd = ["git", "clone"]
-        
+
         # Add shallow clone options
         if strategy in (CloneStrategy.SHALLOW, CloneStrategy.SHALLOW_REFERENCE):
             cmd.extend(["--depth", str(self.config.shallow_depth)])
             cmd.append("--single-branch")
-        
+
         # Add reference repository
         if strategy in (CloneStrategy.REFERENCE, CloneStrategy.SHALLOW_REFERENCE):
             if self.reference_repo:
                 ref_path = self.reference_repo.get_reference(url, auto_create=True)
                 if ref_path:
                     cmd.extend(["--reference", str(ref_path)])
-        
+
         # Add branch if specified
         if branch:
             cmd.extend(["--branch", branch])
-        
+
         # Add URL and destination
         cmd.extend([url, destination])
-        
+
         # Track with profiler if available
         if self.profiler:
             with self.profiler.track_operation(
@@ -511,15 +511,15 @@ class GitOptimizer:
                 result = self._run_git_command(cmd, GitOperationType.CLONE, timeout=600)
         else:
             result = self._run_git_command(cmd, GitOperationType.CLONE, timeout=600)
-        
+
         result.strategy = strategy
-        
+
         # Apply git config if successful
         if result.is_success and os.path.exists(destination):
             self._apply_git_config(destination)
-        
+
         return result
-    
+
     def fetch_optimized(
         self,
         repo_path: str,
@@ -528,20 +528,20 @@ class GitOptimizer:
     ) -> GitOperationResult:
         """
         Fetch with optimizations.
-        
+
         Args:
             repo_path: Path to repository
             remote: Remote name
             prune: Prune deleted branches
-            
+
         Returns:
             GitOperationResult
         """
         cmd = ["git", "fetch", remote]
-        
+
         if prune:
             cmd.append("--prune")
-        
+
         if self.profiler:
             with self.profiler.track_operation(
                 f"git_fetch_{Path(repo_path).name}",
@@ -550,7 +550,7 @@ class GitOptimizer:
                 return self._run_git_command(cmd, GitOperationType.FETCH, cwd=repo_path)
         else:
             return self._run_git_command(cmd, GitOperationType.FETCH, cwd=repo_path)
-    
+
     def get_log(
         self,
         repo_path: str,
@@ -560,26 +560,26 @@ class GitOptimizer:
     ) -> GitOperationResult:
         """
         Get git log with optimizations.
-        
+
         Args:
             repo_path: Path to repository
             max_count: Maximum number of commits
             since: Get commits since date/time
             format: Log format
-            
+
         Returns:
             GitOperationResult
         """
         cmd = ["git", "log", f"--format={format}"]
-        
+
         if max_count:
             cmd.extend(["-n", str(max_count)])
-        
+
         if since:
             cmd.extend(["--since", since])
-        
+
         return self._run_git_command(cmd, GitOperationType.LOG, cwd=repo_path, timeout=60)
-    
+
     def batch_clone(
         self,
         repositories: List[Tuple[str, str]],
@@ -587,11 +587,11 @@ class GitOptimizer:
     ) -> List[GitOperationResult]:
         """
         Clone multiple repositories, optionally in parallel.
-        
+
         Args:
             repositories: List of (url, destination) tuples
             parallel_processor: Optional ParallelRepositoryProcessor
-            
+
         Returns:
             List of GitOperationResults
         """
@@ -600,12 +600,12 @@ class GitOptimizer:
             def clone_func(repo_info):
                 url, dest = repo_info
                 return self.clone_optimized(url, dest)
-            
+
             aggregated = parallel_processor.process_repositories(
                 repositories=repositories,
                 processor_func=clone_func
             )
-            
+
             # Extract GitOperationResults from aggregated results
             results = []
             for item in aggregated.successful:
@@ -619,7 +619,7 @@ class GitOptimizer:
                     duration=item.duration,
                     error=item.error or "Unknown error"
                 ))
-            
+
             return results
         else:
             # Sequential cloning
@@ -627,16 +627,16 @@ class GitOptimizer:
             for url, destination in repositories:
                 result = self.clone_optimized(url, destination)
                 results.append(result)
-            
+
             return results
-    
+
     def get_statistics(self, results: List[GitOperationResult]) -> Dict[str, Any]:
         """
         Get statistics from git operation results.
-        
+
         Args:
             results: List of git operation results
-            
+
         Returns:
             Dictionary with statistics
         """
@@ -648,20 +648,20 @@ class GitOptimizer:
                 "total_duration": 0.0,
                 "avg_duration": 0.0
             }
-        
+
         successful = [r for r in results if r.is_success]
         failed = [r for r in results if r.is_failure]
-        
+
         total_duration = sum(r.duration for r in results)
         avg_duration = total_duration / len(results)
-        
+
         # Group by strategy
         strategy_counts = {}
         for result in results:
             if result.strategy:
                 key = result.strategy.value
                 strategy_counts[key] = strategy_counts.get(key, 0) + 1
-        
+
         return {
             "total": len(results),
             "successful": len(successful),
@@ -680,7 +680,7 @@ class GitOptimizer:
 def optimize_git_config_global():
     """
     Apply optimized git configuration globally.
-    
+
     This sets system-wide git config for better performance.
     """
     configs = {
@@ -691,7 +691,7 @@ def optimize_git_config_global():
         "core.fscache": "true",
         "gc.auto": "256",
     }
-    
+
     for key, value in configs.items():
         try:
             subprocess.run(
@@ -707,17 +707,17 @@ def optimize_git_config_global():
 def estimate_clone_time(repo_size_mb: float, strategy: CloneStrategy) -> float:
     """
     Estimate clone time based on repository size and strategy.
-    
+
     Args:
         repo_size_mb: Repository size in megabytes
         strategy: Clone strategy
-        
+
     Returns:
         Estimated time in seconds
     """
     # Base rate: MB per second (conservative estimate)
     base_rate = 5.0
-    
+
     # Strategy multipliers
     multipliers = {
         CloneStrategy.FULL: 1.0,
@@ -725,7 +725,7 @@ def estimate_clone_time(repo_size_mb: float, strategy: CloneStrategy) -> float:
         CloneStrategy.REFERENCE: 0.5,
         CloneStrategy.SHALLOW_REFERENCE: 0.2,
     }
-    
+
     multiplier = multipliers.get(strategy, 1.0)
-    
+
     return (repo_size_mb / base_rate) * multiplier

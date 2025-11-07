@@ -234,6 +234,7 @@ reporting-tool generate --project NAME --repos-path PATH \
 | 4 | System Error | Permission denied, disk space, dependencies |
 
 **Exit Code Details:**
+
 - **0 (SUCCESS)**: Operation completed with no errors or warnings
 - **1 (ERROR)**: General error including config, API, network, or processing failures
 - **2 (PARTIAL)**: Report generated but with warnings or incomplete data
@@ -241,6 +242,7 @@ reporting-tool generate --project NAME --repos-path PATH \
 - **4 (SYSTEM_ERROR)**: System-level issues like permissions or disk space
 
 **Usage in scripts:**
+
 ```bash
 reporting-tool generate --project test --repos-path ./repos
 EXIT_CODE=$?
@@ -258,6 +260,7 @@ exit $EXIT_CODE
 ```
 
 **Retry logic (for transient errors):**
+
 ```bash
 # Retry codes 1, 2, 4 (transient errors)
 # Don't retry code 3 (usage errors won't improve)
@@ -300,6 +303,7 @@ export CACHE_DIR="/var/cache/reports"
 ## Feature Categories
 
 ### Build & Package (5)
+
 - `docker` - Docker containerization
 - `gradle` - Gradle build
 - `maven` - Maven build
@@ -307,32 +311,38 @@ export CACHE_DIR="/var/cache/reports"
 - `sonatype` - Sonatype publishing
 
 ### CI/CD (4)
+
 - `dependabot` - Dependabot config
 - `github-actions` - GitHub Actions
 - `github2gerrit` - GitHub/Gerrit sync
 - `jenkins` - Jenkins jobs
 
 ### Code Quality (3)
+
 - `linting` - Code linters
 - `pre-commit` - Pre-commit hooks
 - `sonarqube` - SonarQube analysis
 
 ### Documentation (3)
+
 - `mkdocs` - MkDocs
 - `readthedocs` - ReadTheDocs
 - `sphinx` - Sphinx
 
 ### Repository (4)
+
 - `github-mirror` - GitHub mirrors
 - `gitreview` - Gerrit git-review
 - `license` - License files
 - `readme` - README quality
 
 ### Security (2)
+
 - `secrets-detection` - Secrets scanning
 - `security-scanning` - Security scans
 
 ### Testing (3)
+
 - `coverage` - Code coverage
 - `junit` - JUnit tests
 - `pytest` - PyTest tests
@@ -462,11 +472,12 @@ reporting-tool generate --project test --repos-path ./repos || {
 ---
 
 **Quick Help:**
+
 ```bash
 reporting-tool --help
 reporting-tool list-features
 reporting-tool list-features --detail FEATURE
 ```
 
-**Version:** 2.0 (Phase 13)  
+**Version:** 2.0 (Phase 13)
 **Last Updated:** 2025-01-25

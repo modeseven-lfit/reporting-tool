@@ -21,14 +21,14 @@ UNKNOWN_AGE = float('inf')
 def format_number(value: Union[int, float, None]) -> str:
     """
     Format a number with K/M/B suffixes for readability.
-    
+
     Args:
         value: Number to format (can be None)
-    
+
     Returns:
         Formatted string (e.g., "1.2K", "3.4M", "5.6B")
         Returns "0" for None or zero values
-    
+
     Examples:
         >>> format_number(1234)
         '1.2K'
@@ -41,9 +41,9 @@ def format_number(value: Union[int, float, None]) -> str:
     """
     if value is None or value == 0:
         return "0"
-    
+
     value = float(value)
-    
+
     if abs(value) >= 1_000_000_000:
         return f"{value / 1_000_000_000:.1f}B"
     elif abs(value) >= 1_000_000:
@@ -57,13 +57,13 @@ def format_number(value: Union[int, float, None]) -> str:
 def format_age(days: Union[int, float, None]) -> str:
     """
     Format age in days as human-readable string.
-    
+
     Args:
         days: Number of days (can be None or UNKNOWN_AGE sentinel)
-    
+
     Returns:
         Formatted string (e.g., "2d", "3w", "5m", "2y", "unknown")
-    
+
     Examples:
         >>> format_age(1)
         '1d'
@@ -78,9 +78,9 @@ def format_age(days: Union[int, float, None]) -> str:
     """
     if days is None or days == UNKNOWN_AGE:
         return "unknown"
-    
+
     days = float(days)
-    
+
     if days < 0:
         return "unknown"
     elif days < 7:
@@ -99,14 +99,14 @@ def format_age(days: Union[int, float, None]) -> str:
 def format_percentage(value: Union[int, float, None], decimals: int = 1) -> str:
     """
     Format a number as a percentage.
-    
+
     Args:
         value: Number to format (0-100 range)
         decimals: Number of decimal places
-    
+
     Returns:
         Formatted percentage string (e.g., "45.2%")
-    
+
     Examples:
         >>> format_percentage(45.678)
         '45.7%'
@@ -117,20 +117,20 @@ def format_percentage(value: Union[int, float, None], decimals: int = 1) -> str:
     """
     if value is None:
         value = 0.0
-    
+
     return f"{value:.{decimals}f}%"
 
 
 def slugify(text: str) -> str:
     """
     Convert text to URL-friendly slug.
-    
+
     Args:
         text: Text to slugify
-    
+
     Returns:
         Lowercase slug with hyphens (e.g., "hello-world")
-    
+
     Examples:
         >>> slugify("Hello World")
         'hello-world'
@@ -139,37 +139,37 @@ def slugify(text: str) -> str:
     """
     if not text:
         return ""
-    
+
     # Convert to lowercase
     text = text.lower()
-    
+
     # Replace spaces and underscores with hyphens
     text = re.sub(r'[\s_]+', '-', text)
-    
+
     # Remove non-alphanumeric characters (except hyphens)
     text = re.sub(r'[^a-z0-9-]', '', text)
-    
+
     # Remove duplicate hyphens
     text = re.sub(r'-+', '-', text)
-    
+
     # Strip leading/trailing hyphens
     text = text.strip('-')
-    
+
     return text
 
 
-def format_date(date: Optional[Union[str, datetime.datetime, datetime.date]], 
+def format_date(date: Optional[Union[str, datetime.datetime, datetime.date]],
                 format_str: str = "%Y-%m-%d") -> str:
     """
     Format a date object or ISO string as a formatted date string.
-    
+
     Args:
         date: Date to format (string, datetime, or date object)
         format_str: strftime format string
-    
+
     Returns:
         Formatted date string
-    
+
     Examples:
         >>> format_date("2025-01-16")
         '2025-01-16'
@@ -178,7 +178,7 @@ def format_date(date: Optional[Union[str, datetime.datetime, datetime.date]],
     """
     if date is None:
         return "unknown"
-    
+
     if isinstance(date, str):
         # Try to parse ISO format
         try:
@@ -188,25 +188,25 @@ def format_date(date: Optional[Union[str, datetime.datetime, datetime.date]],
                 date = datetime.datetime.strptime(date, "%Y-%m-%d")
         except (ValueError, AttributeError):
             return date  # Return as-is if can't parse
-    
+
     if isinstance(date, (datetime.datetime, datetime.date)):
         return date.strftime(format_str)
-    
+
     return str(date)
 
 
-def format_timestamp(timestamp: Optional[Union[str, datetime.datetime]], 
+def format_timestamp(timestamp: Optional[Union[str, datetime.datetime]],
                      format_str: str = "%Y-%m-%d %H:%M:%S") -> str:
     """
     Format a timestamp with date and time.
-    
+
     Args:
         timestamp: Timestamp to format
         format_str: strftime format string
-    
+
     Returns:
         Formatted timestamp string
-    
+
     Examples:
         >>> format_timestamp("2025-01-16T10:30:00")
         '2025-01-16 10:30:00'
@@ -217,37 +217,37 @@ def format_timestamp(timestamp: Optional[Union[str, datetime.datetime]],
 def truncate(text: str, length: int = 50, suffix: str = "...") -> str:
     """
     Truncate text to specified length with suffix.
-    
+
     Args:
         text: Text to truncate
         length: Maximum length
         suffix: Suffix to append if truncated
-    
+
     Returns:
         Truncated text
-    
+
     Examples:
         >>> truncate("This is a very long text", 10)
         'This is...'
     """
     if not text or len(text) <= length:
         return text
-    
+
     return text[:length - len(suffix)] + suffix
 
 
 def format_list(items: list, separator: str = ", ", final_separator: str = " and ") -> str:
     """
     Format a list as a grammatically correct string.
-    
+
     Args:
         items: List of items to format
         separator: Separator between items
         final_separator: Separator before last item
-    
+
     Returns:
         Formatted string
-    
+
     Examples:
         >>> format_list(["apple", "banana", "cherry"])
         'apple, banana and cherry'
@@ -258,9 +258,9 @@ def format_list(items: list, separator: str = ", ", final_separator: str = " and
     """
     if not items:
         return ""
-    
+
     items = [str(item) for item in items]
-    
+
     if len(items) == 1:
         return items[0]
     elif len(items) == 2:
@@ -272,13 +272,13 @@ def format_list(items: list, separator: str = ", ", final_separator: str = " and
 def format_bytes(bytes_value: Union[int, float, None]) -> str:
     """
     Format bytes as human-readable size.
-    
+
     Args:
         bytes_value: Number of bytes
-    
+
     Returns:
         Formatted string (e.g., "1.2 KB", "3.4 MB")
-    
+
     Examples:
         >>> format_bytes(1024)
         '1.0 KB'
@@ -289,29 +289,29 @@ def format_bytes(bytes_value: Union[int, float, None]) -> str:
     """
     if bytes_value is None or bytes_value == 0:
         return "0 B"
-    
+
     bytes_value = float(bytes_value)
-    
+
     for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
         if abs(bytes_value) < 1024.0:
             return f"{bytes_value:.1f} {unit}"
         bytes_value /= 1024.0
-    
+
     return f"{bytes_value:.1f} PB"
 
 
 def pluralize(count: Union[int, float, None], singular: str = "", plural: str = "s") -> str:
     """
     Return singular or plural form based on count.
-    
+
     Args:
         count: Number to check
         singular: Singular form (default: empty string)
         plural: Plural form (default: "s")
-    
+
     Returns:
         Singular form if count is 1, plural form otherwise
-    
+
     Examples:
         >>> pluralize(1)
         ''
@@ -324,7 +324,7 @@ def pluralize(count: Union[int, float, None], singular: str = "", plural: str = 
     """
     if count is None:
         count = 0
-    
+
     return singular if abs(count) == 1 else plural
 
 
@@ -332,7 +332,7 @@ def pluralize(count: Union[int, float, None], singular: str = "", plural: str = 
 def get_template_filters() -> dict:
     """
     Get dictionary of all formatters for Jinja2 filter registration.
-    
+
     Returns:
         Dictionary mapping filter names to functions
     """

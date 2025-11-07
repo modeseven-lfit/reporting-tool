@@ -9,7 +9,6 @@ Tests cover:
 """
 
 import pytest
-
 from src.domain.workflow_status import WorkflowStatus
 
 
@@ -66,19 +65,13 @@ class TestWorkflowStatusValidation:
 
     def test_auto_detect_priority_order(self):
         """GitHub Actions takes precedence over other systems."""
-        status = WorkflowStatus(
-            has_github_actions=True,
-            has_jenkins=True,
-            has_circleci=True
-        )
+        status = WorkflowStatus(has_github_actions=True, has_jenkins=True, has_circleci=True)
         assert status.primary_ci_system == "github_actions"
 
     def test_explicit_primary_overrides_auto_detect(self):
         """Explicitly set primary_ci_system should not be overridden."""
         status = WorkflowStatus(
-            has_github_actions=True,
-            has_jenkins=True,
-            primary_ci_system="jenkins"
+            has_github_actions=True, has_jenkins=True, primary_ci_system="jenkins"
         )
         assert status.primary_ci_system == "jenkins"
 
@@ -101,8 +94,7 @@ class TestWorkflowStatusCreation:
     def test_github_actions_only(self):
         """Create status with only GitHub Actions."""
         status = WorkflowStatus(
-            has_github_actions=True,
-            workflow_files=[".github/workflows/ci.yml"]
+            has_github_actions=True, workflow_files=[".github/workflows/ci.yml"]
         )
         assert status.has_github_actions is True
         assert status.has_jenkins is False
@@ -111,10 +103,7 @@ class TestWorkflowStatusCreation:
 
     def test_jenkins_only(self):
         """Create status with only Jenkins."""
-        status = WorkflowStatus(
-            has_jenkins=True,
-            workflow_files=["Jenkinsfile"]
-        )
+        status = WorkflowStatus(has_jenkins=True, workflow_files=["Jenkinsfile"])
         assert status.has_jenkins is True
         assert status.primary_ci_system == "jenkins"
 
@@ -124,11 +113,7 @@ class TestWorkflowStatusCreation:
             has_github_actions=True,
             has_jenkins=True,
             has_circleci=True,
-            workflow_files=[
-                ".github/workflows/test.yml",
-                "Jenkinsfile",
-                ".circleci/config.yml"
-            ]
+            workflow_files=[".github/workflows/test.yml", "Jenkinsfile", ".circleci/config.yml"],
         )
         assert status.has_github_actions is True
         assert status.has_jenkins is True
@@ -139,10 +124,7 @@ class TestWorkflowStatusCreation:
         """Create status with additional metadata."""
         status = WorkflowStatus(
             has_github_actions=True,
-            additional_metadata={
-                "workflow_count": 5,
-                "badges": ["build", "coverage"]
-            }
+            additional_metadata={"workflow_count": 5, "badges": ["build", "coverage"]},
         )
         assert status.additional_metadata["workflow_count"] == 5
         assert "build" in status.additional_metadata["badges"]
@@ -167,8 +149,7 @@ class TestWorkflowStatusDictConversion:
     def test_to_dict_single_ci(self):
         """Convert status with single CI system to dictionary."""
         status = WorkflowStatus(
-            has_github_actions=True,
-            workflow_files=[".github/workflows/ci.yml"]
+            has_github_actions=True, workflow_files=[".github/workflows/ci.yml"]
         )
         data = status.to_dict()
 
@@ -183,7 +164,7 @@ class TestWorkflowStatusDictConversion:
             has_github_actions=True,
             has_jenkins=True,
             workflow_files=["ci.yml", "Jenkinsfile"],
-            additional_metadata={"key": "value"}
+            additional_metadata={"key": "value"},
         )
         data = status.to_dict()
 
@@ -208,7 +189,7 @@ class TestWorkflowStatusDictConversion:
             "has_jenkins": False,
             "has_circleci": False,
             "has_travis": False,
-            "has_gitlab_ci": False
+            "has_gitlab_ci": False,
         }
         status = WorkflowStatus.from_dict(data)
 
@@ -221,7 +202,7 @@ class TestWorkflowStatusDictConversion:
         data = {
             "has_github_actions": True,
             "workflow_files": [".github/workflows/test.yml"],
-            "primary_ci_system": "github_actions"
+            "primary_ci_system": "github_actions",
         }
         status = WorkflowStatus.from_dict(data)
 
@@ -239,7 +220,7 @@ class TestWorkflowStatusDictConversion:
             "has_gitlab_ci": False,
             "workflow_files": ["ci.yml", "Jenkinsfile"],
             "primary_ci_system": "jenkins",
-            "additional_metadata": {"custom": "data"}
+            "additional_metadata": {"custom": "data"},
         }
         status = WorkflowStatus.from_dict(data)
 
@@ -264,7 +245,7 @@ class TestWorkflowStatusDictConversion:
             has_github_actions=True,
             has_jenkins=True,
             workflow_files=[".github/workflows/ci.yml", "Jenkinsfile"],
-            additional_metadata={"branches": ["main", "develop"]}
+            additional_metadata={"branches": ["main", "develop"]},
         )
 
         data = original.to_dict()
@@ -282,8 +263,13 @@ class TestWorkflowStatusProperties:
 
     def test_has_any_ci_true(self):
         """has_any_ci should be True when any CI system detected."""
-        for attr in ["has_github_actions", "has_jenkins", "has_circleci", 
-                     "has_travis", "has_gitlab_ci"]:
+        for attr in [
+            "has_github_actions",
+            "has_jenkins",
+            "has_circleci",
+            "has_travis",
+            "has_gitlab_ci",
+        ]:
             status = WorkflowStatus(**{attr: True})
             assert status.has_any_ci is True
 
@@ -304,11 +290,7 @@ class TestWorkflowStatusProperties:
 
     def test_ci_system_count_multiple(self):
         """ci_system_count should count all detected systems."""
-        status = WorkflowStatus(
-            has_github_actions=True,
-            has_jenkins=True,
-            has_circleci=True
-        )
+        status = WorkflowStatus(has_github_actions=True, has_jenkins=True, has_circleci=True)
         assert status.ci_system_count == 3
 
     def test_ci_system_count_all(self):
@@ -318,16 +300,13 @@ class TestWorkflowStatusProperties:
             has_jenkins=True,
             has_circleci=True,
             has_travis=True,
-            has_gitlab_ci=True
+            has_gitlab_ci=True,
         )
         assert status.ci_system_count == 5
 
     def test_has_multiple_ci_systems_true(self):
         """has_multiple_ci_systems should be True when > 1."""
-        status = WorkflowStatus(
-            has_github_actions=True,
-            has_jenkins=True
-        )
+        status = WorkflowStatus(has_github_actions=True, has_jenkins=True)
         assert status.has_multiple_ci_systems is True
 
     def test_has_multiple_ci_systems_false_one(self):
@@ -354,11 +333,7 @@ class TestWorkflowStatusProperties:
 
     def test_get_detected_systems_multiple(self):
         """get_detected_systems should return all detected systems."""
-        status = WorkflowStatus(
-            has_github_actions=True,
-            has_jenkins=True,
-            has_circleci=True
-        )
+        status = WorkflowStatus(has_github_actions=True, has_jenkins=True, has_circleci=True)
         systems = status.get_detected_systems()
         assert "github_actions" in systems
         assert "jenkins" in systems
@@ -372,24 +347,14 @@ class TestWorkflowStatusProperties:
             has_jenkins=True,
             has_circleci=True,
             has_travis=True,
-            has_gitlab_ci=True
+            has_gitlab_ci=True,
         )
         systems = status.get_detected_systems()
-        assert systems == [
-            "github_actions",
-            "jenkins",
-            "circleci",
-            "travis",
-            "gitlab_ci"
-        ]
+        assert systems == ["github_actions", "jenkins", "circleci", "travis", "gitlab_ci"]
 
     def test_get_detected_systems_order(self):
         """get_detected_systems should maintain consistent order."""
-        status = WorkflowStatus(
-            has_gitlab_ci=True,
-            has_github_actions=True,
-            has_travis=True
-        )
+        status = WorkflowStatus(has_gitlab_ci=True, has_github_actions=True, has_travis=True)
         systems = status.get_detected_systems()
         # Should be in definition order
         assert systems[0] == "github_actions"
@@ -403,17 +368,13 @@ class TestWorkflowStatusEdgeCases:
     def test_many_workflow_files(self):
         """Handle many workflow files."""
         files = [f".github/workflows/workflow{i}.yml" for i in range(100)]
-        status = WorkflowStatus(
-            has_github_actions=True,
-            workflow_files=files
-        )
+        status = WorkflowStatus(has_github_actions=True, workflow_files=files)
         assert len(status.workflow_files) == 100
 
     def test_unicode_in_workflow_files(self):
         """Handle unicode in workflow file paths."""
         status = WorkflowStatus(
-            has_github_actions=True,
-            workflow_files=[".github/workflows/тест.yml"]
+            has_github_actions=True, workflow_files=[".github/workflows/тест.yml"]
         )
         assert status.workflow_files[0] == ".github/workflows/тест.yml"
 
@@ -422,34 +383,23 @@ class TestWorkflowStatusEdgeCases:
         metadata = {
             "workflows": {
                 "ci": {"triggers": ["push", "pull_request"]},
-                "cd": {"triggers": ["release"]}
+                "cd": {"triggers": ["release"]},
             },
-            "matrix": {
-                "os": ["ubuntu", "macos", "windows"],
-                "python": ["3.8", "3.9", "3.10"]
-            }
+            "matrix": {"os": ["ubuntu", "macos", "windows"], "python": ["3.8", "3.9", "3.10"]},
         }
-        status = WorkflowStatus(
-            has_github_actions=True,
-            additional_metadata=metadata
-        )
+        status = WorkflowStatus(has_github_actions=True, additional_metadata=metadata)
         assert status.additional_metadata["workflows"]["ci"]["triggers"][0] == "push"
         assert len(status.additional_metadata["matrix"]["os"]) == 3
 
     def test_empty_workflow_files_list(self):
         """Empty workflow_files list should be valid."""
-        status = WorkflowStatus(
-            has_github_actions=True,
-            workflow_files=[]
-        )
+        status = WorkflowStatus(has_github_actions=True, workflow_files=[])
         assert status.workflow_files == []
         assert status.has_github_actions is True
 
     def test_workflow_files_without_ci_flags(self):
         """Can have workflow_files without CI flags set."""
-        status = WorkflowStatus(
-            workflow_files=[".github/workflows/unknown.yml"]
-        )
+        status = WorkflowStatus(workflow_files=[".github/workflows/unknown.yml"])
         assert len(status.workflow_files) == 1
         assert status.has_any_ci is False
 
@@ -460,7 +410,7 @@ class TestWorkflowStatusEdgeCases:
             has_jenkins=True,
             has_circleci=True,
             has_travis=True,
-            has_gitlab_ci=True
+            has_gitlab_ci=True,
         )
         assert status.has_any_ci is True
         assert status.ci_system_count == 5
@@ -473,7 +423,7 @@ class TestWorkflowStatusEdgeCases:
             workflow_files=[
                 ".github/workflows/test-ci.yml",
                 ".github/workflows/deploy_prod.yml",
-                ".github/workflows/check@v2.yml"
-            ]
+                ".github/workflows/check@v2.yml",
+            ],
         )
         assert len(status.workflow_files) == 3

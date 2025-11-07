@@ -13,10 +13,10 @@ from typing import Any, Dict, List, Optional
 class WorkflowStatus:
     """
     CI/CD workflow status for a repository.
-    
+
     This replaces the ad-hoc dictionary structure used in legacy code with
     a type-safe, validated domain model for workflow detection results.
-    
+
     Attributes:
         has_github_actions: Whether GitHub Actions workflows were detected
         has_jenkins: Whether Jenkins configuration was detected
@@ -27,23 +27,23 @@ class WorkflowStatus:
         primary_ci_system: Primary CI/CD system identified
         additional_metadata: Extra workflow-related metadata
     """
-    
+
     # CI/CD system detection
     has_github_actions: bool = False
     has_jenkins: bool = False
     has_circleci: bool = False
     has_travis: bool = False
     has_gitlab_ci: bool = False
-    
+
     # Detected files
     workflow_files: List[str] = field(default_factory=list)
-    
+
     # Primary CI system
     primary_ci_system: Optional[str] = None
-    
+
     # Additional metadata
     additional_metadata: Dict[str, Any] = field(default_factory=dict)
-    
+
     def __post_init__(self) -> None:
         """Validate workflow status after initialization."""
         # Validate primary_ci_system if set
@@ -55,13 +55,13 @@ class WorkflowStatus:
             "gitlab_ci",
             None,
         }
-        
+
         if self.primary_ci_system not in valid_ci_systems:
             raise ValueError(
                 f"primary_ci_system must be one of {valid_ci_systems}, "
                 f"got '{self.primary_ci_system}'"
             )
-        
+
         # Auto-detect primary CI if not set but systems detected
         if self.primary_ci_system is None:
             if self.has_github_actions:
@@ -74,13 +74,13 @@ class WorkflowStatus:
                 object.__setattr__(self, 'primary_ci_system', 'travis')
             elif self.has_gitlab_ci:
                 object.__setattr__(self, 'primary_ci_system', 'gitlab_ci')
-    
+
     def to_dict(self) -> Dict[str, Any]:
         """
         Convert to dictionary for JSON serialization.
-        
+
         Returns a dictionary matching the legacy schema format for backwards compatibility.
-        
+
         Returns:
             Dictionary representation of workflow status.
         """
@@ -91,28 +91,28 @@ class WorkflowStatus:
             "has_travis": self.has_travis,
             "has_gitlab_ci": self.has_gitlab_ci,
         }
-        
+
         if self.workflow_files:
             result["workflow_files"] = self.workflow_files
-        
+
         if self.primary_ci_system:
             result["primary_ci_system"] = self.primary_ci_system
-        
+
         if self.additional_metadata:
             result["additional_metadata"] = self.additional_metadata
-        
+
         return result
-    
+
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "WorkflowStatus":
         """
         Create WorkflowStatus from legacy dictionary format.
-        
+
         This enables gradual migration from dict-based code to domain models.
-        
+
         Args:
             data: Dictionary with workflow status
-            
+
         Returns:
             WorkflowStatus instance
         """
@@ -126,7 +126,7 @@ class WorkflowStatus:
             primary_ci_system=data.get("primary_ci_system"),
             additional_metadata=data.get("additional_metadata", {}),
         )
-    
+
     @property
     def has_any_ci(self) -> bool:
         """Check if any CI/CD system was detected."""
@@ -137,7 +137,7 @@ class WorkflowStatus:
             or self.has_travis
             or self.has_gitlab_ci
         )
-    
+
     @property
     def ci_system_count(self) -> int:
         """Get count of detected CI/CD systems."""
@@ -148,16 +148,16 @@ class WorkflowStatus:
             self.has_travis,
             self.has_gitlab_ci,
         ])
-    
+
     @property
     def has_multiple_ci_systems(self) -> bool:
         """Check if multiple CI/CD systems are configured."""
         return self.ci_system_count > 1
-    
+
     def get_detected_systems(self) -> List[str]:
         """
         Get list of all detected CI/CD systems.
-        
+
         Returns:
             List of system names (e.g., ["github_actions", "jenkins"])
         """

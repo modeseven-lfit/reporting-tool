@@ -1,7 +1,7 @@
 # Test Writing Guide
 
-**Purpose:** Comprehensive guide for writing high-quality, maintainable tests  
-**Target Audience:** Developers, contributors  
+**Purpose:** Comprehensive guide for writing high-quality, maintainable tests
+**Target Audience:** Developers, contributors
 **Status:** ✅ Production Ready
 
 ---
@@ -43,10 +43,10 @@ def test_my_feature_basic_case():
     """Test my_feature handles basic case correctly."""
     # Arrange
     input_data = "test"
-    
+
     # Act
     result = my_feature(input_data)
-    
+
     # Assert
     assert result == "expected_output"
 ```
@@ -58,10 +58,10 @@ def test_repository_analysis(temp_git_repo):
     """Test repository analysis with fixture."""
     # Arrange - fixture provides repo
     create_test_commits(temp_git_repo, count=5)
-    
+
     # Act
     result = analyze_repository(temp_git_repo)
-    
+
     # Assert
     assert result.commit_count == 6  # Initial + 5
     assert result.author_count > 0
@@ -77,7 +77,7 @@ def test_git_workflow(temp_git_repo):
             ["git", "checkout", "-b", "feature"],
             cwd=temp_git_repo
         )
-    
+
     assert_repository_state(
         temp_git_repo,
         expected_branch="feature",
@@ -98,15 +98,16 @@ def test_format_number_thousands():
     """Test that thousands are formatted with K suffix."""
     # Arrange - Set up test data
     number = 5000
-    
+
     # Act - Execute the code under test
     result = format_number(number)
-    
+
     # Assert - Verify the outcome
     assert result == "5K"
 ```
 
 **Why AAA:**
+
 - ✅ Clear, predictable structure
 - ✅ Easy to understand what's being tested
 - ✅ Separates setup from verification
@@ -121,10 +122,10 @@ def test_repository_with_commits():
     """Test that repository analysis counts commits correctly."""
     # Given a repository with 5 commits
     repo = create_repository_with_commits(5)
-    
+
     # When we analyze the repository
     result = analyze_repository(repo)
-    
+
     # Then we get the correct commit count
     assert result.commit_count == 5
 ```
@@ -138,6 +139,7 @@ def test_repository_with_commits():
 **Pattern:** `test_<module_name>.py`
 
 **Examples:**
+
 - ✅ `test_formatting.py` - tests for `src/util/formatting.py`
 - ✅ `test_github_api.py` - tests for GitHub API client
 - ✅ `test_repository_metrics.py` - tests for repository metrics
@@ -145,6 +147,7 @@ def test_repository_with_commits():
 - ❌ `test.py` - too generic
 
 **Organization:**
+
 ```
 tests/
 ├── unit/
@@ -163,6 +166,7 @@ tests/
 **Pattern:** `test_<what>_<condition>_<expected>`
 
 **Good examples:**
+
 ```python
 # What is tested, under what condition, what's expected
 def test_format_number_thousands_returns_k_suffix():
@@ -179,6 +183,7 @@ def test_format_number_negative_preserves_sign():
 ```
 
 **Anti-patterns:**
+
 ```python
 # Too vague
 def test_format():  # ❌ What are we testing?
@@ -200,12 +205,12 @@ def test_returns_k():  # ❌ When? Under what conditions?
 ```python
 class TestNumberFormatter:
     """Tests for NumberFormatter class."""
-    
+
     def test_format_thousands_returns_k_suffix(self):
         """Test thousands formatting."""
         formatter = NumberFormatter()
         assert formatter.format(5000) == "5K"
-    
+
     def test_format_millions_returns_m_suffix(self):
         """Test millions formatting."""
         formatter = NumberFormatter()
@@ -213,6 +218,7 @@ class TestNumberFormatter:
 ```
 
 **When to use classes:**
+
 - ✅ Grouping related tests
 - ✅ Sharing setup/teardown logic
 - ✅ Testing a specific class
@@ -229,12 +235,14 @@ class TestNumberFormatter:
 **Location:** `tests/unit/`
 
 **Characteristics:**
+
 - Fast execution (< 100ms per test)
 - No external dependencies
 - Use mocks for dependencies
 - Test single responsibility
 
 **Example:**
+
 ```python
 # tests/unit/test_formatting.py
 
@@ -245,6 +253,7 @@ def test_format_number_thousands():
 ```
 
 **Marker:**
+
 ```python
 @pytest.mark.unit
 def test_format_number():
@@ -258,12 +267,14 @@ def test_format_number():
 **Location:** `tests/integration/`
 
 **Characteristics:**
+
 - Slower execution (1-10 seconds)
 - May use real dependencies
 - Test component integration
 - May create temporary resources
 
 **Example:**
+
 ```python
 # tests/integration/test_data_pipeline.py
 
@@ -272,10 +283,10 @@ def test_repository_analysis_pipeline(temp_git_repo):
     """Integration test - tests multiple components together."""
     # Create real repository
     setup_repository(temp_git_repo)
-    
+
     # Test full pipeline
     result = run_full_analysis(temp_git_repo)
-    
+
     # Verify end-to-end behavior
     assert result.is_valid()
     assert result.has_metrics()
@@ -288,12 +299,14 @@ def test_repository_analysis_pipeline(temp_git_repo):
 **Location:** `tests/performance/`
 
 **Characteristics:**
+
 - Measure execution time
 - Check memory usage
 - Verify scalability
 - May take longer to run
 
 **Example:**
+
 ```python
 # tests/performance/test_benchmarks.py
 
@@ -301,9 +314,9 @@ def test_repository_analysis_pipeline(temp_git_repo):
 def test_analysis_performance_threshold(temp_git_repo, benchmark):
     """Performance test - verify meets threshold."""
     setup_large_repository(temp_git_repo, commits=1000)
-    
+
     result = benchmark(analyze_repository, temp_git_repo)
-    
+
     # Performance assertion
     assert benchmark.stats.mean < 5.0  # 5 seconds max
 ```
@@ -315,6 +328,7 @@ def test_analysis_performance_threshold(temp_git_repo, benchmark):
 **Location:** `tests/property/`
 
 **Example:**
+
 ```python
 from hypothesis import given, strategies as st
 
@@ -333,6 +347,7 @@ def test_format_number_always_returns_string(number):
 ### 1. Test One Thing
 
 **Good:**
+
 ```python
 def test_format_number_thousands():
     """Test thousands formatting specifically."""
@@ -344,6 +359,7 @@ def test_format_number_millions():
 ```
 
 **Bad:**
+
 ```python
 def test_format_number():
     """Test all formatting - too broad!"""
@@ -357,6 +373,7 @@ def test_format_number():
 ### 2. Make Tests Independent
 
 **Good:**
+
 ```python
 def test_cache_get(temp_cache):
     """Independent test - creates own data."""
@@ -371,6 +388,7 @@ def test_cache_delete(temp_cache):
 ```
 
 **Bad:**
+
 ```python
 # Shared state between tests - fragile!
 cache = {}
@@ -389,22 +407,24 @@ def test_cache_delete():
 ### 3. Use Descriptive Assertions
 
 **Good:**
+
 ```python
 def test_repository_has_expected_commits(temp_git_repo):
     """Clear assertion with context."""
     result = analyze_repository(temp_git_repo)
-    
+
     assert result.commit_count == 10, (
         f"Expected 10 commits, got {result.commit_count}"
     )
 ```
 
 **Better (with enhanced assertions):**
+
 ```python
 def test_repository_has_expected_commits(temp_git_repo):
     """Even clearer with enhanced assertions."""
     result = analyze_repository(temp_git_repo)
-    
+
     assert_repository_state(
         temp_git_repo,
         expected_commit_count=10,
@@ -458,12 +478,14 @@ def test_invalid_input_raises_value_error():
 ### When to Use Fixtures
 
 **Use fixtures for:**
+
 - ✅ Common test setup
 - ✅ Resource creation/cleanup
 - ✅ Test data
 - ✅ Mocking setup
 
 **Don't use fixtures for:**
+
 - ❌ Simple values (just use variables)
 - ❌ Test-specific setup (put in test)
 
@@ -493,10 +515,10 @@ def database_connection():
     """Provide database connection with cleanup."""
     # Setup
     conn = create_connection()
-    
+
     # Provide to test
     yield conn
-    
+
     # Teardown (always runs)
     conn.close()
 
@@ -564,7 +586,7 @@ def test_git_operations(temp_git_repo):
             ["git", "checkout", "-b", "feature"],
             cwd=temp_git_repo
         )
-    
+
     with assert_git_operation("add commits", temp_git_repo):
         create_file(temp_git_repo / "file.txt")
         run_git_command_safe(["git", "add", "."], cwd=temp_git_repo)
@@ -581,7 +603,7 @@ def test_git_operations(temp_git_repo):
 def test_repository_state(temp_git_repo):
     """Test with rich state assertions."""
     create_test_commits(temp_git_repo, 5)
-    
+
     assert_repository_state(
         temp_git_repo,
         expected_branch="main",
@@ -680,12 +702,14 @@ assert result.success, (
 ### When to Mock
 
 **Mock when:**
+
 - ✅ Testing external API calls
 - ✅ Testing slow operations
 - ✅ Testing error conditions
 - ✅ Isolating units under test
 
 **Don't mock when:**
+
 - ❌ Testing integration
 - ❌ Mock makes test too complex
 - ❌ Real implementation is simple/fast
@@ -700,7 +724,7 @@ def test_api_call_with_mock():
     mock_response = Mock()
     mock_response.status_code = 200
     mock_response.json.return_value = {"data": "test"}
-    
+
     with patch('requests.get', return_value=mock_response):
         result = fetch_data("http://api.example.com")
         assert result == {"data": "test"}
@@ -713,9 +737,9 @@ def test_with_pytest_mock(mocker):
     """Test with pytest-mock fixture."""
     mock_api = mocker.patch('src.api.client.fetch')
     mock_api.return_value = {"data": "test"}
-    
+
     result = process_api_data()
-    
+
     assert result is not None
     mock_api.assert_called_once()
 ```
@@ -726,15 +750,15 @@ def test_with_pytest_mock(mocker):
 def test_retry_on_failure(mocker):
     """Test retry logic with mock side effects."""
     mock_api = mocker.patch('src.api.client.fetch')
-    
+
     # First call fails, second succeeds
     mock_api.side_effect = [
         Exception("Network error"),
         {"data": "success"}
     ]
-    
+
     result = fetch_with_retry()
-    
+
     assert result == {"data": "success"}
     assert mock_api.call_count == 2
 ```
@@ -750,9 +774,9 @@ def test_retry_on_failure(mocker):
 def test_analysis_performance(temp_git_repo, benchmark):
     """Benchmark repository analysis."""
     setup_repository(temp_git_repo, commits=100)
-    
+
     result = benchmark(analyze_repository, temp_git_repo)
-    
+
     # Benchmark automatically captures timing stats
     assert result is not None
 ```
@@ -766,7 +790,7 @@ from test_utils import assert_performance_threshold
 def test_analysis_meets_threshold(temp_git_repo):
     """Test analysis completes within threshold."""
     setup_repository(temp_git_repo, commits=1000)
-    
+
     assert_performance_threshold(
         lambda: analyze_repository(temp_git_repo),
         max_seconds=5.0,
@@ -830,11 +854,11 @@ def test_cache_operations():
     """Test cache with clear phases."""
     # Setup
     cache = Cache()
-    
+
     # Exercise
     cache.set("key", "value")
     result = cache.get("key")
-    
+
     # Verify
     assert result == "value"
 ```
@@ -1013,27 +1037,27 @@ from src.util.formatting import format_number
 
 class TestFormatNumber:
     """Tests for format_number function."""
-    
+
     def test_format_zero_returns_zero(self):
         """Test that zero is formatted as '0'."""
         assert format_number(0) == "0"
-    
+
     def test_format_hundreds_returns_number(self):
         """Test that hundreds are returned as-is."""
         assert format_number(500) == "500"
-    
+
     def test_format_thousands_returns_k_suffix(self):
         """Test that thousands use K suffix."""
         assert format_number(5000) == "5K"
-    
+
     def test_format_millions_returns_m_suffix(self):
         """Test that millions use M suffix."""
         assert format_number(5_000_000) == "5M"
-    
+
     def test_format_negative_preserves_sign(self):
         """Test that negative numbers preserve sign."""
         assert format_number(-5000) == "-5K"
-    
+
     @pytest.mark.parametrize("number,expected", [
         (0, "0"),
         (1, "1"),
@@ -1066,7 +1090,7 @@ from test_utils import (
 @pytest.mark.integration
 class TestRepositoryAnalysis:
     """Integration tests for full repository analysis."""
-    
+
     def test_analyze_simple_repository(self, temp_git_repo):
         """Test analysis of simple repository."""
         # Arrange
@@ -1079,15 +1103,15 @@ class TestRepositoryAnalysis:
                     ["git", "commit", "-m", f"Commit {i}"],
                     cwd=temp_git_repo
                 )
-        
+
         # Act
         result = analyze_repository(temp_git_repo)
-        
+
         # Assert
         assert result.commit_count == 6  # Initial + 5
         assert result.file_count > 0
         assert result.author_count == 1
-        
+
         # Verify final state
         assert_repository_state(
             temp_git_repo,
@@ -1095,7 +1119,7 @@ class TestRepositoryAnalysis:
             expected_commit_count=6,
             should_be_clean=True
         )
-    
+
     def test_analyze_with_multiple_authors(self, temp_git_repo):
         """Test analysis with multiple authors."""
         # Arrange
@@ -1103,7 +1127,7 @@ class TestRepositoryAnalysis:
             ("Alice", "alice@example.com"),
             ("Bob", "bob@example.com"),
         ]
-        
+
         for name, email in authors:
             with assert_git_operation(f"create commit by {name}", temp_git_repo):
                 # Set author
@@ -1115,7 +1139,7 @@ class TestRepositoryAnalysis:
                     ["git", "config", "user.email", email],
                     cwd=temp_git_repo
                 )
-                
+
                 # Create commit
                 file_path = temp_git_repo / f"{name}.txt"
                 file_path.write_text(f"By {name}")
@@ -1124,10 +1148,10 @@ class TestRepositoryAnalysis:
                     ["git", "commit", "-m", f"By {name}"],
                     cwd=temp_git_repo
                 )
-        
+
         # Act
         result = analyze_repository(temp_git_repo)
-        
+
         # Assert
         assert result.author_count == 2
         assert "Alice" in result.authors
@@ -1145,6 +1169,6 @@ class TestRepositoryAnalysis:
 
 ---
 
-**Last Updated:** 2025-01-05  
-**Maintainer:** Test Infrastructure Team  
+**Last Updated:** 2025-01-05
+**Maintainer:** Test Infrastructure Team
 **Status:** ✅ Production Ready

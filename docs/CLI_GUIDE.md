@@ -2,8 +2,8 @@
 
 **Complete Command-Line Interface Documentation**
 
-Version: 3.0  
-Last Updated: 2025-01-30  
+Version: 3.0
+Last Updated: 2025-01-30
 Phase: 15 - Typer CLI Migration
 
 ---
@@ -31,13 +31,13 @@ The Repository Reporting System provides a powerful command-line interface for a
 
 ### Key Features
 
-✨ **Feature Discovery** - Find and learn about supported features  
-🧙 **Configuration Wizard** - Interactive setup in under 2 minutes  
-🎯 **Smart Error Messages** - Actionable recovery steps and context  
-📊 **Performance Metrics** - Real-time execution statistics  
-🔧 **Flexible Configuration** - YAML, command-line, or environment variables  
-🚀 **Parallel Processing** - Analyze multiple repositories simultaneously  
-💾 **Intelligent Caching** - Avoid redundant work, speed up re-runs  
+✨ **Feature Discovery** - Find and learn about supported features
+🧙 **Configuration Wizard** - Interactive setup in under 2 minutes
+🎯 **Smart Error Messages** - Actionable recovery steps and context
+📊 **Performance Metrics** - Real-time execution statistics
+🔧 **Flexible Configuration** - YAML, command-line, or environment variables
+🚀 **Parallel Processing** - Analyze multiple repositories simultaneously
+💾 **Intelligent Caching** - Avoid redundant work, speed up re-runs
 
 ### Quick Links
 
@@ -112,6 +112,7 @@ reporting-tool generate \
 ```
 
 **Expected output:**
+
 ```
 🔍 Running pre-flight validation checks...
 
@@ -126,18 +127,19 @@ All checks passed! Ready to generate reports.
 
 ---
 
-
 ### New in Version 3.0: Typer CLI
 
 The CLI has been modernized with Typer and Rich for a better user experience:
 
 **🎨 Beautiful Output**
+
 - Colorized help text
 - Progress bars
 - Formatted tables
 - Syntax highlighting
 
 **🚀 Shell Completion**
+
 ```bash
 # Enable auto-completion for your shell
 reporting-tool --install-completion
@@ -157,6 +159,7 @@ The new CLI is organized into logical subcommands:
 | `validate` | Validate configuration files |
 
 **💡 Better Help**
+
 ```bash
 # Main help
 reporting-tool --help
@@ -168,8 +171,8 @@ reporting-tool init --help
 
 **🔄 Migration from v1.x**
 
-
 ---
+
 ## Core Concepts
 
 ### Command Structure
@@ -300,6 +303,7 @@ reporting-tool generate \
 ```
 
 **What it does:**
+
 1. Loads configuration from `config/my-project.yaml` (if exists)
 2. Analyzes all repositories in `/path/to/repos`
 3. Generates HTML report in `output/my-project_report.html`
@@ -315,6 +319,7 @@ reporting-tool generate \
 ```
 
 **Checks performed:**
+
 - Configuration file syntax and values
 - Repository path exists and is readable
 - GitHub/Gerrit API credentials (if configured)
@@ -332,6 +337,7 @@ reporting-tool generate \
 ```
 
 Shows the final configuration after merging:
+
 1. Default values
 2. Configuration file values
 3. Environment variables
@@ -359,6 +365,7 @@ reporting-tool list-features -vv
 ```
 
 **Output example:**
+
 ```
 📦 Repository Reporting System - Available Features
 
@@ -370,16 +377,16 @@ Total: 24 features across 7 categories
 
   📦 docker
      Docker containerization
-     
+
   ⚙️  gradle
      Gradle build configuration
-     
+
   📦 maven
      Maven build configuration
-     
+
   📦 npm
      NPM package configuration
-     
+
   📦 sonatype
      Sonatype/Maven Central publishing
 
@@ -394,11 +401,13 @@ reporting-tool list-features --detail <feature-name>
 ```
 
 **Example:**
+
 ```bash
 reporting-tool list-features --detail docker
 ```
 
 **Output:**
+
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📦 docker
@@ -482,6 +491,7 @@ reporting-tool init --project my-project
 ```
 
 **What you'll configure:**
+
 - Project name and description
 - Repository paths
 - Output settings
@@ -532,11 +542,13 @@ reporting-tool init --template standard \
 ### After Wizard
 
 The wizard creates:
+
 1. Configuration file: `config/{project}.yaml`
 2. Output directory: `output/` (if it doesn't exist)
 3. Validation: Automatically validates the config
 
 Next steps:
+
 ```bash
 # Review the generated config
 cat config/my-project.yaml
@@ -559,11 +571,13 @@ Phase 13 introduces rich error context with actionable recovery steps.
 #### Example: Missing Configuration
 
 **Old error:**
+
 ```
 Error: Configuration file not found
 ```
 
 **New error:**
+
 ```
 ❌ Configuration Error: Configuration file not found
 
@@ -594,6 +608,7 @@ Error: Configuration file not found
 #### Example: API Authentication
 
 **Error:**
+
 ```
 ❌ API Error: GitHub authentication failed (401 Unauthorized)
 
@@ -626,6 +641,7 @@ Error: Configuration file not found
 #### Example: Invalid Repository Path
 
 **Error:**
+
 ```
 ❌ Path Error: Repository path does not exist
 
@@ -690,6 +706,7 @@ esac
 ```
 
 **Retry Logic:**
+
 ```bash
 # Retry on transient errors (codes 1, 2, 4)
 # Don't retry usage errors (code 3)
@@ -795,12 +812,14 @@ Includes detailed operation profiling:
 #### Timing Breakdown
 
 Shows where time is spent:
+
 - **Repository analysis** - Git operations, commit analysis
 - **Report generation** - Template rendering, file writing
 - **Validation** - Config and data validation
 - **Other** - Initialization, cleanup
 
 **Optimization tips:**
+
 - High analysis time? Use `--cache` or `--workers`
 - High generation time? Simplify templates or reduce data
 - High validation time? Review complex validation rules
@@ -812,6 +831,7 @@ Shows where time is spent:
 - **Disk I/O** - Data read/written
 
 **Warning signs:**
+
 - Peak memory > 1GB for < 50 repos → potential memory issue
 - CPU time ≈ wall time → not using parallelism effectively
 - High disk I/O → consider using caching or tmpfs
@@ -823,6 +843,7 @@ Shows where time is spent:
 - **Cache hit rate** - Percentage cached (higher is better)
 
 **Good cache hit rates:**
+
 - First run: 0% (expected)
 - Second run: 60-80% (good)
 - Third+ run: 80-95% (excellent)
@@ -832,6 +853,7 @@ Shows where time is spent:
 - **Throughput** - Repositories analyzed per second
 
 **Typical rates:**
+
 - Sequential (1 worker): 0.1-0.3 repos/sec
 - Parallel (4 workers): 0.4-1.2 repos/sec
 - Parallel (16 workers): 1.5-3.0 repos/sec
@@ -870,6 +892,7 @@ reporting-tool generate \
 **Syntax:** `--config-override path.to.key=value`
 
 **Examples:**
+
 ```bash
 # Change time window
 --config-override time_windows.90d.days=60
@@ -914,6 +937,7 @@ reporting-tool generate --project test --repos-path ./repos --workers 1
 ```
 
 **Guidelines:**
+
 - Development: `--workers 1` (easier debugging)
 - Production: `--workers auto` or `--workers $(nproc)`
 - Limited resources: `--workers 4`
@@ -989,17 +1013,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      
+
       - name: Install dependencies
         run: uv sync  # Recommended
 # or
 pip install .
-      
+
       - name: Generate report
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -1008,7 +1032,7 @@ pip install .
             --project ${{ github.repository }} \
             --repos-path ./repos \
             --quiet
-      
+
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -1086,14 +1110,14 @@ DATE=$(date +%Y-%m-%d)
 
 for project in "${PROJECTS[@]}"; do
     echo "Generating report for: $project"
-    
+
     reporting-tool generate \
   --project "$project" \
         --repos-path "/data/repos/$project" \
         --output-dir "/reports/$DATE/$project" \
         --cache \
         --quiet
-    
+
     if [ $? -eq 0 ]; then
         echo "✓ $project: SUCCESS"
     else
@@ -1121,7 +1145,7 @@ OUTPUT_BASE = Path(f"/reports/{datetime.now():%Y-%m-%d}")
 
 for project in PROJECTS:
     print(f"Generating report for: {project}")
-    
+
     result = subprocess.run([
         "reporting-tool", "generate",
         "--project", project,
@@ -1130,7 +1154,7 @@ for project in PROJECTS:
         "--cache",
         "--quiet"
     ])
-    
+
     if result.returncode == 0:
         print(f"✓ {project}: SUCCESS")
     else:
@@ -1172,11 +1196,13 @@ reporting-tool generate \
 #### Issue: "Configuration file not found"
 
 **Symptoms:**
+
 ```
 ❌ Configuration Error: Configuration file not found
 ```
 
 **Solutions:**
+
 1. Create config with wizard: `--init --project NAME`
 2. Check config directory: `ls config/`
 3. Verify project name matches file: `config/{project}.yaml`
@@ -1184,11 +1210,13 @@ reporting-tool generate \
 #### Issue: "Repository path does not exist"
 
 **Symptoms:**
+
 ```
 ❌ Path Error: Repository path does not exist
 ```
 
 **Solutions:**
+
 1. Verify path: `ls -la /path/to/repos`
 2. Use absolute path: `--repos-path /full/path/to/repos`
 3. Check spelling and case sensitivity
@@ -1196,24 +1224,28 @@ reporting-tool generate \
 #### Issue: "GitHub API error: 401 Unauthorized"
 
 **Symptoms:**
+
 ```
 ❌ API Error: GitHub authentication failed (401)
 ```
 
 **Solutions:**
+
 1. Set token: `export GITHUB_TOKEN="ghp_xxxxx"`
 2. Check token: `echo $GITHUB_TOKEN`
 3. Test token: `curl -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user`
-4. Create new token: https://github.com/settings/tokens
+4. Create new token: <https://github.com/settings/tokens>
 
 #### Issue: "Permission denied: output/report.html"
 
 **Symptoms:**
+
 ```
 ❌ Permission Error: Cannot write to output directory
 ```
 
 **Solutions:**
+
 1. Check permissions: `ls -la output/`
 2. Fix permissions: `chmod -R u+w output/`
 3. Use different directory: `--output-dir /tmp/reports`
@@ -1221,10 +1253,12 @@ reporting-tool generate \
 #### Issue: "Report generation very slow"
 
 **Symptoms:**
+
 - Takes > 5 minutes for < 20 repositories
 - High CPU but low throughput
 
 **Solutions:**
+
 1. Enable caching: `--cache`
 2. Use parallel processing: `--workers 8`
 3. Reduce time windows in config
@@ -1233,11 +1267,13 @@ reporting-tool generate \
 #### Issue: "Out of memory"
 
 **Symptoms:**
+
 ```
 MemoryError: Unable to allocate array
 ```
 
 **Solutions:**
+
 1. Reduce worker count: `--workers 2`
 2. Process repositories in batches
 3. Increase system swap space
@@ -1257,6 +1293,7 @@ reporting-tool generate \
 ```
 
 This creates a `debug.log` with:
+
 - All API calls and responses
 - Repository processing details
 - Template rendering steps
@@ -1271,6 +1308,7 @@ This creates a `debug.log` with:
    - [Troubleshooting Guide](TROUBLESHOOTING.md)
 
 2. **Use Built-in Help:**
+
    ```bash
    reporting-tool --help
    reporting-tool list-features
@@ -1278,12 +1316,14 @@ This creates a `debug.log` with:
    ```
 
 3. **Run Validation:**
+
    ```bash
    reporting-tool generate --dry-run
    reporting-tool validate
    ```
 
 4. **Check Exit Codes:**
+
    ```bash
    echo $?  # Show last exit code
    ```
@@ -1301,6 +1341,7 @@ This creates a `debug.log` with:
 ### Configuration Management
 
 ✅ **DO:**
+
 - Use configuration files for projects (not command-line args)
 - Version control your config files (without secrets)
 - Use environment variables for secrets
@@ -1308,6 +1349,7 @@ This creates a `debug.log` with:
 - Use the wizard for initial setup
 
 ❌ **DON'T:**
+
 - Hardcode tokens in config files
 - Use long command lines (hard to maintain)
 - Mix different config styles in one project
@@ -1315,6 +1357,7 @@ This creates a `debug.log` with:
 ### Performance Optimization
 
 ✅ **DO:**
+
 - Enable caching for development: `--cache`
 - Use parallel processing: `--workers auto`
 - Run validation before full reports: `--dry-run`
@@ -1322,6 +1365,7 @@ This creates a `debug.log` with:
 - Clear old caches periodically
 
 ❌ **DON'T:**
+
 - Use `--workers 1` in production (slow)
 - Skip validation before long runs
 - Ignore performance metrics
@@ -1329,6 +1373,7 @@ This creates a `debug.log` with:
 ### Error Handling
 
 ✅ **DO:**
+
 - Check exit codes in scripts
 - Read error messages completely
 - Follow suggested recovery steps
@@ -1336,6 +1381,7 @@ This creates a `debug.log` with:
 - Enable verbose mode when debugging
 
 ❌ **DON'T:**
+
 - Ignore error context and suggestions
 - Suppress error output in scripts
 - Continue on errors without investigation
@@ -1343,6 +1389,7 @@ This creates a `debug.log` with:
 ### Automation
 
 ✅ **DO:**
+
 - Use `--quiet` in CI/CD pipelines
 - Implement proper error handling
 - Archive old reports
@@ -1350,6 +1397,7 @@ This creates a `debug.log` with:
 - Use `--init-template` for reproducibility
 
 ❌ **DON'T:**
+
 - Use interactive wizard in automation
 - Run without timeout controls
 - Ignore failed runs
@@ -1358,6 +1406,7 @@ This creates a `debug.log` with:
 ### Development Workflow
 
 ✅ **DO:**
+
 - Test with `--dry-run` first
 - Use `--workers 1` when debugging
 - Enable maximum verbosity: `-vvv`
@@ -1365,6 +1414,7 @@ This creates a `debug.log` with:
 - Use caching to speed up iterations
 
 ❌ **DON'T:**
+
 - Test on production repositories
 - Skip validation
 - Ignore warnings
@@ -1433,6 +1483,6 @@ reporting-tool generate --project NAME --repos-path PATH --cache --workers auto 
 
 ---
 
-**Last Updated:** 2025-01-25  
-**Version:** 2.0 (Phase 13)  
+**Last Updated:** 2025-01-25
+**Version:** 2.0 (Phase 13)
 **Feedback:** Report issues or suggestions to the development team

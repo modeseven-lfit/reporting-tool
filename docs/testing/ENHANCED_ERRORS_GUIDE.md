@@ -1,7 +1,7 @@
 # Enhanced Error Messages - Quick Reference Guide
 
-**Purpose:** Improve test failure debugging with rich assertions and automatic diagnostics  
-**Phase:** 14, Step 3, Phase 4  
+**Purpose:** Improve test failure debugging with rich assertions and automatic diagnostics
+**Phase:** 14, Step 3, Phase 4
 **Status:** ✅ Production Ready
 
 ---
@@ -16,14 +16,14 @@ from test_utils import (
     assert_repository_state,
     assert_command_success,
     assert_no_error_logs,
-    
+
     # Context managers
     assert_git_operation,
     assert_test_operation,
-    
+
     # Artifact saving
     save_test_artifacts,
-    
+
     # Git utilities
     get_git_status,
     get_git_log,
@@ -45,7 +45,7 @@ All utilities are also auto-imported via `conftest.py` and available in all test
 # Example: Validate state after creating commits
 def test_create_commits(temp_git_repo):
     create_test_commits(temp_git_repo, count=5)
-    
+
     assert_repository_state(
         temp_git_repo,
         expected_branch="main",
@@ -55,12 +55,14 @@ def test_create_commits(temp_git_repo):
 ```
 
 **On failure, you get:**
+
 - ✅ List of which specific checks failed
 - ✅ Current repository state (JSON)
 - ✅ Recent git log for context
 - ✅ Working directory status
 
 **Parameters:**
+
 - `repo_path` - Path to repository
 - `expected_branch` - Expected current branch (optional)
 - `expected_commit_count` - Expected number of commits (optional)
@@ -80,7 +82,7 @@ def test_git_operations(temp_git_repo):
         ["git", "log", "--oneline"],
         cwd=temp_git_repo
     )
-    
+
     assert_command_success(
         result,
         operation="git log",
@@ -89,6 +91,7 @@ def test_git_operations(temp_git_repo):
 ```
 
 **On failure, you get:**
+
 - ✅ Operation description
 - ✅ Return code
 - ✅ Full command arguments
@@ -96,6 +99,7 @@ def test_git_operations(temp_git_repo):
 - ✅ Expected vs actual output comparison
 
 **Parameters:**
+
 - `result` - subprocess.CompletedProcess object
 - `operation` - Description of operation
 - `expected_output` - Substring that should be in stdout (optional)
@@ -110,7 +114,7 @@ def test_git_operations(temp_git_repo):
 # Example: Validate clean execution
 def test_clean_execution(temp_git_repo):
     log_output = run_analysis(temp_git_repo)
-    
+
     assert_no_error_logs(
         log_output,
         context="during repository analysis"
@@ -118,11 +122,13 @@ def test_clean_execution(temp_git_repo):
 ```
 
 **On failure, you get:**
+
 - ✅ All ERROR lines extracted
 - ✅ Full log output
 - ✅ Context description
 
 **Parameters:**
+
 - `log_output` - Log output string to check
 - `context` - Optional description of when logs were generated
 
@@ -142,7 +148,7 @@ def test_branch_workflow(temp_git_repo):
             ["git", "checkout", "-b", "feature"],
             cwd=temp_git_repo
         )
-    
+
     with assert_git_operation("add commits to feature", temp_git_repo):
         create_file(temp_git_repo / "feature.txt")
         run_git_command_safe(["git", "add", "."], cwd=temp_git_repo)
@@ -153,6 +159,7 @@ def test_branch_workflow(temp_git_repo):
 ```
 
 **On failure, you get:**
+
 - ✅ Operation name (your description)
 - ✅ Error type and message
 - ✅ Current working directory
@@ -161,6 +168,7 @@ def test_branch_workflow(temp_git_repo):
 - ✅ Recent git log
 
 **Parameters:**
+
 - `operation_name` - Description of what you're doing
 - `repo_path` - Path to repository (optional, but recommended)
 
@@ -180,22 +188,24 @@ def test_full_workflow(temp_git_repo):
     ):
         # Step 1: Analyze
         result = analyze_repository(temp_git_repo)
-        
+
         # Step 2: Validate
         validate_metrics(result)
-        
+
         # Step 3: Generate report
         report = generate_report(result)
         assert report is not None
 ```
 
 **On failure, you get:**
+
 - ✅ Operation description
 - ✅ Error type and message
 - ✅ Automatically saved artifacts (if enabled)
 - ✅ Path to artifact directory
 
 **Parameters:**
+
 - `operation_name` - Description of operation
 - `save_artifacts_on_failure` - Whether to save debugging artifacts
 - `artifact_path` - Path to use for git info in artifacts (optional)
@@ -213,7 +223,7 @@ def test_full_workflow(temp_git_repo):
 def test_complex_scenario(temp_git_repo):
     try:
         result = complex_operation(temp_git_repo)
-        
+
         if not validate(result):
             # Custom failure - save artifacts manually
             artifact_dir = save_test_artifacts(
@@ -226,7 +236,7 @@ def test_complex_scenario(temp_git_repo):
                 }
             )
             pytest.fail(f"Validation failed. Artifacts: {artifact_dir}")
-            
+
     except Exception as e:
         artifact_dir = save_test_artifacts(
             test_name="test_complex_scenario",
@@ -237,6 +247,7 @@ def test_complex_scenario(temp_git_repo):
 ```
 
 **Artifacts saved:**
+
 - ✅ `error.txt` - Error message and traceback
 - ✅ `git_log.txt` - Recent commits (if repo provided)
 - ✅ `git_status.txt` - Working directory status
@@ -245,6 +256,7 @@ def test_complex_scenario(temp_git_repo):
 - ✅ `environment.json` - Python version, env vars, cwd
 
 **Parameters:**
+
 - `test_name` - Name of the test
 - `error_message` - Error message from failure
 - `repo_path` - Path to repository (optional)
@@ -295,7 +307,7 @@ info = get_repository_info(repo_path)
 def test_simple_validation(temp_git_repo):
     # Perform operation
     create_commits(temp_git_repo, 3)
-    
+
     # Validate with rich assertion
     assert_repository_state(
         temp_git_repo,
@@ -327,7 +339,7 @@ def test_integration(temp_git_repo):
         step1_result = perform_step1(temp_git_repo)
         step2_result = perform_step2(step1_result)
         final_result = perform_step3(step2_result)
-        
+
         assert final_result.success
 ```
 
@@ -338,7 +350,7 @@ def test_nested_operations(temp_git_repo):
     with assert_test_operation("outer workflow"):
         with assert_git_operation("inner git ops", temp_git_repo):
             perform_git_operations()
-        
+
         with assert_git_operation("more git ops", temp_git_repo):
             perform_more_operations()
 ```
@@ -350,11 +362,13 @@ def test_nested_operations(temp_git_repo):
 ### Operation Names
 
 ✅ **Good:**
+
 - "create feature branch for user-auth"
 - "merge develop into main"
 - "analyze repository time windows"
 
 ❌ **Bad:**
+
 - "git stuff"
 - "operations"
 - "test"
@@ -379,12 +393,14 @@ def test_nested_operations(temp_git_repo):
 ### Artifact Management
 
 **Good practices:**
+
 - Clean up old artifacts periodically
 - Add descriptive test names
 - Use `additional_info` for test parameters
 - Don't commit artifacts to git (use `.gitignore`)
 
 **Artifact location:**
+
 ```
 test_artifacts/
 ├── test_name_20250105_143022/
@@ -470,6 +486,7 @@ def test_complex_integration(temp_git_repo):
 ### Q: Artifacts not being saved?
 
 **A:** Check that:
+
 1. `save_artifacts_on_failure=True` is set
 2. An exception is actually being raised
 3. The `test_artifacts/` directory is writable
@@ -477,6 +494,7 @@ def test_complex_integration(temp_git_repo):
 ### Q: Error messages too verbose?
 
 **A:** This is intentional - detailed errors save debugging time. If needed, pipe test output to a file:
+
 ```bash
 pytest tests/test_file.py -v > test_output.txt 2>&1
 ```
@@ -484,6 +502,7 @@ pytest tests/test_file.py -v > test_output.txt 2>&1
 ### Q: How to clean up old artifacts?
 
 **A:** Run periodically:
+
 ```bash
 find test_artifacts/ -type d -mtime +7 -exec rm -rf {} +
 # Removes artifacts older than 7 days
@@ -494,6 +513,7 @@ find test_artifacts/ -type d -mtime +7 -exec rm -rf {} +
 ## Examples from Test Suite
 
 See `tests/test_enhanced_errors.py` for 56 comprehensive examples covering:
+
 - Git information utilities (10 tests)
 - Dictionary diff formatting (5 tests)
 - Repository state assertions (11 tests)
@@ -517,6 +537,6 @@ All tests pass at 100% and demonstrate real-world usage patterns.
 
 ---
 
-**Last Updated:** 2025-01-05  
-**Maintainer:** Test Infrastructure Team  
+**Last Updated:** 2025-01-05
+**Maintainer:** Test Infrastructure Team
 **Status:** ✅ Production Ready

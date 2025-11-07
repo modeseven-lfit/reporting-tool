@@ -52,10 +52,10 @@ def run_git_command_safe(
 ) -> subprocess.CompletedProcess:
     """
     Run a git command with automatic timeout handling.
-    
+
     This is a test utility function that ensures all git commands
     have appropriate timeouts to prevent test hangs.
-    
+
     Args:
         args: Command arguments (including 'git')
         cwd: Working directory
@@ -64,14 +64,14 @@ def run_git_command_safe(
         capture_output: Capture stdout/stderr
         text: Return output as text (not bytes)
         **kwargs: Additional subprocess.run arguments
-        
+
     Returns:
         subprocess.CompletedProcess result
-        
+
     Raises:
         subprocess.TimeoutExpired: If command times out
         subprocess.CalledProcessError: If command fails and check=True
-        
+
     Example:
         >>> result = run_git_command_safe(
         ...     ["git", "log", "--oneline"],
@@ -100,7 +100,7 @@ def run_git_command_safe(
             timeout = DEFAULT_TEST_TIMEOUTS[timeout_key]
         else:
             timeout = DEFAULT_TEST_TIMEOUTS['default']
-    
+
     return subprocess.run(
         args,
         cwd=cwd,
@@ -120,26 +120,26 @@ def retry_on_failure(
 ):
     """
     Decorator to retry a test function on failure with exponential backoff.
-    
+
     This is useful for tests that are occasionally flaky due to timing issues,
     race conditions, or external dependencies.
-    
+
     Args:
         max_attempts: Maximum number of retry attempts (default: 3)
         delay: Initial delay in seconds before first retry (default: 1.0)
         backoff: Multiplier for delay after each retry (default: 2.0)
         exceptions: Tuple of exception types to catch and retry (default: AssertionError)
-        
+
     Returns:
         Decorated test function
-        
+
     Example:
         >>> @retry_on_failure(max_attempts=3, delay=0.5, backoff=2)
         ... def test_flaky_operation():
         ...     # Test that occasionally fails due to timing
         ...     result = perform_async_operation()
         ...     assert result == expected
-        
+
     Note:
         - Retry attempts are logged to help identify flaky tests
         - If all retries fail, the last exception is raised
@@ -151,31 +151,31 @@ def retry_on_failure(
             attempt = 1
             current_delay = delay
             last_exception = None
-            
+
             while attempt <= max_attempts:
                 try:
                     return func(*args, **kwargs)
                 except exceptions as e:
                     last_exception = e
-                    
+
                     if attempt == max_attempts:
                         # Last attempt failed, raise the exception
                         print(f"\n❌ Test '{func.__name__}' failed after {max_attempts} attempts")
                         raise
-                    
+
                     # Log retry attempt
                     print(f"\n⚠️  Test '{func.__name__}' failed (attempt {attempt}/{max_attempts})")
                     print(f"   Error: {str(e)[:100]}")
                     print(f"   Retrying in {current_delay:.1f}s...")
-                    
+
                     time.sleep(current_delay)
                     current_delay *= backoff
                     attempt += 1
-            
+
             # Should never reach here, but just in case
             if last_exception:
                 raise last_exception
-                
+
         return wrapper
     return decorator
 
@@ -183,16 +183,16 @@ def retry_on_failure(
 def mark_flaky(reason: str = "Test is known to be flaky"):
     """
     Mark a test as flaky with automatic retry logic.
-    
+
     This is a convenience wrapper around retry_on_failure with sensible
     defaults for flaky tests. It also documents why the test is flaky.
-    
+
     Args:
         reason: Description of why the test is flaky
-        
+
     Returns:
         Decorated test function with retry logic
-        
+
     Example:
         >>> @mark_flaky(reason="Timing-dependent test with race conditions")
         ... def test_concurrent_operations():
@@ -203,7 +203,7 @@ def mark_flaky(reason: str = "Test is known to be flaky"):
         # Add flaky marker to function metadata
         func._is_flaky = True
         func._flaky_reason = reason
-        
+
         # Apply retry logic with sensible defaults for flaky tests
         return retry_on_failure(
             max_attempts=3,
@@ -211,24 +211,24 @@ def mark_flaky(reason: str = "Test is known to be flaky"):
             backoff=2.0,
             exceptions=(AssertionError, Exception)
         )(func)
-    
+
     return decorator
 
 
 def reset_global_state():
     """
     Reset all global state to ensure test isolation.
-    
+
     This function should be called before/after each test to ensure
     no state leaks between tests. It resets:
     - Global metrics collector
     - Performance caches
     - Benchmark runner state
     - Any other global singletons
-    
+
     This can be used as a fixture with autouse=True to automatically
     reset state between tests.
-    
+
     Example:
         >>> @pytest.fixture(autouse=True)
         ... def auto_reset_state():
@@ -242,7 +242,7 @@ def reset_global_state():
         reset_metrics_collector()
     except ImportError:
         pass  # Module not available in this context
-    
+
     # Clear performance caches
     try:
         from src.performance.cache import CacheManager
@@ -251,7 +251,7 @@ def reset_global_state():
             CacheManager._instance = None
     except ImportError:
         pass
-    
+
     # Reset benchmark runner
     try:
         from src.performance.profiler import BenchmarkRunner
@@ -259,7 +259,7 @@ def reset_global_state():
             BenchmarkRunner._instance = None
     except ImportError:
         pass
-    
+
     # Clear any module-level caches
     try:
         import gc
@@ -271,10 +271,10 @@ def reset_global_state():
 def ensure_clean_environment():
     """
     Ensure clean test environment by removing test-specific environment variables.
-    
+
     This removes environment variables that might have been set by tests
     and could affect other tests.
-    
+
     Example:
         >>> @pytest.fixture(autouse=True)
         ... def clean_env():
@@ -283,7 +283,7 @@ def ensure_clean_environment():
         ...     ensure_clean_environment()
     """
     import os
-    
+
     # List of test-related environment variables to clean
     test_env_vars = [
         'GITHUB_TOKEN',
@@ -293,7 +293,7 @@ def ensure_clean_environment():
         'DEBUG_MODE',
         'FORCE_COLOR',
     ]
-    
+
     for var in test_env_vars:
         os.environ.pop(var, None)
 
@@ -306,10 +306,10 @@ def ensure_clean_environment():
 def get_git_status(repo_path: Union[str, Path]) -> str:
     """
     Get git status for a repository.
-    
+
     Args:
         repo_path: Path to git repository
-        
+
     Returns:
         Git status output as string
     """
@@ -326,11 +326,11 @@ def get_git_status(repo_path: Union[str, Path]) -> str:
 def get_git_log(repo_path: Union[str, Path], max_commits: int = 10) -> str:
     """
     Get recent git log entries.
-    
+
     Args:
         repo_path: Path to git repository
         max_commits: Maximum number of commits to show
-        
+
     Returns:
         Git log output as string
     """
@@ -347,10 +347,10 @@ def get_git_log(repo_path: Union[str, Path], max_commits: int = 10) -> str:
 def get_repository_info(repo_path: Union[str, Path]) -> Dict[str, Any]:
     """
     Get comprehensive repository information for debugging.
-    
+
     Args:
         repo_path: Path to git repository
-        
+
     Returns:
         Dictionary with repository information
     """
@@ -358,10 +358,10 @@ def get_repository_info(repo_path: Union[str, Path]) -> Dict[str, Any]:
         'path': str(repo_path),
         'exists': Path(repo_path).exists(),
     }
-    
+
     if not info['exists']:
         return info
-    
+
     try:
         # Current branch
         result = run_git_command_safe(
@@ -371,7 +371,7 @@ def get_repository_info(repo_path: Union[str, Path]) -> Dict[str, Any]:
         info['branch'] = result.stdout.strip()
     except Exception as e:
         info['branch'] = f"Error: {e}"
-    
+
     try:
         # Commit count
         result = run_git_command_safe(
@@ -381,7 +381,7 @@ def get_repository_info(repo_path: Union[str, Path]) -> Dict[str, Any]:
         info['commit_count'] = int(result.stdout.strip())
     except Exception as e:
         info['commit_count'] = f"Error: {e}"
-    
+
     try:
         # Working directory status
         result = run_git_command_safe(
@@ -393,37 +393,37 @@ def get_repository_info(repo_path: Union[str, Path]) -> Dict[str, Any]:
     except Exception as e:
         info['working_dir_clean'] = f"Error: {e}"
         info['status'] = ""
-    
+
     return info
 
 
 def format_dict_diff(expected: Dict, actual: Dict) -> str:
     """
     Generate a human-readable diff between two dictionaries.
-    
+
     Args:
         expected: Expected dictionary
         actual: Actual dictionary
-        
+
     Returns:
         Formatted diff string
     """
     lines = []
-    
+
     # Keys only in expected
     missing_keys = set(expected.keys()) - set(actual.keys())
     if missing_keys:
         lines.append("  Missing keys:")
         for key in sorted(missing_keys):
             lines.append(f"    - {key}: {expected[key]}")
-    
+
     # Keys only in actual
     extra_keys = set(actual.keys()) - set(expected.keys())
     if extra_keys:
         lines.append("  Extra keys:")
         for key in sorted(extra_keys):
             lines.append(f"    + {key}: {actual[key]}")
-    
+
     # Keys with different values
     common_keys = set(expected.keys()) & set(actual.keys())
     differing_keys = [k for k in common_keys if expected[k] != actual[k]]
@@ -433,7 +433,7 @@ def format_dict_diff(expected: Dict, actual: Dict) -> str:
             lines.append(f"    {key}:")
             lines.append(f"      Expected: {expected[key]}")
             lines.append(f"      Actual:   {actual[key]}")
-    
+
     return "\n".join(lines) if lines else "  No differences"
 
 
@@ -446,17 +446,17 @@ def assert_repository_state(
 ):
     """
     Assert repository is in expected state with detailed error messages.
-    
+
     Args:
         repo_path: Path to repository
         expected_branch: Expected branch name
         expected_commit_count: Expected number of commits
         should_be_clean: Whether working directory should be clean
         custom_checks: Additional custom checks as {name: expected_value}
-        
+
     Raises:
         AssertionError: If repository state doesn't match expectations
-        
+
     Example:
         >>> assert_repository_state(
         ...     repo_path,
@@ -466,20 +466,20 @@ def assert_repository_state(
         ... )
     """
     info = get_repository_info(repo_path)
-    
+
     errors = []
-    
+
     # Check repository exists
     if not info['exists']:
         raise AssertionError(
             f"\nRepository does not exist: {repo_path}\n"
             f"Working directory: {os.getcwd()}\n"
         )
-    
+
     # Check branch
     if expected_branch is not None and info['branch'] != expected_branch:
         errors.append(f"Branch: expected '{expected_branch}', got '{info['branch']}'")
-    
+
     # Check commit count
     if expected_commit_count is not None:
         if isinstance(info['commit_count'], int):
@@ -490,7 +490,7 @@ def assert_repository_state(
                 )
         else:
             errors.append(f"Could not get commit count: {info['commit_count']}")
-    
+
     # Check working directory
     if should_be_clean is not None:
         if isinstance(info['working_dir_clean'], bool):
@@ -502,7 +502,7 @@ def assert_repository_state(
                 )
         else:
             errors.append(f"Could not check working directory: {info['working_dir_clean']}")
-    
+
     # Custom checks
     if custom_checks:
         for check_name, expected_value in custom_checks.items():
@@ -511,7 +511,7 @@ def assert_repository_state(
                 errors.append(
                     f"{check_name}: expected {expected_value}, got {actual_value}"
                 )
-    
+
     if errors:
         error_msg = "\n".join([f"  - {err}" for err in errors])
         raise AssertionError(
@@ -527,17 +527,17 @@ def assert_repository_state(
 def assert_git_operation(operation_name: str, repo_path: Optional[Union[str, Path]] = None):
     """
     Context manager that provides enhanced error messages for git operations.
-    
+
     Args:
         operation_name: Description of the git operation
         repo_path: Optional repository path for additional context
-        
+
     Yields:
         None
-        
+
     Raises:
         AssertionError: Wraps any exception with detailed git context
-        
+
     Example:
         >>> with assert_git_operation("create test commits", repo_path):
         ...     # Perform git operations
@@ -552,7 +552,7 @@ def assert_git_operation(operation_name: str, repo_path: Optional[Union[str, Pat
             f"Error message: {str(e)}",
             f"Working directory: {os.getcwd()}",
         ]
-        
+
         if repo_path:
             error_parts.extend([
                 f"\nRepository information:",
@@ -562,7 +562,7 @@ def assert_git_operation(operation_name: str, repo_path: Optional[Union[str, Pat
                 f"\nRecent commits:",
                 f"{get_git_log(repo_path)}",
             ])
-        
+
         raise AssertionError("\n".join(error_parts)) from e
 
 
@@ -574,18 +574,18 @@ def assert_test_operation(
 ):
     """
     Context manager for test operations with enhanced error reporting.
-    
+
     Args:
         operation_name: Description of the operation
         save_artifacts_on_failure: Whether to save artifacts on failure
         artifact_path: Optional path for saving artifacts
-        
+
     Yields:
         None
-        
+
     Raises:
         AssertionError: Wraps any exception with detailed context
-        
+
     Example:
         >>> with assert_test_operation("analyze repository", save_artifacts_on_failure=True):
         ...     result = analyze_repository(repo_path)
@@ -598,14 +598,14 @@ def assert_test_operation(
             f"Error type: {type(e).__name__}\n"
             f"Error message: {str(e)}\n"
         )
-        
+
         if save_artifacts_on_failure and artifact_path:
             try:
                 artifact_dir = save_test_artifacts(operation_name, str(e), artifact_path)
                 error_msg += f"\nArtifacts saved to: {artifact_dir}\n"
             except Exception as save_error:
                 error_msg += f"\nFailed to save artifacts: {save_error}\n"
-        
+
         raise AssertionError(error_msg) from e
 
 
@@ -617,16 +617,16 @@ def save_test_artifacts(
 ) -> Path:
     """
     Save debugging artifacts when a test fails.
-    
+
     Args:
         test_name: Name of the test that failed
         error_message: Error message from the failure
         repo_path: Optional repository path to capture git info
         additional_info: Optional additional information to save
-        
+
     Returns:
         Path to artifact directory
-        
+
     Example:
         >>> artifact_dir = save_test_artifacts(
         ...     "test_repository_analysis",
@@ -638,7 +638,7 @@ def save_test_artifacts(
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     artifact_dir = Path("test_artifacts") / f"{test_name}_{timestamp}"
     artifact_dir.mkdir(parents=True, exist_ok=True)
-    
+
     # Save error information
     error_file = artifact_dir / "error.txt"
     with open(error_file, "w") as f:
@@ -647,30 +647,30 @@ def save_test_artifacts(
         f.write(f"Error: {error_message}\n\n")
         f.write("Traceback:\n")
         f.write(traceback.format_exc())
-    
+
     # Save repository information if available
     if repo_path and Path(repo_path).exists():
         # Git log
         log_file = artifact_dir / "git_log.txt"
         with open(log_file, "w") as f:
             f.write(get_git_log(repo_path, max_commits=50))
-        
+
         # Git status
         status_file = artifact_dir / "git_status.txt"
         with open(status_file, "w") as f:
             f.write(get_git_status(repo_path))
-        
+
         # Repository info
         info_file = artifact_dir / "repo_info.json"
         with open(info_file, "w") as f:
             json.dump(get_repository_info(repo_path), f, indent=2)
-    
+
     # Save additional information
     if additional_info:
         info_file = artifact_dir / "additional_info.json"
         with open(info_file, "w") as f:
             json.dump(additional_info, f, indent=2, default=str)
-    
+
     # Save environment information
     env_file = artifact_dir / "environment.json"
     with open(env_file, "w") as f:
@@ -682,23 +682,23 @@ def save_test_artifacts(
                 if k.startswith(('TEST_', 'PYTEST_', 'GIT_', 'GITHUB_'))
             }
         }, f, indent=2)
-    
+
     return artifact_dir
 
 
 def assert_no_error_logs(log_output: str, context: str = ""):
     """
     Assert that log output contains no ERROR level messages.
-    
+
     Args:
         log_output: Log output to check
         context: Optional context description
-        
+
     Raises:
         AssertionError: If ERROR messages are found
     """
     error_lines = [line for line in log_output.split('\n') if 'ERROR' in line]
-    
+
     if error_lines:
         raise AssertionError(
             f"\nUnexpected ERROR messages in logs{' (' + context + ')' if context else ''}:\n"
@@ -714,12 +714,12 @@ def assert_command_success(
 ):
     """
     Assert that a command completed successfully with detailed error messages.
-    
+
     Args:
         result: subprocess.CompletedProcess result
         operation: Description of the operation
         expected_output: Optional expected output substring
-        
+
     Raises:
         AssertionError: If command failed or output doesn't match
     """
@@ -731,7 +731,7 @@ def assert_command_success(
             f"Stdout:\n{result.stdout}\n"
             f"Stderr:\n{result.stderr}\n"
         )
-    
+
     if expected_output is not None and expected_output not in result.stdout:
         raise AssertionError(
             f"\nCommand output doesn't contain expected text: {operation}\n"

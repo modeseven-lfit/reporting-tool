@@ -7,7 +7,6 @@ and integration with the logging system.
 
 import logging
 import time
-import pytest
 
 from src.observability.structured_logging import (
     LogAggregator,
@@ -350,9 +349,8 @@ class TestStructuredLogger:
         """Test nested context managers."""
         logger = StructuredLogger(logging.getLogger("test"))
 
-        with logger.context(repository="repo1"):
-            with logger.context(phase=LogPhase.COLLECTION):
-                logger.info("Nested")
+        with logger.context(repository="repo1"), logger.context(phase=LogPhase.COLLECTION):
+            logger.info("Nested")
 
         entry = logger.aggregator.entries[0]
         assert entry.context.repository == "repo1"

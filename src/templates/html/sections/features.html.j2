@@ -4,7 +4,7 @@
     Context required:
         - features (dict): Feature detection data and matrix
         - config (dict): Configuration options
-    
+
     This section displays:
         - Repository feature matrix showing which features are detected
         - Feature counts and statistics
@@ -14,7 +14,7 @@
 {% if config.include_sections.features and features.has_features %}
 <section id="features" class="report-section features-section">
     <h2>Repository Feature Matrix</h2>
-    
+
     <div class="feature-matrix-wrapper">
         <table class="feature-matrix">
             <thead>
@@ -43,7 +43,7 @@
             </tbody>
         </table>
     </div>
-    
+
     <div class="feature-summary">
         <p>
             <strong>Features Detected:</strong> {{ features.feature_count }}
@@ -52,6 +52,6 @@
             <strong>Repositories Analyzed:</strong> {{ features.repositories_count }}
         </p>
     </div>
-    
+
 </section>
 {% endif %}

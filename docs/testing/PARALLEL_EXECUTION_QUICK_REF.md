@@ -171,6 +171,7 @@ def port(worker_id):
 ### Tests fail only in parallel?
 
 **Check for:**
+
 - Shared global state → Use `auto_reset` fixture
 - File conflicts → Use `worker_id` in paths
 - Port conflicts → Use worker-specific ports
@@ -269,6 +270,7 @@ pytest -n auto
 ## Best Practices
 
 ✅ **DO:**
+
 - Use `-n auto` for automatic worker detection
 - Mark flaky tests with `@pytest.mark.flaky`
 - Use `worker_id` fixture for unique resources
@@ -276,6 +278,7 @@ pytest -n auto
 - Run benchmarks separately
 
 ❌ **DON'T:**
+
 - Share global state between tests
 - Use hardcoded ports or file paths
 - Assume specific test execution order
@@ -308,7 +311,7 @@ pytest -n auto -v | head -5
 - **Full Guide:** [PARALLEL_EXECUTION.md](PARALLEL_EXECUTION.md)
 - **Test Writing:** [TEST_WRITING_GUIDE.md](TEST_WRITING_GUIDE.md)
 - **Isolation:** [TEST_ISOLATION.md](TEST_ISOLATION.md)
-- **pytest-xdist:** https://pytest-xdist.readthedocs.io/
+- **pytest-xdist:** <https://pytest-xdist.readthedocs.io/>
 
 ---
 

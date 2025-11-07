@@ -4,7 +4,7 @@
     Context required:
         - summary (dict): Summary statistics
         - config (dict): Configuration options
-    
+
     This section displays:
         - Global statistics table
         - Repository counts by activity status
@@ -14,7 +14,7 @@
 {% if config.include_sections.summary %}
 <section id="summary" class="report-section summary-section">
     <h2>Summary</h2>
-    
+
     {% set stats = [
         {
             'metric': 'Repositories Analyzed',
@@ -67,9 +67,9 @@
             'total': '—'
         }
     ] %}
-    
+
     {% set title = "Global Statistics" %}
     {% include 'html/components/stats_table.html.j2' %}
-    
+
 </section>
 {% endif %}

@@ -1,8 +1,8 @@
 # Performance Tuning Guide
 
-**Author:** Repository Reporting System Team  
-**Date:** 2025-01-16  
-**Version:** 1.0  
+**Author:** Repository Reporting System Team
+**Date:** 2025-01-16
+**Version:** 1.0
 **Phase:** 7 - Concurrency Strategy Refinement
 
 ---
@@ -106,6 +106,7 @@ python scripts/profile_performance.py \
 ```
 
 **Analysis**:
+
 - **Wall Time**: Actual time elapsed (lower is better)
 - **CPU Time**: Total CPU consumed by all threads
 - **CPU Util**: How efficiently CPU is used
@@ -120,11 +121,13 @@ Efficiency = (Actual Speedup / Ideal Speedup) × 100%
 ```
 
 **Example**:
+
 - 8 workers, ideal speedup = 8.0x
 - Actual speedup = 6.0x
 - Efficiency = (6.0 / 8.0) × 100% = 75%
 
 **Interpretation**:
+
 - **90-100%**: Excellent (rare, nearly ideal scaling)
 - **75-90%**: Good (typical for I/O-bound work)
 - **50-75%**: Acceptable (some overhead, still beneficial)
@@ -135,6 +138,7 @@ Efficiency = (Actual Speedup / Ideal Speedup) × 100%
 **Location**: `docs/profiling/hotspots_workers_N.md`
 
 **CPU-Bound Functions** (focus for optimization):
+
 ```
 _parse_git_log_output         25.3s  (CPU-intensive)
 _parse_commit_data             12.1s  (CPU-intensive)
@@ -142,6 +146,7 @@ json.loads                      8.4s  (CPU-intensive)
 ```
 
 **I/O-Bound Functions** (expected bottlenecks):
+
 ```
 subprocess.run                 45.2s  (I/O wait)
 requests.get                   18.3s  (Network I/O)
@@ -149,6 +154,7 @@ open/read                       6.1s  (Disk I/O)
 ```
 
 **Optimization Priority**:
+
 1. Fix CPU-bound hotspots first (biggest impact)
 2. Reduce I/O calls (caching, batching)
 3. Optimize lock contention (if present)
@@ -187,6 +193,7 @@ done
 ```
 
 **Rule of Thumb**:
+
 ```
 max_workers = min(num_cpus × 2, num_repos, 16)
 ```
@@ -208,11 +215,13 @@ max_workers = min(num_cpus × 2, num_repos, 16)
 ```
 
 **Impact**:
+
 - ✅ Reduces redundant API calls (10-50% speedup)
 - ✅ Avoids re-parsing git logs
 - ⚠️ Uses disk space (typically <100MB)
 
 **Disable Only If**:
+
 - Disk space is extremely limited
 - Data must be fresh every run
 - Debugging cache-related issues
@@ -234,6 +243,7 @@ max_workers = min(num_cpus × 2, num_repos, 16)
 ```
 
 **Recommendations**:
+
 - **Fast network**: 15.0s
 - **Normal network**: 30.0s (default)
 - **Slow/unreliable network**: 60.0s
@@ -370,6 +380,7 @@ with self._lock:
 **Impact**: High (for parsing, processing)
 
 **Recommendations**:
+
 - **2 cores**: max_workers = 2-4
 - **4 cores**: max_workers = 6-8
 - **8+ cores**: max_workers = 12-16
@@ -381,21 +392,25 @@ with self._lock:
 **Impact**: Medium (each worker consumes memory)
 
 **Typical Usage**:
+
 - Base: ~500MB
 - Per worker: ~100-200MB
 - Large repos: +50MB per repo
 
 **Example**:
+
 - 8 workers × 150MB = 1.2GB
 - Base = 0.5GB
 - **Total**: ~1.7GB
 
 **Recommendations**:
+
 - **4GB RAM**: max_workers ≤ 8
 - **8GB RAM**: max_workers ≤ 16
 - **16GB+ RAM**: No limit
 
 **If Memory Limited**:
+
 ```json
 {
   "performance": {
@@ -417,6 +432,7 @@ with self._lock:
 | Recommended max_workers | 12-16 | 4-6 |
 
 **Network Storage (NFS, SMB)**:
+
 - Very slow for git operations
 - Recommended: Copy to local disk first
 - max_workers: 2-4 (avoid overwhelming network)
@@ -426,10 +442,12 @@ with self._lock:
 **Impact**: Medium (API calls)
 
 **Fast Network (>100 Mbps)**:
+
 - max_workers: 12-16
 - timeout: 15-30s
 
 **Slow Network (<10 Mbps)**:
+
 - max_workers: 4-8
 - timeout: 60-90s
 - Enable aggressive caching
@@ -441,16 +459,19 @@ with self._lock:
 ### Case Study 1: Small Project (5 Repos)
 
 **Environment**:
+
 - 5 repositories, ~1000 commits each
 - 4-core CPU, 8GB RAM
 - SSD storage
 
 **Initial Config**:
+
 ```json
 {"performance": {"max_workers": 8}}
 ```
 
 **Results**:
+
 ```
 Workers | Time (s) | Speedup
 --------|----------|--------
@@ -461,11 +482,13 @@ Workers | Time (s) | Speedup
 **Analysis**: Overhead of thread spawning is high for small workload
 
 **Optimized Config**:
+
 ```json
 {"performance": {"max_workers": 4}}
 ```
 
 **Improved Results**:
+
 ```
 Workers | Time (s) | Speedup
 --------|----------|--------
@@ -480,16 +503,19 @@ Workers | Time (s) | Speedup
 ### Case Study 2: Large Project (100 Repos)
 
 **Environment**:
+
 - 100 repositories, ~5000 commits each
 - 8-core CPU, 16GB RAM
 - SSD storage
 
 **Initial Config**:
+
 ```json
 {"performance": {"max_workers": 8}}
 ```
 
 **Results**:
+
 ```
 Workers | Time (s) | Speedup
 --------|----------|--------
@@ -500,11 +526,13 @@ Workers | Time (s) | Speedup
 **Profiling**: I/O-bound (git subprocess dominates)
 
 **Optimized Config**:
+
 ```json
 {"performance": {"max_workers": 16}}
 ```
 
 **Improved Results**:
+
 ```
 Workers | Time (s) | Speedup
 --------|----------|--------
@@ -519,16 +547,19 @@ Workers | Time (s) | Speedup
 ### Case Study 3: Network Storage
 
 **Environment**:
+
 - 30 repositories on NFS mount
 - Fast CPU/RAM
 - Slow network (10 Mbps)
 
 **Initial Config**:
+
 ```json
 {"performance": {"max_workers": 8}}
 ```
 
 **Results**:
+
 ```
 Workers | Time (s) | Speedup
 --------|----------|--------
@@ -539,6 +570,7 @@ Workers | Time (s) | Speedup
 **Profiling**: Network I/O saturated
 
 **Optimized Approach**:
+
 ```bash
 # Copy to local disk first
 rsync -av /nfs/repos/ /tmp/repos/
@@ -546,6 +578,7 @@ reporting-tool generate --repos-path /tmp/repos
 ```
 
 **Improved Results**:
+
 ```
 Workers | Time (s) | Speedup
 --------|----------|--------
@@ -562,6 +595,7 @@ Workers | Time (s) | Speedup
 ### Process Pool for CPU-Bound Tasks
 
 **When to Consider**:
+
 - Profiling shows >80% CPU time in parsing
 - Scaling efficiency <50% with thread pool
 - Large repositories (millions of commits)
@@ -578,6 +612,7 @@ Workers | Time (s) | Speedup
 ```
 
 **Tradeoffs**:
+
 - ✅ Bypasses GIL (true parallelism)
 - ✅ Good for CPU-intensive parsing
 - ❌ Higher memory usage (separate processes)
@@ -591,6 +626,7 @@ Workers | Time (s) | Speedup
 **Concept**: Fetch all API data upfront in single thread, then process in parallel
 
 **Benefits**:
+
 - Reduces API call volume (single batch request)
 - Avoids redundant calls
 - Better for rate-limited APIs
@@ -695,6 +731,6 @@ Before claiming performance improvement:
 
 ---
 
-**Version**: 1.0  
-**Last Updated**: 2025-01-16  
+**Version**: 1.0
+**Last Updated**: 2025-01-16
 **Maintained By**: Repository Reporting System Team

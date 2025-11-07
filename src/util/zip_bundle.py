@@ -16,8 +16,8 @@ from pathlib import Path
 
 
 def create_report_bundle(
-    project_output_dir: Path, 
-    project: str, 
+    project_output_dir: Path,
+    project: str,
     logger: logging.Logger
 ) -> Path:
     """
@@ -49,17 +49,17 @@ def create_report_bundle(
     """
     if not project_output_dir.exists():
         raise ValueError(f"Output directory does not exist: {project_output_dir}")
-    
+
     logger.info(f"Creating report bundle for project {project}")
 
     zip_path = project_output_dir / f"{project}_report_bundle.zip"
 
     # Count files to be added (for logging)
     files_to_add = [
-        f for f in project_output_dir.iterdir() 
+        f for f in project_output_dir.iterdir()
         if f.is_file() and f != zip_path
     ]
-    
+
     if not files_to_add:
         logger.warning(f"No files found to bundle in {project_output_dir}")
 
@@ -75,7 +75,7 @@ def create_report_bundle(
     logger.info(
         f"Report bundle created: {zip_path} ({file_count} file{'s' if file_count != 1 else ''})"
     )
-    
+
     return zip_path
 
 
@@ -99,13 +99,13 @@ def validate_zip_bundle(zip_path: Path, expected_files: list[str] = None) -> boo
     """
     if not zip_path.exists():
         return False
-    
+
     try:
         with zipfile.ZipFile(zip_path, "r") as zipf:
             # Test ZIP integrity
             if zipf.testzip() is not None:
                 return False
-            
+
             # Check for expected files if provided
             if expected_files:
                 zip_contents = zipf.namelist()
@@ -113,7 +113,7 @@ def validate_zip_bundle(zip_path: Path, expected_files: list[str] = None) -> boo
                     # Check if any archive member ends with the expected filename
                     if not any(member.endswith(expected_file) for member in zip_contents):
                         return False
-            
+
             return True
     except (zipfile.BadZipFile, OSError):
         return False

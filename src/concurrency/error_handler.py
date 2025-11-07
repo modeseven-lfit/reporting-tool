@@ -19,7 +19,7 @@ from typing import Any, Callable, Dict, List, Optional, Type
 
 class ErrorSeverity(Enum):
     """Severity levels for errors."""
-    
+
     TRANSIENT = "transient"     # Temporary error, retry may succeed
     PERMANENT = "permanent"     # Permanent error, retry will fail
     UNKNOWN = "unknown"         # Unknown error type
@@ -28,7 +28,7 @@ class ErrorSeverity(Enum):
 @dataclass
 class ErrorRecord:
     """Record of an error that occurred during concurrent execution."""
-    
+
     context: str                    # Context where error occurred (e.g., repo name)
     error_type: str                 # Error class name
     error_message: str              # Error message
@@ -42,13 +42,13 @@ class ErrorRecord:
 class ConcurrentErrorHandler:
     """
     Thread-safe error collection and analysis for concurrent operations.
-    
+
     Collects errors from multiple workers, classifies severity, and provides
     error summaries for reporting and debugging.
-    
+
     Example:
         >>> handler = ConcurrentErrorHandler()
-        >>> 
+        >>>
         >>> # In worker thread:
         >>> try:
         >>>     process_repo(repo)
@@ -58,23 +58,23 @@ class ConcurrentErrorHandler:
         >>>         error=e,
         >>>         metadata={'repo_path': str(repo.path)}
         >>>     )
-        >>> 
+        >>>
         >>> # After all workers complete:
         >>> summary = handler.get_summary()
         >>> print(f"Total errors: {summary['total_errors']}")
     """
-    
+
     def __init__(self, logger: Optional[logging.Logger] = None):
         """
         Initialize error handler.
-        
+
         Args:
             logger: Logger for error reporting (default: module logger)
         """
         self.logger = logger or logging.getLogger(__name__)
         self._errors: List[ErrorRecord] = []
         self._lock = threading.Lock()
-    
+
     def record_error(
         self,
         context: str,
@@ -85,9 +85,9 @@ class ConcurrentErrorHandler:
     ):
         """
         Record an error that occurred during execution.
-        
+
         Thread-safe: Can be called from multiple threads concurrently.
-        
+
         Args:
             context: Context identifier (e.g., repository name)
             error: Exception that occurred
@@ -97,14 +97,14 @@ class ConcurrentErrorHandler:
         """
         error_type = type(error).__name__
         error_message = str(error)
-        
+
         # Auto-detect severity if not provided
         if severity is None:
             severity = self._classify_severity(error)
-        
+
         # Capture traceback
         tb = traceback.format_exc()
-        
+
         record = ErrorRecord(
             context=context,
             error_type=error_type,
@@ -114,10 +114,10 @@ class ConcurrentErrorHandler:
             retry_count=retry_count,
             metadata=metadata or {}
         )
-        
+
         with self._lock:
             self._errors.append(record)
-        
+
         # Log error at appropriate level
         if severity == ErrorSeverity.TRANSIENT:
             self.logger.warning(
@@ -129,14 +129,14 @@ class ConcurrentErrorHandler:
                 f"Error in {context}: {error_type}: {error_message} "
                 f"(retries: {retry_count})"
             )
-    
+
     def _classify_severity(self, error: Exception) -> ErrorSeverity:
         """
         Classify error severity based on exception type.
-        
+
         Args:
             error: Exception to classify
-        
+
         Returns:
             Classified severity level
         """
@@ -145,36 +145,36 @@ class ConcurrentErrorHandler:
             'TimeoutError', 'ConnectionError', 'HTTPError',
             'NetworkError', 'TemporaryError', 'ServiceUnavailable'
         )
-        
+
         # Permanent errors (configuration, not found)
         permanent_types = (
             'ValueError', 'KeyError', 'AttributeError',
             'FileNotFoundError', 'PermissionError', 'NotImplementedError'
         )
-        
+
         error_type = type(error).__name__
-        
+
         if error_type in transient_types:
             return ErrorSeverity.TRANSIENT
         elif error_type in permanent_types:
             return ErrorSeverity.PERMANENT
         else:
             return ErrorSeverity.UNKNOWN
-    
+
     def get_errors(self) -> List[ErrorRecord]:
         """
         Get all recorded errors.
-        
+
         Returns:
             List of all ErrorRecord objects
         """
         with self._lock:
             return list(self._errors)
-    
+
     def get_summary(self) -> Dict[str, Any]:
         """
         Get error summary for reporting.
-        
+
         Returns:
             Dictionary with error statistics and groupings:
                 - total_errors: Total number of errors
@@ -187,7 +187,7 @@ class ConcurrentErrorHandler:
         """
         with self._lock:
             errors = list(self._errors)
-        
+
         if not errors:
             return {
                 'total_errors': 0,
@@ -198,22 +198,22 @@ class ConcurrentErrorHandler:
                 'permanent_errors': 0,
                 'unknown_errors': 0
             }
-        
+
         # Group by severity
         by_severity = {}
         for error in errors:
             severity = error.severity.value
             by_severity[severity] = by_severity.get(severity, 0) + 1
-        
+
         # Group by type
         by_type = {}
         for error in errors:
             error_type = error.error_type
             by_type[error_type] = by_type.get(error_type, 0) + 1
-        
+
         # Get failed contexts
         failed_contexts = list(set(e.context for e in errors))
-        
+
         return {
             'total_errors': len(errors),
             'errors_by_severity': by_severity,
@@ -223,17 +223,17 @@ class ConcurrentErrorHandler:
             'permanent_errors': by_severity.get('permanent', 0),
             'unknown_errors': by_severity.get('unknown', 0)
         }
-    
+
     def has_errors(self) -> bool:
         """
         Check if any errors have been recorded.
-        
+
         Returns:
             True if errors exist, False otherwise
         """
         with self._lock:
             return len(self._errors) > 0
-    
+
     def clear(self):
         """Clear all recorded errors."""
         with self._lock:
@@ -250,7 +250,7 @@ def with_retry(
 ):
     """
     Decorator to add retry logic with exponential backoff to a function.
-    
+
     Args:
         max_retries: Maximum number of retry attempts
         backoff_factor: Multiplier for delay between retries
@@ -258,10 +258,10 @@ def with_retry(
         error_handler: Error handler to record failures
         context: Context for error reporting
         retry_on: Tuple of exception types to retry on
-    
+
     Returns:
         Decorator function
-    
+
     Example:
         >>> @with_retry(max_retries=3, backoff_factor=2.0)
         >>> def fetch_data():
@@ -270,13 +270,13 @@ def with_retry(
     def decorator(fn: Callable) -> Callable:
         def wrapper(*args, **kwargs):
             last_exception = None
-            
+
             for attempt in range(max_retries + 1):
                 try:
                     return fn(*args, **kwargs)
                 except retry_on as e:
                     last_exception = e
-                    
+
                     # Record error if handler provided
                     if error_handler:
                         error_handler.record_error(
@@ -285,15 +285,15 @@ def with_retry(
                             retry_count=attempt,
                             metadata={'max_retries': max_retries}
                         )
-                    
+
                     # Don't sleep after last attempt
                     if attempt < max_retries:
                         delay = initial_delay * (backoff_factor ** attempt)
                         time.sleep(delay)
-            
+
             # All retries exhausted, raise last exception
             raise last_exception
-        
+
         return wrapper
     return decorator
 
@@ -301,25 +301,25 @@ def with_retry(
 class CircuitBreaker:
     """
     Circuit breaker pattern to prevent cascading failures.
-    
+
     Opens circuit after threshold failures, preventing further attempts
     until a timeout period expires.
-    
+
     States:
         - CLOSED: Normal operation, requests pass through
         - OPEN: Too many failures, requests fail immediately
         - HALF_OPEN: Testing if service recovered
-    
+
     Example:
         >>> breaker = CircuitBreaker(failure_threshold=5, timeout=60)
-        >>> 
+        >>>
         >>> try:
         >>>     result = breaker.call(risky_operation)
         >>> except CircuitOpenError:
         >>>     # Circuit is open, don't retry
         >>>     return fallback_value
     """
-    
+
     def __init__(
         self,
         failure_threshold: int = 5,
@@ -328,7 +328,7 @@ class CircuitBreaker:
     ):
         """
         Initialize circuit breaker.
-        
+
         Args:
             failure_threshold: Number of failures before opening circuit
             timeout: Seconds before attempting to close circuit
@@ -337,27 +337,27 @@ class CircuitBreaker:
         self.failure_threshold = failure_threshold
         self.timeout = timeout
         self.expected_exception = expected_exception
-        
+
         self._failure_count = 0
         self._last_failure_time: Optional[float] = None
         self._state = "CLOSED"
         self._lock = threading.Lock()
-        
+
         # Logger
         self.logger = logging.getLogger(__name__)
-    
+
     def call(self, fn: Callable, *args, **kwargs) -> Any:
         """
         Call function through circuit breaker.
-        
+
         Args:
             fn: Function to call
             *args: Positional arguments
             **kwargs: Keyword arguments
-        
+
         Returns:
             Result from function call
-        
+
         Raises:
             CircuitOpenError: If circuit is open
             Exception: Any exception from fn
@@ -374,33 +374,33 @@ class CircuitBreaker:
                         f"Failures: {self._failure_count}, "
                         f"Timeout: {self.timeout}s"
                     )
-        
+
         try:
             result = fn(*args, **kwargs)
-            
+
             # Success, reset circuit
             with self._lock:
                 if self._state == "HALF_OPEN":
                     self._state = "CLOSED"
                     self.logger.info("Circuit breaker closed after successful test")
                 self._failure_count = 0
-            
+
             return result
-            
+
         except self.expected_exception as e:
             with self._lock:
                 self._failure_count += 1
                 self._last_failure_time = time.time()
-                
+
                 if self._failure_count >= self.failure_threshold:
                     if self._state != "OPEN":
                         self._state = "OPEN"
                         self.logger.warning(
                             f"Circuit breaker opened after {self._failure_count} failures"
                         )
-            
+
             raise
-    
+
     def reset(self):
         """Manually reset circuit breaker to CLOSED state."""
         with self._lock:
@@ -408,21 +408,21 @@ class CircuitBreaker:
             self._last_failure_time = None
             self._state = "CLOSED"
             self.logger.info("Circuit breaker manually reset to CLOSED")
-    
+
     def get_state(self) -> str:
         """
         Get current circuit state.
-        
+
         Returns:
             Current state: "CLOSED", "OPEN", or "HALF_OPEN"
         """
         with self._lock:
             return self._state
-    
+
     def get_failure_count(self) -> int:
         """
         Get current failure count.
-        
+
         Returns:
             Number of consecutive failures
         """

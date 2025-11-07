@@ -4,8 +4,8 @@
 
 Get up and running in 5 minutes or less!
 
-Version: 3.0  
-Last Updated: 2025-01-30  
+Version: 3.0
+Last Updated: 2025-01-30
 Phase: 15 - Typer CLI Migration
 
 ---
@@ -17,6 +17,7 @@ Phase: 15 - Typer CLI Migration
 - Basic understanding of YAML configuration
 
 ### Optional
+
 - GitHub personal access token (for GitHub API features)
 - Gerrit credentials (if using Gerrit)
 - Jenkins credentials (if using Jenkins)
@@ -35,16 +36,19 @@ cd project-reports
 ### 2. Install Dependencies
 
 **Recommended: Using UV (faster)**
+
 ```bash
 uv sync
 ```
 
 **Alternative: Using pip**
+
 ```bash
 pip install .
 ```
 
 **Verify installation:**
+
 ```bash
 reporting-tool --version
 ```
@@ -200,6 +204,7 @@ reporting-tool generate \
 ```
 
 Output:
+
 ```
 🔍 Running pre-flight validation checks...
 
@@ -307,10 +312,10 @@ api:
   github:
     enabled: true
     token: "${GITHUB_TOKEN}"
-  
+
 privacy:
   anonymize_emails: false
-  
+
 performance:
   max_workers: 8
   cache_enabled: true
@@ -329,10 +334,11 @@ reporting-tool generate \
   --cache
 ```
 
-**First run:** Slow (analyzes all repos)  
+**First run:** Slow (analyzes all repos)
 **Subsequent runs:** Fast (uses cached metrics)
 
 **Clear cache when needed:**
+
 ```bash
 rm -rf .cache/repo-metrics/
 ```
@@ -415,16 +421,19 @@ export GITHUB_TOKEN="ghp_your_token_here"
 **Solutions:**
 
 1. **Enable caching:**
+
    ```bash
    reporting-tool generate --project my-project --repos-path /workspace/repos --cache
    ```
 
 2. **Increase workers:**
+
    ```bash
    reporting-tool generate --project my-project --repos-path /workspace/repos --workers 16
    ```
 
 3. **Reduce time windows:**
+
    ```yaml
    # Only analyze last 90 days
    time_windows:
@@ -433,6 +442,7 @@ export GITHUB_TOKEN="ghp_your_token_here"
    ```
 
 4. **Generate specific format:**
+
    ```bash
    reporting-tool generate --project my-project --repos-path /workspace/repos --output-format json
    ```
@@ -500,6 +510,7 @@ echo "Report generated: $OUTPUT"
 ```
 
 Schedule with cron:
+
 ```bash
 # Run daily at 2 AM
 0 2 * * * /path/to/daily-report.sh
@@ -555,11 +566,13 @@ open output/my-project_report.html
 If you're upgrading from the old `reporting-tool generate` command structure:
 
 **Old way:**
+
 ```bash
 reporting-tool generate --project my-project --repos-path ./repos
 ```
 
 **New way:**
+
 ```bash
 reporting-tool generate --project my-project --repos-path ./repos
 ```
@@ -650,5 +663,5 @@ reporting-tool generate \
 
 ---
 
-Last Updated: 2025-01-30  
+Last Updated: 2025-01-30
 Version: 3.0 (Phase 15 - Typer CLI Migration)

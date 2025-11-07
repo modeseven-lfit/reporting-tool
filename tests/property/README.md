@@ -1,7 +1,7 @@
 # Property-Based Tests
 
-**Testing Strategy:** Property-Based Testing with Hypothesis  
-**Purpose:** Validate invariants and mathematical properties across domain models  
+**Testing Strategy:** Property-Based Testing with Hypothesis
+**Purpose:** Validate invariants and mathematical properties across domain models
 **Coverage:** Time windows, aggregations, transformations, and data conversions
 
 ---
@@ -13,6 +13,7 @@ Property-based testing is a testing methodology where you specify **properties**
 Unlike traditional example-based tests that check specific inputs and outputs, property-based tests verify that certain rules always apply, regardless of the input.
 
 **Benefits:**
+
 - Discovers edge cases that humans might not think of
 - Tests properties rather than specific examples
 - Generates minimal failing examples when bugs are found
@@ -27,6 +28,7 @@ Unlike traditional example-based tests that check specific inputs and outputs, p
 Tests invariants for `TimeWindow` and `TimeWindowStats` domain models:
 
 **TimeWindow Properties:**
+
 - Serialization roundtrip preserves data
 - Instances are immutable (frozen dataclass)
 - Days is always positive
@@ -35,6 +37,7 @@ Tests invariants for `TimeWindow` and `TimeWindowStats` domain models:
 - Rejects invalid inputs (non-positive days, empty names)
 
 **TimeWindowStats Properties:**
+
 - Serialization roundtrip preserves data
 - Invariant: `lines_net = lines_added - lines_removed`
 - All counts are non-negative (except net)
@@ -45,6 +48,7 @@ Tests invariants for `TimeWindow` and `TimeWindowStats` domain models:
 - Rejects invalid inputs (negative counts, inconsistent net)
 
 **Example Property:**
+
 ```python
 @given(valid_time_window_stats())
 def test_stats_net_lines_invariant(self, stats: TimeWindowStats):
@@ -58,11 +62,13 @@ def test_stats_net_lines_invariant(self, stats: TimeWindowStats):
 Tests invariants for aggregating metrics across authors and repositories:
 
 **General Aggregation Properties:**
+
 - Sum ≥ max element
 - Sum is associative
 - Empty list sum is zero (identity)
 
 **Author Metrics Aggregation:**
+
 - Total commits = sum of individual author commits
 - Aggregated LOC maintains net invariant
 - Combining authors never decreases totals
@@ -71,6 +77,7 @@ Tests invariants for aggregating metrics across authors and repositories:
 - Domain grouping preserves totals
 
 **Repository Metrics Aggregation:**
+
 - Total commits = sum of repo commits
 - Aggregated LOC maintains net invariant
 - Active repos ≤ total repos
@@ -78,10 +85,12 @@ Tests invariants for aggregating metrics across authors and repositories:
 - Order independence
 
 **TimeWindowStats Aggregation:**
+
 - Aggregation preserves net invariant
 - Sum of stats with 1 commit each = count of stats
 
 **Example Property:**
+
 ```python
 @given(st.lists(valid_author_metrics(), min_size=1, max_size=20))
 def test_aggregated_loc_maintains_net_invariant(self, authors):
@@ -90,7 +99,7 @@ def test_aggregated_loc_maintains_net_invariant(self, authors):
         total_added = sum(author.lines_added.get(window, 0) for author in authors)
         total_removed = sum(author.lines_removed.get(window, 0) for author in authors)
         total_net = sum(author.lines_net.get(window, 0) for author in authors)
-        
+
         # Invariant must hold after aggregation
         assert total_net == total_added - total_removed
 ```
@@ -100,41 +109,47 @@ def test_aggregated_loc_maintains_net_invariant(self, authors):
 Tests properties of data transformations and conversions:
 
 **Serialization/Deserialization:**
+
 - Roundtrip preserves data (dict → model → dict)
 - Types are preserved
 - All required fields maintained
 
 **Data Transformations:**
+
 - Filtering reduces or maintains size
 - Mapping preserves list length
 - Sorting preserves elements
 - Grouping preserves total count
 
 **Normalization:**
+
 - Lowercase is idempotent: `f(f(x)) = f(x)`
 - Strip is idempotent
 - Strip never increases length
 - Deduplication reduces or maintains size
 
 **Conversions:**
+
 - int → str → int is identity
 - float → int loses fractional part
 - list → set → list preserves unique elements
 - dict → items → dict is identity
 
 **Validation:**
+
 - `max(0, x)` clamps negative to zero
 - Clamping keeps values in range
 - Default value replacement ensures non-empty results
 
 **Example Property:**
+
 ```python
 @given(valid_dict_for_author())
 def test_author_from_dict_to_dict_roundtrip(self, author_dict):
     """Property: AuthorMetrics dict → model → dict is identity."""
     author = AuthorMetrics.from_dict(author_dict)
     result_dict = author.to_dict()
-    
+
     # Should match original
     assert result_dict["email"] == author_dict["email"]
     assert result_dict["commits"] == author_dict["commits"]
@@ -199,23 +214,27 @@ Strategies are used to generate random test data. We define custom strategies fo
 ### Custom Strategies
 
 **`valid_time_window()`**
+
 - Generates valid `TimeWindow` instances
 - Days: 1 to 3650 (10 years)
 - Dates: 2000-01-01 to 2030-12-31
 - Names: 1-10 characters
 
 **`valid_time_window_stats()`**
+
 - Generates valid `TimeWindowStats` instances
 - Maintains invariant: `lines_net = lines_added - lines_removed`
 - Non-negative values for commits, lines, contributors
 
 **`valid_author_metrics()`**
+
 - Generates valid `AuthorMetrics` instances
 - Valid email addresses
 - Consistent metrics across time windows
 - Maintains LOC invariants
 
 **`valid_repository_metrics()`**
+
 - Generates valid `RepositoryMetrics` instances
 - Valid project names and hosts
 - Consistent activity status and commit counts
@@ -239,6 +258,7 @@ def test_my_property(window):
 ### Step 1: Identify the Property
 
 Think about what should **always** be true:
+
 - Mathematical properties (commutative, associative, identity)
 - Invariants (relationships that must hold)
 - Roundtrip properties (serialize/deserialize)
@@ -466,14 +486,15 @@ def test_specific_failing_case():
 
 ## Metrics
 
-**Total Property Tests:** 60+  
-**Test Files:** 3  
-**Average Examples Per Test:** 100  
+**Total Property Tests:** 60+
+**Test Files:** 3
+**Average Examples Per Test:** 100
 **Total Test Cases Generated:** 6,000+
 
 **Coverage:**
+
 - TimeWindow: 20+ properties
-- TimeWindowStats: 15+ properties  
+- TimeWindowStats: 15+ properties
 - Author Metrics: 10+ properties
 - Repository Metrics: 8+ properties
 - Transformations: 20+ properties
@@ -483,11 +504,13 @@ def test_specific_failing_case():
 ## References
 
 ### Documentation
+
 - [Hypothesis Documentation](https://hypothesis.readthedocs.io/)
 - [Property-Based Testing Guide](https://hypothesis.works/articles/what-is-property-based-testing/)
 - [Hypothesis Strategies](https://hypothesis.readthedocs.io/en/latest/data.html)
 
 ### Resources
+
 - [Property-Based Testing Patterns](https://www.hillelwayne.com/post/pbt-patterns/)
 - [Invariants and Properties](https://fsharpforfunandprofit.com/posts/property-based-testing-2/)
 
@@ -504,21 +527,22 @@ When adding new property tests:
 5. **Run and validate** - Ensure it passes and is meaningful
 
 Example:
+
 ```python
 @given(my_custom_strategy())
 @settings(max_examples=100)
 def test_my_new_property(self, data):
     """Property: Clear description of what should always hold."""
     # Arrange (if needed)
-    
+
     # Act
     result = my_function(data)
-    
+
     # Assert the property
     assert some_invariant_holds(result)
 ```
 
 ---
 
-**Last Updated:** 2025-01-25  
+**Last Updated:** 2025-01-25
 **Status:** ✅ Complete (60+ property tests, 100% passing)

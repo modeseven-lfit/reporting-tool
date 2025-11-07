@@ -8,7 +8,7 @@
         - count (int): Optional item count to display
         - id (str): Optional ID for the section (auto-generated from title if not provided)
         - class (str): Optional CSS class for the header
-    
+
     Example usage:
         {% set title = "Repository Analysis" %}
         {% set count = 42 %}
@@ -61,7 +61,7 @@
         {% endif %}
     </h6>
     {% endif %}
-    
+
     {% if subtitle is defined and subtitle %}
     <p class="subtitle">{{ subtitle }}</p>
     {% endif %}

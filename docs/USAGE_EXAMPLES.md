@@ -4,7 +4,7 @@
 
 Common workflows and real-world usage examples.
 
-Last Updated: 2025-01-25  
+Last Updated: 2025-01-25
 Version: 2.0 (Phase 13 - CLI & UX Improvements)
 
 ---
@@ -47,6 +47,7 @@ open output/my-first-project_report.html
 ```
 
 **What just happened?**
+
 1. ✅ Created configuration file: `config/my-first-project.yaml`
 2. ✅ Analyzed repositories in `./repos`
 3. ✅ Generated HTML report in `output/`
@@ -70,6 +71,7 @@ reporting-tool generate --project quick-start --repos-path ./repos
 ```
 
 **Templates:**
+
 - `minimal` - Bare essentials (~50 lines)
 - `standard` - Recommended defaults (~150 lines)
 - `full` - All options documented (~400 lines)
@@ -89,6 +91,7 @@ reporting-tool init --project production-reports
 ```
 
 **Sample interaction:**
+
 ```
 🧙 Configuration Wizard
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -154,6 +157,7 @@ reporting-tool init \
 ```
 
 **When to use each:**
+
 - **minimal**: CI/CD pipelines, quick testing
 - **standard**: Most projects, recommended default
 - **full**: Complex projects needing all options documented
@@ -185,6 +189,7 @@ reporting-tool list-features
 ```
 
 **Output:**
+
 ```
 📦 Repository Reporting System - Available Features
 
@@ -196,10 +201,10 @@ Total: 24 features across 7 categories
 
   📦 docker
      Docker containerization
-     
+
   ⚙️  gradle
      Gradle build configuration
-     
+
   📦 maven
      Maven build configuration
 ...
@@ -225,6 +230,7 @@ reporting-tool list-features --detail coverage
 ```
 
 **Example output:**
+
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📦 docker
@@ -325,6 +331,7 @@ reporting-tool generate \
 ```
 
 **Output:**
+
 ```
 🔍 Running pre-flight validation checks...
 
@@ -441,14 +448,14 @@ OUTPUT_BASE="/reports/$(date +%Y-%m-%d)"
 
 for project in "${PROJECTS[@]}"; do
   echo "Generating report for: $project"
-  
+
   reporting-tool generate \
     --project "$project" \
     --repos-path "$BASE_REPOS/$project" \
     --output-dir "$OUTPUT_BASE/$project" \
     --cache \
     --quiet
-  
+
   if [ $? -eq 0 ]; then
     echo "✓ $project: SUCCESS"
   else
@@ -487,10 +494,10 @@ EXIT_CODE=$?
 if [ $EXIT_CODE -eq 0 ]; then
   # Success - archive old reports
   find "$ARCHIVE" -type f -mtime +30 -delete
-  
+
   # Copy to archive
   cp "$OUTPUT/${PROJECT}_report.html" "$ARCHIVE/${PROJECT}_$(date +%Y%m%d).html"
-  
+
   # Send notification (optional)
   echo "Report generated: $OUTPUT" | mail -s "Daily Report Ready" team@example.com
 else
@@ -503,6 +510,7 @@ exit $EXIT_CODE
 ```
 
 **Cron schedule:**
+
 ```cron
 # Run daily at 2 AM
 0 2 * * * /path/to/daily-report.sh
@@ -575,32 +583,32 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout report generator
         uses: actions/checkout@v3
         with:
           repository: org/project-reports
           path: reporter
-      
+
       - name: Checkout repositories
         uses: actions/checkout@v3
         with:
           repository: org/all-repos
           path: repos
-      
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      
+
       - name: Install dependencies
         run: |
           cd reporter
           uv sync  # Recommended
 # or
 pip install .
-      
+
       - name: Generate reports
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -611,13 +619,13 @@ pip install .
             --repos-path ../repos \
             --output-dir ../output \
             --quiet
-      
+
       - name: Upload reports
         uses: actions/upload-artifact@v3
         with:
           name: repository-reports
           path: output/
-      
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -634,7 +642,7 @@ pip install .
 generate-reports:
   stage: deploy
   image: python:3.11
-  
+
   script:
     - uv sync  # Recommended
 # or
@@ -644,12 +652,12 @@ pip install .
         --repos-path /data/repos
         --output-dir output/
         --quiet
-  
+
   artifacts:
     paths:
       - output/
     expire_in: 30 days
-  
+
   only:
     - schedules
 ```
@@ -662,11 +670,11 @@ pip install .
 // Jenkinsfile
 pipeline {
     agent any
-    
+
     triggers {
         cron('0 2 * * 1')  // Weekly on Monday at 2 AM
     }
-    
+
     stages {
         stage('Setup') {
             steps {
@@ -675,7 +683,7 @@ pipeline {
 pip install .'
             }
         }
-        
+
         stage('Generate Reports') {
             steps {
                 withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
@@ -689,7 +697,7 @@ pip install .'
                 }
             }
         }
-        
+
         stage('Publish') {
             steps {
                 publishHTML([
@@ -697,12 +705,12 @@ pip install .'
                     reportFiles: '*_report.html',
                     reportName: 'Repository Analysis'
                 ])
-                
+
                 archiveArtifacts artifacts: 'output/**', allowEmptyArchive: false
             }
         }
     }
-    
+
     post {
         failure {
             mail to: 'ops@example.com',
@@ -732,14 +740,14 @@ OUTPUT_BASE="/reports/org-analysis/$(date +%Y-%m)"
 # Clone/update all org repositories
 for org in "${ORGS[@]}"; do
   echo "Processing organization: $org"
-  
+
   # Update repositories (assuming already cloned)
   for repo in "$BASE_REPOS/$org"/*; do
     if [ -d "$repo/.git" ]; then
       (cd "$repo" && git pull --quiet)
     fi
   done
-  
+
   # Generate org report
   reporting-tool generate \
     --project "$org" \
@@ -936,27 +944,27 @@ for repo in "$REPOS_PATH"/*; do
   if [ ! -d "$repo/.git" ]; then
     continue
   fi
-  
+
   repo_name=$(basename "$repo")
   echo "Testing: $repo_name"
-  
+
   # Create temp directory with single repo
   temp_dir=$(mktemp -d)
   cp -r "$repo" "$temp_dir/"
-  
+
   # Try to generate report
   reporting-tool generate \
     --project "test-$repo_name" \
     --repos-path "$temp_dir" \
     --output-dir /tmp/test-output \
     --quiet
-  
+
   if [ $? -ne 0 ]; then
     echo "❌ FAILED: $repo_name"
   else
     echo "✓ OK: $repo_name"
   fi
-  
+
   # Cleanup
   rm -rf "$temp_dir" /tmp/test-output
 done
@@ -986,7 +994,7 @@ grep "took" profile.log | sort -k3 -n | tail -20
 # Test with different worker counts
 for workers in 1 4 8 16; do
   echo "Testing with $workers workers..."
-  
+
   start=$(date +%s)
   reporting-tool generate \
     --project perf-test \
@@ -994,7 +1002,7 @@ for workers in 1 4 8 16; do
     --workers $workers \
     --quiet
   end=$(date +%s)
-  
+
   duration=$((end - start))
   echo "Workers: $workers, Time: ${duration}s"
 done
@@ -1014,14 +1022,14 @@ CONFIGS=("config/prod.config" "config/dev.config" "config/test.config")
 
 for config in "${CONFIGS[@]}"; do
   echo "Testing configuration: $config"
-  
+
   # Validate
   reporting-tool generate \
     --project test \
     --repos-path /data/repos \
     --config-dir $(dirname "$config") \
     --dry-run
-  
+
   if [ $? -eq 0 ]; then
     echo "✓ $config: VALID"
   else
@@ -1085,19 +1093,19 @@ PROJECTS=("kubernetes" "prometheus" "grafana")
 
 for project in "${PROJECTS[@]}"; do
   echo "Setting up: $project"
-  
+
   # Create config from template
   reporting-tool init \
     --init-template standard \
     --project "$project" \
     --config-output "config/${project}.yaml"
-  
+
   # Validate
   reporting-tool generate \
     --project "$project" \
     --repos-path "/data/repos/$project" \
     --dry-run
-  
+
   # Generate report
   reporting-tool generate \
     --project "$project" \
@@ -1125,6 +1133,7 @@ reporting-tool generate --project test --repos-path ./repos -vv
 ```
 
 **Verbose output:**
+
 ```
 📊 Performance Summary
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1252,6 +1261,7 @@ reporting-tool generate \
 ---
 
 **Need more examples? Check these guides:**
+
 - [CLI Guide](CLI_GUIDE.md) - Complete CLI documentation
 - [CLI Reference](CLI_REFERENCE.md) - All command options
 - [CLI Cheat Sheet](CLI_CHEAT_SHEET.md) - Quick reference
@@ -1261,6 +1271,6 @@ reporting-tool generate \
 
 ---
 
-Last Updated: 2025-01-25  
-Version: 2.0 (Phase 13 - CLI & UX Improvements)  
+Last Updated: 2025-01-25
+Version: 2.0 (Phase 13 - CLI & UX Improvements)
 Status: Production Ready

@@ -1,7 +1,7 @@
 # Developer Quick Reference Guide
 
-**Reporting Tool - Refactored Architecture**  
-**Version:** 2.0 (Post-Refactoring)  
+**Reporting Tool - Refactored Architecture**
+**Version:** 2.0 (Post-Refactoring)
 **Last Updated:** 2025-01-24
 
 ---
@@ -154,12 +154,12 @@ def render_my_format(self, data: dict, output_path: Path) -> None:
 ```python
 class MyServiceAPIClient:
     """Client for My Service API."""
-    
+
     def __init__(self, host: str, timeout: float = 30.0):
         self.host = host
         self.timeout = timeout
         # Setup client
-    
+
     def get_data(self, resource: str) -> dict:
         """Fetch data from API."""
         # Implementation
@@ -329,7 +329,7 @@ features:
     - ci_cd
     - documentation
     - testing
-    
+
 extensions:
   github_api:
     enabled: true
@@ -425,7 +425,7 @@ print(f"Errors: {len(data['errors'])}")
 
 ### RepositoryReporter
 
-**Purpose:** Main orchestration  
+**Purpose:** Main orchestration
 **Location:** `src/reporting_tool/reporter.py`
 
 ```python
@@ -436,7 +436,7 @@ files = reporter.generate_reports(repos_path, output_dir)
 
 ### GitDataCollector
 
-**Purpose:** Git metrics collection  
+**Purpose:** Git metrics collection
 **Location:** `src/reporting_tool/collectors/git.py`
 
 ```python
@@ -446,7 +446,7 @@ metrics = collector.collect_repo_git_metrics(repo_path)
 
 ### FeatureRegistry
 
-**Purpose:** Feature detection  
+**Purpose:** Feature detection
 **Location:** `src/reporting_tool/features/registry.py`
 
 ```python
@@ -456,7 +456,7 @@ features = registry.detect_features(repo_path)
 
 ### DataAggregator
 
-**Purpose:** Data aggregation  
+**Purpose:** Data aggregation
 **Location:** `src/reporting_tool/aggregators/data.py`
 
 ```python
@@ -468,7 +468,7 @@ summaries = aggregator.aggregate_global_data(repos)
 
 ### ReportRenderer
 
-**Purpose:** Report generation  
+**Purpose:** Report generation
 **Location:** `src/reporting_tool/renderers/report.py`
 
 ```python

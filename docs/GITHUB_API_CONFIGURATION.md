@@ -76,16 +76,18 @@ If `github_org` is not explicitly configured, the system will automatically deri
 When auto-detection is used:
 
 **Success:**
+
 ```
 > ✅ GitHub organization derived successfully: `onap` for repository `aai-babel`
 ```
 
 **Failure:**
+
 ```
 > ❌ GitHub API query failed using derived organization `onap` for `aai-babel`
-> 
+>
 > Error: 404 Not Found
-> 
+>
 > Possible causes:
 > - Repository may not exist on GitHub as `onap/aai-babel`
 > - Repository naming may differ between Gerrit and GitHub
@@ -95,6 +97,7 @@ When auto-detection is used:
 ### When to Use Explicit Mapping
 
 Use explicit `github_org` configuration when:
+
 - Auto-detection derives the wrong organization name
 - Your Gerrit hostname doesn't match your GitHub organization
 - Repository naming differs significantly between Gerrit and GitHub
@@ -172,9 +175,9 @@ The reporting workflow will validate GitHub API configuration and display the st
 - **GitHub Organization:** ⚠️ **Will attempt auto-detection from Gerrit hostname**
 
 > ℹ️ INFO: GitHub organization not explicitly configured.
-> 
+>
 > The system will attempt to derive the GitHub organization from the Gerrit hostname.
-> 
+>
 > Examples of auto-detection:
 > - `gerrit.onap.org` → `onap`
 > - `gerrit.o-ran-sc.org` → `o-ran-sc`
@@ -200,12 +203,14 @@ The reporting workflow will validate GitHub API configuration and display the st
 ### No GitHub API Statistics in Output
 
 **Symptoms:**
+
 - Workflow runs successfully
 - Reports are generated
 - No "External API Statistics" section in workflow summary
 - No workflow status colors in report.html
 
 **Causes:**
+
 1. Token not set or expired
 2. Auto-detected GitHub organization name doesn't match actual GitHub org
 3. Repository naming differs between Gerrit and GitHub
@@ -216,12 +221,14 @@ Check the workflow run summary for the "🔧 GitHub API Integration Status" sect
 ### 401 Authentication Failed
 
 **Symptoms:**
+
 ```
 ❌ GitHub API Authentication Failed for `onap/aai-babel`
 The GitHub token is invalid or has expired.
 ```
 
 **Solution:**
+
 1. Verify `CLASSIC_READ_ONLY_PAT_TOKEN` secret is set
 2. Check token hasn't expired
 3. Regenerate token if needed
@@ -229,11 +236,13 @@ The GitHub token is invalid or has expired.
 ### 403 Permission Denied
 
 **Symptoms:**
+
 ```
 ⚠️ GitHub API Permission Denied for `onap/policy-engine`
 ```
 
 **Solution:**
+
 1. Verify token has `repo` (or `public_repo`) scope
 2. Verify token has `workflow` scope
 3. Check if repository is private and token has access
@@ -241,6 +250,7 @@ The GitHub token is invalid or has expired.
 ### Wrong Repository Name
 
 **Symptoms:**
+
 - 404 errors for some repositories
 - GitHub API queries fail for specific repos
 
@@ -248,11 +258,13 @@ The GitHub token is invalid or has expired.
 Repository naming mismatch between Gerrit and GitHub.
 
 **Example:**
+
 - Gerrit: `aai/babel`
 - GitHub: `onap/aai-babel` ✅
 - GitHub: `onap/babel` ❌ (wrong)
 
 **Solution:**
+
 1. Verify the GitHub repository names match the expected pattern (the system joins multi-level Gerrit paths with hyphens)
 2. Add explicit `github_org` mapping to PROJECTS_JSON if auto-detection is incorrect
 3. Check workflow run summary for auto-detection messages
@@ -262,7 +274,9 @@ Repository naming mismatch between Gerrit and GitHub.
 To disable GitHub API queries:
 
 ### In PROJECTS_JSON
+
 Simply omit the `github_org` field (auto-detection will be skipped if GitHub API is disabled in config):
+
 ```json
 {
   "project": "ONAP",
@@ -272,6 +286,7 @@ Simply omit the `github_org` field (auto-detection will be skipped if GitHub API
 ```
 
 ### In Configuration File
+
 ```yaml
 extensions:
   github_api:
@@ -281,10 +296,12 @@ extensions:
 ## API Rate Limits
 
 GitHub API has rate limits:
+
 - **Authenticated:** 5,000 requests/hour
 - **Unauthenticated:** 60 requests/hour
 
 The reporting system:
+
 - Makes ~2-3 API calls per repository with workflows
 - Respects rate limits and retries on 429 errors
 - Reports API statistics in workflow summary
@@ -313,10 +330,11 @@ For large projects (100+ repositories), this should stay well under limits.
 ### Option A: Use Auto-Detection (Easiest)
 
 1. **Set up GitHub token:**
+
    ```bash
    gh secret set CLASSIC_READ_ONLY_PAT_TOKEN
    ```
-   
+
 2. **Run workflow** - Auto-detection will derive GitHub org from Gerrit hostname
 
 3. **Check workflow summary** for auto-detection results
@@ -324,6 +342,7 @@ For large projects (100+ repositories), this should stay well under limits.
 ### Option B: Explicit Configuration
 
 1. **Update PROJECTS_JSON variable:**
+
    ```bash
    gh variable set PROJECTS_JSON --body '[
      {
@@ -336,6 +355,7 @@ For large projects (100+ repositories), this should stay well under limits.
    ```
 
 2. **Verify token is set:**
+
    ```bash
    gh secret list | grep CLASSIC_READ_ONLY_PAT_TOKEN
    ```
@@ -357,6 +377,7 @@ For large projects (100+ repositories), this should stay well under limits.
 ## Support
 
 For issues or questions:
+
 1. Check workflow run summary for validation errors
 2. Review this documentation
 3. Open an issue in the project-reports repository

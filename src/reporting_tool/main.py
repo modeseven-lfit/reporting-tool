@@ -355,10 +355,10 @@ def write_config_to_step_summary(config: dict[str, Any], project: str) -> None:
 def main(args=None) -> int:
     """
     Main entry point for report generation.
-    
+
     Args:
         args: Parsed arguments namespace (from argparse or CLI)
-        
+
     Returns:
         Exit code (0 for success, non-zero for errors)
     """
@@ -377,12 +377,12 @@ def main(args=None) -> int:
 
         # Determine GitHub organization once - centralized
         github_org, github_org_source = determine_github_org(args.repos_path)
-        
+
         if github_org:
             # Store in config for all components to use
             config["github"] = github_org
             config["_github_org_source"] = github_org_source
-            
+
             # Log what we determined
             if github_org_source == "auto_derived":
                 print(f"ℹ️  Derived GitHub organization '{github_org}' from repository path", file=sys.stderr)

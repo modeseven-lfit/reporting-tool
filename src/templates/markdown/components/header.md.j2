@@ -7,7 +7,7 @@
         - subtitle (str): Optional subtitle
         - count (int): Optional item count to display
         - metadata (dict): Optional metadata to display (key-value pairs)
-    
+
     Example usage:
         {% set title = "Repository Analysis" %}
         {% set count = 42 %}
@@ -29,6 +29,6 @@
 
 {% if metadata is defined and metadata %}
 {% for key, value in metadata.items() %}
-**{{ key }}:** {{ value }}  
+**{{ key }}:** {{ value }}
 {% endfor %}
 {% endif %}

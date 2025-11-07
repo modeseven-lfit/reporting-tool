@@ -9,12 +9,12 @@ for performance threshold tests and benchmarks.
 """
 
 import json
-import tempfile
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any
 from unittest.mock import MagicMock
 
 import pytest
+
 
 # Performance thresholds (adjust based on baseline measurements)
 PERFORMANCE_THRESHOLDS = {
@@ -23,22 +23,18 @@ PERFORMANCE_THRESHOLDS = {
     "cache_set": 0.002,  # 2ms
     "cache_cleanup": 0.1,  # 100ms
     "cache_invalidate": 0.005,  # 5ms
-    
     # Parallel processing (seconds)
     "worker_pool_creation": 0.1,  # 100ms
     "batch_processing_per_item": 0.05,  # 50ms per item
     "result_aggregation": 0.01,  # 10ms
-    
     # Batch operations (seconds)
     "request_batching": 0.01,  # 10ms
     "rate_limit_check": 0.001,  # 1ms
     "request_deduplication": 0.005,  # 5ms
-    
     # Memory limits (MB)
     "cache_max_size": 100,  # 100MB
     "worker_memory_per_item": 10,  # 10MB per item
     "batch_memory_overhead": 50,  # 50MB overhead
-    
     # Throughput (items/second)
     "cache_ops_per_second": 1000,
     "batch_requests_per_second": 100,
@@ -55,13 +51,13 @@ BENCHMARK_CONFIG = {
 
 
 @pytest.fixture
-def perf_thresholds() -> Dict[str, float]:
+def perf_thresholds() -> dict[str, float]:
     """Return performance thresholds for validation."""
     return PERFORMANCE_THRESHOLDS.copy()
 
 
 @pytest.fixture
-def benchmark_config() -> Dict[str, Any]:
+def benchmark_config() -> dict[str, Any]:
     """Return benchmark configuration."""
     return BENCHMARK_CONFIG.copy()
 
@@ -75,7 +71,7 @@ def temp_cache_dir(tmp_path: Path) -> Path:
 
 
 @pytest.fixture
-def mock_cache_entries(temp_cache_dir: Path) -> List[Dict[str, Any]]:
+def mock_cache_entries(temp_cache_dir: Path) -> list[dict[str, Any]]:
     """Create mock cache entries for testing."""
     entries = []
     for i in range(100):
@@ -86,17 +82,17 @@ def mock_cache_entries(temp_cache_dir: Path) -> List[Dict[str, Any]]:
             "ttl": 3600,
         }
         entries.append(entry)
-        
+
         # Write to cache file
         cache_file = temp_cache_dir / f"entry_{i}.json"
         with open(cache_file, "w") as f:
             json.dump(entry, f)
-    
+
     return entries
 
 
 @pytest.fixture
-def mock_repository_data() -> List[Dict[str, Any]]:
+def mock_repository_data() -> list[dict[str, Any]]:
     """Generate mock repository data for batch processing."""
     repositories = []
     for i in range(50):
@@ -113,7 +109,7 @@ def mock_repository_data() -> List[Dict[str, Any]]:
 
 
 @pytest.fixture
-def mock_api_responses() -> List[Dict[str, Any]]:
+def mock_api_responses() -> list[dict[str, Any]]:
     """Generate mock API responses for testing."""
     responses = []
     for i in range(100):
@@ -137,21 +133,21 @@ def performance_logger():
     logger = MagicMock()
     logger.timings = []
     logger.memory_samples = []
-    
+
     def log_timing(operation: str, duration: float):
         logger.timings.append({"operation": operation, "duration": duration})
-    
+
     def log_memory(operation: str, memory_mb: float):
         logger.memory_samples.append({"operation": operation, "memory_mb": memory_mb})
-    
+
     logger.log_timing = log_timing
     logger.log_memory = log_memory
-    
+
     return logger
 
 
 @pytest.fixture
-def large_dataset() -> List[Dict[str, Any]]:
+def large_dataset() -> list[dict[str, Any]]:
     """Generate a large dataset for stress testing."""
     return [
         {
@@ -173,6 +169,7 @@ def memory_constraint_mb() -> int:
 def worker_count() -> int:
     """Return optimal worker count for testing."""
     import multiprocessing
+
     return min(multiprocessing.cpu_count(), 4)
 
 
@@ -190,13 +187,13 @@ def assert_within_threshold(
 ) -> None:
     """
     Assert that an actual value is within threshold with margin.
-    
+
     Args:
         actual: Actual measured value
         threshold: Expected threshold
         operation: Name of operation being tested
         margin: Acceptable margin as percentage (default 10%)
-    
+
     Raises:
         AssertionError: If actual exceeds threshold + margin
     """
@@ -204,7 +201,7 @@ def assert_within_threshold(
     assert actual <= max_allowed, (
         f"{operation} exceeded threshold: "
         f"{actual:.6f}s > {max_allowed:.6f}s "
-        f"(threshold: {threshold:.6f}s + {margin*100}% margin)"
+        f"(threshold: {threshold:.6f}s + {margin * 100}% margin)"
     )
 
 
@@ -216,13 +213,13 @@ def assert_memory_within_limit(
 ) -> None:
     """
     Assert that memory usage is within limit with margin.
-    
+
     Args:
         actual_mb: Actual memory usage in MB
         limit_mb: Memory limit in MB
         operation: Name of operation being tested
         margin: Acceptable margin as percentage (default 10%)
-    
+
     Raises:
         AssertionError: If memory exceeds limit + margin
     """
@@ -230,7 +227,7 @@ def assert_memory_within_limit(
     assert actual_mb <= max_allowed, (
         f"{operation} exceeded memory limit: "
         f"{actual_mb:.2f}MB > {max_allowed:.2f}MB "
-        f"(limit: {limit_mb:.2f}MB + {margin*100}% margin)"
+        f"(limit: {limit_mb:.2f}MB + {margin * 100}% margin)"
     )
 
 
@@ -242,13 +239,13 @@ def assert_throughput_meets_minimum(
 ) -> None:
     """
     Assert that throughput meets minimum requirement.
-    
+
     Args:
         actual_ops_per_sec: Actual operations per second
         minimum_ops_per_sec: Minimum required ops/sec
         operation: Name of operation being tested
         margin: Acceptable margin as percentage (default 10%)
-    
+
     Raises:
         AssertionError: If throughput is below minimum - margin
     """
@@ -256,7 +253,7 @@ def assert_throughput_meets_minimum(
     assert actual_ops_per_sec >= min_allowed, (
         f"{operation} below throughput requirement: "
         f"{actual_ops_per_sec:.2f} ops/sec < {min_allowed:.2f} ops/sec "
-        f"(minimum: {minimum_ops_per_sec:.2f} ops/sec - {margin*100}% margin)"
+        f"(minimum: {minimum_ops_per_sec:.2f} ops/sec - {margin * 100}% margin)"
     )
 
 

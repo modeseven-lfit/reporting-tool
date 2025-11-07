@@ -25,7 +25,7 @@ jobs:
     name: Quick Validation
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5d08a4e57e534c0b8c44a23f7a3cff84e3f # v2.13.2
@@ -79,7 +79,7 @@ jobs:
     needs: quick-checks
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5d08a4e57e534c0b8c44a23f7a3cff84e3f # v2.13.2
@@ -126,7 +126,7 @@ jobs:
     name: Linting and Formatting
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5d08a4e57e534c0b8c44a23f7a3cff84e3f # v2.13.2
@@ -165,7 +165,7 @@ jobs:
     name: Security Scanning
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@95d9a5d08a4e57e534c0b8c44a23f7a3cff84e3f # v2.13.2
@@ -214,30 +214,30 @@ jobs:
     if: github.event_name == 'pull_request' && always()
     runs-on: ubuntu-latest
     timeout-minutes: 3
-    
+
     steps:
       - name: Generate PR comment
         uses: actions/github-script@ed59741e841120dd8e79189bd448bfb98239a2c7 # v8.0.0
         with:
           script: |
             const summary = `## Pre-commit Check Results
-            
+
             | Check | Status |
             |-------|--------|
             | Quick Validation | ${{ needs.quick-checks.result }} |
             | Fast Tests | ${{ needs.fast-tests.result }} |
             | Linting & Formatting | ${{ needs.lint-and-format.result }} |
             | Security Scan | ${{ needs.security-scan.result }} |
-            
+
             ### Next Steps
-            
-            ${needs.quick-checks.result === 'success' && needs.fast-tests.result === 'success' 
-              ? '✅ All pre-commit checks passed! Ready for review.' 
+
+            ${needs.quick-checks.result === 'success' && needs.fast-tests.result === 'success'
+              ? '✅ All pre-commit checks passed! Ready for review.'
               : '⚠️ Some checks failed. Please review the logs.'}
-            
+
             Full test suite will run on merge to main.
             `;
-            
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,

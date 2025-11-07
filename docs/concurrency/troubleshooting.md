@@ -1,8 +1,8 @@
 # Concurrency Troubleshooting Guide
 
-**Author:** Repository Reporting System Team  
-**Date:** 2025-01-16  
-**Version:** 1.0  
+**Author:** Repository Reporting System Team
+**Date:** 2025-01-16
+**Version:** 1.0
 **Phase:** 7 - Concurrency Strategy Refinement
 
 ---
@@ -24,6 +24,7 @@
 ### Issue 1: Program Hangs / Deadlock
 
 **Symptoms**:
+
 - Program stops responding
 - No progress for extended period
 - CPU usage drops to 0%
@@ -44,6 +45,7 @@ python -c "import faulthandler; faulthandler.dump_traceback_later(10)" generate_
 **Common Causes**:
 
 1. **Circular Lock Dependency**
+
    ```python
    # Thread A: acquires lock1, waits for lock2
    # Thread B: acquires lock2, waits for lock1
@@ -51,6 +53,7 @@ python -c "import faulthandler; faulthandler.dump_traceback_later(10)" generate_
    ```
 
 2. **Re-acquiring Same Lock**
+
    ```python
    with self._lock:
        self.method_that_also_locks()  # Deadlock!
@@ -59,6 +62,7 @@ python -c "import faulthandler; faulthandler.dump_traceback_later(10)" generate_
 **Solutions**:
 
 1. **Always acquire locks in same order**:
+
    ```python
    # Good: consistent order
    with lock_a:
@@ -67,11 +71,13 @@ python -c "import faulthandler; faulthandler.dump_traceback_later(10)" generate_
    ```
 
 2. **Use RLock for recursive locking**:
+
    ```python
    self._lock = threading.RLock()  # Reentrant lock
    ```
 
 3. **Add timeout to detect deadlocks**:
+
    ```python
    if self._lock.acquire(timeout=30):
        try:
@@ -87,6 +93,7 @@ python -c "import faulthandler; faulthandler.dump_traceback_later(10)" generate_
 ### Issue 2: Race Condition / Inconsistent Results
 
 **Symptoms**:
+
 - Results vary between runs
 - Occasional errors that disappear on retry
 - Data inconsistencies (e.g., wrong counts)
@@ -107,12 +114,14 @@ diff output_sequential.json output_concurrent.json
 **Common Causes**:
 
 1. **Unprotected Shared State**:
+
    ```python
    # Bad: no lock protection
    self.counter += 1  # Race condition!
    ```
 
 2. **Check-Then-Act Pattern**:
+
    ```python
    # Bad: not atomic
    if key not in self.cache:  # Check
@@ -122,18 +131,21 @@ diff output_sequential.json output_concurrent.json
 **Solutions**:
 
 1. **Add lock protection**:
+
    ```python
    with self._lock:
        self.counter += 1  # Thread-safe
    ```
 
 2. **Use atomic operations**:
+
    ```python
    # Thread-safe dict operations
    self.cache.setdefault(key, value)
    ```
 
 3. **Make state immutable**:
+
    ```python
    # Read-only after initialization
    self.config = config  # Never modified
@@ -144,6 +156,7 @@ diff output_sequential.json output_concurrent.json
 ### Issue 3: Poor Scaling / No Speedup
 
 **Symptoms**:
+
 - Adding workers doesn't improve performance
 - Speedup much less than expected
 - Efficiency < 50%
@@ -174,6 +187,7 @@ python scripts/profile_performance.py \
 **Solutions**:
 
 **For CPU-Bound**:
+
 ```json
 {
   "performance": {
@@ -184,6 +198,7 @@ python scripts/profile_performance.py \
 ```
 
 **For Lock Contention**:
+
 ```python
 # Before: large critical section
 with self._lock:
@@ -199,6 +214,7 @@ with self._lock:
 ```
 
 **For I/O Saturation**:
+
 ```bash
 # Copy to faster disk
 rsync -av /slow/repos/ /fast/ssd/repos/
@@ -212,6 +228,7 @@ rsync -av /slow/repos/ /fast/ssd/repos/
 ### Issue 4: Memory Leaks / High Memory Usage
 
 **Symptoms**:
+
 - Memory usage grows over time
 - Out of memory errors
 - System becomes unresponsive
@@ -229,12 +246,14 @@ top -pid $(pgrep -f generate_reports)
 **Common Causes**:
 
 1. **Accumulating References**:
+
    ```python
    # Bad: keeps all data in memory
    self.all_results.append(large_data)
    ```
 
 2. **Circular References**:
+
    ```python
    # Can prevent garbage collection
    obj.parent = parent
@@ -242,6 +261,7 @@ top -pid $(pgrep -f generate_reports)
    ```
 
 3. **Too Many Workers**:
+
    ```python
    # Each worker holds memory
    max_workers = 100  # Too many!
@@ -250,6 +270,7 @@ top -pid $(pgrep -f generate_reports)
 **Solutions**:
 
 1. **Process in batches**:
+
    ```python
    # Don't load all at once
    for batch in chunks(repos, batch_size=10):
@@ -258,9 +279,10 @@ top -pid $(pgrep -f generate_reports)
    ```
 
 2. **Explicit cleanup**:
+
    ```python
    import gc
-   
+
    results = process_repos(repos)
    # ... use results ...
    del results
@@ -268,6 +290,7 @@ top -pid $(pgrep -f generate_reports)
    ```
 
 3. **Reduce max_workers**:
+
    ```json
    {"performance": {"max_workers": 4}}  // Lower memory footprint
    ```
@@ -304,14 +327,14 @@ class DebugLock:
     def __init__(self, name):
         self._lock = threading.Lock()
         self.name = name
-    
+
     def acquire(self, timeout=-1):
         print(f"[{threading.current_thread().name}] Acquiring {self.name}")
         result = self._lock.acquire(timeout=timeout)
         if result:
             print(f"[{threading.current_thread().name}] Acquired {self.name}")
         return result
-    
+
     def release(self):
         print(f"[{threading.current_thread().name}] Releasing {self.name}")
         self._lock.release()
@@ -330,7 +353,7 @@ python -X dev -m pytest tests/ --thread-check
 ```python
 def test_concurrent_stress():
     errors = []
-    
+
     def worker():
         try:
             for _ in range(1000):
@@ -338,13 +361,13 @@ def test_concurrent_stress():
                 context.allocate_jobs(...)
         except Exception as e:
             errors.append(e)
-    
+
     threads = [threading.Thread(target=worker) for _ in range(100)]
     for t in threads:
         t.start()
     for t in threads:
         t.join()
-    
+
     assert len(errors) == 0, f"Race conditions detected: {errors}"
 ```
 
@@ -394,7 +417,8 @@ self._lock = threading.RLock()  # Reentrant
 
 **Cause**: Circular references or infinite recursion in concurrent code
 
-**Solution**: 
+**Solution**:
+
 1. Check for circular lock dependencies
 2. Add recursion guards
 3. Review call stack for patterns
@@ -413,6 +437,7 @@ def process(self, data, _depth=0):
 **Cause**: Process crashed in ProcessPoolExecutor
 
 **Solution**:
+
 1. Check for segfaults (native code)
 2. Look for OOM kills
 3. Add error handling in worker functions
@@ -433,6 +458,7 @@ def worker(data):
 **Cause**: Lock held too long or deadlock
 
 **Solution**:
+
 1. Increase timeout (if legitimate long operation)
 2. Investigate deadlock (if timeout is frequent)
 3. Reduce critical section size
@@ -461,16 +487,19 @@ python scripts/profile_performance.py --config config.json --workers 1,8
 ```
 
 **If CPU-Bound**:
+
 - Top functions are parsing, processing (not I/O)
 - CPU utilization > 90%
 - Consider ProcessPoolExecutor (future)
 
 **If Lock Contention**:
+
 - Threads blocked in `Lock.acquire()`
 - Reduce critical section size
 - Use finer-grained locks
 
 **If I/O Saturation**:
+
 - Disk/network bandwidth maxed
 - Use faster storage
 - Reduce max_workers
@@ -489,11 +518,13 @@ Workers | Time (s)
 ```
 
 **Causes**:
+
 1. **Thread overhead** dominates for small workloads
 2. **Lock contention** creates serialization
 3. **GIL thrashing** for CPU-bound code
 
 **Solutions**:
+
 1. Use fewer workers: `max_workers = 4`
 2. Sequential for small projects: `max_workers = 1`
 3. Batch work to amortize overhead
@@ -546,6 +577,7 @@ for result in results:
 ```
 
 **Causes**:
+
 1. Worker exception not caught
 2. Timeout in subprocess
 3. Race condition in data collection
@@ -587,11 +619,13 @@ lsof -p $(pgrep -f generate_reports)
 **Solutions**:
 
 1. **Increase limit**:
+
    ```bash
    ulimit -n 4096
    ```
 
 2. **Close files explicitly**:
+
    ```python
    with open(file) as f:
        data = f.read()
@@ -599,6 +633,7 @@ lsof -p $(pgrep -f generate_reports)
    ```
 
 3. **Reduce max_workers**:
+
    ```json
    {"performance": {"max_workers": 4}}
    ```
@@ -617,17 +652,20 @@ top -H -p $(pgrep -f generate_reports)
 **Solutions**:
 
 1. **Reduce max_workers**:
+
    ```json
    {"performance": {"max_workers": 4}}
    ```
 
 2. **Add delays**:
+
    ```python
    import time
    time.sleep(0.01)  # Yield CPU
    ```
 
 3. **Lower priority**:
+
    ```bash
    nice -n 10 reporting-tool generate
    ```
@@ -641,11 +679,13 @@ top -H -p $(pgrep -f generate_reports)
 **Gather this information**:
 
 1. **Configuration**:
+
    ```bash
    cat config.json
    ```
 
 2. **System info**:
+
    ```bash
    python --version
    uname -a
@@ -654,12 +694,14 @@ top -H -p $(pgrep -f generate_reports)
    ```
 
 3. **Error logs**:
+
    ```bash
    # Full error with traceback
    reporting-tool generate 2>&1 | tee error.log
    ```
 
 4. **Profiling data**:
+
    ```bash
    python scripts/profile_performance.py --config config.json
    ```
@@ -687,28 +729,35 @@ Brief description of the problem
 ```
 
 ## Steps to Reproduce
+
 1. Clone repositories
 2. Run: `reporting-tool generate --config config.json`
 3. Observe error
 
 ## Expected Behavior
+
 Should complete successfully
 
 ## Actual Behavior
+
 Hangs after 5 minutes
 
 ## Logs
+
 ```
 [ERROR] ...
 ```
 
 ## Profiling Data
+
 Attached: profiling_comparison.md
 
 ## What I've Tried
+
 - Reduced max_workers to 4 (still hangs)
 - Disabled caching (no change)
 - Ran sequentially (works fine)
+
 ```
 
 ### Getting Support
@@ -762,6 +811,6 @@ Attached: profiling_comparison.md
 
 ---
 
-**Version**: 1.0  
-**Last Updated**: 2025-01-16  
+**Version**: 1.0
+**Last Updated**: 2025-01-16
 **Maintained By**: Repository Reporting System Team

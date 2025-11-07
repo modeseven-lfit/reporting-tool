@@ -160,6 +160,7 @@ To customize the analysis:
    - `<project>.config`: Project-specific overrides
 
 2. **Time Windows**: Adjust analysis periods in project config:
+
    ```yaml
    time_windows:
      last_30_days: 30
@@ -167,6 +168,7 @@ To customize the analysis:
    ```
 
 3. **Features**: Enable/disable feature detection in config:
+
    ```yaml
    features:
      enabled:
@@ -257,13 +259,14 @@ schedule:
    ```bash
    # Install the tool
    pip install -e .
-   
+
    # Run a test report
    reporting-tool generate \
      --project test-project \
      --repos-path ./test-repos \
      --dry-run
    ```
+
 5. For GitHub API issues, see [GitHub Token Requirements](docs/GITHUB_TOKEN_REQUIREMENTS.md)
 6. For configuration issues, see [Configuration Guide](docs/CONFIG_WIZARD_GUIDE.md)
 7. For general troubleshooting, see [Troubleshooting Guide](docs/TROUBLESHOOTING.md)

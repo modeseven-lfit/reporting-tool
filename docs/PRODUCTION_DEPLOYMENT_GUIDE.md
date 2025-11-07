@@ -1,8 +1,8 @@
 # Production Deployment Guide
 
-**Version:** 1.0.0  
-**Date:** 2025-01-29  
-**Status:** PRODUCTION READY  
+**Version:** 1.0.0
+**Date:** 2025-01-29
+**Status:** PRODUCTION READY
 **System:** Repository Reporting System
 
 ---
@@ -87,20 +87,26 @@ This guide provides step-by-step instructions for deploying the Repository Repor
 **Software Requirements:**
 
 - [ ] **Python:** 3.10, 3.11, or 3.12 installed
+
   ```bash
   python --version
   # Expected: Python 3.10.x, 3.11.x, or 3.12.x
   ```
+
 - [ ] **pip:** Latest version
+
   ```bash
   pip --version
   # Expected: pip 23.x or higher
   ```
+
 - [ ] **Git:** 2.x or higher
+
   ```bash
   git --version
   # Expected: git version 2.x
   ```
+
 - [ ] **Operating System:** Linux, macOS, or Windows with WSL
 
 ### ✅ Access Requirements
@@ -110,16 +116,19 @@ This guide provides step-by-step instructions for deploying the Repository Repor
 - [ ] GitHub Personal Access Token (PAT) created
 - [ ] Token scopes: `repo` (private) or `public_repo` (public only)
 - [ ] Token tested and working
+
   ```bash
   curl -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
   # Should return your user info (200 OK)
   ```
+
 - [ ] Rate limit confirmed: 5000 req/hr (authenticated)
 
 **Gerrit Access (if applicable):**
 
 - [ ] Gerrit credentials obtained
 - [ ] API access verified
+
   ```bash
   curl -u "$GERRIT_USERNAME:$GERRIT_PASSWORD" https://gerrit.example.com/a/projects/
   # Should return project list or empty array (200 OK)
@@ -139,6 +148,7 @@ This guide provides step-by-step instructions for deploying the Repository Repor
   - Jenkins servers (if used)
 - [ ] DNS resolution working
 - [ ] Proxy configured (if required)
+
   ```bash
   export HTTP_PROXY="http://proxy.example.com:8080"
   export HTTPS_PROXY="http://proxy.example.com:8080"
@@ -183,18 +193,21 @@ This guide provides step-by-step instructions for deploying the Repository Repor
 ### Choosing a Deployment Method
 
 **Use Local Installation if:**
+
 - You need to run reports manually on-demand
 - You're testing or developing locally
 - You have a single server/workstation
 - You prefer direct control
 
 **Use GitHub Actions if:**
+
 - You want automated, scheduled report generation
 - You're using GitHub already
 - You want reports integrated with CI/CD
 - You prefer cloud-based execution
 
 **Docker (Future):**
+
 - Containerized deployment
 - Multi-environment consistency
 - Kubernetes orchestration
@@ -314,13 +327,13 @@ api:
     token: ${GITHUB_TOKEN}
     # Or specify directly (NOT RECOMMENDED in production)
     # token: ghp_xxxxxxxxxxxx
-    
+
   gerrit:
     # Optional: Only if using Gerrit
     enabled: false
     # username: ${GERRIT_USERNAME}
     # password: ${GERRIT_PASSWORD}
-    
+
   jenkins:
     # Optional: Only if using Jenkins
     enabled: false
@@ -630,7 +643,7 @@ if [ "$EXIT_CODE" != "0" ]; then
     # Send email alert (requires mailutils)
     echo "Report generation failed with exit code $EXIT_CODE" | \
         mail -s "ALERT: Report Generation Failed" ops-team@example.com
-    
+
     # Or send Slack notification
     # curl -X POST -H 'Content-type: application/json' \
     #   --data '{"text":"Report generation failed"}' \
@@ -751,7 +764,7 @@ on:
   # Schedule: Daily at 2 AM UTC
   schedule:
     - cron: '0 2 * * *'
-  
+
   # Manual trigger
   workflow_dispatch:
     inputs:
@@ -783,43 +796,43 @@ jobs:
     name: Generate Reports
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@v2
         with:
           egress-policy: audit
-      
+
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Full history for git operations
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
-      
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           uv sync  # Recommended
 # or: pip install .
-      
+
       - name: Clone repositories
         run: |
           # Clone your repositories to analyze
           mkdir -p repos
           cd repos
-          
+
           # Example: Clone specific repositories
           # git clone https://github.com/org/repo1.git
           # git clone https://github.com/org/repo2.git
-          
+
           # Or use API to discover repos
           # (Add your repository discovery logic here)
-      
+
       - name: Generate reports
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -833,7 +846,7 @@ jobs:
             --repos-path repos \
             --workers "$WORKERS" \
             --output-format all
-      
+
       - name: Upload reports as artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -844,7 +857,7 @@ jobs:
             *-report.html
             *-report.json
           retention-days: 30
-      
+
       - name: Upload to release (optional)
         if: success() && github.event_name == 'schedule'
         uses: softprops/action-gh-release@v1
@@ -854,7 +867,7 @@ jobs:
             *-report.txt
             *-report.html
             *-report.json
-      
+
       - name: Notify on failure
         if: failure()
         run: |
@@ -930,10 +943,10 @@ Edit `.github/workflows/generate-reports.yaml`:
 schedule:
   # Daily at 2 AM UTC
   - cron: '0 2 * * *'
-  
+
   # Weekly on Monday at 2 AM UTC
   # - cron: '0 2 * * 1'
-  
+
   # Twice daily at 2 AM and 2 PM UTC
   # - cron: '0 2,14 * * *'
 ```
@@ -984,23 +997,27 @@ config/
 **Priority Order (highest to lowest):**
 
 1. **Command-line arguments**
+
    ```bash
    --project PROD --workers 8
    ```
 
 2. **Environment variables**
+
    ```bash
    export GITHUB_TOKEN="ghp_xxx"
    export WORKERS=8
    ```
 
 3. **Configuration file**
+
    ```yaml
    # config/PRODUCTION.yaml
    workers: 8
    ```
 
 4. **Template defaults**
+
    ```yaml
    # config/template.config
    workers: 4  # fallback default
@@ -1011,6 +1028,7 @@ config/
 **1. Use Environment Variables for Secrets**
 
 ✅ **Good:**
+
 ```yaml
 api:
   github:
@@ -1018,6 +1036,7 @@ api:
 ```
 
 ❌ **Bad:**
+
 ```yaml
 api:
   github:
@@ -1218,13 +1237,13 @@ NEW_TOKEN="$1"
 # Test new token
 if curl -f -H "Authorization: token $NEW_TOKEN" https://api.github.com/user > /dev/null 2>&1; then
     echo "✅ New token valid"
-    
+
     # Update .env file
     sed -i "s/$OLD_TOKEN/$NEW_TOKEN/" /opt/project-reports/.env
-    
+
     # Reload
     source /opt/project-reports/.env
-    
+
     echo "✅ Token rotated successfully"
     echo "⚠️  Revoke old token at: https://github.com/settings/tokens"
 else
@@ -1354,6 +1373,7 @@ Issues? Contact: [DEPLOYMENT LEAD] or #project-reports
 ### Purpose
 
 Smoke tests verify basic functionality after deployment:
+
 - System installs correctly
 - Dependencies work
 - Configuration valid
@@ -1746,18 +1766,21 @@ fi
 ### Validation Timeline
 
 **Immediate (Day 1):**
+
 - Verify deployment completed successfully
 - Run smoke tests
 - Check monitoring dashboards
 - Review initial report generation
 
 **Short-term (Week 1):**
+
 - Monitor daily executions
 - Verify scheduled runs working
 - Check report quality
 - Collect user feedback
 
 **Long-term (Month 1):**
+
 - Analyze performance trends
 - Optimize configuration
 - Address any recurring issues
@@ -1829,16 +1852,17 @@ fi
 
 **Deployment is considered successful if:**
 
-✅ **All smoke tests pass**  
-✅ **Reports generated correctly**  
-✅ **Error rate <1%**  
-✅ **Performance meets SLOs**  
-✅ **Scheduled executions working**  
-✅ **Monitoring functional**  
-✅ **No critical issues**  
+✅ **All smoke tests pass**
+✅ **Reports generated correctly**
+✅ **Error rate <1%**
+✅ **Performance meets SLOs**
+✅ **Scheduled executions working**
+✅ **Monitoring functional**
+✅ **No critical issues**
 ✅ **User feedback positive**
 
 **If criteria not met:**
+
 - Investigate issues
 - Fix if possible
 - Consider rollback if severe
@@ -1853,6 +1877,7 @@ fi
 **Rollback Triggers:**
 
 🔴 **Immediate Rollback Required:**
+
 - Data corruption or loss
 - Security vulnerability introduced
 - System-wide failure (>50% error rate)
@@ -1860,6 +1885,7 @@ fi
 - Compliance violation
 
 🟡 **Rollback Considered:**
+
 - Performance degradation >2x
 - Error rate >10%
 - Unable to generate reports
@@ -1922,11 +1948,13 @@ reporting-tool generate --project TEST --repos-path /tmp/test
 
 1. Edit `.github/workflows/generate-reports.yaml`
 2. Change checkout step:
+
    ```yaml
    - uses: actions/checkout@v4
      with:
        ref: v1.0.0  # Pin to specific version
    ```
+
 3. Commit and push
 
 **Option C: Disable Workflow**
@@ -1940,69 +1968,76 @@ reporting-tool generate --project TEST --repos-path /tmp/test
 **Step-by-Step Rollback:**
 
 1. **Announce Rollback**
+
    ```
    Subject: ROLLBACK IN PROGRESS - Repository Reporting System
-   
+
    Team, we are initiating a rollback due to [REASON].
    Expected completion: [TIME]
    Impact: [DESCRIPTION]
    ```
 
 2. **Stop Current Processes**
+
    ```bash
    # Stop scheduled jobs
    crontab -r  # Remove all cron jobs
    # Or disable specific job
-   
+
    # Kill running processes
    pkill -f generate_reports.py
    ```
 
 3. **Execute Rollback**
+
    ```bash
    # Use appropriate method (see above)
    # Git-based, config, or GitHub Actions
    ```
 
 4. **Verify Rollback**
+
    ```bash
    # Run smoke tests
    ./run-all-smoke-tests.sh
-   
+
    # Check version
    reporting-tool --version
-   
+
    # Test report generation
    reporting-tool generate --project TEST --repos-path /tmp/test
    ```
 
 5. **Restore Services**
+
    ```bash
    # Re-enable cron jobs (if applicable)
    crontab -e
    # Add back cron entries
-   
+
    # Or restart systemd service
    sudo systemctl restart project-reports
    ```
 
 6. **Monitor**
+
    ```bash
    # Watch logs
    tail -f logs/production.log
-   
+
    # Check for errors
    grep -i error logs/production.log
    ```
 
 7. **Announce Completion**
+
    ```
    Subject: ROLLBACK COMPLETE - Repository Reporting System
-   
+
    Rollback completed successfully.
    System restored to previous version.
    All services operational.
-   
+
    Next steps:
    - Root cause analysis
    - Fix planning
@@ -2012,18 +2047,21 @@ reporting-tool generate --project TEST --repos-path /tmp/test
 ### Post-Rollback Actions
 
 **Immediate (within 1 hour):**
+
 - [ ] Confirm system stable
 - [ ] Verify reports generating
 - [ ] Check monitoring
 - [ ] Update stakeholders
 
 **Short-term (within 24 hours):**
+
 - [ ] Root cause analysis
 - [ ] Document incident
 - [ ] Create bug fix plan
 - [ ] Update tests to catch issue
 
 **Long-term (within 1 week):**
+
 - [ ] Implement fixes
 - [ ] Enhanced testing
 - [ ] Update runbooks
@@ -2064,11 +2102,13 @@ echo "✅ Rollback test successful"
 **Issue 1: Installation Fails**
 
 **Symptoms:**
+
 ```
 ERROR: Could not install packages
 ```
 
 **Diagnosis:**
+
 ```bash
 # Check Python version
 python --version
@@ -2081,6 +2121,7 @@ ping pypi.org
 ```
 
 **Solution:**
+
 ```bash
 # Upgrade pip
 python -m pip install --upgrade pip
@@ -2098,11 +2139,13 @@ pip install Jinja2
 **Issue 2: Configuration Invalid**
 
 **Symptoms:**
+
 ```
 ❌ Error: Invalid YAML syntax
 ```
 
 **Diagnosis:**
+
 ```bash
 # Validate YAML
 python -c "import yaml; yaml.safe_load(open('config/PRODUCTION.yaml'))"
@@ -2112,6 +2155,7 @@ grep -P '\t' config/PRODUCTION.yaml
 ```
 
 **Solution:**
+
 ```bash
 # Fix YAML syntax
 # Common issues:
@@ -2127,11 +2171,13 @@ yamllint config/PRODUCTION.yaml
 **Issue 3: Secrets Not Found**
 
 **Symptoms:**
+
 ```
 ❌ Error: GITHUB_TOKEN not found
 ```
 
 **Diagnosis:**
+
 ```bash
 # Check if secret is set
 echo $GITHUB_TOKEN
@@ -2144,6 +2190,7 @@ ls -la .env
 ```
 
 **Solution:**
+
 ```bash
 # Load secrets
 source .env
@@ -2158,11 +2205,13 @@ curl -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
 **Issue 4: Permission Denied**
 
 **Symptoms:**
+
 ```
 ❌ Error: Permission denied: '/data/reports'
 ```
 
 **Diagnosis:**
+
 ```bash
 # Check directory permissions
 ls -ld /data/reports
@@ -2172,6 +2221,7 @@ stat /data/reports
 ```
 
 **Solution:**
+
 ```bash
 # Fix permissions
 sudo chown -R $USER:$USER /data/reports
@@ -2185,11 +2235,13 @@ reporting-tool generate --output-path ~/reports
 **Issue 5: GitHub API Rate Limit**
 
 **Symptoms:**
+
 ```
 ⚠️  Warning: GitHub API rate limit exceeded
 ```
 
 **Diagnosis:**
+
 ```bash
 # Check rate limit
 curl -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/rate_limit
@@ -2200,6 +2252,7 @@ curl -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/rate_limit
 ```
 
 **Solution:**
+
 ```bash
 # Wait for reset (shown in rate limit response)
 # Or use caching to reduce API calls
@@ -2215,6 +2268,7 @@ date -d @$(curl -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/r
 **Issue 6: Out of Memory**
 
 **Symptoms:**
+
 ```
 Killed
 # Or:
@@ -2222,6 +2276,7 @@ MemoryError
 ```
 
 **Diagnosis:**
+
 ```bash
 # Check memory usage
 free -h
@@ -2231,6 +2286,7 @@ dmesg | grep -i "out of memory"
 ```
 
 **Solution:**
+
 ```bash
 # Reduce workers
 reporting-tool generate --workers 2
@@ -2245,10 +2301,12 @@ reporting-tool generate --repos-path /data/repos/batch2
 **Issue 7: GitHub Actions Workflow Fails**
 
 **Symptoms:**
+
 - Workflow shows red X
 - Job fails at specific step
 
 **Diagnosis:**
+
 1. Click on failed workflow run
 2. Click on failed job
 3. Expand failed step
@@ -2328,12 +2386,14 @@ curl -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/user
 ### Getting Help
 
 **1. Check Documentation:**
+
 - [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
 - [CLI_FAQ.md](CLI_FAQ.md)
 - [ERROR_HANDLING_BEST_PRACTICES.md](ERROR_HANDLING_BEST_PRACTICES.md)
 
 **2. Search Issues:**
-- GitHub Issues: https://github.com/lfit/project-reports/issues
+
+- GitHub Issues: <https://github.com/lfit/project-reports/issues>
 - Search for error message
 
 **3. Enable Debug Logging:**
@@ -2346,11 +2406,13 @@ reporting-tool generate \
 ```
 
 **4. Contact Support:**
+
 - Slack: #project-reports
-- Email: project-reports@linuxfoundation.org
-- Create issue: https://github.com/lfit/project-reports/issues/new
+- Email: <project-reports@linuxfoundation.org>
+- Create issue: <https://github.com/lfit/project-reports/issues/new>
 
 **Include in Support Request:**
+
 - Error message (full text)
 - Configuration file (with secrets removed)
 - Log output (relevant portions)
@@ -2364,18 +2426,21 @@ reporting-tool generate \
 ### Regular Maintenance Tasks
 
 **Daily:**
+
 - [ ] Review execution logs
 - [ ] Check for failures
 - [ ] Monitor resource usage
 - [ ] Verify reports generated
 
 **Weekly:**
+
 - [ ] Review error rates
 - [ ] Check performance trends
 - [ ] Update documentation as needed
 - [ ] Review user feedback
 
 **Monthly:**
+
 - [ ] Update dependencies
 - [ ] Review security advisories
 - [ ] Rotate secrets (if applicable)
@@ -2383,6 +2448,7 @@ reporting-tool generate \
 - [ ] Review and archive old logs
 
 **Quarterly:**
+
 - [ ] Rotate tokens/credentials
 - [ ] Review and optimize performance
 - [ ] Update documentation
@@ -2390,6 +2456,7 @@ reporting-tool generate \
 - [ ] Disaster recovery drill
 
 **Annually:**
+
 - [ ] Comprehensive security audit
 - [ ] Performance benchmark comparison
 - [ ] Architecture review
@@ -2798,11 +2865,11 @@ Error Occurred?
 
 **Support Channels:**
 
-- **Documentation:** https://github.com/lfit/project-reports/tree/main/docs
-- **Issues:** https://github.com/lfit/project-reports/issues
-- **Discussions:** https://github.com/lfit/project-reports/discussions
+- **Documentation:** <https://github.com/lfit/project-reports/tree/main/docs>
+- **Issues:** <https://github.com/lfit/project-reports/issues>
+- **Discussions:** <https://github.com/lfit/project-reports/discussions>
 - **Slack:** #project-reports (internal)
-- **Email:** project-reports@linuxfoundation.org
+- **Email:** <project-reports@linuxfoundation.org>
 
 **Escalation Path:**
 
@@ -2831,18 +2898,18 @@ Error Occurred?
 
 This deployment guide is a living document. If you find issues, have suggestions, or discover better practices, please:
 
-1. **Create an issue:** https://github.com/lfit/project-reports/issues/new
+1. **Create an issue:** <https://github.com/lfit/project-reports/issues/new>
 2. **Submit a PR:** Update this guide and submit for review
 3. **Share in Slack:** #project-reports channel
 
-**Questions about this guide?**  
+**Questions about this guide?**
 See [CLI_FAQ.md](CLI_FAQ.md) or create an issue.
 
 ---
 
 **End of Production Deployment Guide**
 
-**Status:** PRODUCTION READY  
-**Version:** 1.0.0  
-**Last Updated:** 2025-01-29  
+**Status:** PRODUCTION READY
+**Version:** 1.0.0
+**Last Updated:** 2025-01-29
 **Next Review:** 2025-04-29 (quarterly)

@@ -144,7 +144,7 @@ class OperationTimer:
     def __enter__(self) -> 'OperationTimer':
         """Start timing and memory tracking."""
         self.start_time = time.perf_counter()
-        
+
         # Get current memory usage
         try:
             process = psutil.Process()
@@ -266,7 +266,7 @@ class MemoryTracker:
         start_mem = memories[0]
         end_mem = memories[-1]
         peak_mem = max(memories)
-        
+
         return {
             "available": True,
             "start_mb": start_mem / (1024 * 1024),
@@ -380,7 +380,7 @@ class PerformanceProfiler:
             Dictionary mapping operation names to aggregated metrics
         """
         operation_groups: Dict[str, List[OperationMetric]] = {}
-        
+
         for op in self.operations:
             key = f"{op.category}:{op.name}"
             if key not in operation_groups:
@@ -391,7 +391,7 @@ class PerformanceProfiler:
         for key, ops in operation_groups.items():
             durations = [op.duration for op in ops]
             memory_deltas = [op.memory_delta for op in ops]
-            
+
             aggregated[key] = AggregatedMetrics(
                 name=ops[0].name,
                 category=ops[0].category,
@@ -466,7 +466,7 @@ class ProfileReport:
         if self.aggregated:
             lines.append("\nOperation Summary:")
             lines.append("-" * 70)
-            
+
             by_category: Dict[str, List[AggregatedMetrics]] = {}
             for metrics in self.aggregated.values():
                 cat = metrics.category
@@ -564,7 +564,7 @@ class ProfileReport:
             format: Output format ('json' or 'text')
         """
         os.makedirs(os.path.dirname(filepath) if os.path.dirname(filepath) else ".", exist_ok=True)
-        
+
         with open(filepath, 'w') as f:
             if format == "json":
                 f.write(self.to_json())

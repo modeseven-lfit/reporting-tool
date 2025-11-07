@@ -11,10 +11,12 @@ Integration tests verify that multiple components work together correctly to ach
 ## Test Categories
 
 ### 1. End-to-End Report Generation (`test_report_generation.py`)
-**Tests:** 33 | **Status:** ✅ All Passing  
+
+**Tests:** 33 | **Status:** ✅ All Passing
 Tests the complete report generation workflow from repository analysis to output file creation.
 
 **Test Coverage:**
+
 - Single repository report generation (6 tests)
 - Multi-repository report generation (4 tests)
 - Different output formats (5 tests)
@@ -23,10 +25,12 @@ Tests the complete report generation workflow from repository analysis to output
 - Error handling (8 tests)
 
 ### 2. Workflow Integration (`test_workflows.py`)
-**Tests:** 22 | **Status:** ✅ All Passing  
+
+**Tests:** 22 | **Status:** ✅ All Passing
 Tests common user workflows and use cases.
 
 **Test Coverage:**
+
 - Repository analysis workflows (10 tests)
 - Incremental updates (3 tests)
 - Error recovery (4 tests)
@@ -34,10 +38,12 @@ Tests common user workflows and use cases.
 - Multi-repository processing (2 tests)
 
 ### 3. API Integration (`test_api_integration.py`)
-**Tests:** 21 | **Status:** ✅ All Passing  
+
+**Tests:** 21 | **Status:** ✅ All Passing
 Tests integration with external APIs using mock clients.
 
 **Test Coverage:**
+
 - GitHub API client (8 tests)
   - Repository metadata fetching
   - Pagination and rate limits
@@ -60,10 +66,12 @@ Tests integration with external APIs using mock clients.
   - Batch size limits
 
 ### 4. CLI Integration (`test_cli_integration.py`)
-**Tests:** 28 | **Status:** ⚠️ 16 Passing, 12 Failing (API mismatches)  
+
+**Tests:** 28 | **Status:** ⚠️ 16 Passing, 12 Failing (API mismatches)
 Tests command-line interface functionality.
 
 **Test Coverage:**
+
 - Argument parsing (7 tests)
   - Basic arguments, output formats, verbosity
   - Time windows, validation, mutual exclusivity
@@ -87,10 +95,12 @@ Tests command-line interface functionality.
   - Incremental updates
 
 ### 5. Data Pipeline (`test_data_pipeline.py`)
-**Tests:** 30 | **Status:** ✅ All Passing  
+
+**Tests:** 30 | **Status:** ✅ All Passing
 Tests the complete data collection and processing pipeline.
 
 **Test Coverage:**
+
 - Git log parsing (5 tests)
   - Basic commit info, statistics
   - Multiple authors, commit dates
@@ -118,6 +128,7 @@ Tests the complete data collection and processing pipeline.
 ## Running Integration Tests
 
 ### Run All Integration Tests
+
 ```bash
 # Run all 122 integration tests (~17 minutes)
 pytest tests/integration -v
@@ -127,6 +138,7 @@ pytest tests/integration -q
 ```
 
 ### Run Specific Test File
+
 ```bash
 # Report generation tests (33 tests, ~6 minutes)
 pytest tests/integration/test_report_generation.py -v
@@ -145,12 +157,14 @@ pytest tests/integration/test_data_pipeline.py -v
 ```
 
 ### Run with Coverage
+
 ```bash
 # Note: Integration tests focus on workflows, not line coverage
 pytest tests/integration --cov=src --cov-report=term-missing
 ```
 
 ### Run Specific Test Class or Method
+
 ```bash
 # Run a specific test class
 pytest tests/integration/test_report_generation.py::TestSingleRepositoryReport -v
@@ -163,6 +177,7 @@ pytest tests/integration -k "time_window" -v
 ```
 
 ### Run Fast Tests Only
+
 ```bash
 # Run only the fast tests (API and CLI - ~5 seconds total)
 pytest tests/integration/test_api_integration.py tests/integration/test_cli_integration.py -v
@@ -173,21 +188,25 @@ pytest tests/integration/test_api_integration.py tests/integration/test_cli_inte
 Integration tests use fixtures from `tests/fixtures/repositories.py`:
 
 ### Repository Fixtures
+
 - `synthetic_repo_simple` - Simple repository with 10 commits, 1 author
 - `synthetic_repo_complex` - Complex repository with 50 commits, 5 authors, multiple branches
 - `temp_git_repo` - Empty initialized git repository
 
 ### Configuration Fixtures
+
 - `test_config_minimal` - Minimal configuration (project, output_dir, time_windows)
 - `test_config_complete` - Complete configuration (all options)
 - `test_config_with_repos` - Configuration with repository paths
 
 ### Data Fixtures
+
 - `sample_commit_data` - Sample commit data for testing
 - `sample_repository_data` - Sample repository metadata
 - `sample_author_data` - Sample author statistics
 
 ### Utility Fixtures
+
 - `temp_output_dir` - Temporary output directory
 - `sample_json_file` - Sample JSON file for testing
 - `mock_github_env` - Mock GitHub environment variables
@@ -198,6 +217,7 @@ Integration tests use fixtures from `tests/fixtures/repositories.py`:
 Integration tests use synthetic repositories created with `create_synthetic_repository()`:
 
 **Features:**
+
 - Controlled commit history (one commit per day)
 - Configurable number of commits, authors, files
 - Multiple branch support
@@ -206,6 +226,7 @@ Integration tests use synthetic repositories created with `create_synthetic_repo
 - Known, predictable metrics
 
 **Usage:**
+
 ```python
 from tests.fixtures.repositories import create_synthetic_repository
 
@@ -230,6 +251,7 @@ Integration tests take significantly longer than unit tests due to git operation
 - **Individual Test Range:** 3ms to 60 seconds per test
 
 ### Performance by Test File
+
 - `test_api_integration.py` - ~3 seconds (mocked APIs)
 - `test_cli_integration.py` - ~2 seconds (mocked operations)
 - `test_workflows.py` - ~5 minutes (real git operations)
@@ -239,6 +261,7 @@ Integration tests take significantly longer than unit tests due to git operation
 ## Best Practices
 
 ### 1. Test Isolation
+
 Each test should be independent and not rely on the state from other tests.
 
 ```python
@@ -248,6 +271,7 @@ def test_something(tmp_path, synthetic_repo_simple):
 ```
 
 ### 2. Use Synthetic Data
+
 Prefer synthetic repositories over real repositories for predictable results.
 
 ```python
@@ -263,13 +287,14 @@ def test_with_synthetic_repo(tmp_path):
 ```
 
 ### 3. Verify Multiple Aspects
+
 Integration tests should verify multiple related aspects.
 
 ```python
 def test_report_generation(tmp_path, synthetic_repo_simple):
     # Generate report
     output = generate_report(synthetic_repo_simple, tmp_path)
-    
+
     # Verify multiple aspects
     assert output.exists()
     assert output.stat().st_size > 0
@@ -279,6 +304,7 @@ def test_report_generation(tmp_path, synthetic_repo_simple):
 ```
 
 ### 4. Test Error Paths
+
 Include tests for error conditions and recovery.
 
 ```python
@@ -293,6 +319,7 @@ def test_handles_missing_repository(tmp_path):
 - **Achieved:** 122 integration tests (152% of target) ✅
 
 ### Coverage by Area
+
 - ✅ Report generation workflows (33 tests)
 - ✅ Multi-repository processing (22 tests)
 - ✅ Error handling (15+ tests across all files)
@@ -306,16 +333,19 @@ def test_handles_missing_repository(tmp_path):
 ## Debugging
 
 ### Enable Verbose Output
+
 ```bash
 pytest tests/integration -vv --log-cli-level=DEBUG
 ```
 
 ### Keep Temporary Files
+
 ```bash
 pytest tests/integration --basetemp=./test-output
 ```
 
 ### Run Single Test with Full Output
+
 ```bash
 pytest tests/integration/test_report_generation.py::test_name -vv -s
 ```
@@ -323,6 +353,7 @@ pytest tests/integration/test_report_generation.py::test_name -vv -s
 ## Continuous Integration
 
 Integration tests run in CI on:
+
 - Every pull request
 - Every commit to main branch
 - Scheduled nightly builds
@@ -346,6 +377,7 @@ When adding new integration tests:
    - Use Mock() for external APIs
 
 3. **Document tests** - Add clear docstrings:
+
    ```python
    def test_feature_name(self, tmp_path):
        """Test that feature does X when Y happens."""
@@ -392,14 +424,17 @@ When adding new integration tests:
 ### Troubleshooting
 
 **Problem:** Time-based tests failing
+
 - **Cause:** Timezone differences or date calculation issues
 - **Solution:** Use ±2 day tolerance in assertions
 
 **Problem:** Git commands not working
+
 - **Cause:** Environment variables not set correctly
 - **Solution:** Use RFC 2822 date format, not ISO format
 
 **Problem:** Tests timing out
+
 - **Cause:** Too many commits in synthetic repository
 - **Solution:** Reduce commit count or increase timeout
 

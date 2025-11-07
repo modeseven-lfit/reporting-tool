@@ -1,8 +1,8 @@
 # Concurrency Model
 
-**Author:** Repository Reporting System Team  
-**Date:** 2025-01-16  
-**Version:** 1.0  
+**Author:** Repository Reporting System Team
+**Date:** 2025-01-16
+**Version:** 1.0
 **Phase:** 7 - Concurrency Strategy Refinement
 
 ---
@@ -61,12 +61,14 @@ Main Thread
 
 **Role**: Main entry point, coordinates all reporting activities
 
-**Thread Safety**: 
+**Thread Safety**:
+
 - Creates per-instance state (not shared across threads)
 - Spawns worker threads via `ThreadPoolExecutor`
 - Collects results in main thread only
 
 **Key Methods**:
+
 - `generate_all_reports()` - Main entry point (single-threaded)
 - `_analyze_repositories_parallel()` - Spawns worker threads
 - `_analyze_single_repository()` - Worker function (thread-safe)
@@ -84,12 +86,14 @@ class RepositoryReporter:
 
 **Role**: Manages Jenkins job allocation with duplicate prevention
 
-**Thread Safety**: 
+**Thread Safety**:
+
 - Internal lock protects all mutations
 - All public methods are thread-safe
 - Lock-free reads via snapshot pattern (where applicable)
 
 **Key Features**:
+
 - Prevents same job from being allocated to multiple repositories
 - Caches job data to avoid redundant API calls
 - Tracks orphaned jobs (matched to archived projects)
@@ -102,13 +106,14 @@ class JenkinsAllocationContext:
         self.allocated_jobs: Set[str] = set()
         self.job_cache: Dict[str, List[Dict]] = {}
         # ...
-    
+
     def allocate_jobs(self, repo_name, jobs):
         with self._lock:  # Thread-safe allocation
             # ... duplicate prevention logic
 ```
 
 **Design Benefits**:
+
 - ✅ Instance-level (no global state)
 - ✅ Fine-grained locking (minimal contention)
 - ✅ Testable in isolation
@@ -119,21 +124,23 @@ class JenkinsAllocationContext:
 **Role**: Analyzes individual repositories (git metrics, features, etc.)
 
 **Thread Safety**:
+
 - Each worker thread calls `collect_repo_git_metrics()` with different repo
 - Uses `JenkinsAllocationContext` for thread-safe job allocation
 - No shared mutable state between worker calls
 - Read-only access to configuration (immutable after load)
 
 **Concurrency Pattern**:
+
 ```python
 def collect_repo_git_metrics(self, repo_path):
     # Thread-safe operations:
     # 1. Git subprocess (isolated per thread)
     git_output = subprocess.run(["git", "log", ...])
-    
+
     # 2. Parse output (CPU-bound, no shared state)
     commits = self._parse_git_log_output(git_output)
-    
+
     # 3. Allocate Jenkins jobs (thread-safe via context)
     jobs = self._get_jenkins_jobs_for_repo(repo_name)
     # Uses: self.jenkins_allocation_context.allocate_jobs()
@@ -144,6 +151,7 @@ def collect_repo_git_metrics(self, repo_path):
 **Role**: Track API call statistics across all threads
 
 **Thread Safety**:
+
 - Internal lock protects all counter increments
 - Snapshot pattern for reads (copy data, release lock, format)
 - Thread-safe by design (see Phase 7 Day 1)
@@ -153,7 +161,7 @@ class APIStatistics:
     def __init__(self):
         self._lock = threading.Lock()
         self.stats = {...}
-    
+
     def record_success(self, api_type):
         with self._lock:
             self.stats[api_type]["success"] += 1
@@ -193,13 +201,14 @@ class MyThreadSafeClass:
     def __init__(self):
         self._lock = threading.Lock()  # Instance-level
         self.shared_state = {}
-    
+
     def thread_safe_method(self):
         with self._lock:
             # Modify shared_state safely
 ```
 
 **Benefits**:
+
 - No contention between unrelated instances
 - Easier to test (no global state)
 - Better encapsulation
@@ -219,6 +228,7 @@ def some_method():
 ```
 
 **Problems**:
+
 - ❌ Contention between independent operations
 - ❌ Hard to test (global state)
 - ❌ Poor encapsulation
@@ -237,11 +247,13 @@ def some_method():
 ### Lock-Free Patterns
 
 **Immutability**: Configuration is read-only after initialization
+
 ```python
 self.config = config  # Never modified after __init__
 ```
 
 **Thread-Local State**: Each worker creates its own data
+
 ```python
 def _analyze_single_repository(self, repo_path):
     metrics = {}  # Local to this thread, no sharing
@@ -250,6 +262,7 @@ def _analyze_single_repository(self, repo_path):
 ```
 
 **Snapshot Pattern**: Copy data before releasing lock
+
 ```python
 def get_stats(self):
     with self._lock:
@@ -269,6 +282,7 @@ def get_stats(self):
 **Use Case**: I/O-bound operations (git subprocess, API calls)
 
 **Configuration**:
+
 ```json
 {
   "performance": {
@@ -278,6 +292,7 @@ def get_stats(self):
 ```
 
 **Characteristics**:
+
 - ✅ Good for I/O-bound workloads (waiting on git, network)
 - ✅ Low overhead (threads share memory)
 - ✅ Simple to use and debug
@@ -285,6 +300,7 @@ def get_stats(self):
 - ⚠️ Not ideal for heavy computation
 
 **When to Use**:
+
 - Analyzing multiple repositories (I/O-bound)
 - Making API calls (network I/O)
 - Running git commands (subprocess I/O)
@@ -297,6 +313,7 @@ def get_stats(self):
 **Use Case**: CPU-bound operations (heavy parsing, computation)
 
 **Potential Configuration**:
+
 ```json
 {
   "performance": {
@@ -307,6 +324,7 @@ def get_stats(self):
 ```
 
 **Characteristics**:
+
 - ✅ Bypasses GIL (true parallelism)
 - ✅ Good for CPU-bound workloads
 - ❌ Higher overhead (process spawning, IPC)
@@ -314,6 +332,7 @@ def get_stats(self):
 - ❌ Higher memory usage
 
 **When to Consider**:
+
 - Git log parsing is CPU bottleneck (profile first!)
 - Large repositories (millions of commits)
 - Heavy data processing workloads
@@ -322,6 +341,7 @@ def get_stats(self):
 ### Sequential (Fallback)
 
 **Configuration**:
+
 ```json
 {
   "performance": {
@@ -331,6 +351,7 @@ def get_stats(self):
 ```
 
 **When to Use**:
+
 - Debugging (easier to trace)
 - Small workloads (overhead not worth it)
 - Testing (deterministic order)
@@ -355,21 +376,25 @@ def get_stats(self):
 ### Recommended Settings
 
 **Small Projects (<10 repos)**:
+
 ```json
 {"performance": {"max_workers": 4}}
 ```
 
 **Medium Projects (10-50 repos)**:
+
 ```json
 {"performance": {"max_workers": 8}}
 ```
 
 **Large Projects (>50 repos)**:
+
 ```json
 {"performance": {"max_workers": 16}}
 ```
 
 **Debugging**:
+
 ```json
 {"performance": {"max_workers": 1}}  // Sequential execution
 ```
@@ -379,11 +404,13 @@ def get_stats(self):
 **Formula**: `max_workers = min(num_cpus * 2, num_repos, 16)`
 
 **Rationale**:
+
 - I/O-bound: Can use more workers than CPUs (waiting time)
 - Diminishing returns: Beyond 16 workers, overhead increases
 - Memory: Each worker consumes memory (limit based on RAM)
 
 **Example**:
+
 - 4 CPU cores → max_workers = 8 (2× CPUs)
 - 100 repositories → still cap at 16 (diminishing returns)
 - 2 repositories → max_workers = 2 (no benefit beyond this)
@@ -397,6 +424,7 @@ def get_stats(self):
 #### 1. Avoid Shared Mutable State
 
 ❌ **Bad** (global mutable state):
+
 ```python
 # Module-level global
 cache = {}
@@ -406,12 +434,13 @@ def process_repo(repo):
 ```
 
 ✅ **Good** (instance-level or local):
+
 ```python
 class Processor:
     def __init__(self):
         self.cache = {}  # Instance-level
         self._lock = threading.Lock()
-    
+
     def process_repo(self, repo):
         with self._lock:
             self.cache[repo] = ...  # Thread-safe
@@ -420,6 +449,7 @@ class Processor:
 #### 2. Use Context Managers for Locks
 
 ❌ **Bad** (manual lock management):
+
 ```python
 self._lock.acquire()
 try:
@@ -429,6 +459,7 @@ finally:
 ```
 
 ✅ **Good** (context manager):
+
 ```python
 with self._lock:
     # ... critical section
@@ -438,6 +469,7 @@ with self._lock:
 #### 3. Keep Critical Sections Small
 
 ❌ **Bad** (lock held too long):
+
 ```python
 with self._lock:
     data = self.fetch_from_api()  # I/O under lock!
@@ -446,6 +478,7 @@ with self._lock:
 ```
 
 ✅ **Good** (minimal lock time):
+
 ```python
 # Do expensive work outside lock
 data = self.fetch_from_api()
@@ -462,16 +495,16 @@ with self._lock:
 class MyClass:
     """
     Brief description.
-    
+
     Thread Safety:
         All public methods are thread-safe. Internal lock protects
         shared state. Safe to call from multiple threads concurrently.
     """
-    
+
     def thread_safe_method(self):
         """
         Do something safely.
-        
+
         Thread-safe: Uses internal lock for all mutations.
         """
         with self._lock:
@@ -484,18 +517,18 @@ class MyClass:
 def test_concurrent_access():
     """Test that concurrent calls don't cause race conditions."""
     context = JenkinsAllocationContext()
-    
+
     def worker(thread_id):
         jobs = [{"name": f"job-{thread_id}-{i}"} for i in range(10)]
         context.allocate_jobs(f"repo-{thread_id}", jobs)
-    
+
     # Spawn many threads
     threads = [threading.Thread(target=worker, args=(i,)) for i in range(100)]
     for t in threads:
         t.start()
     for t in threads:
         t.join()
-    
+
     # Verify no duplicates, no data loss
     assert len(context.allocated_jobs) == 1000
 ```
@@ -516,6 +549,7 @@ top -pid $(pgrep -f generate_reports)
 #### 3. Use Caching
 
 Always enable caching for better performance:
+
 ```json
 {"performance": {"cache": true}}
 ```
@@ -523,6 +557,7 @@ Always enable caching for better performance:
 #### 4. Consider Disk I/O
 
 If analyzing repositories on slow disk (network mount):
+
 - Reduce `max_workers` (avoid I/O contention)
 - Copy repos to local disk first
 
@@ -542,6 +577,7 @@ python scripts/profile_performance.py \
 ```
 
 **Output**:
+
 - `docs/profiling/profiling_comparison.md` - Performance comparison
 - `docs/profiling/hotspots_workers_N.md` - Bottleneck analysis
 - `docs/profiling/profile_workers_N.prof` - Detailed profile data
@@ -549,12 +585,14 @@ python scripts/profile_performance.py \
 ### Interpreting Results
 
 **Scaling Efficiency**:
+
 - 100%: Ideal (doubling workers halves time)
 - 75-90%: Good (expected for I/O-bound)
 - 50-75%: Acceptable (some overhead)
 - <50%: Poor (too much contention/overhead)
 
 **Example**:
+
 ```
 Workers | Time (s) | Speedup | Efficiency
 --------|----------|---------|------------
@@ -578,7 +616,8 @@ Workers | Time (s) | Speedup | Efficiency
 
 **Symptom**: Many threads waiting, low CPU usage
 
-**Solution**: 
+**Solution**:
+
 - Reduce `max_workers`
 - Implement batch prefetch (future work)
 - Increase API timeout if hitting limits
@@ -588,6 +627,7 @@ Workers | Time (s) | Speedup | Efficiency
 **Symptom**: Threads blocked waiting for locks
 
 **Diagnosis**:
+
 ```bash
 python -m cProfile -o profile.prof generate_reports.py
 python -m pstats profile.prof
@@ -597,6 +637,7 @@ python -m pstats profile.prof
 ```
 
 **Solution**:
+
 - Reduce critical section size
 - Use finer-grained locks
 - Implement lock-free data structures
@@ -608,6 +649,7 @@ python -m pstats profile.prof
 ### From Global Lock to Instance Context
 
 **Before (Phase 6 and earlier)**:
+
 ```python
 # Global lock at module level
 _jenkins_allocation_lock = threading.Lock()
@@ -616,23 +658,24 @@ class GitDataCollector:
     def __init__(self, config, time_windows, logger):
         self.allocated_jenkins_jobs = set()  # Instance state
         # ...
-    
+
     def _get_jenkins_jobs_for_repo(self, repo_name):
         with _jenkins_allocation_lock:  # Global lock!
             # ... allocation logic
 ```
 
 **After (Phase 7)**:
+
 ```python
 # No global lock
 
 class GitDataCollector:
-    def __init__(self, config, time_windows, logger, 
+    def __init__(self, config, time_windows, logger,
                  jenkins_allocation_context=None):
         # Context is passed in or created
         self.jenkins_allocation_context = jenkins_allocation_context or JenkinsAllocationContext()
         # No instance state for allocation (managed by context)
-    
+
     def _get_jenkins_jobs_for_repo(self, repo_name):
         # Use context methods (thread-safe internally)
         cached = self.jenkins_allocation_context.get_cached_jobs(repo_name)
@@ -642,6 +685,7 @@ class GitDataCollector:
 ```
 
 **Caller Changes**:
+
 ```python
 # Before:
 collector = GitDataCollector(config, {}, logger)
@@ -668,16 +712,19 @@ collector = GitDataCollector(config, {}, logger, context)  # Pass it in
 **Symptom**: Program hangs indefinitely
 
 **Diagnosis**:
+
 ```bash
 # Send SIGQUIT to get thread dump
 kill -QUIT $(pgrep -f generate_reports)
 ```
 
 **Common Causes**:
+
 - Lock acquired twice in same thread (use `RLock` if needed)
 - Circular wait (lock A → lock B, lock B → lock A)
 
 **Solution**:
+
 - Always acquire locks in consistent order
 - Keep critical sections small
 - Use timeouts: `lock.acquire(timeout=30)`
@@ -687,11 +734,13 @@ kill -QUIT $(pgrep -f generate_reports)
 **Symptom**: Inconsistent results, occasional errors
 
 **Diagnosis**:
+
 - Run with `max_workers=1` (sequential) - does it work?
 - Add logging in critical sections
 - Use thread sanitizer tools (e.g., `python -m pytest --thread-safe`)
 
 **Solution**:
+
 - Identify shared mutable state
 - Add lock protection
 - Use thread-safe data structures
@@ -701,16 +750,19 @@ kill -QUIT $(pgrep -f generate_reports)
 **Symptom**: Adding workers doesn't improve speed
 
 **Diagnosis**:
+
 ```bash
 python scripts/profile_performance.py --config config.json --workers 1,4,8
 ```
 
 **Common Causes**:
+
 - CPU-bound workload (GIL limitation)
 - Lock contention (threads blocking each other)
 - I/O bottleneck (disk, network)
 
 **Solutions**:
+
 - CPU-bound: Consider ProcessPoolExecutor
 - Lock contention: Reduce critical section size
 - I/O bottleneck: Check disk speed, network latency
@@ -720,12 +772,14 @@ python scripts/profile_performance.py --config config.json --workers 1,4,8
 **Symptom**: OOM errors, high memory consumption
 
 **Diagnosis**:
+
 ```bash
 # Monitor memory
 python -m memory_profiler generate_reports.py
 ```
 
 **Solutions**:
+
 - Reduce `max_workers` (fewer concurrent threads)
 - Process repos in batches
 - Enable garbage collection: `gc.collect()`
@@ -752,6 +806,7 @@ python -m memory_profiler generate_reports.py
 ### Code Examples
 
 See `tests/test_jenkins_allocation_context.py` for comprehensive examples of:
+
 - Thread-safe allocation
 - Concurrent cache access
 - Stress testing (100 threads)

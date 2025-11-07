@@ -1,8 +1,9 @@
 # Theme Creation Guide
+
 ## Repository Reporting System - Phase 8
 
-**Version:** 2.0  
-**Last Updated:** January 29, 2025  
+**Version:** 2.0
+**Last Updated:** January 29, 2025
 **Audience:** Designers, Frontend Developers
 
 ---
@@ -29,6 +30,7 @@ The Repository Reporting System uses a CSS variable-based theme system that enab
 ### What is a Theme?
 
 A theme defines the visual appearance of reports through:
+
 - **Colors**: Background, text, borders, accents
 - **Typography**: Fonts, sizes, line heights
 - **Spacing**: Margins, padding, gaps
@@ -130,26 +132,26 @@ All themes must define these color variables:
     /* Primary colors */
     --color-primary: #2563eb;         /* Main brand color */
     --color-secondary: #64748b;       /* Secondary accent */
-    
+
     /* Background colors */
     --color-background: #ffffff;      /* Page background */
     --color-surface: #f8fafc;         /* Card/panel background */
-    
+
     /* Text colors */
     --color-text: #1e293b;            /* Primary text */
     --color-text-secondary: #64748b;  /* Secondary text */
     --color-text-muted: #94a3b8;      /* Muted/disabled text */
-    
+
     /* Border colors */
     --color-border: #e2e8f0;          /* Standard borders */
     --color-border-light: #f1f5f9;    /* Light borders */
-    
+
     /* Status colors */
     --color-success: #10b981;         /* Success states */
     --color-warning: #f59e0b;         /* Warning states */
     --color-error: #ef4444;           /* Error states */
     --color-info: #3b82f6;            /* Info states */
-    
+
     /* Semantic colors */
     --color-link: #2563eb;            /* Links */
     --color-link-hover: #1d4ed8;      /* Link hover */
@@ -162,12 +164,12 @@ All themes must define these color variables:
 ```css
 :root {
     /* Font families */
-    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
                    Roboto, Oxygen, Ubuntu, sans-serif;
-    --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 
+    --font-heading: 'Inter', -apple-system, BlinkMacSystemFont,
                     'Segoe UI', sans-serif;
     --font-mono: 'Monaco', 'Courier New', monospace;
-    
+
     /* Font sizes */
     --font-size-xs: 0.75rem;    /* 12px */
     --font-size-sm: 0.875rem;   /* 14px */
@@ -177,13 +179,13 @@ All themes must define these color variables:
     --font-size-2xl: 1.5rem;    /* 24px */
     --font-size-3xl: 1.875rem;  /* 30px */
     --font-size-4xl: 2.25rem;   /* 36px */
-    
+
     /* Font weights */
     --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
-    
+
     /* Line heights */
     --line-height-tight: 1.25;
     --line-height-base: 1.5;
@@ -213,19 +215,19 @@ All themes must define these color variables:
     /* Container */
     --container-width: 1200px;
     --container-padding: var(--spacing-lg);
-    
+
     /* Border radius */
     --border-radius-sm: 0.25rem;
     --border-radius: 0.375rem;
     --border-radius-lg: 0.5rem;
     --border-radius-xl: 0.75rem;
-    
+
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-xl: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    
+
     /* Transitions */
     --transition-fast: 150ms ease-in-out;
     --transition-base: 300ms ease-in-out;
@@ -267,25 +269,25 @@ cd config/themes/my-theme
     --color-text-muted: #a1a1aa;
     --color-border: #e4e4e7;
     --color-border-light: #f4f4f5;
-    
+
     /* Status colors */
     --color-success: #22c55e;
     --color-warning: #eab308;
     --color-error: #ef4444;
     --color-info: #06b6d4;
-    
+
     /* Links */
     --color-link: #8b5cf6;
     --color-link-hover: #7c3aed;
-    
+
     /* Code */
     --color-code-bg: #f4f4f5;
-    
+
     /* Typography */
     --font-family: 'Inter', sans-serif;
     --font-heading: 'Poppins', sans-serif;
     --font-mono: 'Fira Code', monospace;
-    
+
     /* Custom additions */
     --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
 }
@@ -506,6 +508,7 @@ Ensure sufficient contrast for accessibility:
 ```
 
 **Minimum Requirements:**
+
 - WCAG AA: 4.5:1 for normal text, 3:1 for large text
 - WCAG AAA: 7:1 for normal text, 4.5:1 for large text
 
@@ -573,11 +576,11 @@ Include print-friendly styles:
         --color-text: #000000;
         --shadow: none;  /* Remove shadows for print */
     }
-    
+
     .no-print {
         display: none;
     }
-    
+
     a {
         color: #000000;
         text-decoration: underline;
@@ -599,7 +602,7 @@ def check_contrast(foreground, background):
     """Check WCAG contrast ratio."""
     # Implementation
     ratio = calculate_contrast_ratio(foreground, background)
-    
+
     if ratio >= 7.0:
         return "AAA"
     elif ratio >= 4.5:
@@ -641,6 +644,7 @@ Test with color blindness simulators:
 - Tritanopia (blue-yellow)
 
 **Tips:**
+
 - Don't rely on color alone to convey information
 - Use icons and text labels
 - Test with grayscale view
@@ -686,17 +690,17 @@ def test_theme_renders():
     """Test theme renders correctly."""
     renderer = ModernReportRenderer(theme='my-theme')
     html = renderer.render_template('repository.html', test_data)
-    
+
     assert 'theme-my-theme' in html
     assert len(html) > 1000
 
 def test_theme_contrast():
     """Test theme meets contrast requirements."""
     from src.rendering.theme_manager import ThemeManager
-    
+
     theme = ThemeManager().load_theme('my-theme')
     contrast = theme.get_contrast_ratio()
-    
+
     assert contrast >= 4.5, "Must meet WCAG AA"
 ```
 
@@ -720,6 +724,7 @@ done
 **Problem:** Theme not found or not loading
 
 **Solution:**
+
 ```python
 # Check theme directory exists
 from pathlib import Path
@@ -741,6 +746,7 @@ with open(theme_path / 'theme.json') as f:
 **Problem:** CSS variables defined but not showing in output
 
 **Solution:**
+
 ```css
 /* Ensure :root selector is used */
 :root {
@@ -758,6 +764,7 @@ body {
 **Problem:** Theme renders but colors/styles wrong
 
 **Solution:**
+
 1. Check CSS specificity
 2. Verify theme class on body
 3. Inspect browser DevTools
@@ -775,6 +782,7 @@ body {
 **Problem:** Theme fails contrast requirements
 
 **Solution:**
+
 ```python
 # Use a contrast checker tool
 from accessibility_checker import check_contrast
@@ -816,7 +824,7 @@ for fg, bg in pairs:
     /* All typography variables */
     /* All spacing variables */
     /* All layout variables */
-    
+
     /* Custom additions */
     --theme-accent: #8b5cf6;
     --theme-gradient: linear-gradient(...);
@@ -854,6 +862,7 @@ for fg, bg in pairs:
 ### Examples
 
 See included themes for reference:
+
 - `config/themes/default/` - Light theme example
 - `config/themes/dark/` - Dark theme example
 - `config/themes/minimal/` - Minimal theme example
@@ -892,6 +901,7 @@ Yes, define custom animations:
 ### How do I test for color blindness?
 
 Use browser extensions or online simulators:
+
 - Chrome: Colorblindly extension
 - Firefox: Built-in accessibility inspector
 - Online: Coblis color blindness simulator
@@ -902,6 +912,6 @@ No, themes should only affect styling. Template structure is controlled by HTML 
 
 ---
 
-**Document Status:** Complete  
-**Last Reviewed:** January 29, 2025  
+**Document Status:** Complete
+**Last Reviewed:** January 29, 2025
 **Next Review:** March 2025

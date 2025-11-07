@@ -1,8 +1,9 @@
 # Template Development Guide
+
 ## Repository Reporting System - Phase 8
 
-**Version:** 2.0  
-**Last Updated:** January 29, 2025  
+**Version:** 2.0
+**Last Updated:** January 29, 2025
 **Audience:** Developers, Template Designers
 
 ---
@@ -139,27 +140,27 @@ All templates should extend the base template for consistency:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Repository Reporting System v2.0">
-    
+
     <title>{% block title %}Repository Report{% endblock %}</title>
-    
+
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ theme_css }}">
-    
+
     <!-- Custom styles -->
     {% block extra_css %}{% endblock %}
 </head>
 <body class="theme-{{ theme_name|default('default') }}">
     <!-- Header -->
     {% include 'components/header.html' %}
-    
+
     <!-- Main content -->
     <main class="container">
         {% block content %}{% endblock %}
     </main>
-    
+
     <!-- Footer -->
     {% include 'components/footer.html' %}
-    
+
     <!-- Scripts -->
     {% block extra_js %}{% endblock %}
 </body>
@@ -202,15 +203,15 @@ Standard variables available in all templates:
     # Theme information
     'theme_name': 'default',
     'theme_css': '/path/to/theme.css',
-    
+
     # Metadata
     'generated_at': '2025-01-29T10:30:00Z',
     'generator_version': '2.0.0',
-    
+
     # Configuration
     'language': 'en',
     'timezone': 'UTC',
-    
+
     # Content (varies by template)
     'title': 'Report Title',
     'data': {...}
@@ -318,7 +319,7 @@ Components are reusable template fragments:
 {% include 'components/stats_card.html' with stats=my_stats %}
 
 <!-- Include with explicit variables -->
-{% include 'components/contributor_card.html' 
+{% include 'components/contributor_card.html'
     with name=contributor.name, commits=contributor.commits %}
 ```
 
@@ -350,7 +351,7 @@ The system includes these standard components:
 #### Header Component
 
 ```html
-{% include 'components/header.html' with 
+{% include 'components/header.html' with
     title="Report Title",
     subtitle="Report Subtitle",
     logo_url="/path/to/logo.png"
@@ -360,7 +361,7 @@ The system includes these standard components:
 #### Footer Component
 
 ```html
-{% include 'components/footer.html' with 
+{% include 'components/footer.html' with
     copyright_year=2025,
     generated_at=timestamp
 %}
@@ -422,14 +423,14 @@ from typing import Dict, Any
 
 class CustomReportPreparer(BaseDataPreparer):
     """Prepares data for custom report template."""
-    
+
     def prepare(self, raw_data: Dict[str, Any]) -> Dict[str, Any]:
         """
         Transform raw data into template-ready format.
-        
+
         Args:
             raw_data: Raw data from data sources
-            
+
         Returns:
             Prepared data for template rendering
         """
@@ -439,11 +440,11 @@ class CustomReportPreparer(BaseDataPreparer):
             'content': self._prepare_content(raw_data),
             'metadata': self._prepare_metadata(raw_data)
         }
-    
+
     def _prepare_title(self, data: Dict[str, Any]) -> str:
         """Prepare report title."""
         return f"{data['name']} - Custom Report"
-    
+
     def _prepare_statistics(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """Prepare statistics section."""
         return {
@@ -451,13 +452,13 @@ class CustomReportPreparer(BaseDataPreparer):
             'average_value': self._calculate_average(data),
             'max_value': self._calculate_max(data)
         }
-    
+
     def _prepare_content(self, data: Dict[str, Any]) -> str:
         """Prepare main content."""
         # Transform data into HTML-safe content
         items = data.get('items', [])
         return '\n'.join([self._format_item(item) for item in items])
-    
+
     def _prepare_metadata(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """Prepare metadata section."""
         from datetime import datetime
@@ -476,32 +477,32 @@ from typing import Dict, Any, List
 
 class ValidatingDataPreparer(BaseDataPreparer):
     """Data preparer with validation."""
-    
+
     def prepare(self, raw_data: Dict[str, Any]) -> Dict[str, Any]:
         """Prepare and validate data."""
         # Validate input
         self._validate_input(raw_data)
-        
+
         # Prepare data
         prepared = self._prepare_data(raw_data)
-        
+
         # Validate output
         self._validate_output(prepared)
-        
+
         return prepared
-    
+
     def _validate_input(self, data: Dict[str, Any]) -> None:
         """Validate input data."""
         required_fields = ['name', 'items', 'statistics']
         for field in required_fields:
             if field not in data:
                 raise ValueError(f"Missing required field: {field}")
-    
+
     def _validate_output(self, data: Dict[str, Any]) -> None:
         """Validate prepared data."""
         if not isinstance(data.get('title'), str):
             raise ValueError("Title must be a string")
-        
+
         if not isinstance(data.get('statistics'), dict):
             raise ValueError("Statistics must be a dictionary")
 ```
@@ -513,17 +514,18 @@ class ValidatingDataPreparer(BaseDataPreparer):
 ### 1. Template Organization
 
 **DO:**
+
 ```html
 <!-- Good: Clear structure, semantic HTML -->
 <article class="report">
     <header class="report-header">
         <h1>{{ title }}</h1>
     </header>
-    
+
     <section class="report-content">
         {{ content }}
     </section>
-    
+
     <footer class="report-footer">
         Generated: {{ generated_at }}
     </footer>
@@ -531,6 +533,7 @@ class ValidatingDataPreparer(BaseDataPreparer):
 ```
 
 **DON'T:**
+
 ```html
 <!-- Bad: Poor structure, non-semantic -->
 <div class="thing">
@@ -543,6 +546,7 @@ class ValidatingDataPreparer(BaseDataPreparer):
 ### 2. Variable Naming
 
 **DO:**
+
 ```python
 # Good: Descriptive, consistent
 {
@@ -554,6 +558,7 @@ class ValidatingDataPreparer(BaseDataPreparer):
 ```
 
 **DON'T:**
+
 ```python
 # Bad: Unclear, inconsistent
 {
@@ -586,7 +591,7 @@ class ValidatingDataPreparer(BaseDataPreparer):
 {% for category in categories %}
     <!-- Process once -->
     {% set category_items = items|selectattr('category', 'equalto', category) %}
-    
+
     <section class="category">
         <h2>{{ category }}</h2>
         {% for item in category_items %}
@@ -627,25 +632,25 @@ from src.rendering.modern_renderer import ModernReportRenderer
 def test_repository_template_renders():
     """Test repository template renders correctly."""
     renderer = ModernReportRenderer(theme='default')
-    
+
     data = {
         'repository': {
             'name': 'test-repo',
             'description': 'Test repository'
         }
     }
-    
+
     html = renderer.render_template('repository.html', data)
-    
+
     assert 'test-repo' in html
     assert 'Test repository' in html
 
 def test_template_handles_missing_data():
     """Test template handles missing data gracefully."""
     renderer = ModernReportRenderer(theme='default')
-    
+
     html = renderer.render_template('repository.html', {})
-    
+
     assert html  # Should not raise error
     assert 'empty-state' in html or 'No data' in html
 ```
@@ -656,15 +661,15 @@ def test_template_handles_missing_data():
 def test_full_report_generation():
     """Test complete report generation pipeline."""
     from src.rendering.data_preparers import RepositoryDataPreparer
-    
+
     # Prepare data
     preparer = RepositoryDataPreparer()
     data = preparer.prepare(raw_data)
-    
+
     # Render template
     renderer = ModernReportRenderer(theme='default')
     html = renderer.render_template('repository.html', data)
-    
+
     # Verify output
     assert len(html) > 1000
     assert '<!DOCTYPE html>' in html
@@ -678,17 +683,17 @@ def test_theme_rendering():
     """Test template renders correctly with different themes."""
     renderer = ModernReportRenderer()
     data = get_test_data()
-    
+
     themes = ['default', 'dark', 'minimal']
-    
+
     for theme in themes:
         renderer.set_theme(theme)
         html = renderer.render_template('repository.html', data)
-        
+
         # Save for visual inspection
         with open(f'test_output_{theme}.html', 'w') as f:
             f.write(html)
-        
+
         # Verify theme-specific content
         assert f'theme-{theme}' in html
 ```
@@ -767,6 +772,7 @@ renderer.environment.filters['relative_time'] = relative_time
 **Error:** `TemplateNotFound: repository.html`
 
 **Solution:**
+
 ```python
 # Check template path
 from pathlib import Path
@@ -785,6 +791,7 @@ renderer.render_template(
 **Error:** `UndefinedError: 'contributors' is undefined`
 
 **Solution:**
+
 ```html
 <!-- Use default filter or conditional -->
 {% for contributor in contributors|default([]) %}
@@ -804,6 +811,7 @@ renderer.render_template(
 **Error:** Template renders but theme styles not applied
 
 **Solution:**
+
 ```python
 # Ensure theme is set
 renderer = ModernReportRenderer(theme='default')
@@ -842,16 +850,19 @@ except TemplateSyntaxError as e:
 ## Resources
 
 ### Documentation
+
 - [Jinja2 Template Designer Documentation](https://jinja.palletsprojects.com/)
 - [HTML5 Specification](https://html.spec.whatwg.org/)
 - [WCAG Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
 
 ### Examples
+
 - `examples/custom_template.html` - Custom template example
 - `examples/custom_theme.css` - Custom theme example
 - `tests/test_templates.py` - Template test examples
 
 ### Support
+
 - GitHub Issues: Report bugs and request features
 - Documentation: `docs/guides/`
 - Architecture: `docs/architecture/`
@@ -861,6 +872,7 @@ except TemplateSyntaxError as e:
 ## Version History
 
 ### 2.0.0 (January 29, 2025)
+
 - Complete rewrite for Phase 8
 - Added theme system
 - Added component architecture
@@ -868,12 +880,13 @@ except TemplateSyntaxError as e:
 - 6.2x performance improvement
 
 ### 1.0.0 (Previous)
+
 - Initial template system
 - Basic Jinja2 integration
 - Single theme support
 
 ---
 
-**Document Status:** Complete  
-**Last Reviewed:** January 29, 2025  
+**Document Status:** Complete
+**Last Reviewed:** January 29, 2025
 **Next Review:** March 2025

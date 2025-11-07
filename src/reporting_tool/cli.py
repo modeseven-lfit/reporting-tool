@@ -95,7 +95,7 @@ def generate(
             rich_help_panel="Required Arguments",
         ),
     ] = None,
-    
+
     # Configuration options
     config_dir: Annotated[
         Optional[Path],
@@ -117,7 +117,7 @@ def generate(
             rich_help_panel="Configuration",
         ),
     ] = None,
-    
+
     # Output options
     output_format: Annotated[
         OutputFormat,
@@ -136,7 +136,7 @@ def generate(
             rich_help_panel="Output Options",
         ),
     ] = False,
-    
+
     # Behavioral options
     cache: Annotated[
         bool,
@@ -156,7 +156,7 @@ def generate(
             rich_help_panel="Performance",
         ),
     ] = None,
-    
+
     # Verbosity options
     verbose: Annotated[
         int,
@@ -177,7 +177,7 @@ def generate(
             rich_help_panel="Logging",
         ),
     ] = False,
-    
+
     # Validation options
     dry_run: Annotated[
         bool,
@@ -195,7 +195,7 @@ def generate(
             rich_help_panel="Validation",
         ),
     ] = False,
-    
+
     # Version
     version: Annotated[
         Optional[bool],
@@ -209,40 +209,40 @@ def generate(
 ):
     """
     Generate comprehensive analysis reports for repository collections.
-    
+
     Analyzes Git repositories to generate detailed reports including:
-    
+
     • 📈 Commit activity and contributor statistics
-    
+
     • 🔍 CI/CD workflow status (Jenkins, GitHub Actions)
-    
+
     • ✨ Feature detection (Dependabot, pre-commit, ReadTheDocs, etc.)
-    
+
     • 👥 Organization and contributor rankings
-    
+
     • 📊 Inactive repository identification
-    
+
     \b
     Examples:
         # Basic usage
         reporting-tool generate --project my-project --repos-path ./repos
-        
+
         # With custom configuration
         reporting-tool generate -p my-project -r ./repos --config-dir ./config
-        
+
         # Validate without running
         reporting-tool generate -p my-project -r ./repos --dry-run
-        
+
         # Generate only HTML with verbose output
         reporting-tool generate -p my-project -r ./repos -f html -vv
-        
+
         # With caching and parallel processing
         reporting-tool generate -p my-project -r ./repos --cache --workers 8
     """
     # Import here to avoid circular imports and speed up CLI loading
     from reporting_tool.main import main as reporting_main
     from argparse import Namespace
-    
+
     # Validate required arguments
     if not project:
         console.print("[red]Error:[/red] --project is required")
@@ -250,7 +250,7 @@ def generate(
     if not repos_path:
         console.print("[red]Error:[/red] --repos-path is required")
         raise typer.Exit(code=ExitCode.USAGE_ERROR)
-    
+
     # Build arguments namespace for main function
     args = Namespace(
         project=project,
@@ -268,7 +268,7 @@ def generate(
         show_config=show_config,
         log_level=None,
     )
-    
+
     # Set log level based on verbosity
     if quiet:
         args.log_level = "ERROR"
@@ -276,7 +276,7 @@ def generate(
         args.log_level = "DEBUG"
     elif verbose >= 1:
         args.log_level = "INFO"
-    
+
     # Call main function directly
     try:
         exit_code = reporting_main(args)
@@ -315,24 +315,24 @@ def init(
 ):
     """
     Initialize a new configuration file for a project.
-    
+
     Runs an interactive configuration wizard or uses a template to create
     a new project configuration file with smart defaults.
-    
+
     \b
     Templates:
         minimal   - Basic configuration with essential settings only
         standard  - Recommended configuration with common features enabled
         full      - Complete configuration with all options documented
-    
+
     \b
     Examples:
         # Interactive wizard
         reporting-tool init
-        
+
         # Create from template
         reporting-tool init --project my-project --template standard
-        
+
         # Custom output location
         reporting-tool init -p my-project -t minimal -o custom.yaml
     """
@@ -350,18 +350,18 @@ def init(
 def list_features():
     """
     List all available feature detection checks.
-    
+
     Displays a comprehensive list of features that can be automatically
     detected in repositories, including:
-    
+
     • CI/CD systems (Jenkins, GitHub Actions, GitLab CI)
-    
+
     • Dependency management (requirements.txt, package.json, pom.xml)
-    
+
     • Documentation (README, docs/, ReadTheDocs)
-    
+
     • Code quality tools (pre-commit, linters, formatters)
-    
+
     • Security tools (Dependabot, CodeQL, vulnerability scanning)
     """
     # TODO: Implement feature listing
@@ -390,24 +390,24 @@ def validate(
 ):
     """
     Validate a configuration file.
-    
+
     Checks configuration file for:
-    
+
     • ✅ Valid YAML syntax
-    
+
     • 🔍 Required fields present
-    
+
     • 📝 Correct data types and values
-    
+
     • ⚠️  Deprecated options
-    
+
     • 💡 Optimization suggestions
-    
+
     \b
     Examples:
         # Validate a config file
         reporting-tool validate config/my-project.yaml
-        
+
         # Validate with verbose output
         reporting-tool validate config/my-project.yaml -v
     """
@@ -435,25 +435,25 @@ def main(
 ):
     """
     📊 Reporting Tool - Comprehensive Multi-Repository Analysis Tool
-    
+
     A modern Python package for analyzing Git repositories and generating
     comprehensive reports with metrics, feature detection, and contributor analysis.
-    
+
     \b
     🚀 Quick Start:
         reporting-tool generate --project my-project --repos-path ./repos
-    
+
     \b
     📖 Common Commands:
         generate        Generate analysis reports (main command)
         init            Create a new configuration file
         list-features   Show all available feature detections
         validate        Validate a configuration file
-    
+
     \b
     📚 Documentation:
         https://reporting-tool.readthedocs.io
-    
+
     \b
     🐛 Report Issues:
         https://github.com/lf-it/reporting-tool/issues
