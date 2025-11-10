@@ -11,6 +11,7 @@ based on email addresses and names.
 from typing import Any
 
 import pytest
+
 from reporting_tool.collectors.info_yaml.matcher import (
     CommitterMatcher,
     match_committer_to_authors,

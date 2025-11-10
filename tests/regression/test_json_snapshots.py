@@ -20,6 +20,7 @@ Test Categories:
 import json
 
 import pytest
+
 from domain.author_metrics import AuthorMetrics
 from domain.repository_metrics import RepositoryMetrics
 from domain.time_window import TimeWindow, TimeWindowStats
@@ -75,7 +76,9 @@ class TestTimeWindowSnapshots:
         )
 
         output = stats.to_dict()
-        assert json.dumps(output, indent=2, sort_keys=True) == snapshot(name="stats_zero_contributors")
+        assert json.dumps(output, indent=2, sort_keys=True) == snapshot(
+            name="stats_zero_contributors"
+        )
 
 
 class TestAuthorMetricsSnapshots:
@@ -138,7 +141,9 @@ class TestAuthorMetricsSnapshots:
         )
 
         output = author.to_dict()
-        assert json.dumps(output, indent=2, sort_keys=True, ensure_ascii=False) == snapshot(name="author_unicode")
+        assert json.dumps(output, indent=2, sort_keys=True, ensure_ascii=False) == snapshot(
+            name="author_unicode"
+        )
 
 
 class TestRepositoryMetricsSnapshots:
@@ -458,7 +463,9 @@ class TestRegressionPreventionSnapshots:
         # Verify name is not in output
         assert "name" not in output
 
-        assert json.dumps(output, indent=2, sort_keys=True) == snapshot(name="window_name_not_in_dict")
+        assert json.dumps(output, indent=2, sort_keys=True) == snapshot(
+            name="window_name_not_in_dict"
+        )
 
     def test_empty_collections_snapshot(self, snapshot):
         """

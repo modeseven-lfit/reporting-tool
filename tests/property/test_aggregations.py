@@ -12,6 +12,7 @@ random but valid test cases.
 from hypothesis import given, settings
 from hypothesis import strategies as st
 from hypothesis.strategies import composite
+
 from domain.author_metrics import AuthorMetrics
 from domain.repository_metrics import RepositoryMetrics
 from domain.time_window import TimeWindowStats

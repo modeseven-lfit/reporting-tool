@@ -78,6 +78,7 @@ class TestGitHubAPIIntegration:
 
     def test_repository_not_found_error(self, mock_github_client):
         """Test handling of repository not found errors."""
+
         # Use a generic exception since we're testing mock behavior
         class HTTPError(Exception):
             pass
@@ -130,6 +131,7 @@ class TestGitHubAPIIntegration:
 
     def test_api_timeout_handling(self, mock_github_client):
         """Test handling of API timeouts."""
+
         # Use a generic exception since we're testing mock behavior
         class Timeout(Exception):
             pass
@@ -141,6 +143,7 @@ class TestGitHubAPIIntegration:
 
     def test_network_error_handling(self, mock_github_client):
         """Test handling of network errors."""
+
         # Use a generic exception since we're testing mock behavior
         class NetworkError(Exception):
             pass

@@ -14,6 +14,7 @@ from pathlib import Path
 
 import pytest
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound
+
 from domain.info_yaml import (
     CommitterInfo,
     IssueTracking,

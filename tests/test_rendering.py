@@ -16,6 +16,7 @@ from pathlib import Path
 from unittest.mock import Mock
 
 import pytest
+
 from rendering import ModernReportRenderer, RenderContext, TemplateRenderer
 from rendering.formatters import (
     format_age,

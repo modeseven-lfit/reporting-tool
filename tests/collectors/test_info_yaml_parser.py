@@ -15,6 +15,7 @@ Tests the parsing logic for INFO.yaml files, including:
 from pathlib import Path
 
 import pytest
+
 from domain.info_yaml import CommitterInfo, ProjectInfo
 from reporting_tool.collectors.info_yaml.parser import (
     INFOYamlParser,

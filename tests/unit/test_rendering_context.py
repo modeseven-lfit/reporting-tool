@@ -16,6 +16,7 @@ Phase: 12, Step 4, Task 1.4
 """
 
 import pytest
+
 from rendering.context import RenderContext
 
 

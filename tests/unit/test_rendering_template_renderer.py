@@ -14,6 +14,7 @@ import json
 import jinja2
 import pytest
 from jinja2 import TemplateNotFound
+
 from rendering.template_renderer import TemplateRenderer
 
 

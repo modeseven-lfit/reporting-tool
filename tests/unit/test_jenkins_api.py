@@ -18,6 +18,7 @@ Tests cover:
 from unittest.mock import Mock, patch
 
 import pytest
+
 from api.jenkins_client import JenkinsAPIClient
 
 

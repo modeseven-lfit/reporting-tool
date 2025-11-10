@@ -17,6 +17,7 @@ Phase 13, Step 4: Enhanced Error Messages
 from pathlib import Path
 
 import pytest
+
 from cli.error_context import (
     ErrorContext,
     auto_detect_error_context,

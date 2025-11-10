@@ -11,6 +11,7 @@ Phase 3: Rendering & Report Integration
 """
 
 import pytest
+
 from domain.info_yaml import (
     CommitterInfo,
     IssueTracking,

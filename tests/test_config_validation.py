@@ -14,6 +14,7 @@ from typing import Any
 
 import pytest
 import yaml
+
 from config import (
     ConfigValidator,
     ValidationCategory,

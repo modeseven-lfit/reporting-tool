@@ -15,6 +15,7 @@ import logging
 from pathlib import Path
 
 import pytest
+
 from rendering.renderer import ModernReportRenderer
 from rendering.template_renderer import TemplateRenderer
 

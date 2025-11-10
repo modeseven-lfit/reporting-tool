@@ -12,13 +12,13 @@ Phase 5: Comprehensive Testing
 
 import shutil
 import tempfile
-from datetime import datetime, timedelta
 from pathlib import Path
 
 import pytest
-from reporting_tool.collectors.info_yaml import INFOYamlCollector, InfoYamlEnricher
+
 from domain.info_yaml import ProjectInfo
 from rendering.info_yaml_renderer import InfoYamlRenderer
+from reporting_tool.collectors.info_yaml import INFOYamlCollector, InfoYamlEnricher
 
 
 @pytest.fixture
@@ -114,7 +114,7 @@ def sample_git_metrics():
     """Create sample Git metrics for enrichment."""
     # Create author metrics with varying activity levels using time-windowed metrics
     # Structure matches GitDataCollector output format
-    
+
     # Repository 1: test-repo-1 (current activity)
     repo1_metrics = {
         "repository": {

@@ -16,6 +16,12 @@ import time
 from pathlib import Path
 
 import pytest
+from tests.performance_tests.conftest import (
+    assert_memory_within_limit,
+    assert_throughput_meets_minimum,
+    assert_within_threshold,
+)
+
 from performance.batch import (
     APIRequest,
     RateLimitOptimizer,
@@ -31,11 +37,6 @@ from performance.cache import (
 from performance.parallel import (
     WorkerConfig,
     WorkerPool,
-)
-from tests.performance_tests.conftest import (
-    assert_memory_within_limit,
-    assert_throughput_meets_minimum,
-    assert_within_threshold,
 )
 
 

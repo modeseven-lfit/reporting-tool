@@ -19,6 +19,7 @@ import tempfile
 import time
 
 import pytest
+
 from performance import (
     AggregatedMetrics,
     MemoryTracker,

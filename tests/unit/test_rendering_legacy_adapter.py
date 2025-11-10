@@ -16,6 +16,7 @@ from pathlib import Path
 from unittest.mock import Mock, patch
 
 import pytest
+
 from rendering.legacy_adapter import (
     LegacyRendererAdapter,
     create_legacy_renderer,

@@ -12,6 +12,7 @@ Tests cover:
 """
 
 import pytest
+
 from domain.organization_metrics import OrganizationMetrics
 
 

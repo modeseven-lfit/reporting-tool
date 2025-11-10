@@ -12,6 +12,7 @@ Tests cover:
 """
 
 import pytest
+
 from domain.workflow_status import WorkflowStatus
 
 

@@ -368,13 +368,13 @@ class TestConvenienceFunctions:
     @pytest.mark.filterwarnings("ignore::pytest.PytestUnraisableExceptionWarning")
     def test_validate_urls_sync_with_async(self):
         """Test validate_urls_sync with async enabled.
-        
+
         Note: This test uses asyncio.run() with mocked async clients,
         which can leave unclosed resources. These warnings are suppressed
         as they're artifacts of mocking, not real issues.
         """
         import gc
-        
+
         urls = ["https://example.com", "https://github.com"]
 
         with patch("httpx.AsyncClient") as mock_client_class:
@@ -391,7 +391,7 @@ class TestConvenienceFunctions:
 
             assert len(results) == 2
             assert all(is_valid for is_valid, _ in results.values())
-        
+
         # Force garbage collection to clean up async resources
         gc.collect()
         gc.collect()  # Run twice to handle circular references

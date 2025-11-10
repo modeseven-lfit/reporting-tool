@@ -18,11 +18,12 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 import pytest
-from reporting_tool.collectors.info_yaml import INFOYamlCollector, InfoYamlEnricher
+
 from domain.author_metrics import AuthorMetrics
 from domain.info_yaml import ProjectInfo
 from domain.repository_metrics import RepositoryMetrics
 from rendering.info_yaml_renderer import InfoYamlRenderer
+from reporting_tool.collectors.info_yaml import INFOYamlCollector, InfoYamlEnricher
 
 
 @pytest.fixture
@@ -161,7 +162,9 @@ class TestCollectionPerformance:
                 times.append(elapsed)
 
                 # Be lenient with count - some projects may be filtered
-                assert len(projects) >= num_projects * 0.7, f"Expected at least 70% of {num_projects} projects, got {len(projects)}"
+                assert len(projects) >= num_projects * 0.7, (
+                    f"Expected at least 70% of {num_projects} projects, got {len(projects)}"
+                )
 
             avg_time = statistics.mean(times)
             per_project = avg_time / num_projects
@@ -196,7 +199,9 @@ class TestCollectionPerformance:
             elapsed = time.perf_counter() - start
 
             # Be lenient with count - some projects may be filtered
-            assert len(projects) >= num_projects * 0.7, f"Expected at least 70% of {num_projects} projects, got {len(projects)}"
+            assert len(projects) >= num_projects * 0.7, (
+                f"Expected at least 70% of {num_projects} projects, got {len(projects)}"
+            )
             assert elapsed < 30.0, f"Large dataset collection too slow: {elapsed:.2f}s"
 
             print(

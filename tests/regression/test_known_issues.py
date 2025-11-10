@@ -22,6 +22,7 @@ import json
 from datetime import datetime, timezone
 
 import pytest
+
 from cli.errors import ValidationError
 from domain.author_metrics import AuthorMetrics
 from domain.repository_metrics import RepositoryMetrics

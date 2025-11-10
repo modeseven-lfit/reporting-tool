@@ -14,13 +14,11 @@ Comprehensive end-to-end tests for Phase 13 CLI & UX improvements:
 """
 
 import os
-import sys
 import tempfile
 from pathlib import Path
 
 import pytest
 import yaml
-
 
 from cli.arguments import create_argument_parser
 from cli.error_context import (

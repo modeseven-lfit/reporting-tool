@@ -16,6 +16,7 @@ import logging
 from unittest.mock import Mock
 
 import pytest
+
 from api.base_client import (
     APIError,
     APIResponse,

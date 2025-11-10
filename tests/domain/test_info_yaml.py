@@ -13,6 +13,7 @@ Tests the validation, serialization, and business logic of:
 """
 
 import pytest
+
 from domain.info_yaml import (
     CommitterInfo,
     IssueTracking,

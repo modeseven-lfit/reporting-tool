@@ -13,6 +13,7 @@ Tests cover:
 """
 
 import pytest
+
 from domain.author_metrics import AuthorMetrics
 
 

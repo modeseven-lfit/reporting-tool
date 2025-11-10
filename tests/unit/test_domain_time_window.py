@@ -15,6 +15,7 @@ Tests cover:
 import dataclasses
 
 import pytest
+
 from cli.errors import ValidationError
 from domain.time_window import TimeWindow, TimeWindowStats
 

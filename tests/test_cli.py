@@ -10,6 +10,7 @@ Phase 9: CLI & UX Improvements
 """
 
 import pytest
+
 from cli.errors import (
     APIError,
     CLIError,

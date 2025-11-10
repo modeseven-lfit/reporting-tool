@@ -15,6 +15,7 @@ Phase 13: CLI & User Experience Improvements
 """
 
 import pytest
+
 from cli.features import (
     AVAILABLE_FEATURES,
     FeatureInfo,

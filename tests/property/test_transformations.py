@@ -14,6 +14,7 @@ from datetime import datetime, timedelta
 from hypothesis import given, settings
 from hypothesis import strategies as st
 from hypothesis.strategies import composite
+
 from domain.author_metrics import AuthorMetrics
 from domain.time_window import TimeWindow, TimeWindowStats
 
