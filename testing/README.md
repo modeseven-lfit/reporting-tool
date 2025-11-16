@@ -31,6 +31,34 @@ The `local-testing.sh` script automates the following workflow:
   git --version
   ```
 
+- **jq** - JSON parser for project metadata
+  ```bash
+  brew install jq  # macOS
+  sudo apt-get install jq  # Debian/Ubuntu
+  ```
+
+### SSH Key Configuration
+
+The script requires SSH access to clone the info-master repository from `gerrit.linuxfoundation.org`.
+
+**Option 1: Use existing SSH key (recommended)**
+```bash
+# Copy your Gerrit SSH key to the expected location
+cp ~/.ssh/id_rsa ~/.ssh/gerrit.linuxfoundation.org
+# Or create a symlink
+ln -s ~/.ssh/id_rsa ~/.ssh/gerrit.linuxfoundation.org
+```
+
+**Option 2: Set environment variable (CI/CD mode)**
+```bash
+export LF_GERRIT_INFO_MASTER_SSH_KEY="$(cat ~/.ssh/id_rsa)"
+```
+
+The script will automatically:
+- Check for `LF_GERRIT_INFO_MASTER_SSH_KEY` environment variable first
+- Fall back to `~/.ssh/gerrit.linuxfoundation.org` if not set
+- Exit with error if neither is found
+
 ### Disk Space
 
 Ensure you have sufficient disk space in `/tmp`:
@@ -43,6 +71,24 @@ Check available space:
 df -h /tmp
 ```
 
+### API Access (Optional but Recommended)
+
+By default, reports only use **local git data**. To include GitHub workflow status, Gerrit metadata, and Jenkins CI/CD information, you need to configure API access.
+
+**Quick setup:**
+```bash
+export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"
+```
+
+**📖 See [API_ACCESS.md](API_ACCESS.md) for complete API configuration guide**
+
+Without API tokens, reports will be very fast (~10-20 seconds) but will **NOT** include:
+- ✗ GitHub workflow status
+- ✗ Gerrit repository metadata  
+- ✗ Jenkins CI/CD information
+
+With API tokens, reports take longer (~5-10 minutes) but include complete data.
+
 ## Quick Start
 
 Run the testing script:
@@ -54,17 +100,24 @@ cd reporting-tool/testing
 
 The script will:
 
-1. ✅ Check prerequisites (uv, git)
-2. 🔍 Check for existing cloned repositories
-3. 🗑️ Clean up existing report directories only
-4. 📁 Create output directories
-5. 📥 Clone ONAP repositories to `/tmp/gerrit.onap.org` (if not already present)
-6. 📥 Clone OpenDaylight repositories to `/tmp/git.opendaylight.org` (if not already present)
-7. 📊 Generate ONAP report to `/tmp/reports/onap`
-8. 📊 Generate OpenDaylight report to `/tmp/reports/opendaylight`
-9. 📋 Display summary of results
+1. ✅ Load project metadata from `projects.json`
+2. ✅ Check prerequisites (uv, git, jq)
+3. 🔑 Verify SSH key for info-master access
+4. 🔍 Check API configuration (GitHub/Gerrit/Jenkins)
+5. 📁 Create output directories
+6. 📥 Clone ONAP repositories to `/tmp/gerrit.onap.org` (if not already present)
+7. 📥 Clone OpenDaylight repositories to `/tmp/git.opendaylight.org` (if not already present)
+8. 📊 Generate ONAP report to `/tmp/reports/ONAP`
+9. 📊 Generate OpenDaylight report to `/tmp/reports/Opendaylight`
+10. 📋 Display summary of results
 
-**Note:** The script preserves existing cloned repositories to save time on subsequent runs. It only re-clones if the directories don't exist. Report directories are always cleaned and regenerated.
+**Notes:** 
+- The script uses project metadata from `projects.json` to configure Gerrit/Jenkins hosts automatically
+- SSH key is required for info-master access (see SSH Key Configuration above)
+- The script preserves existing cloned repositories to save time on subsequent runs
+- Report directories are always cleaned and regenerated
+- The script will warn you if API integrations are not configured
+- See [API_ACCESS.md](API_ACCESS.md) to enable GitHub/Gerrit/Jenkins API access
 
 ## Output Structure
 
@@ -85,14 +138,14 @@ After successful execution, you'll have:
 │   └── ...
 │
 └── reports/
-    ├── onap/                     # ONAP reports
+    ├── ONAP/                     # ONAP reports
     │   ├── report_raw.json       # Complete dataset (canonical)
     │   ├── report.md             # Markdown report (readable)
     │   ├── report.html           # Interactive HTML (sortable tables)
     │   ├── config_resolved.json  # Applied configuration
     │   └── ONAP_report_bundle.zip # Complete bundle
     │
-    └── opendaylight/             # OpenDaylight reports
+    └── OpenDaylight/             # OpenDaylight reports
         ├── report_raw.json
         ├── report.md
         ├── report.html
@@ -102,18 +155,42 @@ After successful execution, you'll have:
 
 ## Configuration
 
-### Customizing Clone Parameters
+### Project Metadata
+
+The script uses `projects.json` to configure project-specific settings:
+
+```json
+[
+  {
+    "project": "ONAP",
+    "gerrit": "gerrit.onap.org",
+    "jenkins": "jenkins.onap.org"
+  },
+  {
+    "project": "Opendaylight",
+    "gerrit": "git.opendaylight.org",
+    "jenkins": "jenkins.opendaylight.org"
+  }
+]
+```
+
+To add more projects, edit `testing/projects.json` with:
+- `project` - Project name
+- `gerrit` - Gerrit server hostname
+- `jenkins` - Jenkins server hostname (optional)
+- `github` - GitHub organization name (optional)
+
+### Customizing Base Directories
 
 Edit the script variables at the top of `local-testing.sh`:
 
 ```bash
-# Servers
-ONAP_SERVER="gerrit.onap.org"
-ODL_SERVER="git.opendaylight.org"
-
 # Base directories
 CLONE_BASE_DIR="/tmp"
 REPORT_BASE_DIR="/tmp/reports"
+
+# SSH key location
+SSH_KEY_PATH="${HOME}/.ssh/gerrit.linuxfoundation.org"
 ```
 
 ### gerrit-clone Options
@@ -147,10 +224,10 @@ Quick, human-readable overview:
 
 ```bash
 # ONAP report
-less /tmp/reports/onap/report.md
+less /tmp/reports/ONAP/report.md
 
 # OpenDaylight report
-less /tmp/reports/opendaylight/report.md
+less /tmp/reports/OpenDaylight/report.md
 ```
 
 ### HTML Reports
@@ -158,14 +235,15 @@ less /tmp/reports/opendaylight/report.md
 Interactive reports with sortable tables:
 
 ```bash
-# ONAP report
-open /tmp/reports/onap/report.html
+# ONAP report (macOS)
+open /tmp/reports/ONAP/report.html
 
 # OpenDaylight report (macOS)
-open /tmp/reports/opendaylight/report.html
+open /tmp/reports/OpenDaylight/report.html
 
 # Linux
-xdg-open /tmp/reports/opendaylight/report.html
+xdg-open /tmp/reports/ONAP/report.html
+xdg-open /tmp/reports/OpenDaylight/report.html
 ```
 
 ### JSON Data
@@ -174,13 +252,32 @@ Complete structured data for programmatic analysis:
 
 ```bash
 # ONAP data
-jq '.' /tmp/reports/onap/report_raw.json | less
+jq '.' /tmp/reports/ONAP/report_raw.json | less
 
 # OpenDaylight data
-jq '.' /tmp/reports/opendaylight/report_raw.json | less
+jq '.' /tmp/reports/OpenDaylight/report_raw.json | less
 ```
 
 ## Troubleshooting
+
+### SSH Key Issues
+
+If you see "❌ SSH key not found":
+
+1. **Copy your SSH key to the expected location**:
+   ```bash
+   cp ~/.ssh/id_rsa ~/.ssh/gerrit.linuxfoundation.org
+   ```
+
+2. **Or set environment variable**:
+   ```bash
+   export LF_GERRIT_INFO_MASTER_SSH_KEY="$(cat ~/.ssh/id_rsa)"
+   ```
+
+3. **Test SSH access**:
+   ```bash
+   ssh -p 29418 gerrit.linuxfoundation.org gerrit version
+   ```
 
 ### Clone Failures
 
@@ -290,7 +387,7 @@ cd reporting-tool
 uv run reporting-tool generate \
     --project "ONAP" \
     --repos-path /tmp/gerrit.onap.org \
-    --output-dir /tmp/reports/onap \
+    --output-dir /tmp/reports \
     --cache \
     --workers 4
 ```
@@ -302,7 +399,7 @@ cd reporting-tool
 uv run reporting-tool generate \
     --project "OpenDaylight" \
     --repos-path /tmp/git.opendaylight.org \
-    --output-dir /tmp/reports/opendaylight \
+    --output-dir /tmp/reports \
     --cache \
     --workers 4
 ```
@@ -337,19 +434,30 @@ rm -rf /tmp/git.opendaylight.org
 
 ## Advanced Usage
 
-### Test with Specific Projects Only
+### Test with Additional Projects
 
-Modify the clone commands to target specific projects:
+The script currently processes ONAP and Opendaylight by default. To test other projects:
 
-```bash
-uvx gerrit-clone clone \
-    --host gerrit.onap.org \
-    --path-prefix /tmp \
-    --https \
-    --include-project "aai/*" \
-    --include-project "sdc" \
-    --verbose
-```
+1. **Edit `local-testing.sh`** and modify the projects array:
+   ```bash
+   # Change this line in the main() function:
+   local projects=("ONAP" "Opendaylight" "O-RAN-SC" "AGL")
+   ```
+
+2. **Or test specific projects manually**:
+   ```bash
+   # Clone O-RAN-SC
+   uvx gerrit-clone clone \
+       --host gerrit.o-ran-sc.org \
+       --path-prefix /tmp/gerrit.o-ran-sc.org
+   
+   # Generate report
+   cd reporting-tool
+   uv run reporting-tool generate \
+       --project "O-RAN-SC" \
+       --repos-path /tmp/gerrit.o-ran-sc.org \
+       --output-dir /tmp/reports
+   ```
 
 ### Use SSH Instead of HTTPS
 
@@ -402,8 +510,26 @@ uv run reporting-tool generate \
 
 5. **Reuse cloned repositories** - The script automatically preserves cloned repos between runs, saving significant time on subsequent executions.
 
+6. **Enable API access** - Set `GITHUB_TOKEN` and other API credentials for complete data. See [API_ACCESS.md](API_ACCESS.md).
+
+## Project Metadata Reference
+
+The `projects.json` file contains metadata for all supported Linux Foundation projects:
+
+- **O-RAN-SC** - gerrit.o-ran-sc.org, jenkins.o-ran-sc.org
+- **ONAP** - gerrit.onap.org, jenkins.onap.org
+- **Opendaylight** - git.opendaylight.org, jenkins.opendaylight.org
+- **AGL** - gerrit.automotivelinux.org, build.automotivelinux.org
+- **OPNFV** - gerrit.opnfv.org
+- **FDio** - gerrit.fd.io, jenkins.fd.io
+- **LF Broadband** - gerrit.lfbroadband.org, jenkins.lfbroadband.org
+- **Linux Foundation** - gerrit.linuxfoundation.org
+
+This metadata is used to automatically configure API endpoints for each project.
+
 ## See Also
 
+- [API Access Configuration](API_ACCESS.md) - **Enable GitHub/Gerrit/Jenkins APIs**
 - [gerrit-clone documentation](https://github.com/lfreleng-actions/gerrit-clone-action)
 - [reporting-tool documentation](../README.md)
 - [Configuration guide](../docs/CONFIGURATION.md)

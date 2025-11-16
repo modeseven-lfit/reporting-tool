@@ -1,0 +1,42 @@
+[
+  {
+    "project": "O-RAN-SC",
+    "gerrit": "gerrit.o-ran-sc.org",
+    "jenkins": "jenkins.o-ran-sc.org"
+  },
+  {
+    "project": "ONAP",
+    "gerrit": "gerrit.onap.org",
+    "jenkins": "jenkins.onap.org"
+  },
+  {
+    "project": "Opendaylight",
+    "gerrit": "git.opendaylight.org",
+    "jenkins": "jenkins.opendaylight.org"
+  },
+  {
+    "project": "AGL",
+    "github": "automotive-grade-linux",
+    "gerrit": "gerrit.automotivelinux.org",
+    "jenkins": "build.automotivelinux.org"
+  },
+  {
+    "project": "OPNFV",
+    "gerrit": "gerrit.opnfv.org"
+  },
+  {
+    "project": "FDio",
+    "github": "fdio",
+    "gerrit": "gerrit.fd.io",
+    "jenkins": "jenkins.fd.io"
+  },
+  {
+    "project": "LF Broadband",
+    "gerrit": "gerrit.lfbroadband.org",
+    "jenkins": "jenkins.lfbroadband.org"
+  },
+  {
+    "project": "Linux Foundation",
+    "gerrit": "gerrit.linuxfoundation.org"
+  }
+]
