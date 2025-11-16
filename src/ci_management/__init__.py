@@ -7,9 +7,11 @@ Gerrit projects.
 """
 
 from .jjb_parser import CIManagementParser, JJBProject, JJBJobDefinition
+from .repo_manager import CIManagementRepoManager
 
 __all__ = [
     "CIManagementParser",
     "JJBProject",
     "JJBJobDefinition",
+    "CIManagementRepoManager",
 ]

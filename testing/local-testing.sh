@@ -161,44 +161,49 @@ check_api_configuration() {
         log_warning "GitHub API: GITHUB_TOKEN not set (limited API access)"
     fi
     
-    # Check for Gerrit config
+    # Check for Gerrit config (optional - not used by current implementation)
     if [ -n "${GERRIT_HOST:-}" ]; then
         log_success "Gerrit API: GERRIT_HOST is set (${GERRIT_HOST})"
         has_gerrit_config=true
     else
-        log_info "Gerrit API: Not configured (optional)"
+        log_info "Gerrit API: Not configured (using projects.json configuration)"
     fi
     
-    # Check for Jenkins config
+    # Check for Jenkins config (optional - will use projects.json configuration)
     if [ -n "${JENKINS_HOST:-}" ]; then
         log_success "Jenkins API: JENKINS_HOST is set (${JENKINS_HOST})"
         has_jenkins_config=true
     else
-        log_info "Jenkins API: Not configured (optional)"
+        log_info "Jenkins API: Will use configuration from projects.json"
     fi
     
     echo ""
     
-    if [ "$has_github_token" = false ] && [ "$has_gerrit_config" = false ] && [ "$has_jenkins_config" = false ]; then
+    if [ "$has_github_token" = false ]; then
         log_warning "=========================================="
-        log_warning "⚠️  NO API INTEGRATIONS CONFIGURED"
+        log_warning "⚠️  GITHUB_TOKEN NOT SET"
         log_warning "=========================================="
-        log_warning "Reports will only use local git data."
+        log_warning "Reports will use GitHub API with rate limits."
         log_warning ""
-        log_warning "For full API access (GitHub/Gerrit/Jenkins):"
+        log_warning "For full GitHub API access:"
         log_warning "  1. Set GITHUB_TOKEN environment variable"
         log_warning "  2. See testing/API_ACCESS.md for details"
         log_warning ""
-        log_warning "Without API access, reports will be FAST but"
-        log_warning "will NOT include:"
-        log_warning "  - GitHub workflow status"
-        log_warning "  - Gerrit metadata"
-        log_warning "  - Jenkins CI/CD information"
+        log_warning "Without GITHUB_TOKEN, you may hit rate limits"
+        log_warning "but reports will still include:"
+        log_warning "  ✅ Local git data (commits, authors, etc.)"
+        log_warning "  ✅ Jenkins CI/CD information (from projects.json)"
+        log_warning "  ✅ INFO.yaml project data"
+        log_warning "  ⚠️  GitHub workflows (limited by rate limits)"
         log_warning "=========================================="
         echo ""
     else
-        log_info "API integrations configured - reports will include external data"
+        log_success "✅ Full API access configured - reports will include all external data"
     fi
+    
+    # Note about Jenkins and Gerrit
+    log_info "📝 Note: Jenkins and Gerrit URLs are configured in testing/projects.json"
+    log_info "   The report tool will automatically use those configurations."
 }
 
 # Clean up existing report directories only

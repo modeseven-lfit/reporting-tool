@@ -198,6 +198,36 @@ jenkins:
   timeout: 30.0
 
 # =============================================================================
+# CI-Management Integration
+# =============================================================================
+# CI-Management provides authoritative Jenkins job definitions via JJB
+# When enabled, replaces fuzzy matching with exact job allocation
+ci_management:
+  # Enable CI-Management integration for accurate job allocation
+  # Automatically derives ci-management URL from Gerrit host configuration
+  enabled: true
+  
+  # Git URL for the ci-management repository (OPTIONAL)
+  # If not provided, automatically derived as: https://{gerrit_host}/r/ci-management
+  # Only override if your ci-management repo has a non-standard location
+  # Examples:
+  #   - https://gerrit.onap.org/r/ci-management (auto-derived)
+  #   - https://gerrit.o-ran-sc.org/r/ci-management (auto-derived)
+  #   - https://git.opendaylight.org/gerrit/releng/builder (OpenDaylight uses different name)
+  url: ""
+  
+  # Branch to use (typically "master" or "main")
+  branch: "master"
+  
+  # Cache directory for cloned repositories
+  # Uses system temp directory if not specified
+  cache_dir: "/tmp"
+  
+  # Update interval in seconds (default: 24 hours)
+  # Repositories older than this will be refreshed
+  update_interval: 86400
+
+# =============================================================================
 # INFO.yaml Collection
 # =============================================================================
 # INFO.yaml collection from info-master repository

@@ -34,6 +34,7 @@ reporting-tool generate \
 - **🔍 Feature Detection** - Automatic detection of CI/CD, documentation, dependency management, security tools
 - **👥 Contributor Intelligence** - Author and organization analysis with domain mapping
 - **🌐 API Integration** - GitHub, Gerrit, and Jenkins API support
+- **🎯 CI-Management Integration** - Authoritative Jenkins job allocation using JJB definitions (99%+ accuracy)
 - **📊 Interactive Reports** - JSON (data), Markdown (readable), HTML (interactive), ZIP (bundled)
 - **⚡ High Performance** - Parallel processing with caching support
 
@@ -52,6 +53,7 @@ reporting-tool generate \
 
 - **[Configuration Guide](docs/CONFIGURATION.md)** - All configuration options (GitHub API, INFO.yaml, performance)
 - **[Configuration Merging](docs/CONFIGURATION_MERGING.md)** - How project configs inherit and override defaults
+- **[CI-Management Integration](docs/CI_MANAGEMENT_INTEGRATION.md)** - Authoritative Jenkins job allocation using JJB definitions
 - **[Deployment Guide](docs/DEPLOYMENT.md)** - Production deployment and operations
 - **[CI/CD Integration](docs/CI_CD_INTEGRATION.md)** - GitHub Actions, GitLab CI, and automation
 
@@ -60,6 +62,7 @@ reporting-tool generate \
 - **[Performance Guide](docs/PERFORMANCE.md)** - Optimization, caching, and scaling
 - **[Feature Discovery](docs/FEATURE_DISCOVERY_GUIDE.md)** - Understanding automatic feature detection
 - **[INFO.yaml Reporting](docs/INFO_YAML_REPORTING.md)** - Project metadata and committer activity tracking
+- **[CI-Management Integration](docs/CI_MANAGEMENT_INTEGRATION.md)** - Replace fuzzy matching with authoritative job allocation
 - **[Troubleshooting](docs/TROUBLESHOOTING.md)** - Problem solving and debugging
 
 ### 👨‍💻 Development

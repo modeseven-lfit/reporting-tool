@@ -12,11 +12,21 @@ Extracted from generate_reports.py as part of Phase 2 refactoring.
 
 import logging
 from datetime import datetime
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Set
 
 import httpx
 
 from .base_client import BaseAPIClient
+
+# Optional CI-Management integration
+try:
+    from ci_management import CIManagementParser, CIManagementRepoManager
+    CI_MANAGEMENT_AVAILABLE = True
+except ImportError:
+    CI_MANAGEMENT_AVAILABLE = False
+    CIManagementParser = None  # type: ignore
+    CIManagementRepoManager = None  # type: ignore
 
 
 class JenkinsAPIClient(BaseAPIClient):
@@ -38,7 +48,9 @@ class JenkinsAPIClient(BaseAPIClient):
         self,
         host: str,
         timeout: float = 30.0,
-        stats: Optional[Any] = None
+        stats: Optional[Any] = None,
+        ci_management_config: Optional[Dict[str, Any]] = None,
+        gerrit_host: Optional[str] = None
     ):
         """
         Initialize Jenkins API client.
@@ -47,6 +59,12 @@ class JenkinsAPIClient(BaseAPIClient):
             host: Jenkins hostname
             timeout: Request timeout in seconds
             stats: Statistics tracker object
+            ci_management_config: Optional CI-Management configuration with keys:
+                - url: Git URL for ci-management repository (auto-derived from gerrit_host if not provided)
+                - branch: Branch to use (default: master)
+                - cache_dir: Directory for caching repos (default: /tmp)
+                - enabled: Enable CI-Management integration (default: True if config provided)
+            gerrit_host: Gerrit hostname (used to auto-derive ci-management URL)
         """
         self.host = host
         self.timeout = timeout
@@ -56,11 +74,86 @@ class JenkinsAPIClient(BaseAPIClient):
         self._cache_populated = False
         self.stats = stats
         self.logger = logging.getLogger(__name__)
+        self.gerrit_host = gerrit_host
+
+        # CI-Management integration
+        self.ci_management_parser: Optional[Any] = None
+        self.ci_management_enabled = False
+        
+        if ci_management_config and ci_management_config.get("enabled", True):
+            self._initialize_ci_management(ci_management_config, gerrit_host)
 
         self.client = httpx.Client(timeout=timeout)
 
         # Discover the correct API base path
         self._discover_api_base_path()
+
+    def _initialize_ci_management(
+        self, 
+        config: Dict[str, Any],
+        gerrit_host: Optional[str] = None
+    ) -> None:
+        """
+        Initialize CI-Management parser for authoritative job allocation.
+        
+        Automatically derives ci-management URL from Gerrit host if not explicitly provided.
+        
+        Args:
+            config: CI-Management configuration dictionary
+            gerrit_host: Gerrit hostname for auto-deriving ci-management URL
+        """
+        if not CI_MANAGEMENT_AVAILABLE:
+            self.logger.warning(
+                "CI-Management modules not available - install ci_management package. "
+                "Falling back to fuzzy matching."
+            )
+            return
+        
+        try:
+            self.logger.info("Initializing CI-Management integration...")
+            
+            # Setup repository manager
+            cache_dir = Path(config.get("cache_dir", "/tmp"))
+            repo_mgr = CIManagementRepoManager(cache_dir)
+            
+            # Get ci-management URL (auto-derive from Gerrit host if not provided)
+            ci_mgmt_url = config.get("url")
+            if not ci_mgmt_url:
+                if gerrit_host:
+                    # Auto-derive: ci-management is standard on all Gerrit servers
+                    ci_mgmt_url = f"https://{gerrit_host}/r/ci-management"
+                    self.logger.info(
+                        f"Auto-derived ci-management URL from Gerrit host: {ci_mgmt_url}"
+                    )
+                else:
+                    self.logger.warning(
+                        "CI-Management URL not provided and Gerrit host unknown. "
+                        "Falling back to fuzzy matching."
+                    )
+                    return
+            
+            branch = config.get("branch", "master")
+            ci_mgmt_path, global_jjb_path = repo_mgr.ensure_repos(ci_mgmt_url, branch)
+            
+            # Initialize parser
+            self.ci_management_parser = CIManagementParser(ci_mgmt_path, global_jjb_path)
+            self.ci_management_parser.load_templates()
+            
+            # Get summary
+            summary = self.ci_management_parser.get_project_summary()
+            self.logger.info(
+                f"✓ CI-Management initialized: {summary['gerrit_projects']} projects, "
+                f"{summary['total_jobs']} jobs"
+            )
+            self.ci_management_enabled = True
+            
+        except Exception as e:
+            self.logger.warning(
+                f"Failed to initialize CI-Management: {e}. "
+                f"Falling back to fuzzy matching."
+            )
+            self.ci_management_parser = None
+            self.ci_management_enabled = False
 
     def __enter__(self):
         """Enter context manager."""
@@ -192,8 +285,8 @@ class JenkinsAPIClient(BaseAPIClient):
         """
         Get jobs related to a specific Gerrit project with duplicate prevention.
 
-        Uses a scoring algorithm to match Jenkins job names to Gerrit project names.
-        Prevents duplicate allocation by tracking allocated jobs.
+        Uses CI-Management parser for authoritative job allocation when available,
+        otherwise falls back to fuzzy matching algorithm.
 
         Args:
             project_name: Name of the Gerrit project (e.g., "foo/bar")
@@ -209,6 +302,121 @@ class JenkinsAPIClient(BaseAPIClient):
             >>> print(f"Found {len(jobs)} jobs")
         """
         self.logger.debug(f"Looking for Jenkins jobs for project: {project_name}")
+        
+        # Try CI-Management first if enabled
+        if self.ci_management_enabled and self.ci_management_parser:
+            try:
+                return self._get_jobs_via_ci_management(project_name, allocated_jobs)
+            except Exception as e:
+                self.logger.warning(
+                    f"CI-Management lookup failed for {project_name}: {e}. "
+                    f"Falling back to fuzzy matching."
+                )
+        
+        # Fallback to fuzzy matching
+        return self._get_jobs_via_fuzzy_matching(project_name, allocated_jobs)
+
+    def _get_jobs_via_ci_management(
+        self,
+        project_name: str,
+        allocated_jobs: Set[str]
+    ) -> List[Dict[str, Any]]:
+        """
+        Get jobs using CI-Management authoritative definitions.
+        
+        Args:
+            project_name: Name of the Gerrit project
+            allocated_jobs: Set of job names already allocated
+            
+        Returns:
+            List of job detail dictionaries
+        """
+        self.logger.debug(f"Using CI-Management for project: {project_name}")
+        
+        # Get expected job names from ci-management
+        expected_jobs = self.ci_management_parser.parse_project_jobs(project_name)
+        
+        # Filter out unresolved template variables
+        resolved_jobs = [j for j in expected_jobs if '{' not in j]
+        
+        if not resolved_jobs:
+            self.logger.debug(
+                f"No resolved jobs found in CI-Management for {project_name}"
+            )
+            return []
+        
+        self.logger.debug(
+            f"CI-Management expects {len(resolved_jobs)} jobs for {project_name}"
+        )
+        
+        # Get all Jenkins jobs
+        all_jobs = self.get_all_jobs()
+        if "jobs" not in all_jobs:
+            self.logger.debug(
+                f"No 'jobs' key found in Jenkins API response for {project_name}"
+            )
+            return []
+        
+        # Build a lookup map of available Jenkins jobs
+        jenkins_jobs_map = {job.get("name", ""): job for job in all_jobs["jobs"]}
+        
+        # Match expected jobs against actual Jenkins jobs
+        project_jobs: List[Dict[str, Any]] = []
+        matched_count = 0
+        
+        for expected_job in resolved_jobs:
+            # Skip if already allocated
+            if expected_job in allocated_jobs:
+                self.logger.debug(
+                    f"Skipping already allocated job: {expected_job}"
+                )
+                continue
+            
+            # Check if job exists in Jenkins
+            if expected_job in jenkins_jobs_map:
+                # Get detailed job info
+                job_details = self.get_job_details(expected_job)
+                if job_details:
+                    project_jobs.append(job_details)
+                    allocated_jobs.add(expected_job)
+                    matched_count += 1
+                    self.logger.debug(
+                        f"✓ Matched CI-Management job '{expected_job}' to {project_name}"
+                    )
+                else:
+                    self.logger.warning(
+                        f"Failed to get details for Jenkins job: {expected_job}"
+                    )
+            else:
+                self.logger.debug(
+                    f"Job '{expected_job}' defined in CI-Management but not found in Jenkins"
+                )
+        
+        accuracy = (matched_count / len(resolved_jobs) * 100) if resolved_jobs else 0
+        self.logger.info(
+            f"CI-Management: Found {matched_count}/{len(resolved_jobs)} jobs "
+            f"({accuracy:.1f}%) for {project_name}"
+        )
+        
+        return project_jobs
+
+    def _get_jobs_via_fuzzy_matching(
+        self,
+        project_name: str,
+        allocated_jobs: Set[str]
+    ) -> List[Dict[str, Any]]:
+        """
+        Get jobs using fuzzy matching algorithm (fallback method).
+        
+        Args:
+            project_name: Name of the Gerrit project
+            allocated_jobs: Set of job names already allocated
+            
+        Returns:
+            List of job detail dictionaries
+        """
+        self.logger.debug(f"Using fuzzy matching for project: {project_name}")
+        
         all_jobs = self.get_all_jobs()
         project_jobs: List[Dict[str, Any]] = []
 
@@ -264,8 +472,8 @@ class JenkinsAPIClient(BaseAPIClient):
             else:
                 self.logger.warning(f"Failed to get details for Jenkins job: {job_name}")
 
-        self.logger.debug(
-            f"Found {len(project_jobs)} Jenkins jobs for project {project_name}"
+        self.logger.info(
+            f"Fuzzy matching: Found {len(project_jobs)} Jenkins jobs for project {project_name}"
         )
         return project_jobs
 

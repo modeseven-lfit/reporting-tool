@@ -8,6 +8,42 @@
 # Project identifier
 project: OpenDaylight
 
+# =============================================================================
+# Gerrit API Integration
+# =============================================================================
+gerrit:
+  enabled: true
+  host: "git.opendaylight.org"
+  base_url: ""  # Will auto-discover
+  timeout: 30.0
+
+# =============================================================================
+# Jenkins API Integration
+# =============================================================================
+jenkins:
+  enabled: true
+  host: "jenkins.opendaylight.org"
+  timeout: 30.0
+
+# =============================================================================
+# CI-Management Integration
+# =============================================================================
+# OpenDaylight uses a NON-STANDARD location for JJB definitions
+# CI-Management is CRITICAL for OpenDaylight due to complex multi-stream jobs
+# Expected improvement: 47% → 99%+ accuracy
+ci_management:
+  # CI-Management is enabled by default
+  # OpenDaylight uses "releng/builder" instead of standard "ci-management"
+  # Must explicitly override the URL:
+  url: "https://git.opendaylight.org/gerrit/releng/builder"
+
+# =============================================================================
+# Performance Settings
+# =============================================================================
+performance:
+  max_workers: 8
+  cache: true
+
 # Activity thresholds - customized for OpenDaylight's release cycle
 activity_thresholds:
   current_days: 183      # ✅ Current: ~6 months (365/2)

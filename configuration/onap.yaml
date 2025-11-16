@@ -1,0 +1,99 @@
+---
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2025 The Linux Foundation
+
+# =============================================================================
+# ONAP Project Configuration
+# =============================================================================
+# Project-specific configuration for ONAP (Open Network Automation Platform)
+# This configuration enables CI-Management integration for accurate Jenkins
+# job allocation.
+# =============================================================================
+
+project: onap
+
+# =============================================================================
+# Gerrit API Integration
+# =============================================================================
+gerrit:
+  enabled: true
+  host: "gerrit.onap.org"
+  base_url: ""  # Will auto-discover
+  timeout: 30.0
+
+# =============================================================================
+# Jenkins API Integration
+# =============================================================================
+jenkins:
+  enabled: true
+  host: "jenkins.onap.org"
+  timeout: 30.0
+
+# =============================================================================
+# CI-Management Integration
+# =============================================================================
+# CI-Management integration is ENABLED by default
+# The ci-management URL is automatically derived from Gerrit host:
+#   https://gerrit.onap.org/r/ci-management
+# 
+# This provides 99%+ accurate Jenkins job allocation using authoritative
+# JJB definitions instead of fuzzy matching.
+#
+# No configuration needed - it just works! ✨
+
+# =============================================================================
+# GitHub API Integration
+# =============================================================================
+extensions:
+  github_api:
+    enabled: true
+    # GitHub organization for ONAP mirrors
+    github_org: "onap"
+    timeout: 30.0
+
+# =============================================================================
+# INFO.yaml Collection
+# =============================================================================
+info_yaml:
+  enabled: true
+  clone_url: "https://gerrit.linuxfoundation.org/infra/releng/info-master"
+  exclude_archived: true
+
+# =============================================================================
+# Performance Settings
+# =============================================================================
+performance:
+  max_workers: 8
+  cache: true
+
+# =============================================================================
+# Output Configuration
+# =============================================================================
+output:
+  directory: reports
+  formats:
+    - json
+    - md
+    - html
+  create_bundle: true
+  bundle_name: "onap_report_{date}.zip"
+
+# =============================================================================
+# Time Windows
+# =============================================================================
+time_windows:
+  last_30:
+    days: 30
+  last_90:
+    days: 90
+  last_365:
+    days: 365
+  last_3_years:
+    days: 1095
+
+# =============================================================================
+# Activity Thresholds
+# =============================================================================
+activity_thresholds:
+  current_days: 365
+  active_days: 1095

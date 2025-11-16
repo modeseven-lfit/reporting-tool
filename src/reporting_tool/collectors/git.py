@@ -169,7 +169,21 @@ class GitDataCollector:
             # Environment variable takes precedence - enables Jenkins integration
             timeout = jenkins_config.get("timeout", 30.0)
             try:
-                self.jenkins_client = JenkinsAPIClient(jenkins_host, timeout)
+                # Get CI-Management configuration if available
+                ci_mgmt_config = jenkins_config.get("ci_management")
+                if not ci_mgmt_config:
+                    # Check top-level config for ci_management
+                    ci_mgmt_config = self.config.get("ci_management")
+                
+                # Get Gerrit host for auto-deriving ci-management URL
+                gerrit_host = gerrit_config.get("host") if gerrit_config.get("enabled", False) else None
+                
+                self.jenkins_client = JenkinsAPIClient(
+                    jenkins_host, 
+                    timeout,
+                    ci_management_config=ci_mgmt_config,
+                    gerrit_host=gerrit_host
+                )
                 self.logger.info(
                     f"Initialized Jenkins API client for {jenkins_host} (from environment)"
                 )
@@ -187,7 +201,21 @@ class GitDataCollector:
 
             if host:
                 try:
-                    self.jenkins_client = JenkinsAPIClient(host, timeout)
+                    # Get CI-Management configuration if available
+                    ci_mgmt_config = jenkins_config.get("ci_management")
+                    if not ci_mgmt_config:
+                        # Check top-level config for ci_management
+                        ci_mgmt_config = self.config.get("ci_management")
+                    
+                    # Get Gerrit host for auto-deriving ci-management URL
+                    gerrit_host = gerrit_config.get("host") if gerrit_config.get("enabled", False) else None
+                    
+                    self.jenkins_client = JenkinsAPIClient(
+                        host, 
+                        timeout,
+                        ci_management_config=ci_mgmt_config,
+                        gerrit_host=gerrit_host
+                    )
                     self.logger.info(
                         f"Initialized Jenkins API client for {host} (from config)"
                     )
