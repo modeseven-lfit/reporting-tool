@@ -144,6 +144,17 @@ For more information, see docs/CLI_REFERENCE.md
         Example: --output-dir /var/reports/output
         '''
     )
+    config.add_argument(
+        '--github-token-env',
+        type=str,
+        default='GITHUB_TOKEN',
+        metavar='VAR_NAME',
+        help='''
+        Environment variable name for GitHub API token.
+        Default: GITHUB_TOKEN (CI typically uses: CLASSIC_READ_ONLY_PAT_TOKEN)
+        Example: --github-token-env CLASSIC_READ_ONLY_PAT_TOKEN
+        '''
+    )
 
     # Output format options
     output = parser.add_argument_group('output options')

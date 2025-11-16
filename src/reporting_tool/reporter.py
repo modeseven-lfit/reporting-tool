@@ -29,7 +29,7 @@ from pathlib import Path
 from typing import Any, Optional, cast
 
 from reporting_tool.aggregators import DataAggregator
-from reporting_tool.collectors import GitDataCollector
+from reporting_tool.collectors import GitDataCollector, INFOYamlCollector
 from reporting_tool.features import FeatureRegistry
 from reporting_tool.renderers import ReportRenderer
 from util.git import safe_git_command
@@ -61,6 +61,7 @@ class RepositoryReporter:
         self.feature_registry = FeatureRegistry(config, logger)
         self.aggregator = DataAggregator(config, logger)
         self.renderer = ReportRenderer(config, logger)
+        self.info_yaml_collector = INFOYamlCollector(config)
         self.info_master_temp_dir: Optional[str] = None
 
     def _cleanup_info_master_repo(self) -> None:
@@ -136,6 +137,11 @@ class RepositoryReporter:
         repos_path_abs = repos_path.resolve()
         self.logger.info(f"Starting repository analysis in {repos_path_abs}")
 
+        # Determine Gerrit server from repos_path (e.g., "gerrit.onap.org")
+        # This is used to filter INFO.yaml data to only the relevant server
+        gerrit_server = self._determine_gerrit_server(repos_path_abs)
+        self.logger.info(f"Detected Gerrit server: {gerrit_server}")
+
         # Clone info-master repository for additional context
         # This is cloned to a temporary directory to avoid it appearing in the report
         info_master_path = self._clone_info_master_repo()
@@ -145,6 +151,9 @@ class RepositoryReporter:
             self.logger.warning(
                 "Info-master repository not available - continuing without it"
             )
+        
+        # Store info_master_path for INFO.yaml collection
+        self._info_master_path = info_master_path
 
         # Initialize data structure
         # Pass schema_version and script_version from constants in main module
@@ -198,6 +207,35 @@ class RepositoryReporter:
         report_data["summaries"] = self.aggregator.aggregate_global_data(
             successful_repos
         )
+
+        # Collect INFO.yaml data if info-master is available
+        # Filter to only the current Gerrit server to avoid cross-project contamination
+        if info_master_path and self.info_yaml_collector.is_enabled():
+            try:
+                self.logger.info(f"Collecting INFO.yaml project data for {gerrit_server}...")
+                info_yaml_data = self.info_yaml_collector.collect(
+                    info_master_path,
+                    git_metrics=repo_metrics,
+                    gerrit_server=gerrit_server,  # Filter by server
+                )
+                report_data["info_yaml"] = info_yaml_data
+                self.logger.info(
+                    f"✅ Collected {info_yaml_data.get('total_projects', 0)} INFO.yaml projects for {gerrit_server}"
+                )
+            except Exception as e:
+                self.logger.error(f"❌ Failed to collect INFO.yaml data: {e}")
+                report_data["info_yaml"] = {
+                    "projects": [],
+                    "lifecycle_summary": [],
+                    "total_projects": 0,
+                    "servers": [],
+                    "error": str(e),
+                }
+        else:
+            if not info_master_path:
+                self.logger.debug("INFO.yaml collection skipped: info-master not available")
+            else:
+                self.logger.debug("INFO.yaml collection skipped: disabled in configuration")
 
         # Log comprehensive Jenkins job allocation summary for auditing
         if (
@@ -325,6 +363,47 @@ class RepositoryReporter:
             generated_files["zip"] = zip_path
 
         return generated_files
+
+    def _determine_gerrit_server(self, repos_path: Path) -> str:
+        """
+        Determine the Gerrit server name from the repositories path.
+        
+        The repos_path is typically the Gerrit server hostname (e.g., gerrit.onap.org)
+        or contains it as the directory name.
+        
+        Args:
+            repos_path: Path to the repositories directory
+        
+        Returns:
+            Gerrit server name (e.g., "gerrit.onap.org", "git.opendaylight.org")
+        """
+        # Check if the directory name itself is a Gerrit server
+        dir_name = repos_path.name
+        
+        # Common Gerrit server patterns
+        if dir_name.startswith("gerrit.") or dir_name.startswith("git."):
+            self.logger.debug(f"Gerrit server determined from directory name: {dir_name}")
+            return dir_name
+        
+        # Check if there's a gerrit configuration or .gitreview file
+        # that might indicate the server
+        gitreview_path = repos_path / ".gitreview"
+        if gitreview_path.exists():
+            try:
+                with open(gitreview_path, "r") as f:
+                    for line in f:
+                        if line.startswith("host="):
+                            server = line.split("=", 1)[1].strip()
+                            self.logger.debug(f"Gerrit server from .gitreview: {server}")
+                            return server
+            except Exception as e:
+                self.logger.debug(f"Could not read .gitreview: {e}")
+        
+        # Fallback: use the directory name
+        self.logger.warning(
+            f"Could not determine Gerrit server from {repos_path}, using directory name: {dir_name}"
+        )
+        return dir_name
 
     def _discover_repositories(self, repos_path: Path) -> list[Path]:
         """
@@ -510,7 +589,18 @@ class RepositoryReporter:
 
         time_window_config = config.get("time_windows", default_windows)
 
-        for window_name, days in time_window_config.items():
+        for window_name, window_config in time_window_config.items():
+            # Support both simple integer format and dictionary format
+            if isinstance(window_config, int):
+                # Simple format: last_30: 30
+                days = window_config
+            elif isinstance(window_config, dict) and 'days' in window_config:
+                # Dictionary format: last_30: {days: 30}
+                days = window_config['days']
+            else:
+                self.logger.warning(f"Time window '{window_name}' has invalid format, skipping")
+                continue
+                
             start_date = now - timedelta(days=days)
             windows[window_name] = {
                 "days": days,

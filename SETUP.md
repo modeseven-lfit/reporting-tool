@@ -26,10 +26,15 @@ The reporting workflow (`reporting.yaml`) provides:
 The workflow requires **TWO separate GitHub Personal Access Tokens** for
 different purposes:
 
-#### 1. CLASSIC_READ_ONLY_PAT_TOKEN (Classic PAT)
+#### 1. GitHub API Token (Classic PAT)
 
 **Purpose**: Query workflow status and GitHub API data across all
 organizations.
+
+**Environment Variable Names**:
+- **Default**: `GITHUB_TOKEN` (recommended for most users)
+- **CI/Legacy**: `CLASSIC_READ_ONLY_PAT_TOKEN` (used in existing CI workflows)
+- **Custom**: Can be configured via `--github-token-env` CLI option
 
 **⚠️ IMPORTANT**: You **MUST use a Classic Personal Access Token**, not a
 fine-grained token, because fine-grained tokens work with a single
@@ -49,9 +54,22 @@ needed for cross-org reporting.
 4. Generate and copy the token
 5. Go to your repository's **Settings** → **Secrets and variables** → **Actions**
 6. Click "New repository secret"
-7. Name: `CLASSIC_READ_ONLY_PAT_TOKEN`
+7. Name: `GITHUB_TOKEN` (or `CLASSIC_READ_ONLY_PAT_TOKEN` for CI environments)
 8. Value: Paste your token
 9. Click "Add secret"
+
+**Note**: The tool defaults to reading from `GITHUB_TOKEN`. If you need to use
+a different environment variable name (e.g., for CI/CD compatibility), use the
+`--github-token-env` option:
+
+```bash
+# Use default GITHUB_TOKEN
+reporting-tool generate --project my-project --repos-path ./repos
+
+# Use custom environment variable for CI
+reporting-tool generate --project my-project --repos-path ./repos \
+  --github-token-env CLASSIC_READ_ONLY_PAT_TOKEN
+```
 
 #### 2. GitHub Pages Setup
 
@@ -293,7 +311,8 @@ schedule:
 2. **Invalid JSON**: Check JSON syntax using online tools
 3. **Gerrit connectivity**: Check that Gerrit servers are accessible
 4. **Permission errors**: Verify repository permissions and secrets
-5. **Grey workflow status in reports**: Check `CLASSIC_READ_ONLY_PAT_TOKEN` exists
+5. **Grey workflow status in reports**: Check your GitHub token environment variable
+   (`GITHUB_TOKEN` by default, or `CLASSIC_READ_ONLY_PAT_TOKEN` for CI) exists
    and is a Classic PAT with required scopes (see [GitHub Token Requirements](./GITHUB_TOKEN_REQUIREMENTS.md))
 6. **Report publishing failures**: Check `GERRIT_REPORTS_PAT_TOKEN` exists and has
    Contents: Read and write permissions for `modeseven-lfit/gerrit-reports`

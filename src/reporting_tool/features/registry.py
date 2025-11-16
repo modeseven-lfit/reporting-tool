@@ -628,9 +628,11 @@ class FeatureRegistry:
             .get("github_api", {})
             .get("enabled", False)
         )
+        # Get the configured environment variable name (defaults to GITHUB_TOKEN)
+        github_token_env = self.config.get("_github_token_env", "GITHUB_TOKEN")
         github_token = self.config.get("extensions", {}).get("github_api", {}).get(
             "token"
-        ) or os.environ.get("CLASSIC_READ_ONLY_PAT_TOKEN")
+        ) or os.environ.get(github_token_env)
 
         is_github_repo = self._is_github_repository(repo_path)
 
@@ -644,7 +646,7 @@ class FeatureRegistry:
         # Validate prerequisites for GitHub API integration
         if github_api_enabled and not github_token:
             self.logger.warning(
-                f"GitHub API enabled but token not available (CLASSIC_READ_ONLY_PAT_TOKEN). "
+                f"GitHub API enabled but token not available ({github_token_env}). "
                 f"Workflow status will not be queried for {repo_path.name}"
             )
 
@@ -885,9 +887,11 @@ class FeatureRegistry:
                 return False
 
             # Try to access GitHub API to verify repository exists
+            # Get the configured environment variable name (defaults to GITHUB_TOKEN)
+            github_token_env = self.config.get("_github_token_env", "GITHUB_TOKEN")
             github_token = self.config.get("extensions", {}).get("github_api", {}).get(
                 "token"
-            ) or os.environ.get("CLASSIC_READ_ONLY_PAT_TOKEN")
+            ) or os.environ.get(github_token_env)
 
             if github_token:
                 try:

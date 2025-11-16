@@ -236,7 +236,7 @@ output:
 
 Some settings can be overridden via environment variables:
 
-- `GITHUB_TOKEN` or `CLASSIC_READ_ONLY_PAT_TOKEN` - GitHub API authentication
+- `GITHUB_TOKEN` (default) or custom variable via `--github-token-env` - GitHub API authentication
 - `JENKINS_HOST` - Jenkins server URL
 - `GITHUB_ORG` - GitHub organization for Gerrit mirrors
 

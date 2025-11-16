@@ -30,6 +30,7 @@ reporting-tool generate \
 ## 🚀 Key Features
 
 - **📈 Git Analytics** - Commit activity, lines of code, contributor metrics across configurable time windows
+- **📋 INFO.yaml Reporting** - Project metadata, committer activity, and lifecycle state tracking from info-master
 - **🔍 Feature Detection** - Automatic detection of CI/CD, documentation, dependency management, security tools
 - **👥 Contributor Intelligence** - Author and organization analysis with domain mapping
 - **🌐 API Integration** - GitHub, Gerrit, and Jenkins API support
@@ -58,6 +59,7 @@ reporting-tool generate \
 
 - **[Performance Guide](docs/PERFORMANCE.md)** - Optimization, caching, and scaling
 - **[Feature Discovery](docs/FEATURE_DISCOVERY_GUIDE.md)** - Understanding automatic feature detection
+- **[INFO.yaml Reporting](docs/INFO_YAML_REPORTING.md)** - Project metadata and committer activity tracking
 - **[Troubleshooting](docs/TROUBLESHOOTING.md)** - Problem solving and debugging
 
 ### 👨‍💻 Development

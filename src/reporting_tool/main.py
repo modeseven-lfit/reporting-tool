@@ -32,7 +32,7 @@ from util.zip_bundle import create_report_bundle
 from util.github_org import determine_github_org
 
 # Import configuration utilities
-from reporting_tool.config import save_resolved_config
+from reporting_tool.config import save_resolved_config, load_configuration
 
 # Import main orchestration
 from reporting_tool.reporter import RepositoryReporter
@@ -282,47 +282,6 @@ def load_yaml_config(config_path: Path) -> Dict[str, Any]:
         raise ValueError(f"Invalid YAML in {config_path}: {e}")
 
 
-def load_configuration(config_dir: Path, project: str) -> dict[str, Any]:
-    """
-    Load configuration with template + project override merge strategy.
-
-    Args:
-        config_dir: Directory containing configuration files
-        project: Project name for override file
-
-    Returns:
-        Merged configuration dictionary
-    """
-    # Load template configuration
-    template_path = config_dir / "template.config"
-    template_config = load_yaml_config(template_path)
-
-    # Load project-specific configuration
-    project_config_path = config_dir / f"{project}.config"
-    project_config = load_yaml_config(project_config_path)
-
-    # Merge configurations (project overrides template)
-    if template_config and project_config:
-        merged = deep_merge_dicts(template_config, project_config)
-    elif project_config:
-        merged = project_config
-    else:
-        merged = template_config
-
-    # Ensure required fields
-    merged.setdefault("project", project)
-    merged.setdefault("schema_version", SCHEMA_VERSION)
-    merged.setdefault("time_windows", DEFAULT_TIME_WINDOWS)
-
-    # Validate time_windows
-    if "time_windows" in merged:
-        for window_name, days in merged["time_windows"].items():
-            if not isinstance(days, int) or days < 0:
-                raise ValueError(
-                    f"Invalid time window '{window_name}': must be a positive integer"
-                )
-
-    return merged
 
 
 def compute_config_digest(config: Dict[str, Any]) -> str:
@@ -381,9 +340,11 @@ def main(args=None) -> int:
 
         # Load configuration
         try:
-            config = load_configuration(args.config_dir, args.project)
+            config = load_configuration(args.project, args.config_dir)
         except Exception as e:
+            import traceback
             print(f"ERROR: Failed to load configuration: {e}", file=sys.stderr)
+            traceback.print_exc()
             return 1
 
         # Determine GitHub organization once - centralized
@@ -404,6 +365,10 @@ def main(args=None) -> int:
         config["_script_version"] = SCRIPT_VERSION
         config["_schema_version"] = SCHEMA_VERSION
 
+        # Store GitHub token environment variable name in config
+        github_token_env = getattr(args, 'github_token_env', 'GITHUB_TOKEN')
+        config["_github_token_env"] = github_token_env
+
         # Override log level if specified
         if hasattr(args, 'log_level') and args.log_level:
             config.setdefault("logging", {})["level"] = args.log_level
@@ -420,6 +385,7 @@ def main(args=None) -> int:
         logger.info(f"Repository Reporting System v{SCRIPT_VERSION}")
         logger.info(f"Project: {args.project}")
         logger.info(f"Configuration digest: {compute_config_digest(config)[:12]}...")
+        logger.debug(f"Using GitHub token from environment variable: {github_token_env}")
 
         # Write configuration to GitHub Step Summary
         write_config_to_step_summary(config, args.project)

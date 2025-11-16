@@ -104,6 +104,9 @@ def load_configuration(
     """
     if config_dir is None:
         config_dir = Path("configuration")
+    else:
+        # Ensure config_dir is a Path object
+        config_dir = Path(config_dir)
 
     if default_config_name is None:
         default_config_name = "default.yaml"

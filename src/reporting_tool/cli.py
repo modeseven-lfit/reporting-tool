@@ -117,6 +117,14 @@ def generate(
             rich_help_panel="Configuration",
         ),
     ] = None,
+    github_token_env: Annotated[
+        str,
+        typer.Option(
+            "--github-token-env",
+            help="Environment variable name for GitHub API token (default: GITHUB_TOKEN, CI uses: CLASSIC_READ_ONLY_PAT_TOKEN)",
+            rich_help_panel="Configuration",
+        ),
+    ] = "GITHUB_TOKEN",
 
     # Output options
     output_format: Annotated[
@@ -238,6 +246,9 @@ def generate(
 
         # With caching and parallel processing
         reporting-tool generate -p my-project -r ./repos --cache --workers 8
+
+        # CI environment with custom token variable
+        reporting-tool generate -p my-project -r ./repos --github-token-env CLASSIC_READ_ONLY_PAT_TOKEN
     """
     # Import here to avoid circular imports and speed up CLI loading
     from reporting_tool.main import main as reporting_main
@@ -267,6 +278,7 @@ def generate(
         validate_only=dry_run,
         show_config=show_config,
         log_level=None,
+        github_token_env=github_token_env,
     )
 
     # Set log level based on verbosity

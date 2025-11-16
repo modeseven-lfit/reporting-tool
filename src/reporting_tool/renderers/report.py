@@ -15,10 +15,12 @@ metrics and aggregated data into various output formats including:
 import json
 import logging
 from pathlib import Path
-from typing import Any, Union
+from typing import Any, Union, List
 
+from domain.info_yaml import ProjectInfo
 from util.formatting import format_number, format_age, UNKNOWN_AGE
 from util.zip_bundle import create_report_bundle
+from rendering.info_yaml_renderer import InfoYamlRenderer
 
 
 class ReportRenderer:
@@ -27,6 +29,7 @@ class ReportRenderer:
     def __init__(self, config: dict[str, Any], logger: logging.Logger) -> None:
         self.config = config
         self.logger = logger
+        self.info_yaml_renderer = InfoYamlRenderer(logger)
 
     def render_json_report(self, data: dict[str, Any], output_path: Path) -> None:
         """
@@ -117,6 +120,10 @@ class ReportRenderer:
 
         # Orphaned Jenkins jobs from archived projects
         sections.append(self._generate_orphaned_jobs_section(data))
+
+        # INFO.yaml Committer Report (if available)
+        if include_sections.get("info_yaml", True):
+            sections.append(self._generate_info_yaml_section(data))
 
         # Footer
         sections.append("Generated with ❤️ by Release Engineering")
@@ -912,6 +919,39 @@ class ReportRenderer:
             sections.append("No contributor data available.")
 
         return "\n\n".join(sections)
+
+    def _generate_info_yaml_section(self, data: dict[str, Any]) -> str:
+        """Generate INFO.yaml committer report section."""
+        info_yaml_data = data.get("info_yaml", {})
+        
+        if not info_yaml_data:
+            return ""
+        
+        # Check for errors first (before checking project count)
+        if "error" in info_yaml_data:
+            sections = ["## 📋 Committer INFO.yaml Report"]
+            sections.append("")
+            sections.append(f"⚠️ **Error collecting INFO.yaml data:** {info_yaml_data['error']}")
+            return "\n".join(sections)
+        
+        # Now check if we have projects
+        if info_yaml_data.get("total_projects", 0) == 0:
+            return ""
+        
+        # Convert project dictionaries back to ProjectInfo objects
+        projects = []
+        for project_dict in info_yaml_data.get("projects", []):
+            try:
+                projects.append(ProjectInfo.from_dict(project_dict))
+            except Exception as e:
+                self.logger.warning(f"Failed to parse project data: {e}")
+                continue
+        
+        if not projects:
+            return ""
+        
+        # Use the InfoYamlRenderer to generate the report
+        return self.info_yaml_renderer.render_full_report_markdown(projects)
 
     def _generate_consolidated_contributors_table(
         self, top_commits: list[dict[str, Any]], top_loc: list[dict[str, Any]]

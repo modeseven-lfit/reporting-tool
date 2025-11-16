@@ -333,7 +333,7 @@ class ConfigValidator:
                     message="GitHub API is enabled but no token specified",
                     category=ValidationCategory.SEMANTIC,
                     path="extensions.github_api.token",
-                    suggestion="Set github_api.token or use CLASSIC_READ_ONLY_PAT_TOKEN environment variable"
+                    suggestion="Set github_api.token or use GITHUB_TOKEN environment variable (or specify --github-token-env for custom variable)"
                 )
 
     def _validate_time_window_ordering(
@@ -401,7 +401,7 @@ class ConfigValidator:
                 message="GitHub token appears to be hardcoded in configuration",
                 category=ValidationCategory.SECURITY,
                 path="extensions.github_api.token",
-                suggestion="Use environment variable CLASSIC_READ_ONLY_PAT_TOKEN instead"
+                suggestion="Use environment variable GITHUB_TOKEN instead (or specify --github-token-env for custom variable)"
             )
 
         # Check privacy settings

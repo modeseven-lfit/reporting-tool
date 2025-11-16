@@ -124,7 +124,8 @@ class GitHubAPIClient(BaseAPIClient):
                 error_msg = (
                     f"❌ **GitHub API Authentication Failed** for `{owner}/{repo}`\n\n"
                     "The GitHub token is invalid or has expired.\n\n"
-                    "**Action Required:** Update the `CLASSIC_READ_ONLY_PAT_TOKEN` secret "
+                    "**Action Required:** Update your GitHub token environment variable "
+                    "(default: GITHUB_TOKEN, CI: CLASSIC_READ_ONLY_PAT_TOKEN) "
                     "with a valid Classic Personal Access Token.\n"
                 )
                 self.logger.error(
