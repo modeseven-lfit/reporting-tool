@@ -12,7 +12,12 @@
   {
     "project": "Opendaylight",
     "gerrit": "git.opendaylight.org",
-    "jenkins": "jenkins.opendaylight.org"
+    "jenkins": "jenkins.opendaylight.org",
+    "jjb_attribution": {
+      "url": "https://git.opendaylight.org/gerrit/releng/builder",
+      "branch": "master",
+      "enabled": true
+    }
   },
   {
     "project": "AGL",
