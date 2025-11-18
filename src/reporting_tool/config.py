@@ -267,20 +267,20 @@ def save_resolved_config(config: Dict[str, Any], output_path: Path) -> None:
 def apply_auto_derivation(config: Dict[str, Any]) -> Dict[str, Any]:
     """
     Apply intelligent auto-derivation of configuration values.
-    
+
     Auto-derives:
     - github_org from gerrit.host (e.g., gerrit.onap.org -> onap)
     - info_yaml.clone_url (uses standard LF location)
-    
+
     Args:
         config: Configuration dictionary
-        
+
     Returns:
         Configuration with auto-derived values
     """
     # Get Gerrit host if available
     gerrit_host = config.get('gerrit', {}).get('host', '')
-    
+
     # Auto-derive GitHub organization from Gerrit host
     if gerrit_host and not config.get('extensions', {}).get('github_api', {}).get('github_org'):
         # Extract org name from gerrit.{org}.org pattern
@@ -289,25 +289,25 @@ def apply_auto_derivation(config: Dict[str, Any]) -> Dict[str, Any]:
         if len(parts) >= 2 and parts[0] == 'gerrit':
             github_org = parts[1]
             logger.debug(f"Auto-derived github_org '{github_org}' from Gerrit host '{gerrit_host}'")
-            
+
             # Ensure extensions.github_api structure exists
             if 'extensions' not in config:
                 config['extensions'] = {}
             if 'github_api' not in config['extensions']:
                 config['extensions']['github_api'] = {}
-            
+
             config['extensions']['github_api']['github_org'] = github_org
             config['_github_org_auto_derived'] = True
-    
+
     # Auto-derive info_yaml.clone_url (always use standard LF location)
     if 'info_yaml' not in config:
         config['info_yaml'] = {}
-    
+
     if not config['info_yaml'].get('clone_url'):
         standard_info_yaml_url = "https://gerrit.linuxfoundation.org/infra/releng/info-master"
         config['info_yaml']['clone_url'] = standard_info_yaml_url
         logger.debug(f"Auto-derived info_yaml.clone_url: {standard_info_yaml_url}")
-    
+
     return config
 
 

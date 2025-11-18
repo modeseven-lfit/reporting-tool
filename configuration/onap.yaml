@@ -5,13 +5,9 @@
 # =============================================================================
 # ONAP Project Configuration
 # =============================================================================
-# Minimal project-specific configuration for ONAP.
-# Most settings are auto-derived from the Gerrit host or use sensible defaults.
-#
-# Auto-derived settings:
-#   - github_org: "onap" (from gerrit.host)
-#   - info_yaml.clone_url: standard LF location
-#   - jjb_attribution.url: https://gerrit.onap.org/r/ci-management
+# Project-specific configuration for ONAP (Open Network Automation Platform)
+# This configuration enables CI-Management integration for accurate Jenkins
+# job allocation.
 # =============================================================================
 
 project: onap
@@ -27,80 +23,9 @@ gerrit:
 # =============================================================================
 jenkins:
   host: "jenkins.onap.org"
-<<<<<<< HEAD
-  timeout: 30.0
-
-# =============================================================================
-# JJB Attribution
-# =============================================================================
-# JJB Attribution is ENABLED by default
-# The ci-management URL is automatically derived from Gerrit host:
-#   https://gerrit.onap.org/r/ci-management
-#
-# This provides 99%+ accurate Jenkins job attribution using authoritative
-# JJB (Jenkins Job Builder) configuration files instead of fuzzy matching.
-#
-# No configuration needed - it just works! ✨
-
-# =============================================================================
-# GitHub API Integration
-# =============================================================================
-extensions:
-  github_api:
-    enabled: true
-    # GitHub organization for ONAP mirrors
-    github_org: "onap"
-    timeout: 30.0
-
-# =============================================================================
-# INFO.yaml Collection
-# =============================================================================
-info_yaml:
-  enabled: true
-  clone_url: "https://gerrit.linuxfoundation.org/infra/releng/info-master"
-  exclude_archived: true
-=======
->>>>>>> f63997e (Fix: Resolve sed error in GitHub Pages index generation)
 
 # =============================================================================
 # Performance Settings
 # =============================================================================
 performance:
-<<<<<<< HEAD
-  max_workers: 8
   cache: true
-
-# =============================================================================
-# Output Configuration
-# =============================================================================
-output:
-  directory: reports
-  formats:
-    - json
-    - md
-    - html
-  create_bundle: true
-  bundle_name: "onap_report_{date}.zip"
-
-# =============================================================================
-# Time Windows
-# =============================================================================
-time_windows:
-  last_30:
-    days: 30
-  last_90:
-    days: 90
-  last_365:
-    days: 365
-  last_3_years:
-    days: 1095
-
-# =============================================================================
-# Activity Thresholds
-# =============================================================================
-activity_thresholds:
-  current_days: 365
-  active_days: 1095
-=======
-  cache: true
->>>>>>> f63997e (Fix: Resolve sed error in GitHub Pages index generation)
