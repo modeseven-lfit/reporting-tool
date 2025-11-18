@@ -138,6 +138,12 @@ def create_synthetic_repository(
         capture_output=True,
     )
 
+    # Rename the default branch if branches are specified
+    if branches:
+        run_git_command_safe(
+            ["git", "branch", "-m", branches[0]], cwd=repo_path, check=True, capture_output=True
+        )
+
     # Default start date is 90 days ago
     if start_date is None:
         start_date = datetime.now() - timedelta(days=90)
