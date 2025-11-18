@@ -473,6 +473,10 @@ jobs:
       - name: "Generate index page"
         shell: bash
         run: |
+          # Create .nojekyll to disable Jekyll processing
+          touch .nojekyll
+          echo "✅ Created .nojekyll file"
+          
           bash .github/scripts/generate-index.sh production
 
       - name: "Commit and push changes"
@@ -483,6 +487,7 @@ jobs:
 
           git add production/
           git add index.html || true
+          git add .nojekyll || true
 
           if git diff --cached --quiet; then
             echo "No changes to commit"

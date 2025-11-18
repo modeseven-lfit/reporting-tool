@@ -459,6 +459,10 @@ jobs:
       - name: "Generate preview index page"
         shell: bash
         run: |
+          # Create .nojekyll to disable Jekyll processing
+          touch .nojekyll
+          echo "✅ Created .nojekyll file"
+          
           pr_number="${{ needs.verify.outputs.pr_number }}"
           preview_dir="pr-preview/$pr_number"
 
@@ -480,6 +484,7 @@ jobs:
 
           git add "$preview_dir"/
           git add pr-preview/index.html || true
+          git add .nojekyll || true
 
           if git diff --cached --quiet; then
             echo "No changes to commit"
