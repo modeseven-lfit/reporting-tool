@@ -9,7 +9,7 @@ This document explains how to enable API integrations (GitHub, Gerrit, Jenkins) 
 
 ## Overview
 
-The reporting tool can collect data from several sources:
+The reporting tool can collect data from these sources:
 
 1. **Git repositories** (local) - ✅ Always available
 2. **INFO.yaml files** (cloned from info-master) - ✅ Always available
@@ -39,7 +39,7 @@ Look for these indicators in the output:
 [INFO] Analysis complete: 179 repositories, 0 errors
 ```
 
-If you see git analysis and no API calls, the APIs are disabled or not configured.
+If you see git analysis and no API calls, the configuration has disabled the APIs or they lack proper configuration.
 
 ## Why Your Reports Were Fast
 
@@ -50,7 +50,7 @@ If your reports generated in ~10-20 seconds for hundreds of repositories:
 - ❌ Gerrit API calls did not occur
 - ❌ Jenkins API calls did not occur
 
-With full API access enabled, reports take much longer (a few minutes) because the tool:
+With full API access enabled, reports take much longer (3-5 minutes) because the tool:
 
 - Queries GitHub for workflow status on each repository
 - Queries Gerrit for repository metadata
@@ -338,7 +338,7 @@ cd reporting-tool/testing
 
 ### API Calls Complete But Data Missing
 
-**Cause:** API calls fail quietly or return no data
+**Cause:** API calls fail without errors or return no data
 
 **Solution:**
 
@@ -357,7 +357,7 @@ With all APIs enabled:
 
 **Why the difference?**
 
-- Each repository may require several API calls
+- Each repository may require many API calls
 - Network latency for API requests
 - Rate limiting delays
 - API server response times

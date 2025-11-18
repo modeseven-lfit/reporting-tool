@@ -15,7 +15,7 @@ The testing script now uses a centralized project metadata file (`projects.json`
 - Jenkins server hostnames
 - GitHub organization names
 
-This eliminates hardcoded server URLs and makes it easy to test several Linux Foundation projects.
+This eliminates hardcoded server URLs and makes it easy to test many Linux Foundation projects.
 
 ## Project Metadata
 

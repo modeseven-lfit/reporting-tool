@@ -80,7 +80,7 @@ df -h /tmp
 
 ### API Access (Optional but Recommended)
 
-By default, reports only use **local git data**. To include GitHub workflow status, Gerrit metadata, and Jenkins CI/CD information, you need to configure API access.
+By default, reports use **local git data**. To include GitHub workflow status, Gerrit metadata, and Jenkins CI/CD information, you need to configure API access.
 
 **Quick setup:**
 
@@ -379,7 +379,7 @@ If you run out of disk space:
 
 You can run individual steps manually:
 
-#### 1. Clone ONAP exclusively
+#### 1. Clone ONAP
 
 ```bash
 uvx gerrit-clone clone \
@@ -391,7 +391,7 @@ uvx gerrit-clone clone \
     --verbose
 ```
 
-#### 2. Clone OpenDaylight exclusively
+#### 2. Clone OpenDaylight
 
 ```bash
 uvx gerrit-clone clone \
@@ -403,7 +403,7 @@ uvx gerrit-clone clone \
     --verbose
 ```
 
-#### 3. Generate ONAP report exclusively
+#### 3. Generate ONAP report
 
 ```bash
 cd reporting-tool
@@ -415,7 +415,7 @@ uv run reporting-tool generate \
     --workers 4
 ```
 
-#### 4. Generate OpenDaylight report exclusively
+#### 4. Generate OpenDaylight report
 
 ```bash
 cd reporting-tool

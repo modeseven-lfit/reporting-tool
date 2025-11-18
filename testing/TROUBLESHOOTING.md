@@ -169,8 +169,8 @@ This is informational. No action required unless you expect these repositories t
 
 **Symptoms:**
 
-- Takes a few minutes to generate reports
-- Numerous HTTP requests logged
+- Takes 3-5 minutes to generate reports
+- Many HTTP requests logged
 
 **Causes:**
 
