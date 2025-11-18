@@ -378,7 +378,14 @@ jobs:
         with:
           egress-policy: "audit"
 
-      - name: "Checkout repository"
+      - name: "Checkout PR branch for scripts"
+        # yamllint disable-line rule:line-length
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: pr-source
+
+      - name: "Checkout gh-pages"
         # yamllint disable-line rule:line-length
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
@@ -450,7 +457,8 @@ jobs:
           pr_number="${{ needs.verify.outputs.pr_number }}"
           preview_dir="pr-preview/$pr_number"
 
-          bash .github/scripts/generate-index.sh \
+          # Use the script from the PR branch (has latest fixes)
+          bash pr-source/.github/scripts/generate-index.sh \
             "$preview_dir" "pr-preview"
 
       - name: "Commit and push preview"
