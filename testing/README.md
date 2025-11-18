@@ -133,7 +133,7 @@ The script will:
 
 After successful execution, you'll have:
 
-```
+```bash
 /tmp/
 ├── gerrit.onap.org/              # Cloned ONAP repositories
 │   ├── aai/

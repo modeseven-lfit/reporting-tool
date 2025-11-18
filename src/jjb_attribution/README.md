@@ -1,3 +1,8 @@
+<!--
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+-->
+
 # CI-Management Integration Module
 
 This module provides integration with Linux Foundation ci-management repositories to enable accurate Jenkins job allocation based on Jenkins Job Builder (JJB) definitions.
@@ -46,7 +51,7 @@ print(f"Found {len(all_projects)} projects")
 
 Maps Gerrit projects to Jenkins jobs using the authoritative ci-management definitions:
 
-```
+```text
 Gerrit Project (aai/babel)
     ↓
 JJB File (jjb/aai/aai-babel.yaml)
@@ -82,7 +87,7 @@ Caches parsed data for performance:
 
 ## Architecture
 
-```
+```text
 CIManagementParser
 ├── load_templates()          # Load from global-jjb
 ├── find_jjb_file()           # Map project → JJB file
@@ -104,7 +109,7 @@ CIManagementParser
 
 For project `aai/babel`:
 
-```
+```text
 Expected Job Names (7):
   - aai-babel-clm
   - aai-babel-maven-docker-stage-master

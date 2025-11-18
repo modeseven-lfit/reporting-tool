@@ -951,7 +951,8 @@ class ReportRenderer:
             return ""
 
         # Use the InfoYamlRenderer to generate the report
-        return self.info_yaml_renderer.render_full_report_markdown(projects)
+        result = self.info_yaml_renderer.render_full_report_markdown(projects)
+        return str(result)
 
     def _generate_consolidated_contributors_table(
         self, top_commits: list[dict[str, Any]], top_loc: list[dict[str, Any]]

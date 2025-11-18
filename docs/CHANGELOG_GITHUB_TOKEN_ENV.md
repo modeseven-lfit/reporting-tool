@@ -1,3 +1,8 @@
+<!--
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+-->
+
 # Changelog: GitHub Token Environment Variable Configuration
 
 ## Version: 2.0.0 (Feature Enhancement)
@@ -187,7 +192,7 @@ reporting-tool generate \
 
 All existing tests pass, plus 12 new tests specifically for this feature:
 
-```
+```yaml
 tests/test_github_token_env.py::TestGitHubTokenEnvConfiguration - 8 tests
 tests/test_github_token_env.py::TestCLIIntegrationWithTokenEnv - 2 tests
 tests/test_github_token_env.py::TestBackwardCompatibility - 2 tests

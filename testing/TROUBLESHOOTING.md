@@ -1,3 +1,8 @@
+<!--
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+-->
+
 # Troubleshooting Guide
 
 ## Common Issues and Solutions
@@ -6,7 +11,7 @@
 
 **Symptoms:**
 
-```
+```text
 jq: parse error: Unfinished string at EOF at line 2, column 0
 jq: parse error: Invalid numeric literal at line 1, column 10
 ```
@@ -44,7 +49,7 @@ done
 
 **Symptoms:**
 
-```
+```bash
 [ERROR] SSH key not found at /Users/username/.ssh/gerrit.linuxfoundation.org
 [ERROR] Please ensure your SSH key is properly configured
 ```
@@ -80,7 +85,7 @@ done
 
 **Symptoms:**
 
-```
+```text
 [WARNING] ==========================================
 [WARNING] ⚠️  NO API INTEGRATIONS CONFIGURED
 [WARNING] ==========================================
@@ -112,7 +117,7 @@ export JENKINS_TOKEN="your-api-token"
 
 **Symptoms:**
 
-```
+```text
 [ERROR] CRITICAL: Jenkins job allocation issues detected:
 [ERROR]   - CRITICAL ERROR: Found 8 unallocated project Jenkins jobs
 ```
@@ -139,7 +144,7 @@ Review the suggestions in the output and update project metadata if needed. This
 
 **Symptoms:**
 
-```
+```bash
 [INFO] Repositories with NO commits: 34
 [INFO] Sample repositories with NO commits:
 [INFO]   - integration/simulators/nf-simulator/pm-https-server
@@ -197,7 +202,7 @@ This is informational only. No action required unless you expect these repositor
 
 **Symptoms:**
 
-```
+```bash
 Permission denied (publickey).
 fatal: Could not read from remote repository.
 ```
@@ -240,7 +245,7 @@ fatal: Could not read from remote repository.
 
 **Symptoms:**
 
-```
+```bash
 uvx: command not found
 jq: command not found
 ```

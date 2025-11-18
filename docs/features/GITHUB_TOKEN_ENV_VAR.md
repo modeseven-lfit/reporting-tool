@@ -1,3 +1,8 @@
+<!--
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+-->
+
 # GitHub Token Environment Variable Configuration
 
 ## Overview
@@ -44,7 +49,7 @@ reporting-tool generate --project my-project --repos-path ./repos \
 
 ## CLI Option
 
-```
+```yaml
 --github-token-env VAR_NAME
     Environment variable name for GitHub API token
     Default: GITHUB_TOKEN

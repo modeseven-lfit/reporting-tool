@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2025 The Linux Foundation
+
 """
 Repository manager for ci-management and global-jjb.
 
@@ -327,7 +330,7 @@ class JJBRepoManager:
         Returns:
             Dictionary with cache statistics
         """
-        info = {
+        info: dict[str, Any] = {
             "cache_dir": str(self.cache_dir),
             "exists": self.cache_dir.exists(),
             "repositories": [],

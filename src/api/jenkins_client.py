@@ -25,8 +25,8 @@ try:
     JJB_ATTRIBUTION_AVAILABLE = True
 except ImportError:
     JJB_ATTRIBUTION_AVAILABLE = False
-    JJBAttribution = None  # type: ignore
-    JJBRepoManager = None  # type: ignore
+    JJBAttribution = None
+    JJBRepoManager = None
 
 
 class JenkinsAPIClient(BaseAPIClient):

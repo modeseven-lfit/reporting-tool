@@ -213,12 +213,14 @@ jjb_attribution:
   enabled: true
 
   # Git URL for the ci-management repository (OPTIONAL)
-  # If not provided, automatically derived as: https://{gerrit_host}/r/ci-management
+  # If not provided, automatically derived as:
+  #   https://{gerrit_host}/r/ci-management
   # Only override if your ci-management repo has a non-standard location
   # Examples:
   #   - https://gerrit.onap.org/r/ci-management (auto-derived)
   #   - https://gerrit.o-ran-sc.org/r/ci-management (auto-derived)
-  #   - https://git.opendaylight.org/gerrit/releng/builder (OpenDaylight uses different name)
+  #   - https://git.opendaylight.org/gerrit/releng/builder
+  #     (OpenDaylight uses different name)
   url: ""
 
   # Branch to use (typically "master" or "main")
@@ -285,8 +287,10 @@ extensions:
     include_prs: false
     # GitHub organization mapping for Gerrit mirrors (AUTO-DERIVED)
     # Automatically derived from gerrit.host
-    # Example: gerrit.onap.org -> "onap", gerrit.o-ran-sc.org -> "o-ran-sc"
-    # Override only if your organization name differs from the Gerrit host pattern
+    # Example: gerrit.onap.org -> "onap",
+    #          gerrit.o-ran-sc.org -> "o-ran-sc"
+    # Override only if your organization name differs from the Gerrit
+    # host pattern
     github_org: ""
 
   # Language analysis (future)

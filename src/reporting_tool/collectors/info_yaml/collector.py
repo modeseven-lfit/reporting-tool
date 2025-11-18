@@ -391,7 +391,8 @@ class INFOYamlCollector(BaseCollector):
         if not self.enricher or not self.projects:
             return None
 
-        return self.enricher.get_enrichment_statistics(self.projects)
+        result = self.enricher.get_enrichment_statistics(self.projects)
+        return dict(result) if result is not None else None
 
     def clear_url_cache(self) -> None:
         """Clear the URL validation cache."""
@@ -409,4 +410,5 @@ class INFOYamlCollector(BaseCollector):
         if not self.enricher:
             return None
 
-        return self.enricher.get_url_cache_stats()
+        result = self.enricher.get_url_cache_stats()
+        return dict(result) if result is not None else None

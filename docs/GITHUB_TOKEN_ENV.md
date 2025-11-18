@@ -1,3 +1,8 @@
+<!--
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+-->
+
 # GitHub Token Environment Variable Configuration
 
 ## Overview
@@ -134,7 +139,7 @@ Fine-grained tokens are scoped to a single organization, but the reporting tool 
 
 **Symptom**: Warning message about missing GitHub token
 
-```
+```yaml
 [WARNING] GitHub API enabled but token not available (GITHUB_TOKEN).
           Workflow status will not be queried.
 ```

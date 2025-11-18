@@ -507,7 +507,8 @@ class InfoYamlEnricher:
         Returns:
             Dictionary with cache statistics
         """
-        return self.url_validator.get_cache_stats()
+        result = self.url_validator.get_cache_stats()
+        return dict(result)
 
 
 def enrich_project_with_git_data(

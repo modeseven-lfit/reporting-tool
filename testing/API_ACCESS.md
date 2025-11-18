@@ -25,7 +25,7 @@ Look for these indicators in the output:
 
 ### ✅ APIs Are Working
 
-```
+```text
 [INFO] Fetching workflow status from GitHub API...
 [INFO] Connected to Gerrit API at https://gerrit.onap.org
 [INFO] Checking Jenkins jobs for repository...
@@ -33,7 +33,7 @@ Look for these indicators in the output:
 
 ### ❌ APIs Are NOT Working
 
-```
+```text
 [INFO] Discovered 179 git repositories
 [INFO] Aggregated 1532 unique authors across repositories
 [INFO] Analysis complete: 179 repositories, 0 errors

@@ -223,7 +223,7 @@ ssh -p 29418 gerrit.linuxfoundation.org gerrit version
 
 Expected output:
 
-```
+```bash
 gerrit version 3.x.x
 ```
 
@@ -231,7 +231,7 @@ gerrit version 3.x.x
 
 If no SSH key is found, the script exits with a clear error message:
 
-```
+```bash
 [ERROR] ❌ SSH key not found: /Users/username/.ssh/gerrit.linuxfoundation.org
 
 To fix this:

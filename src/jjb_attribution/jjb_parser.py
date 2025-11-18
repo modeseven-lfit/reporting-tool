@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2025 The Linux Foundation
+
 """
 Jenkins Job Builder (JJB) Attribution Parser.
 
@@ -349,7 +352,7 @@ class JJBAttribution:
 
     def _parse_jjb_file(self, jjb_file: Path, gerrit_project: str) -> list[JJBProject]:
         """Parse a JJB YAML file and extract project blocks."""
-        projects = []
+        projects: list[JJBProject] = []
 
         try:
             with open(jjb_file, "r", encoding="utf-8") as f:
@@ -527,7 +530,7 @@ class JJBAttribution:
             for stream_item in streams:
                 if isinstance(stream_item, str):
                     stream_name = stream_item
-                    stream_vars = {}
+                    stream_vars: dict[str, Any] = {}
                 elif isinstance(stream_item, dict):
                     stream_name = list(stream_item.keys())[0]
                     # Extract nested variables from the stream dictionary

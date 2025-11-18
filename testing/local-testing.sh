@@ -164,7 +164,6 @@ check_api_configuration() {
     # Check for Gerrit config (optional - not used by current implementation)
     if [ -n "${GERRIT_HOST:-}" ]; then
         log_success "Gerrit API: GERRIT_HOST is set (${GERRIT_HOST})"
-        has_gerrit_config=true
     else
         log_info "Gerrit API: Not configured (using projects.json configuration)"
     fi
@@ -172,7 +171,6 @@ check_api_configuration() {
     # Check for Jenkins config (optional - will use projects.json configuration)
     if [ -n "${JENKINS_HOST:-}" ]; then
         log_success "Jenkins API: JENKINS_HOST is set (${JENKINS_HOST})"
-        has_jenkins_config=true
     else
         log_info "Jenkins API: Will use configuration from projects.json"
     fi
@@ -236,18 +234,16 @@ clone_project() {
         return 0
     fi
 
-    log_info "Cloning ${project_name} repositories from ${gerrit_host}..."
+    log_info "Cloning ${project_name} repositories from ${gerrit_host} to ${clone_dir}..."
 
-    uvx gerrit-clone clone \
+    if gerrit-clone-action \
         --host "${gerrit_host}" \
         --path-prefix "${clone_dir}" \
         --skip-archived \
         --threads 4 \
         --clone-timeout 600 \
         --retry-attempts 3 \
-        --move-conflicting
-
-    if [ $? -eq 0 ]; then
+        --move-conflicting; then
         log_success "${project_name} repositories cloned successfully to ${clone_dir}"
         return 0
     else
@@ -299,9 +295,7 @@ generate_project_report() {
     fi
 
     # Execute the command
-    eval ${cmd}
-
-    if [ $? -eq 0 ]; then
+    if eval "${cmd}"; then
         log_success "${project_name} report generated successfully in ${REPORT_BASE_DIR}/${project_name}"
         return 0
     else
@@ -321,8 +315,10 @@ show_summary() {
     log_info "Clone Directories:"
     # Use a while loop with proper quoting to avoid jq parsing errors
     jq -c '.[]' "${PROJECTS_JSON}" 2>/dev/null | while IFS= read -r project_data; do
-        local project=$(echo "$project_data" | jq -r '.project // "Unknown"' 2>/dev/null)
-        local gerrit=$(echo "$project_data" | jq -r '.gerrit // empty' 2>/dev/null)
+        local project
+        project=$(echo "$project_data" | jq -r '.project // "Unknown"' 2>/dev/null)
+        local gerrit
+        gerrit=$(echo "$project_data" | jq -r '.gerrit // empty' 2>/dev/null)
 
         if [ -n "${gerrit}" ]; then
             local clone_dir="${CLONE_BASE_DIR}/${gerrit}"
@@ -340,9 +336,13 @@ show_summary() {
     log_info "Generated Reports:"
     for project_dir in "${REPORT_BASE_DIR}"/*; do
         if [ -d "${project_dir}" ]; then
-            local project_name=$(basename "${project_dir}")
+            local project_name
+            project_name=$(basename "${project_dir}")
             echo "  ${project_name} reports:"
-            ls -lh "${project_dir}" 2>/dev/null | tail -n +2 | awk '{print "    " $9 " (" $5 ")"}'
+            find "${project_dir}" -maxdepth 1 -type f -exec basename {} \; | while read -r file; do
+                size=$(du -h "${project_dir}/${file}" 2>/dev/null | cut -f1)
+                echo "    ${file} (${size})"
+            done
             echo ""
         fi
     done
@@ -383,7 +383,8 @@ main() {
     log_info "Step 1/2: Cloning Gerrit Repositories"
     log_info "------------------------------------------"
     for project in "${projects[@]}"; do
-        local gerrit_host=$(get_project_info "${project}" "gerrit")
+        local gerrit_host
+        gerrit_host=$(get_project_info "${project}" "gerrit")
 
         if [ -n "${gerrit_host}" ]; then
             clone_project "${project}" "${gerrit_host}"
@@ -397,15 +398,18 @@ main() {
     log_info "Step 2/2: Generating Reports"
     log_info "------------------------------------------"
     for project in "${projects[@]}"; do
-        local gerrit_host=$(get_project_info "${project}" "gerrit")
-        local jenkins_host=$(get_project_info "${project}" "jenkins")
-        local github_org=$(get_project_info "${project}" "github")
+        local gerrit_host
+        gerrit_host=$(get_project_info "${project}" "gerrit")
+        local jenkins_host
+        jenkins_host=$(get_project_info "${project}" "jenkins")
+        local github_org
+        github_org=$(get_project_info "${project}" "github")
 
         if [ -n "${gerrit_host}" ]; then
             # Clean up existing report directory for this project
-            if [ -d "${REPORT_BASE_DIR}/${project}" ]; then
+            if [ -d "${REPORT_BASE_DIR}/${project}" ] && [ -n "${REPORT_BASE_DIR}" ] && [ -n "${project}" ]; then
                 log_warning "Removing existing ${REPORT_BASE_DIR}/${project}"
-                rm -rf "${REPORT_BASE_DIR}/${project}"
+                rm -rf "${REPORT_BASE_DIR:?}/${project}"
             fi
 
             generate_project_report "${project}" "${gerrit_host}" "${jenkins_host}" "${github_org}"

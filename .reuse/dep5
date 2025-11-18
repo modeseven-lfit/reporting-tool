@@ -8,7 +8,7 @@ Copyright: 2025 The Linux Foundation
 License: Apache-2.0
 Comment: Test snapshot data files - syrupy requires version marker as first line
 
-Files: src/config/schema.json src/themes/*/config.json .markdownlint.json
+Files: src/config/schema.json src/themes/*/config.json .markdownlint.json testing/projects.json
 Copyright: 2025 The Linux Foundation
 License: Apache-2.0
 Comment: JSON configuration files (JSON format doesn't support comments)

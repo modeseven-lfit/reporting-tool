@@ -24,7 +24,7 @@ class TestGitHubTokenEnvConfiguration:
         config = {}
         logger = Mock()
 
-        registry = FeatureRegistry(config, logger)
+        _ = FeatureRegistry(config, logger)
 
         # Default should be GITHUB_TOKEN when not configured
         token_env = config.get("_github_token_env", "GITHUB_TOKEN")
@@ -38,7 +38,7 @@ class TestGitHubTokenEnvConfiguration:
         }
         logger = Mock()
 
-        registry = FeatureRegistry(config, logger)
+        _ = FeatureRegistry(config, logger)
 
         # Should use custom environment variable name
         token_env = config.get("_github_token_env", "GITHUB_TOKEN")
@@ -53,7 +53,7 @@ class TestGitHubTokenEnvConfiguration:
         }
         logger = Mock()
 
-        registry = FeatureRegistry(config, logger)
+        _ = FeatureRegistry(config, logger)
 
         # Should read from GITHUB_TOKEN
         token_env = config.get("_github_token_env", "GITHUB_TOKEN")
@@ -69,7 +69,7 @@ class TestGitHubTokenEnvConfiguration:
         }
         logger = Mock()
 
-        registry = FeatureRegistry(config, logger)
+        _ = FeatureRegistry(config, logger)
 
         # Should read from CLASSIC_READ_ONLY_PAT_TOKEN
         token_env = config.get("_github_token_env", "GITHUB_TOKEN")
@@ -85,7 +85,7 @@ class TestGitHubTokenEnvConfiguration:
         }
         logger = Mock()
 
-        registry = FeatureRegistry(config, logger)
+        _ = FeatureRegistry(config, logger)
 
         # Should return None when token not found
         token_env = config.get("_github_token_env", "GITHUB_TOKEN")
@@ -127,7 +127,7 @@ class TestGitHubTokenEnvConfiguration:
         }
         logger = Mock()
 
-        registry = FeatureRegistry(config, logger)
+        _ = FeatureRegistry(config, logger)
 
         # Explicit token should be used first
         explicit_token = config.get("extensions", {}).get("github_api", {}).get("token")
@@ -142,7 +142,7 @@ class TestGitHubTokenEnvConfiguration:
         }
         logger = Mock()
 
-        registry = FeatureRegistry(config, logger)
+        _ = FeatureRegistry(config, logger)
 
         # Should work with any custom variable name
         token_env = config.get("_github_token_env", "GITHUB_TOKEN")

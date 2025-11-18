@@ -1,3 +1,8 @@
+<!--
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+-->
+
 # INFO.yaml Committer Reporting
 
 This document describes the INFO.yaml committer reporting feature, which collects project metadata from the LF info-master repository and generates comprehensive reports showing project lifecycle state, leads, and committer activity status.
@@ -188,7 +193,7 @@ issue_tracking:
 
 The info-master repository is organized by Gerrit server:
 
-```
+```yaml
 info-master/
 ├── gerrit.onap.org/          <- ONAP projects
 │   ├── .github/

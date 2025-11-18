@@ -1,3 +1,8 @@
+<!--
+SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: 2025 The Linux Foundation
+-->
+
 # INFO.yaml Reporting - Quick Reference
 
 > Quick reference for the INFO.yaml committer reporting feature
