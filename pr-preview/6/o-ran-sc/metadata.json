@@ -1,0 +1,15 @@
+{
+  "project": "O-RAN-SC",
+  "gerrit_server": "gerrit.o-ran-sc.org",
+  "jenkins_server": "jenkins.o-ran-sc.org",
+  "github_org": "",
+  "generated_at": "2025-11-18T22:56:24Z",
+  "workflow_run_id": "19483233135",
+  "workflow_run_number": "18",
+  "workflow_run_attempt": "1",
+  "git_sha": "a77581b673ea6bd56ccafae2ac1328b135e26c40",
+  "git_ref": "fix/github-pages-index-generation",
+  "pr_number": 6,
+  "pr_author": "ModeSevenIndustrialSolutions",
+  "environment": "pr-preview"
+}
