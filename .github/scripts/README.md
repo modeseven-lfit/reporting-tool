@@ -23,7 +23,7 @@ Generates HTML index pages for GitHub Pages.
 
 **Arguments:**
 
-- `report_dir`: Directory containing reports (e.g., `production` or `previews/123`)
+- `report_dir`: Directory containing reports (e.g., `.` for root or `previews/123`)
 - `environment`: `production` or `previews` (default: `production`)
 
 **What it does:**
@@ -35,13 +35,12 @@ Generates HTML index pages for GitHub Pages.
    - Project names and slugs
    - Generation timestamps
    - Links to HTML and JSON reports
-4. Creates a root index page (if generating for production)
 
 **Example:**
 
 ```bash
-# Generate production index
-./generate-index.sh production
+# Generate production index at root
+./generate-index.sh . production
 
 # Generate Preview report index
 ./generate-index.sh previews/123 previews
@@ -49,8 +48,9 @@ Generates HTML index pages for GitHub Pages.
 
 **Output:**
 
-- `<report_dir>/index.html` - Project listing page
-- `index.html` - Root landing page (for production environment)
+- `index.html` - Production reports listing at root level
+- `previews/index.html` - Parent index listing all PR previews
+- `previews/<pr_number>/index.html` - Individual PR preview listing
 
 ---
 

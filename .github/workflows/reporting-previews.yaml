@@ -468,6 +468,240 @@ jobs:
           bash /tmp/pr-scripts/generate-index.sh \
             "$preview_dir" "previews"
 
+      - name: "Generate parent previews index"
+        shell: bash
+        run: |
+          echo "📄 Generating parent previews index"
+
+          # Create previews directory if it doesn't exist
+          mkdir -p previews
+
+          # Find all preview directories
+          preview_dirs=()
+          if [ -d "previews" ]; then
+            for pr_dir in previews/*/; do
+              if [ -d "$pr_dir" ] && [ -f "$pr_dir/index.html" ]; then
+                pr_num=$(basename "$pr_dir")
+                # Only add if it's a number (PR number)
+                if [[ "$pr_num" =~ ^[0-9]+$ ]]; then
+                  preview_dirs+=("$pr_num")
+                fi
+              fi
+            done
+          fi
+
+          # Sort preview directories (descending - newest first)
+          sorted_dirs=()
+          if [ ${#preview_dirs[@]} -gt 0 ]; then
+            mapfile -t sorted_dirs < <(printf '%s\n' \
+              "${preview_dirs[@]}" | sort -rn)
+          fi
+
+          echo "Found ${#sorted_dirs[@]} preview(s): ${sorted_dirs[*]}"
+
+          # Generate the parent index HTML
+          cat > previews/index.html <<'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport"
+              content="width=device-width, initial-scale=1.0">
+            <title>Preview Reports - Linux Foundation</title>
+            <style>
+              * { margin: 0; padding: 0; box-sizing: border-box; }
+              body {
+                font-family: -apple-system, BlinkMacSystemFont,
+                  'Segoe UI', Roboto, sans-serif;
+                background: linear-gradient(135deg,
+                  #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                padding: 2rem 1rem;
+              }
+              .container { max-width: 1200px; margin: 0 auto; }
+              header {
+                background: white;
+                border-radius: 12px;
+                padding: 2rem;
+                margin-bottom: 2rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+              }
+              h1 {
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+                color: #2d3748;
+              }
+              .subtitle {
+                font-size: 1.1rem;
+                color: #718096;
+                margin-bottom: 1rem;
+              }
+              .back-link {
+                display: inline-block;
+                color: #667eea;
+                text-decoration: none;
+                margin-top: 1rem;
+                font-weight: 500;
+              }
+              .back-link:hover { text-decoration: underline; }
+              main {
+                background: white;
+                border-radius: 12px;
+                padding: 2rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+              }
+              .preview-list {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+              }
+              .preview-card {
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+                padding: 1.5rem;
+                transition: all 0.3s ease;
+                background: #fafafa;
+              }
+              .preview-card:hover {
+                border-color: #667eea;
+                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+                transform: translateY(-2px);
+              }
+              .preview-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 0.5rem;
+              }
+              .preview-title {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: #2d3748;
+              }
+              .preview-number {
+                background: #667eea;
+                color: white;
+                padding: 0.25rem 0.75rem;
+                border-radius: 12px;
+                font-size: 0.9rem;
+                font-weight: 600;
+              }
+              .preview-meta {
+                font-size: 0.9rem;
+                color: #718096;
+                margin-bottom: 1rem;
+              }
+              .preview-link {
+                display: inline-block;
+                background: #667eea;
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 6px;
+                text-decoration: none;
+                font-weight: 500;
+                transition: all 0.2s;
+              }
+              .preview-link:hover {
+                background: #5568d3;
+                transform: translateY(-1px);
+              }
+              .empty-state {
+                text-align: center;
+                padding: 4rem 2rem;
+                color: #718096;
+              }
+              footer {
+                text-align: center;
+                padding: 2rem;
+                color: white;
+                margin-top: 2rem;
+              }
+              footer a { color: white; text-decoration: underline; }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <header>
+                <h1>🔍 Preview Reports</h1>
+                <p class="subtitle">
+                  Pull request preview reports for review
+                </p>
+                <a href="/reporting-tool/" class="back-link">
+                  ← Back to Production Reports
+                </a>
+              </header>
+
+              <main>
+                <div class="preview-list">
+          EOF
+
+          # Add preview cards or empty state
+          if [ ${#sorted_dirs[@]} -eq 0 ]; then
+            cat >> previews/index.html <<'EOF'
+                  <div class="empty-state">
+                    <div style="font-size: 4rem;
+                      margin-bottom: 1rem;">📭</div>
+                    <h3>No Previews Available</h3>
+                    <p>Preview reports will appear here when pull
+                      requests are opened.</p>
+                  </div>
+          EOF
+          else
+            for pr_num in "${sorted_dirs[@]}"; do
+              pr_dir="previews/$pr_num"
+
+              # Count projects in this preview
+              project_count=0
+              if [ -d "$pr_dir" ]; then
+                project_count=$(find "$pr_dir" -maxdepth 1 \
+                  -type d ! -path "$pr_dir" | wc -l | tr -d ' ')
+              fi
+
+              # Generate card
+              cat >> previews/index.html <<CARD
+                  <div class="preview-card">
+                    <div class="preview-header">
+                      <div class="preview-title">Pull Request #${pr_num}</div>
+                      <span class="preview-number">PR #${pr_num}</span>
+                    </div>
+                    <div class="preview-meta">
+                      📊 ${project_count} project report(s) available
+                    </div>
+                    <a href="/reporting-tool/previews/${pr_num}/"
+                      class="preview-link">
+                      View Preview Reports →
+                    </a>
+                  </div>
+          CARD
+            done
+          fi
+
+          # Close HTML
+          cat >> previews/index.html <<'EOF'
+                </div>
+              </main>
+
+              <footer>
+                <p>
+                  Generated by
+                  <a href="https://github.com/modeseven-lfit/reporting-tool"
+                    target="_blank">
+                    Linux Foundation Reporting Tool
+                  </a>
+                </p>
+                <p style="margin-top: 0.5rem;
+                  font-size: 0.9rem;">
+                  &copy; 2025 The Linux Foundation | Apache-2.0 License
+                </p>
+              </footer>
+            </div>
+          </body>
+          </html>
+          EOF
+
+          pr_count="${#sorted_dirs[@]}"
+          echo "✅ Generated parent previews index with $pr_count preview(s)"
+
       - name: "Commit and push preview"
         shell: bash
         env:
@@ -481,7 +715,7 @@ jobs:
             "lf-releng+reports-bot@linuxfoundation.org"
 
           git add "$preview_dir"/
-          git add previews/index.html || true
+          git add previews/index.html || true  # Add parent index
           git add .nojekyll || true
 
           if git diff --cached --quiet; then

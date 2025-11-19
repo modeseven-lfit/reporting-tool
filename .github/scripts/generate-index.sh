@@ -6,28 +6,66 @@ set -euo pipefail
 
 # Generate index.html for GitHub Pages
 # Usage: generate-index.sh <report_dir> [environment]
-#   report_dir: Directory containing reports (e.g., "production" or "previews/123")
+#   report_dir: Directory containing reports (e.g., "." for root or "previews/123")
 #   environment: "production" or "previews" (default: production)
 
-REPORT_DIR="${1:-production}"
+REPORT_DIR="${1:-.}"
 ENVIRONMENT="${2:-production}"
 
 echo "📄 Generating index page for: $REPORT_DIR"
 
+# Get repository name from environment or extract from URL
+REPO_NAME="${GITHUB_REPOSITORY##*/}"
+if [ -z "$REPO_NAME" ]; then
+  REPO_NAME="reporting-tool"
+fi
+
 # Determine the base path for links
 if [ "$ENVIRONMENT" = "previews" ]; then
-  BASE_PATH="/$REPORT_DIR"
+  # Preview environment: /reporting-tool/previews/6
+  BASE_PATH="/${REPO_NAME}/${REPORT_DIR}"
   PAGE_TITLE="Report Preview"
   PAGE_SUBTITLE="Preview reports for changes under review"
 else
-  BASE_PATH="/production"
+  # Production at root: /reporting-tool/
+  BASE_PATH="/${REPO_NAME}"
   PAGE_TITLE="Production Reports"
   PAGE_SUBTITLE="Official Linux Foundation project reports"
 fi
 
 # Find all report.html files
 REPORTS=()
-if [ -d "$REPORT_DIR" ]; then
+if [ "$REPORT_DIR" = "." ]; then
+  # Root level: find project directories with report.html
+  # Exclude previews/ directory and any hidden directories
+  while IFS= read -r -d '' report_file; do
+    project_dir=$(dirname "$report_file")
+    project_slug=$(basename "$project_dir")
+
+    # Skip if this is under previews/
+    if [[ "$project_dir" == previews/* ]] || [[ "$project_dir" == ./previews/* ]]; then
+      continue
+    fi
+
+    # Skip if this is a hidden directory
+    if [[ "$project_slug" == .* ]]; then
+      continue
+    fi
+
+    # Get project name from metadata if available
+    project_name="$project_slug"
+    metadata_file="$project_dir/metadata.json"
+    if [ -f "$metadata_file" ]; then
+      project_name=$(jq -r --arg slug "$project_slug" '.project // $slug' "$metadata_file")
+      generated_at=$(jq -r '.generated_at // "N/A"' "$metadata_file")
+    else
+      generated_at="N/A"
+    fi
+
+    REPORTS+=("$project_slug|$project_name|$generated_at")
+  done < <(find . -maxdepth 2 -name "report.html" -print0)
+elif [ -d "$REPORT_DIR" ]; then
+  # Subdirectory (like previews/6): find all reports under it
   while IFS= read -r -d '' report_file; do
     project_dir=$(dirname "$report_file")
     project_slug=$(basename "$project_dir")
@@ -49,8 +87,15 @@ fi
 report_count=${#REPORTS[@]}
 echo "Found $report_count report(s)"
 
+# Determine output file location
+if [ "$REPORT_DIR" = "." ]; then
+  INDEX_FILE="index.html"
+else
+  INDEX_FILE="$REPORT_DIR/index.html"
+fi
+
 # Generate HTML
-cat > "$REPORT_DIR/index.html" <<'HTMLEOF'
+cat > "$INDEX_FILE" <<'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -447,161 +492,7 @@ awk -v reports="$REPORTS_HTML" '{
 # Clean up temp files
 rm -f "$TMP_FILE" "$TMP_FILE2"
 
-echo "✅ Index page generated: $REPORT_DIR/index.html"
+echo "✅ Index page generated: $INDEX_FILE"
 
-# If this is the main production directory, also create a root index
-if [ "$REPORT_DIR" = "production" ] && [ ! -f "index.html" ]; then
-  echo "📄 Creating root index page"
-
-  cat > index.html <<'ROOTHTML'
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Linux Foundation Reports</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-                   'Helvetica Neue', Arial, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .container {
-      background: white;
-      border-radius: 16px;
-      padding: 3rem;
-      max-width: 600px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #2d3748;
-    }
-
-    .subtitle {
-      font-size: 1.2rem;
-      color: #718096;
-      margin-bottom: 2rem;
-    }
-
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .link-card {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.5rem;
-      border: 2px solid #e2e8f0;
-      border-radius: 12px;
-      text-decoration: none;
-      color: #2d3748;
-      transition: all 0.3s ease;
-    }
-
-    .link-card:hover {
-      border-color: #667eea;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
-    }
-
-    .link-icon {
-      font-size: 2rem;
-    }
-
-    .link-content {
-      text-align: left;
-      flex: 1;
-    }
-
-    .link-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-
-    .link-desc {
-      font-size: 0.9rem;
-      color: #718096;
-    }
-
-    footer {
-      margin-top: 2rem;
-      padding-top: 2rem;
-      border-top: 1px solid #e2e8f0;
-      font-size: 0.9rem;
-      color: #718096;
-    }
-
-    footer a {
-      color: #667eea;
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>📊 Linux Foundation</h1>
-    <p class="subtitle">Project Reporting System</p>
-
-    <div class="links">
-      <a href="/production/" class="link-card">
-        <div class="link-icon">🏭</div>
-        <div class="link-content">
-          <div class="link-title">Production Reports</div>
-          <div class="link-desc">Official weekly project reports</div>
-        </div>
-      </a>
-
-      <a href="/previews/" class="link-card">
-        <div class="link-icon">🔍</div>
-        <div class="link-content">
-          <div class="link-title">Preview Reports</div>
-          <div class="link-desc">Preview reports from pull requests</div>
-        </div>
-      </a>
-    </div>
-
-    <footer>
-      <p>
-        Powered by
-        <a href="https://github.com/modeseven-lfit/reporting-tool" target="_blank">
-          Linux Foundation Reporting Tool
-        </a>
-      </p>
-      <p style="margin-top: 0.5rem;">
-        &copy; 2025 The Linux Foundation
-      </p>
-    </footer>
-  </div>
-</body>
-</html>
-ROOTHTML
-
-  echo "✅ Root index page created"
-fi
-
+# Skip creating separate root landing page since production IS at root
 echo "✅ Index generation complete"

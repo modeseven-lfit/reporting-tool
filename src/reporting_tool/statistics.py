@@ -211,12 +211,18 @@ class APIStatistics:
             for s in stats.values()
         )
 
-        if not has_calls:
-            return
-
         try:
             with open(step_summary, 'a') as f:
                 f.write("\n## 📊 API Call Statistics\n\n")
+
+                if not has_calls:
+                    # No API calls were made
+                    f.write("_No API calls were made during this run._\n\n")
+                    if snapshot['info_master_fetched']:
+                        f.write("**Info-master repository:** ✅ Fetched successfully\n\n")
+                    return
+
+                # Write statistics table
                 f.write("| Service | Total Calls | Success | Errors | Exceptions | Success Rate |\n")
                 f.write("|---------|-------------|---------|--------|------------|-------------|\n")
 

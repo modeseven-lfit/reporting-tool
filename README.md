@@ -14,7 +14,7 @@ jobs, GitHub CI/CD workflows, and development practices across repositories.
 
 ## 🗒️ Published Reports
 
-https://modeseven-lfit.github.io/reporting-tool/
+<https://modeseven-lfit.github.io/reporting-tool/>
 
 ## ⚡ Quick Start
 
@@ -148,8 +148,6 @@ reports/
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
-
-
 
 ---
 

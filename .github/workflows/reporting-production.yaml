@@ -209,6 +209,7 @@ jobs:
 
       - name: "Check clone status"
         shell: bash
+        # yamllint disable rule:line-length
         run: |
           if [ "${{ steps.clone.outcome }}" != "success" ]; then
             echo "::warning::Failed to clone Gerrit repositories for ${{ matrix.project }}"
@@ -220,6 +221,7 @@ jobs:
             echo "✅ Successfully cloned Gerrit repositories"
             echo "CLONE_FAILED=false" >> "$GITHUB_ENV"
           fi
+        # yamllint enable rule:line-length
 
       - name: "Set up SSH key for info-master"
         shell: bash
@@ -331,11 +333,12 @@ jobs:
       - name: "Report skipped due to clone failure"
         if: env.CLONE_FAILED == 'true'
         shell: bash
+        # yamllint disable rule:line-length
         run: |
           project="${{ matrix.project }}"
           echo "⚠️ Skipping report generation for $project due to Gerrit clone failure"
           echo "::warning::Report generation skipped for $project - Gerrit server unavailable"
-          
+
           # Create minimal metadata to indicate failure
           mkdir -p "./reports/$project"
           cat > "./reports/$project/metadata.json" <<EOF
@@ -347,6 +350,7 @@ jobs:
             "gerrit_host": "${{ matrix.gerrit }}"
           }
           EOF
+        # yamllint enable rule:line-length
 
       - name: "Create report metadata"
         shell: bash
@@ -470,13 +474,10 @@ jobs:
           path: ./downloaded-reports
         continue-on-error: true
 
-      - name: "Prepare production reports directory"
+      - name: "Prepare production reports at root"
         shell: bash
         run: |
-          echo "📦 Preparing production reports"
-
-          # Create production directory if it doesn't exist
-          mkdir -p production
+          echo "📦 Preparing production reports at root level"
 
           # Process each downloaded report
           report_count=0
@@ -494,7 +495,8 @@ jobs:
 
             echo "Processing: $project_name -> $slug"
 
-            target_dir="production/$slug"
+            # Create project directory at root level
+            target_dir="$slug"
             mkdir -p "$target_dir"
 
             # Copy all report files
@@ -519,7 +521,7 @@ jobs:
           done
 
           echo "REPORT_COUNT=$report_count" >> "$GITHUB_ENV"
-          echo "✅ Prepared $report_count project report(s)"
+          echo "✅ Prepared $report_count project report(s) at root"
 
       - name: "Generate index page"
         shell: bash
@@ -527,8 +529,9 @@ jobs:
           # Create .nojekyll to disable Jekyll processing
           touch .nojekyll
           echo "✅ Created .nojekyll file"
-          
-          bash /tmp/main-scripts/generate-index.sh production
+
+          # Generate index at root (pass "." as directory)
+          bash /tmp/main-scripts/generate-index.sh . production
 
       - name: "Commit and push changes"
         shell: bash
@@ -536,9 +539,20 @@ jobs:
           git config user.name "lf-releng-reports-bot"
           git config user.email "lf-releng+reports-bot@linuxfoundation.org"
 
-          git add production/
+          # Add all project directories and index
           git add index.html || true
           git add .nojekyll || true
+
+          # Add all project report directories (exclude previews/)
+          for project_dir in */; do
+            # Skip previews and non-report directories
+            if [ -d "$project_dir" ] && \
+               [ "$project_dir" != "previews/" ] && \
+               [ -f "$project_dir/report.html" ]; then
+              echo "Adding $project_dir"
+              git add "$project_dir"
+            fi
+          done
 
           if git diff --cached --quiet; then
             echo "No changes to commit"
@@ -563,7 +577,7 @@ jobs:
             echo ""
             echo "**Reports published:** ${{ env.REPORT_COUNT }}"
             echo "**Branch:** gh-pages"
-            echo "**Path:** production/"
+            echo "**Path:** (root)"
             echo ""
             echo "### 🌐 View Reports"
             echo ""
