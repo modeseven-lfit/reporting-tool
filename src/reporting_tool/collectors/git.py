@@ -115,10 +115,12 @@ class GitDataCollector:
         time_windows: dict[str, dict[str, Any]],
         logger: logging.Logger,
         jenkins_allocation_context: Optional[JenkinsAllocationContext] = None,
+        api_stats: Optional[Any] = None,
     ) -> None:
         self.config = config
         self.time_windows = time_windows
         self.logger = logger
+        self.api_stats = api_stats
         self.cache_enabled = config.get("performance", {}).get("cache", False)
         self.cache_dir = None
         self.repos_path: Optional[Path] = (
@@ -153,7 +155,7 @@ class GitDataCollector:
 
             if host:
                 try:
-                    self.gerrit_client = GerritAPIClient(host, base_url, timeout)
+                    self.gerrit_client = GerritAPIClient(host, base_url, timeout, stats=self.api_stats)
                     self.logger.info(f"Initialized Gerrit API client for {host}")
                     # Fetch all project data upfront
                     self._fetch_all_gerrit_projects()
@@ -181,6 +183,7 @@ class GitDataCollector:
                 self.jenkins_client = JenkinsAPIClient(
                     jenkins_host,
                     timeout,
+                    stats=self.api_stats,
                     jjb_config=jjb_config,
                     gerrit_host=gerrit_host
                 )
@@ -213,6 +216,7 @@ class GitDataCollector:
                     self.jenkins_client = JenkinsAPIClient(
                         host,
                         timeout,
+                        stats=self.api_stats,
                         jjb_config=jjb_config,
                         gerrit_host=gerrit_host
                     )

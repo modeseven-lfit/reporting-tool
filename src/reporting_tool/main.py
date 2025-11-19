@@ -180,6 +180,9 @@ class APIStatistics:
             with open(step_summary_file, "a") as f:
                 f.write("\n## 📊 API Statistics\n\n")
 
+                # Track if any stats were written
+                stats_written = False
+
                 # GitHub API
                 if self.get_total_calls("github") > 0:
                     f.write("### GitHub API\n")
@@ -190,6 +193,7 @@ class APIStatistics:
                         for code, count in sorted(self.stats["github"]["errors"].items()):
                             f.write(f"  - Error {code}: {count}\n")
                     f.write("\n")
+                    stats_written = True
 
                 # Gerrit API
                 if self.get_total_calls("gerrit") > 0:
@@ -201,6 +205,7 @@ class APIStatistics:
                         for code, count in sorted(self.stats["gerrit"]["errors"].items()):
                             f.write(f"  - Error {code}: {count}\n")
                     f.write("\n")
+                    stats_written = True
 
                 # Jenkins API
                 if self.get_total_calls("jenkins") > 0:
@@ -212,6 +217,7 @@ class APIStatistics:
                         for code, count in sorted(self.stats["jenkins"]["errors"].items()):
                             f.write(f"  - Error {code}: {count}\n")
                     f.write("\n")
+                    stats_written = True
 
                 # Info-master
                 if self.stats["info_master"]["success"] or self.stats["info_master"]["error"]:
@@ -221,6 +227,13 @@ class APIStatistics:
                     elif self.stats["info_master"]["error"]:
                         f.write(f"- ❌ {self.stats['info_master']['error']}\n")
                     f.write("\n")
+                    stats_written = True
+
+                # If no stats were recorded, write a message indicating this
+                if not stats_written:
+                    f.write("ℹ️ No external API calls were made during this run.\n\n")
+                    f.write("*This may indicate that API statistics tracking is not properly configured, ")
+                    f.write("or that no features requiring external API calls were enabled.*\n\n")
 
         except Exception as e:
             print(f"Warning: Could not write API stats to step summary: {e}", file=sys.stderr)
@@ -406,8 +419,8 @@ def main(args=None) -> int:
         project_output_dir = args.output_dir / args.project
         project_output_dir.mkdir(parents=True, exist_ok=True)
 
-        # Initialize reporter
-        reporter = RepositoryReporter(config, logger)
+        # Initialize reporter with API statistics tracking
+        reporter = RepositoryReporter(config, logger, api_stats)
 
         # Analyze repositories
         report_data = reporter.analyze_repositories(args.repos_path)

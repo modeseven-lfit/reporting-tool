@@ -50,16 +50,18 @@ class FeatureRegistry:
         {"present": True, "files": [".github/dependabot.yml"]}
     """
 
-    def __init__(self, config: Dict[str, Any], logger: logging.Logger) -> None:
+    def __init__(self, config: Dict[str, Any], logger: logging.Logger, api_stats: Optional[Any] = None) -> None:
         """
         Initialize the feature registry.
 
         Args:
             config: Configuration dictionary containing feature settings
             logger: Logger instance for debug/info/warning messages
+            api_stats: Optional API statistics tracker for monitoring external API calls
         """
         self.config = config
         self.logger = logger
+        self.api_stats = api_stats
         self.checks: Dict[str, Callable] = {}
 
         # Get GitHub organization from config (already determined centrally in main())
@@ -662,7 +664,7 @@ class FeatureRegistry:
                     f"Attempting GitHub API query for {owner}/{repo_name}"
                 )
                 if owner and repo_name:
-                    github_client = GitHubAPIClient(github_token)
+                    github_client = GitHubAPIClient(github_token, stats=self.api_stats)
                     github_status = (
                         github_client.get_repository_workflow_status_summary(
                             owner, repo_name
@@ -895,7 +897,7 @@ class FeatureRegistry:
 
             if github_token:
                 try:
-                    github_client = GitHubAPIClient(github_token)
+                    github_client = GitHubAPIClient(github_token, stats=self.api_stats)
                     response = github_client.client.get(f"/repos/{owner}/{repo_name}")
                     return bool(response.status_code == 200)
                 except Exception as e:

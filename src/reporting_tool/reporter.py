@@ -47,18 +47,20 @@ except ImportError:
 class RepositoryReporter:
     """Main orchestrator for repository reporting."""
 
-    def __init__(self, config: dict[str, Any], logger: logging.Logger) -> None:
+    def __init__(self, config: dict[str, Any], logger: logging.Logger, api_stats: Optional[Any] = None) -> None:
         """
         Initialize the repository reporter.
 
         Args:
             config: Merged configuration dictionary
             logger: Logger instance for reporting progress and issues
+            api_stats: Optional API statistics tracker for monitoring external API calls
         """
         self.config = config
         self.logger = logger
-        self.git_collector = GitDataCollector(config, {}, logger)
-        self.feature_registry = FeatureRegistry(config, logger)
+        self.api_stats = api_stats
+        self.git_collector = GitDataCollector(config, {}, logger, api_stats=api_stats)
+        self.feature_registry = FeatureRegistry(config, logger, api_stats=api_stats)
         self.aggregator = DataAggregator(config, logger)
         self.renderer = ReportRenderer(config, logger)
         self.info_yaml_collector = INFOYamlCollector(config)
@@ -98,16 +100,16 @@ class RepositoryReporter:
         )
 
         if success:
-            if api_stats:
-                api_stats.record_info_master(True)
+            if self.api_stats:
+                self.api_stats.record_info_master(True)
             self.logger.debug("✅ Successfully cloned info-master repository")
             # Register cleanup handler
             atexit.register(self._cleanup_info_master_repo)
             return info_master_path
         else:
             error_msg = f"Clone failed: {output[:200]}" if output else "Clone failed"
-            if api_stats:
-                api_stats.record_info_master(False, error_msg)
+            if self.api_stats:
+                self.api_stats.record_info_master(False, error_msg)
             self.logger.error(f"❌ Failed to clone info-master repository: {output}")
             # Clean up the temp directory if clone failed
             if os.path.exists(self.info_master_temp_dir):
