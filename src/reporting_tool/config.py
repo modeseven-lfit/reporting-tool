@@ -90,12 +90,17 @@ def load_configuration(
     Loads default configuration (default.yaml) and project-specific configuration,
     then merges them with project config taking precedence.
 
+    Project-specific configurations are matched by the 'project' field in the YAML file,
+    not by filename. This allows configuration files to have simple lowercase names
+    (e.g., lfbroadband.yaml) while supporting project names with spaces and capitals
+    (e.g., "LF Broadband").
+
     If no project-specific configuration exists, uses the default configuration.
     This allows the tool to work out-of-the-box for most projects without
     requiring custom configuration files.
 
     Args:
-        project: Project name
+        project: Project name (matched against 'project' field in config files)
         config_dir: Directory containing configuration files (default: configuration)
         default_config_name: Default configuration file name (default: default.yaml)
 
@@ -120,13 +125,39 @@ def load_configuration(
         default_config = load_yaml_config(default_path)
         logger.debug(f"Loaded default configuration from {default_path}")
 
-    # Load project-specific configuration (optional)
-    project_path = config_dir / f"{project}.yaml"
-    if not project_path.exists():
-        # Try .config extension for backward compatibility
-        project_path = config_dir / f"{project}.config"
+    # Search for project-specific configuration by matching 'project' field
+    project_config = None
+    project_path = None
 
-    if not project_path.exists():
+    if config_dir.exists() and config_dir.is_dir():
+        # Files to skip (not project configurations)
+        skip_files = {
+            default_config_name,
+            "organizational_domains.yaml",
+            "README.md",
+        }
+
+        for config_file in config_dir.glob("*.yaml"):
+            # Skip non-project configuration files
+            if config_file.name in skip_files:
+                continue
+            # Skip test configuration files
+            if config_file.name.startswith("test-"):
+                continue
+
+            try:
+                candidate_config = load_yaml_config(config_file)
+                # Check if this config has a 'project' field that matches
+                if candidate_config.get('project') == project:
+                    project_config = candidate_config
+                    project_path = config_file
+                    logger.debug(f"Found project configuration in {config_file}")
+                    break
+            except Exception as e:
+                logger.debug(f"Skipping {config_file}: {e}")
+                continue
+
+    if project_config is None:
         # No project-specific config found, use defaults
         logger.info(
             f"No project-specific configuration found for '{project}' in {config_dir}, "
@@ -134,12 +165,9 @@ def load_configuration(
         )
         merged_config = default_config.copy()
     else:
-        # Load and merge project-specific configuration
-        project_config = load_yaml_config(project_path)
-        logger.debug(f"Loaded project configuration from {project_path}")
-
         # Merge: default config <- project config (project overrides defaults)
         merged_config = deep_merge_dicts(default_config, project_config)
+        logger.debug(f"Loaded project configuration from {project_path}")
 
     # Ensure project name is set
     merged_config['project'] = project
