@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: 2025 The Linux Foundation
 
-name: "🔍 PR Preview Reports"
+name: "🔍 Preview Reports"
 
 # yamllint disable-line rule:truthy
 on:
@@ -16,14 +16,14 @@ on:
       - 'uv.lock'
 
 concurrency:
-  group: pr-preview-${{ github.event.pull_request.number }}
+  group: report-previews-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 permissions: {}
 
 jobs:
   verify:
-    name: "Verify Configuration"
+    name: "Verify configuration"
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -39,7 +39,7 @@ jobs:
         with:
           egress-policy: "audit"
 
-      - name: "Checkout PR"
+      - name: "Checkout pull request"
         # yamllint disable-line rule:line-length
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
@@ -56,13 +56,11 @@ jobs:
           echo "pr_number=$pr_number" >> "$GITHUB_OUTPUT"
 
           {
-            echo "## 🔍 PR Preview Report Generation"
+            echo "## 🔍 Preview Report Generation"
             echo ""
             echo "**PR:** #$pr_number"
             echo "**Started:** $timestamp"
             echo "**Run ID:** ${{ github.run_id }}"
-            echo ""
-            echo "> ⚠️ Preview run - will not overwrite production"
             echo ""
           } >> "$GITHUB_STEP_SUMMARY"
 
@@ -85,7 +83,7 @@ jobs:
         run: |
           validation_failed=false
 
-          echo "🔐 Validating secrets for PR preview..."
+          echo "🔐 Validating secrets for preview reports..."
 
           if [ -z "$CLASSIC_READ_ONLY_PAT_TOKEN" ]; then
             echo "::error::CLASSIC_READ_ONLY_PAT_TOKEN secret is not set"
@@ -170,7 +168,7 @@ jobs:
         with:
           egress-policy: "audit"
 
-      - name: "Checkout PR"
+      - name: "Checkout pull request"
         # yamllint disable-line rule:line-length
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
@@ -306,7 +304,7 @@ jobs:
             exit 1
           fi
 
-          # Create metadata with PR context
+          # Create metadata with pull request context
           cat > "$report_dir/metadata.json" <<EOF
           {
             "project": "$project",
@@ -363,7 +361,7 @@ jobs:
           if-no-files-found: warn
 
   publish-preview:
-    name: "Publish PR Preview"
+    name: "Publish preview reports"
     needs: [verify, analyze]
     if: always() && needs.verify.result == 'success'
     runs-on: ubuntu-latest
@@ -378,26 +376,26 @@ jobs:
         with:
           egress-policy: "audit"
 
-      - name: "Checkout PR branch for scripts"
+      - name: "Checkout pull request branch for scripts"
         # yamllint disable-line rule:line-length
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: "Copy script from PR"
+      - name: "Copy script from pull request"
         shell: bash
         run: |
           mkdir -p /tmp/pr-scripts
           cp .github/scripts/generate-index.sh /tmp/pr-scripts/
 
-      - name: "Checkout gh-pages"
+      - name: "Checkout gh-pages branch"
         # yamllint disable-line rule:line-length
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           ref: gh-pages
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: "Download all preview report artifacts"
+      - name: "Download all preview artifacts"
         # yamllint disable-line rule:line-length
         uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
         with:
@@ -405,7 +403,7 @@ jobs:
           path: ./downloaded-reports
         continue-on-error: true
 
-      - name: "Prepare PR preview directory"
+      - name: "Prepare preview directory"
         shell: bash
         run: |
           pr_number="${{ needs.verify.outputs.pr_number }}"
@@ -462,7 +460,7 @@ jobs:
           # Create .nojekyll to disable Jekyll processing
           touch .nojekyll
           echo "✅ Created .nojekyll file"
-          
+
           pr_number="${{ needs.verify.outputs.pr_number }}"
           preview_dir="pr-preview/$pr_number"
 
@@ -509,7 +507,7 @@ jobs:
           echo "PREVIEW_URL=${base_url}/${preview_dir}" >> "$GITHUB_ENV"
           echo "✅ Published PR preview"
 
-      - name: "Comment on PR with links"
+      - name: "Comment on pull request with links"
         # yamllint disable-line rule:line-length
         uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
         with:
@@ -572,7 +570,7 @@ jobs:
             }
 
   summary:
-    name: "Generate Summary"
+    name: "Generate summary"
     needs: [verify, analyze, publish-preview]
     if: always()
     runs-on: ubuntu-latest
@@ -590,7 +588,7 @@ jobs:
         shell: bash
         run: |
           {
-            echo "## 🔍 PR Preview Generation Complete"
+            echo "## 🔍 Preview Reports Complete"
             echo ""
             echo "**PR:** #${{ github.event.pull_request.number }}"
             echo "**Completed:** $(date -u +%Y-%m-%dT%H:%M:%SZ)"
@@ -601,8 +599,6 @@ jobs:
             echo "- **Analyze:** ${{ needs.analyze.result }}"
             echo "- **Publish Preview:** ${{ needs.publish-preview.result }}"
             echo ""
-            echo "---"
-            echo ""
-            echo "✅ Preview reports are available in the PR comments"
+            echo "✅ Preview reports are available from pull request comments"
             echo ""
           } >> "$GITHUB_STEP_SUMMARY"
