@@ -28,7 +28,7 @@ Usage:
 
 For more information:
     - Documentation: https://reporting-tool.readthedocs.io
-    - GitHub: https://github.com/lf-it/reporting-tool
+    - GitHub: https://github.com/modeseven-lfit/reporting-tool
     - License: Apache-2.0
 """
 

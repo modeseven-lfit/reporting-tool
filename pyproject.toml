@@ -67,11 +67,11 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/lf-it/reporting-tool"
+Homepage = "https://github.com/modeseven-lfit/reporting-tool"
 Documentation = "https://reporting-tool.readthedocs.io"
-Repository = "https://github.com/lf-it/reporting-tool"
-Issues = "https://github.com/lf-it/reporting-tool/issues"
-Changelog = "https://github.com/lf-it/reporting-tool/blob/main/CHANGELOG.md"
+Repository = "https://github.com/modeseven-lfit/reporting-tool"
+Issues = "https://github.com/modeseven-lfit/reporting-tool/issues"
+Changelog = "https://github.com/modeseven-lfit/reporting-tool/blob/main/CHANGELOG.md"
 
 [project.scripts]
 reporting-tool = "reporting_tool.cli:cli_main"

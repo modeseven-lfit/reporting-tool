@@ -468,7 +468,7 @@ def main(
 
     \b
     🐛 Report Issues:
-        https://github.com/lf-it/reporting-tool/issues
+        https://github.com/modeseven-lfit/reporting-tool/issues
     """
     if ctx.invoked_subcommand is None:
         # No subcommand provided, show help
