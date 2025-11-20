@@ -1,0 +1,15 @@
+{
+  "project": "ONAP",
+  "gerrit_server": "gerrit.onap.org",
+  "jenkins_server": "jenkins.onap.org",
+  "github_org": "",
+  "generated_at": "2025-11-20T07:16:26Z",
+  "workflow_run_id": "19528812024",
+  "workflow_run_number": "2",
+  "workflow_run_attempt": "1",
+  "git_sha": "f5aaf0d395884f40684f2eebdddb91a8e41fb380",
+  "git_ref": "fix-github-wf-colours",
+  "pr_number": 9,
+  "pr_author": "ModeSevenIndustrialSolutions",
+  "environment": "previews"
+}
