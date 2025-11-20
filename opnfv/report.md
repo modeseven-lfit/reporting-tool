@@ -1,6 +1,6 @@
 # 📊 Gerrit Project Analysis Report: OPNFV
 
-**Generated:** November 20, 2025 at 07:15 UTC
+**Generated:** November 20, 2025 at 08:05 UTC
 **Schema Version:** 1.0.0
 
 ## 📈 Global Summary
@@ -247,63 +247,63 @@
 | 71 | Bin Hu | 0 | +0 | 0 | - | 4 | att.com |
 | 72 | Bin Lu | 0 | +0 | 0 | - | 2 | arm.com |
 | 73 | Bindya Narayan | 0 | +0 | 0 | - | 1 | intel.com |
-| 74 | Blaisonneau David | 0 | +0 | 0 | - | 6 | orange.com |
-| 75 | Bob Fournier | 0 | +0 | 0 | - | 2 | redhat.com |
-| 76 | Bob Fubel | 0 | +0 | 0 | - | 2 | redhat.com |
-| 77 | Bogdan Dobrelya | 0 | +0 | 0 | - | 2 | redhat.com |
-| 78 | Bogdan Dobrelya | 0 | +0 | 0 | - | 1 | redhat.com |
-| 79 | Boris Kreitchman | 0 | +0 | 0 | - | 1 | gmail.com |
-| 80 | Brad P. Crochet | 0 | +0 | 0 | - | 2 | redhat.com |
-| 81 | Brady Johnson | 0 | +0 | 0 | - | 4 | ericsson.com |
-| 82 | Brady Johnson | 0 | +0 | 0 | - | 1 | inocybe.com |
-| 83 | Brady Johnson | 0 | +0 | 0 | - | 1 | inocybe.ca |
-| 84 | Brandon Lo | 0 | +0 | 0 | - | 1 | gmail.com |
-| 85 | Brent Eagles | 0 | +0 | 0 | - | 3 | redhat.com |
-| 86 | Bryan Sullivan | 0 | +0 | 0 | - | 4 | att.com |
-| 87 | CNlucius | 0 | +0 | 0 | - | 3 | huawei.com |
-| 88 | Calin Gherghe | 0 | +0 | 0 | - | 4 | intel.com |
-| 89 | Cao Xuan Hoang | 0 | +0 | 0 | - | 2 | fujitsu.com |
-| 90 | Carlos Camacho | 0 | +0 | 0 | - | 2 | redhat.com |
-| 91 | Carlos Goncalves | 0 | +0 | 0 | - | 4 | cgoncalves.pt |
-| 92 | Carlos Goncalves | 0 | +0 | 0 | - | 6 | neclab.eu |
-| 93 | Catalina Focsa | 0 | +0 | 0 | - | 5 | enea.com |
-| 94 | Charalampos Kominos | 0 | +0 | 0 | - | 8 | enea.com |
-| 95 | Charles Llewellyn | 0 | +0 | 0 | - | 1 | gmail.com |
-| 96 | Charlie Root | 0 | +0 | 0 | - | 1 | mydomain.name |
-| 97 | Chris Jones | 0 | +0 | 0 | - | 2 | tenshu.net |
-| 98 | Chris Krelle | 0 | +0 | 0 | - | 1 | gmail.com |
-| 99 | Christian Schwede | 0 | +0 | 0 | - | 2 | redhat.com |
-| 100 | Christian Trautman | 0 | +0 | 0 | - | 2 | redhat.com |
-| 101 | Christopher Brown | 0 | +0 | 0 | - | 2 | co.uk |
-| 102 | ChristopherPrice | 0 | +0 | 0 | - | 9 | ericsson.com |
-| 103 | Cian Ferriter | 0 | +0 | 0 | - | 2 | intel.com |
-| 104 | Cian O'Driscoll | 0 | +0 | 0 | - | 1 | hp.com |
-| 105 | Ciara Loftus | 0 | +0 | 0 | - | 1 | intel.com |
-| 106 | Ciprian Barbu | 0 | +0 | 0 | - | 5 | enea.com |
-| 107 | Clint Byrum | 0 | +0 | 0 | - | 1 | fewbar.com |
-| 108 | Cloud user | 0 | +0 | 0 | - | 2 | test-cloudinit.novalocal |
-| 109 | Cody A.W. Somerville | 0 | +0 | 0 | - | 1 | hp.com |
-| 110 | Cody Herriges | 0 | +0 | 0 | - | 1 | herriges.org |
-| 111 | Cristina Pauna | 0 | +0 | 0 | - | 13 | enea.com |
-| 112 | Cyril Lopez | 0 | +0 | 0 | - | 2 | redhat.com |
-| 113 | Cédric Jeanneret | 0 | +0 | 0 | - | 3 | camptocamp.com |
-| 114 | Cédric Ollivier | 0 | +0 | 0 | - | 5 | gmail.com |
-| 115 | DW Talton | 0 | +0 | 0 | - | 3 | linuxfoundation.org |
-| 116 | Damien Ciabrini | 0 | +0 | 0 | - | 2 | redhat.com |
-| 117 | Dan Prince | 0 | +0 | 0 | - | 3 | redhat.com |
-| 118 | Dan Radez | 0 | +0 | 0 | - | 8 | redhat.com |
-| 119 | Dan Sneddon | 0 | +0 | 0 | - | 2 | redhat.com |
-| 120 | Dan Trainor | 0 | +0 | 0 | - | 1 | gmail.com |
-| 121 | Daniel Balsiger | 0 | +0 | 0 | - | 1 | swisscom.com |
-| 122 | Daniel Farrell | 0 | +0 | 0 | - | 7 | redhat.com |
-| 123 | Daniel Farrell | 0 | +0 | 0 | - | 1 | gmail.com |
-| 124 | Daniel Pono Takamori | 0 | +0 | 0 | - | 2 | linuxfoundation.org |
-| 125 | Daniel Smith | 0 | +0 | 0 | - | 2 | ericsson.com |
-| 126 | Daniel Tudares | 0 | +0 | 0 | - | 1 | cengn.ca |
-| 127 | DanielMartinBuckley | 0 | +0 | 0 | - | 2 | intel.com |
-| 128 | Daniele Zulberti | 0 | +0 | 0 | - | 1 | gmail.com |
-| 129 | Dave Neary | 0 | +0 | 0 | - | 2 | redhat.com |
-| 130 | Dave Urschatz | 0 | +0 | 0 | - | 3 | cengn.ca |
+| 74 | Bob Fournier | 0 | +0 | 0 | - | 2 | redhat.com |
+| 75 | Bob Fubel | 0 | +0 | 0 | - | 2 | redhat.com |
+| 76 | Bogdan Dobrelya | 0 | +0 | 0 | - | 2 | redhat.com |
+| 77 | Bogdan Dobrelya | 0 | +0 | 0 | - | 1 | redhat.com |
+| 78 | Boris Kreitchman | 0 | +0 | 0 | - | 1 | gmail.com |
+| 79 | Brad P. Crochet | 0 | +0 | 0 | - | 2 | redhat.com |
+| 80 | Brady Johnson | 0 | +0 | 0 | - | 4 | ericsson.com |
+| 81 | Brady Johnson | 0 | +0 | 0 | - | 1 | inocybe.com |
+| 82 | Brady Johnson | 0 | +0 | 0 | - | 1 | inocybe.ca |
+| 83 | Brandon Lo | 0 | +0 | 0 | - | 1 | gmail.com |
+| 84 | Brent Eagles | 0 | +0 | 0 | - | 3 | redhat.com |
+| 85 | Bryan Sullivan | 0 | +0 | 0 | - | 4 | att.com |
+| 86 | CNlucius | 0 | +0 | 0 | - | 3 | huawei.com |
+| 87 | Calin Gherghe | 0 | +0 | 0 | - | 4 | intel.com |
+| 88 | Cao Xuan Hoang | 0 | +0 | 0 | - | 2 | fujitsu.com |
+| 89 | Carlos Camacho | 0 | +0 | 0 | - | 2 | redhat.com |
+| 90 | Carlos Goncalves | 0 | +0 | 0 | - | 4 | cgoncalves.pt |
+| 91 | Carlos Goncalves | 0 | +0 | 0 | - | 6 | neclab.eu |
+| 92 | Catalina Focsa | 0 | +0 | 0 | - | 5 | enea.com |
+| 93 | Charalampos Kominos | 0 | +0 | 0 | - | 8 | enea.com |
+| 94 | Charles Llewellyn | 0 | +0 | 0 | - | 1 | gmail.com |
+| 95 | Charlie Root | 0 | +0 | 0 | - | 1 | mydomain.name |
+| 96 | Chris Jones | 0 | +0 | 0 | - | 2 | tenshu.net |
+| 97 | Chris Krelle | 0 | +0 | 0 | - | 1 | gmail.com |
+| 98 | Christian Schwede | 0 | +0 | 0 | - | 2 | redhat.com |
+| 99 | Christian Trautman | 0 | +0 | 0 | - | 2 | redhat.com |
+| 100 | Christopher Brown | 0 | +0 | 0 | - | 2 | co.uk |
+| 101 | ChristopherPrice | 0 | +0 | 0 | - | 9 | ericsson.com |
+| 102 | Cian Ferriter | 0 | +0 | 0 | - | 2 | intel.com |
+| 103 | Cian O'Driscoll | 0 | +0 | 0 | - | 1 | hp.com |
+| 104 | Ciara Loftus | 0 | +0 | 0 | - | 1 | intel.com |
+| 105 | Ciprian Barbu | 0 | +0 | 0 | - | 5 | enea.com |
+| 106 | Clint Byrum | 0 | +0 | 0 | - | 1 | fewbar.com |
+| 107 | Cloud user | 0 | +0 | 0 | - | 2 | test-cloudinit.novalocal |
+| 108 | Cody A.W. Somerville | 0 | +0 | 0 | - | 1 | hp.com |
+| 109 | Cody Herriges | 0 | +0 | 0 | - | 1 | herriges.org |
+| 110 | Cristina Pauna | 0 | +0 | 0 | - | 13 | enea.com |
+| 111 | Cyril Lopez | 0 | +0 | 0 | - | 2 | redhat.com |
+| 112 | Cédric Jeanneret | 0 | +0 | 0 | - | 3 | camptocamp.com |
+| 113 | Cédric Ollivier | 0 | +0 | 0 | - | 5 | gmail.com |
+| 114 | DW Talton | 0 | +0 | 0 | - | 3 | linuxfoundation.org |
+| 115 | Damien Ciabrini | 0 | +0 | 0 | - | 2 | redhat.com |
+| 116 | Dan Prince | 0 | +0 | 0 | - | 3 | redhat.com |
+| 117 | Dan Radez | 0 | +0 | 0 | - | 8 | redhat.com |
+| 118 | Dan Sneddon | 0 | +0 | 0 | - | 2 | redhat.com |
+| 119 | Dan Trainor | 0 | +0 | 0 | - | 1 | gmail.com |
+| 120 | Daniel Balsiger | 0 | +0 | 0 | - | 1 | swisscom.com |
+| 121 | Daniel Farrell | 0 | +0 | 0 | - | 7 | redhat.com |
+| 122 | Daniel Farrell | 0 | +0 | 0 | - | 1 | gmail.com |
+| 123 | Daniel Pono Takamori | 0 | +0 | 0 | - | 2 | linuxfoundation.org |
+| 124 | Daniel Smith | 0 | +0 | 0 | - | 2 | ericsson.com |
+| 125 | Daniel Tudares | 0 | +0 | 0 | - | 1 | cengn.ca |
+| 126 | DanielMartinBuckley | 0 | +0 | 0 | - | 2 | intel.com |
+| 127 | Daniele Zulberti | 0 | +0 | 0 | - | 1 | gmail.com |
+| 128 | Dave Neary | 0 | +0 | 0 | - | 2 | redhat.com |
+| 129 | Dave Urschatz | 0 | +0 | 0 | - | 3 | cengn.ca |
+| 130 | David Blaisonneau | 0 | +0 | 0 | - | 6 | orange.com |
 | 131 | David Gurtner | 0 | +0 | 0 | - | 2 | crimson.ch |
 | 132 | David Moreau Simard | 0 | +0 | 0 | - | 1 | redhat.com |
 | 133 | Deepak Chandella | 0 | +0 | 0 | - | 1 | orange.com |
@@ -854,8 +854,8 @@
 | 678 | guillaume.lambert | 0 | +0 | 0 | - | 2 | orange.com |
 | 679 | guoshasha | 0 | +0 | 0 | - | 2 | chinamobile.com |
 | 680 | gwaines | 0 | +0 | 0 | - | 1 | windriver.com |
-| 681 | heluwei | 0 | +0 | 0 | - | 1 | huawei.com |
-| 682 | hhayashiool | 0 | +0 | 0 | - | 3 | okinawaopenlabs.org |
+| 681 | h-hayashi | 0 | +0 | 0 | - | 3 | okinawaopenlabs.org |
+| 682 | heluwei | 0 | +0 | 0 | - | 1 | huawei.com |
 | 683 | hongbo tian | 0 | +0 | 0 | - | 3 | huawei.com |
 | 684 | hu xinhui | 0 | +0 | 0 | - | 1 | foxmail.com |
 | 685 | iharijono | 0 | +0 | 0 | - | 1 | huawei.com |
@@ -993,15 +993,15 @@
 | domino | 0 | +0 | 0 | 2,847 | 2018-02-03 | 🛑 |
 | dovetail | 0 | +0 | 0 | 2,115 | 2020-02-05 | 🛑 |
 | dovetail-webportal | 0 | +0 | 0 | 1,857 | 2020-10-20 | 🛑 |
-| edgecloud | 0 | +0 | 0 | 2,182 | 2019-11-30 | 🛑 |
+| edgecloud | 0 | +0 | 0 | 2,183 | 2019-11-29 | 🛑 |
 | enfv | 0 | +0 | 0 | 3,513 | 2016-04-08 | 🛑 |
 | fds | 0 | +0 | 0 | 2,619 | 2018-09-19 | 🛑 |
 | fuel | 0 | +0 | 0 | 1,980 | 2020-06-19 | 🛑 |
 | functest-requirements | 0 | +0 | 0 | 2,893 | 2017-12-19 | 🛑 |
 | infra | 0 | +0 | 0 | 2,910 | 2017-12-02 | 🛑 |
 | ipv6 | 0 | +0 | 0 | 2,336 | 2019-06-29 | 🛑 |
-| kuberef | 0 | +0 | 0 | 1,010 | 2023-02-14 | ☑️ |
-| laas | 0 | +0 | 0 | 755 | 2023-10-27 | ☑️ |
+| kuberef | 0 | +0 | 0 | 1,011 | 2023-02-13 | ☑️ |
+| laas | 0 | +0 | 0 | 756 | 2023-10-26 | ☑️ |
 | laas-reflab | 0 | +0 | 0 | 2,232 | 2019-10-11 | 🛑 |
 | models | 0 | +0 | 0 | 2,669 | 2018-07-31 | 🛑 |
 | moon | 0 | +0 | 0 | 1,995 | 2020-06-04 | 🛑 |
@@ -1018,7 +1018,7 @@
 | qtip | 0 | +0 | 0 | 2,732 | 2018-05-29 | 🛑 |
 | releng-anteater | 0 | +0 | 0 | 2,630 | 2018-09-08 | 🛑 |
 | releng-testresults | 0 | +0 | 0 | 1,695 | 2021-03-31 | 🛑 |
-| releng-utils | 0 | +0 | 0 | 2,886 | 2017-12-26 | 🛑 |
+| releng-utils | 0 | +0 | 0 | 2,887 | 2017-12-25 | 🛑 |
 | releng-xci | 0 | +0 | 0 | 2,269 | 2019-09-04 | 🛑 |
 | releng-xci-scenarios | 0 | +0 | 0 | 2,272 | 2019-09-01 | 🛑 |
 | rocket | 0 | +0 | 0 | 2,168 | 2019-12-14 | 🛑 |
@@ -1032,7 +1032,7 @@
 | test | 0 | +0 | 0 | 2,381 | 2019-05-15 | 🛑 |
 | test/test1 | 0 | +0 | 0 | 2,183 | 2019-11-29 | 🛑 |
 | test2 | 0 | +0 | 0 | 2,490 | 2019-01-26 | 🛑 |
-| thoth | 0 | +0 | 0 | 910 | 2023-05-25 | ☑️ |
+| thoth | 0 | +0 | 0 | 911 | 2023-05-24 | ☑️ |
 | vineperf | 0 | +0 | 0 | 1,051 | 2023-01-04 | ☑️ |
 
 **Total:** 68 repositories
@@ -1060,64 +1060,64 @@
 | test/test | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | .github | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
 | airship | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| apex-os-net-config | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | cirv | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | cirv-hdv | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| apex-os-net-config | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | cirv-rapid | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | cirv-spirent | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | cirv-sdv | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | conductor | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | container4nfv | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| apex-puppet-tripleo | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| cran | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| calipso | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| domino | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | barometer | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| cran | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| apex-puppet-tripleo | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| domino | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| calipso | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| apex | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | edgecloud | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | enfv | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| apex | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | dovetail-webportal | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | doctor | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| fds | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | functest-requirements | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| fds | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | infra | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | dovetail | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| kuberef | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ipv6 | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| kuberef | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | laas-reflab | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | models | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | laas | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
+| nfvbench | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | fuel | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | opera | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| nfvbench | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | opnfvtsc | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| orchestra | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| ovsnfv | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | clover | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | apex-tripleo-heat-templates | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| orchestra | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| ovsnfv | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | policytest | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | puppet-barometer | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| parser | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| pharos | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| releng-anteater | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| qtip | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | bottlenecks | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| releng-testresults | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| releng-anteater | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| parser | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | releng-utils | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| releng-xci | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| pharos | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | releng-xci-scenarios | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| moon | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| qtip | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| releng-xci | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | rocket | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| sandbox | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| securityscanning | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| sandbox-zuul-untrusted | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | sandbox-zuul-config | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| sandbox | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| sandbox-zuul-untrusted | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| releng-testresults | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| securityscanning | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | spark-model-runner | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| moon | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | opnfvdocs | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | test | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | test2 | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| thoth | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | storperf | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| thoth | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | vineperf | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | stor4nfv | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 

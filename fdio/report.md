@@ -1,6 +1,6 @@
 # 📊 Gerrit Project Analysis Report: FDio
 
-**Generated:** November 20, 2025 at 07:16 UTC
+**Generated:** November 20, 2025 at 08:06 UTC
 **Schema Version:** 1.0.0
 
 ## 📈 Global Summary
@@ -24,7 +24,7 @@
 
 | Rank | Organization | Contributors | Commits | LOC | Δ LOC | Avg LOC/Commit | Unique Repositories |
 |------|--------------|--------------|---------|-----|-------|----------------|---------------------|
-| 1 | cisco.com | 157 | 927 | +50848 | 166098 | +54.9 | 5 |
+| 1 | cisco.com | 157 | 928 | +50867 | 166151 | +54.8 | 5 |
 | 2 | icloud.com | 1 | 119 | +1565 | 85265 | +13.2 | 2 |
 | 3 | gmail.com | 113 | 79 | +4594 | 12468 | +58.2 | 4 |
 | 4 | protonmail.ch | 1 | 37 | +4799 | 18055 | +129.7 | 2 |
@@ -183,8 +183,8 @@
 |------|-------------|---------|-----|-------|----------------|--------------|--------------|
 | 1 | Matus Fabian | 188 | +23800 | 40256 | +126.6 | 2 | cisco.com |
 | 2 | Florin Coras | 184 | +5691 | 12837 | +30.9 | 3 | cisco.com |
-| 3 | Peter Mikus | 119 | +1565 | 85265 | +13.2 | 2 | icloud.com |
-| 4 | Tibor Frank | 119 | +523 | 16403 | +4.4 | 3 | cisco.com |
+| 3 | Tibor Frank | 120 | +542 | 16456 | +4.5 | 3 | cisco.com |
+| 4 | Peter Mikus | 119 | +1565 | 85265 | +13.2 | 2 | icloud.com |
 | 5 | Damjan Marion | 110 | +7276 | 25838 | +66.1 | 2 | cisco.com |
 | 6 | Adrian Villin | 93 | +6469 | 17563 | +69.6 | 1 | cisco.com |
 | 7 | Vratko Polak | 69 | +704 | 37020 | +10.2 | 4 | cisco.com |
@@ -406,8 +406,8 @@
 | 223 | Fangyin Hu | 0 | +0 | 0 | - | 2 | intel.com |
 | 224 | Federico Claramonte | 0 | +0 | 0 | - | 1 | caviumnetworks.com |
 | 225 | Feng Pan | 0 | +0 | 0 | - | 1 | redhat.com |
-| 226 | Filip Tehlar | 0 | +0 | 0 | - | 1 | gmail.com |
-| 227 | Filip Tehlar | 0 | +0 | 0 | - | 2 | cisco.com |
+| 226 | Filip Tehlar | 0 | +0 | 0 | - | 2 | cisco.com |
+| 227 | Filip Tehlar | 0 | +0 | 0 | - | 1 | gmail.com |
 | 228 | Filip Varga | 0 | +0 | 0 | - | 1 | cisco.com |
 | 229 | Filip Varga | 0 | +0 | 0 | - | 1 | gmail.com |
 | 230 | Filip Varga | 0 | +0 | 0 | - | 1 | pantheon.tech |
@@ -417,8 +417,8 @@
 | 234 | Francois Clad | 0 | +0 | 0 | - | 1 | cisco.com |
 | 235 | Frédéric Perrin | 0 | +0 | 0 | - | 1 | fperrin.net |
 | 236 | Gabriel Ganne | 0 | +0 | 0 | - | 2 | qosmos.com |
-| 237 | Gabriel Ganne | 0 | +0 | 0 | - | 1 | gmail.com |
-| 238 | Gabriel Ganne | 0 | +0 | 0 | - | 2 | enea.com |
+| 237 | Gabriel Ganne | 0 | +0 | 0 | - | 2 | enea.com |
+| 238 | Gabriel Ganne | 0 | +0 | 0 | - | 1 | gmail.com |
 | 239 | Gabriel Oginski | 0 | +0 | 0 | - | 1 | intel.com |
 | 240 | Gao Feng | 0 | +0 | 0 | - | 1 | outlook.com |
 | 241 | Gao Feng | 0 | +0 | 0 | - | 1 | tencent.com |
@@ -607,8 +607,8 @@
 | 424 | Patrik Hrnciar | 0 | +0 | 0 | - | 1 | cisco.com |
 | 425 | Paul Atkins | 0 | +0 | 0 | - | 1 | graphiant.com |
 | 426 | Paul Vinciguerra | 0 | +0 | 0 | - | 3 | vinciconsulting.com |
-| 427 | Pavel Kotucek | 0 | +0 | 0 | - | 1 | pantheon.tech |
-| 428 | Pavel Kotucek | 0 | +0 | 0 | - | 2 | cisco.com |
+| 427 | Pavel Kotucek | 0 | +0 | 0 | - | 2 | cisco.com |
+| 428 | Pavel Kotucek | 0 | +0 | 0 | - | 1 | pantheon.tech |
 | 429 | Peter Ginchev | 0 | +0 | 0 | - | 2 | cisco.com |
 | 430 | Peter Lei | 0 | +0 | 0 | - | 1 | cisco.com |
 | 431 | Peter Mikus | 0 | +0 | 0 | - | 3 | cisco.com |
@@ -810,8 +810,8 @@
 | 627 | spencercoder | 0 | +0 | 0 | - | 1 | com.cn |
 | 628 | tjanciga | 0 | +0 | 0 | - | 1 | pantheon.tech |
 | 629 | tomas.smado | 0 | +0 | 0 | - | 1 | pantheon.tech |
-| 630 | vagrant | 0 | +0 | 0 | - | 1 | localhost.localdomain |
-| 631 | vagrant | 0 | +0 | 0 | - | 1 | cisco.com |
+| 630 | vagrant | 0 | +0 | 0 | - | 1 | cisco.com |
+| 631 | vagrant | 0 | +0 | 0 | - | 1 | localhost.localdomain |
 | 632 | varasteh | 0 | +0 | 0 | - | 1 | gmail.com |
 | 633 | viliam.luc | 0 | +0 | 0 | - | 1 | pantheon.tech |
 | 634 | vinay tripathi | 0 | +0 | 0 | - | 1 | intel.com |
@@ -835,7 +835,7 @@
 | Gerrit Project | Commits | LOC | Contributors | Days Inactive | Last Commit Date | Status |
 |----------------|---------|---------|--------------|---------------|------------------|--------|
 | vpp | 903 | +89455 | 76 | 0 | 2025-11-20 | ✅ |
-| csit | 315 | +8795 | 8 | 14 | 2025-11-06 | ✅ |
+| csit | 316 | +8814 | 8 | 0 | 2025-11-20 | ✅ |
 | ci-management | 82 | -1463 | 11 | 6 | 2025-11-14 | ✅ |
 | .github | 0 | +0 | 0 | 538 | 2024-05-31 | ☑️ |
 | main_test | 0 | +0 | 0 | 1,846 | 2020-10-31 | 🛑 |
@@ -851,9 +851,9 @@
 | vpp | c_cpp | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | csit | python | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | ci-management | jjb | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ |
-| test_injector | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | main_test | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | .github | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
+| test_injector | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | vppsb | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 
 ## 🏁 Deployed CI/CD Jobs
