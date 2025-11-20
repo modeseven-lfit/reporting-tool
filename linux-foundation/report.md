@@ -1,6 +1,6 @@
 # 📊 Gerrit Project Analysis Report: Linux Foundation
 
-**Generated:** November 20, 2025 at 09:45 UTC
+**Generated:** November 20, 2025 at 12:58 UTC
 **Schema Version:** 1.0.0
 
 ## 📈 Global Summary
@@ -16,7 +16,7 @@
 | Active Gerrit Projects | 14 | 40.0% |
 | Inactive Gerrit Projects | 9 | 25.7% |
 | No Apparent Commits | 0 | 0.0% |
-| Total Commits | 246 | - |
+| Total Commits | 247 | - |
 | Total Lines of Code | 217.4K | - |
 
 ## 🏢 Top Organizations (Last Year)
@@ -24,7 +24,7 @@
 
 | Rank | Organization | Contributors | Commits | LOC | Δ LOC | Avg LOC/Commit | Unique Repositories |
 |------|--------------|--------------|---------|-----|-------|----------------|---------------------|
-| 1 | linuxfoundation.org | 31 | 233 | +215609 | 218813 | +925.4 | 35 |
+| 1 | linuxfoundation.org | 31 | 234 | +215604 | 218818 | +921.4 | 35 |
 | 2 | github.com | 1 | 9 | +0 | 28 | +0.0 | 2 |
 | 3 | highstreet-technologies.com | 1 | 2 | +103 | 103 | +51.5 | 1 |
 | 4 | samsung.com | 3 | 1 | +44 | 44 | +44.0 | 1 |
@@ -70,7 +70,7 @@
 |------|-------------|---------|-----|-------|----------------|--------------|--------------|
 | 1 | LF Jenkins CI | 104 | +244 | 850 | +2.3 | 1 | linuxfoundation.org |
 | 2 | Matthew Watkins | 64 | +212568 | 214222 | +3321.4 | 9 | linuxfoundation.org |
-| 3 | Anil Belur | 27 | +1755 | 2163 | +65.0 | 22 | linuxfoundation.org |
+| 3 | Anil Belur | 28 | +1750 | 2168 | +62.5 | 22 | linuxfoundation.org |
 | 4 | Andrew Grimberg | 15 | +8 | 116 | +0.5 | 29 | linuxfoundation.org |
 | 5 | Eric Ball | 13 | +11 | 247 | +0.8 | 16 | linuxfoundation.org |
 | 6 | dependabot[bot] | 9 | +0 | 28 | +0.0 | 2 | github.com |
@@ -143,8 +143,8 @@
 | 73 | Suresh Channamallu | 0 | +0 | 0 | - | 3 | linuxfoundation.org |
 | 74 | Sylvain Desbureaux | 0 | +0 | 0 | - | 1 | orange.com |
 | 75 | Thanh Ha | 0 | +0 | 0 | - | 18 | gmail.com |
-| 76 | Thanh Ha | 0 | +0 | 0 | - | 9 | linux.com |
-| 77 | Thanh Ha | 0 | +0 | 0 | - | 22 | linuxfoundation.org |
+| 76 | Thanh Ha | 0 | +0 | 0 | - | 22 | linuxfoundation.org |
+| 77 | Thanh Ha | 0 | +0 | 0 | - | 9 | linux.com |
 | 78 | Tim Johnson | 0 | +0 | 0 | - | 5 | linuxfoundation.org |
 | 79 | ToineSiebelink | 0 | +0 | 0 | - | 1 | est.tech |
 | 80 | Tomasz Wrobel | 0 | +0 | 0 | - | 1 | nokia.com |
@@ -178,7 +178,7 @@
 
 | Gerrit Project | Commits | LOC | Contributors | Days Inactive | Last Commit Date | Status |
 |----------------|---------|---------|--------------|---------------|------------------|--------|
-| releng/info-master | 112 | +487 | 6 | 11 | 2025-11-09 | ✅ |
+| releng/info-master | 113 | +482 | 6 | 0 | 2025-11-20 | ✅ |
 | sandbox | 49 | +212013 | 2 | 8 | 2025-11-12 | ✅ |
 | releng/global-jjb | 21 | +564 | 5 | 29 | 2025-10-22 | ✅ |
 | releng/gerrit_to_platform | 19 | +700 | 5 | 21 | 2025-10-30 | ✅ |
@@ -201,7 +201,7 @@
 | ansible/roles/sysstat-install | 0 | +0 | 0 | 392 | 2024-10-24 | ☑️ |
 | clav2test/ccla-only-project | 0 | +0 | 0 | 2,512 | 2019-01-04 | 🛑 |
 | clav2test/icla-and-ccla-project | 0 | +0 | 0 | 1,709 | 2021-03-17 | 🛑 |
-| lfn/process | 0 | +0 | 0 | 2,721 | 2018-06-09 | 🛑 |
+| lfn/process | 0 | +0 | 0 | 2,722 | 2018-06-08 | 🛑 |
 | puppet/modules/gce | 0 | +0 | 0 | 3,212 | 2017-02-03 | 🛑 |
 | puppet/modules/mailman3 | 0 | +0 | 0 | 3,430 | 2016-06-30 | 🛑 |
 | releng | 0 | +0 | 0 | 624 | 2024-03-06 | ☑️ |
@@ -230,31 +230,31 @@
 | ansible/roles/java-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
 | ansible/roles/puppet-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
 | ansible/roles/lf-recommended-tools | None | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
-| ansible/roles/python-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
 | ansible/roles/system-update | None | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
-| ansible/roles/protobuf-install | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
-| ansible/roles/docker-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
-| ansible/roles/packer-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
-| ansible/roles/lf-dev-libs | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
-| ansible/roles/mono-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
+| ansible/roles/python-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
 | ansible/roles/haveged-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
+| ansible/roles/mono-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
+| ansible/roles/packer-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
+| ansible/roles/protobuf-install | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
+| ansible/roles/lf-dev-libs | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
 | puppet/modules/gce | ruby | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| puppet/modules/mailman3 | ruby | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| ansible/roles/docker-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
 | clav2test/ccla-only-project | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| puppet/modules/mailman3 | ruby | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ansible/roles | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
-| ansible/roles/shellcheck-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
 | clav2test/icla-and-ccla-project | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| releng/ci-workshop | docker | ❌ | ✅ | ❌ | ✅ | ❌ | 🛑 |
 | lfn/process | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| releng/ci-workshop | docker | ❌ | ✅ | ❌ | ✅ | ❌ | 🛑 |
+| ansible/roles/shellcheck-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
+| ansible/roles/sysstat-install | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
 | releng/docs-conf | python | ❌ | ✅ | ✅ | ✅ | ❌ | ☑️ |
 | releng/license-checker | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | releng/pipelines | gradle | ❌ | ✅ | ✅ | ✅ | ❌ | 🛑 |
-| ansible/roles/sysstat-install | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
 | releng | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
-| releng/nexus-upload | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
 | sandbox-info-master | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| releng/python-one-password | python | ❌ | ✅ | ✅ | ✅ | ❌ | ☑️ |
+| releng/nexus-upload | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
 | releng/sigul-docker | docker | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
+| releng/python-one-password | python | ❌ | ✅ | ✅ | ✅ | ❌ | ☑️ |
 
 ## 🏁 Deployed CI/CD Jobs
 
@@ -263,30 +263,30 @@
 
 | Gerrit Project | GitHub Workflows | Workflow Count | Job Count |
 |----------------|-------------------|----------------|-----------|
-| ansible/roles/docker-install | <a href="https://github.com/linuxfoundation/ansible-roles-docker-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/ansible-roles-docker-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
-| ansible/roles/haveged-install | <a href="https://github.com/linuxfoundation/ansible-roles-haveged-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/ansible-roles-haveged-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
-| ansible/roles/java-install | <a href="https://github.com/linuxfoundation/ansible-roles-java-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/ansible-roles-java-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
-| ansible/roles/lf-dev-libs | <a href="https://github.com/linuxfoundation/ansible-roles-lf-dev-libs/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/ansible-roles-lf-dev-libs/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
-| ansible/roles/lf-recommended-tools | <a href="https://github.com/linuxfoundation/ansible-roles-lf-recommended-tools/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/ansible-roles-lf-recommended-tools/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
-| ansible/roles/mono-install | <a href="https://github.com/linuxfoundation/ansible-roles-mono-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/ansible-roles-mono-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
-| ansible/roles/packer-install | <a href="https://github.com/linuxfoundation/ansible-roles-packer-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/ansible-roles-packer-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
-| ansible/roles/protobuf-install | <a href="https://github.com/linuxfoundation/ansible-roles-protobuf-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 1 | 0 |
-| ansible/roles/puppet-install | <a href="https://github.com/linuxfoundation/ansible-roles-puppet-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/ansible-roles-puppet-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
-| ansible/roles/python-install | <a href="https://github.com/linuxfoundation/ansible-roles-python-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/ansible-roles-python-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
-| ansible/roles/shellcheck-install | <a href="https://github.com/linuxfoundation/ansible-roles-shellcheck-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/ansible-roles-shellcheck-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
-| ansible/roles/sysstat-install | <a href="https://github.com/linuxfoundation/ansible-roles-sysstat-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 1 | 0 |
-| ansible/roles/system-update | <a href="https://github.com/linuxfoundation/ansible-roles-system-update/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/ansible-roles-system-update/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
-| releng/common-packer | <a href="https://github.com/linuxfoundation/releng-common-packer/actions/workflows/call-composed-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-composed-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/releng-common-packer/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a><br><a href="https://github.com/linuxfoundation/releng-common-packer/actions/workflows/release.yaml" target="_blank"><span class="status-unknown workflow-status">release.yaml</span></a> | 3 | 0 |
-| releng/docs | <a href="https://github.com/linuxfoundation/releng-docs/actions/workflows/call-composed-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-composed-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/releng-docs/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
-| releng/docs-conf | <a href="https://github.com/linuxfoundation/releng-docs-conf/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a><br><a href="https://github.com/linuxfoundation/releng-docs-conf/actions/workflows/release.yaml" target="_blank"><span class="status-unknown workflow-status">release.yaml</span></a> | 2 | 0 |
-| releng/gerrit_to_platform | <a href="https://github.com/linuxfoundation/releng-gerrit_to_platform/actions/workflows/codeql.yaml" target="_blank"><span class="status-unknown workflow-status">codeql.yaml</span></a><br><a href="https://github.com/linuxfoundation/releng-gerrit_to_platform/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a><br><a href="https://github.com/linuxfoundation/releng-gerrit_to_platform/actions/workflows/github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/releng-gerrit_to_platform/actions/workflows/release.yaml" target="_blank"><span class="status-unknown workflow-status">release.yaml</span></a> | 4 | 0 |
-| releng/global-jjb | <a href="https://github.com/linuxfoundation/releng-global-jjb/actions/workflows/call-composed-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-composed-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/releng-global-jjb/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a><br><a href="https://github.com/linuxfoundation/releng-global-jjb/actions/workflows/release.yaml" target="_blank"><span class="status-unknown workflow-status">release.yaml</span></a> | 3 | 0 |
-| releng/info-master | <a href="https://github.com/linuxfoundation/releng-info-master/actions/workflows/call-composed-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-composed-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/releng-info-master/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
-| releng/lftools | <a href="https://github.com/linuxfoundation/releng-lftools/actions/workflows/call-composed-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-composed-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/releng-lftools/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a><br><a href="https://github.com/linuxfoundation/releng-lftools/actions/workflows/release-drafter.yaml" target="_blank"><span class="status-unknown workflow-status">release-drafter.yaml</span></a><br><a href="https://github.com/linuxfoundation/releng-lftools/actions/workflows/release.yaml" target="_blank"><span class="status-unknown workflow-status">release.yaml</span></a> | 4 | 0 |
-| releng/nexus-upload | <a href="https://github.com/linuxfoundation/releng-nexus-upload/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 1 | 0 |
-| releng/python-one-password | <a href="https://github.com/linuxfoundation/releng-python-one-password/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a><br><a href="https://github.com/linuxfoundation/releng-python-one-password/actions/workflows/release.yaml" target="_blank"><span class="status-unknown workflow-status">release.yaml</span></a> | 2 | 0 |
-| releng/sigul-docker | <a href="https://github.com/linuxfoundation/releng-sigul-docker/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a><br><a href="https://github.com/linuxfoundation/releng-sigul-docker/actions/workflows/release.yaml" target="_blank"><span class="status-unknown workflow-status">release.yaml</span></a> | 2 | 0 |
-| sandbox | <a href="https://github.com/linuxfoundation/sandbox/actions/workflows/github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">github2gerrit.yaml</span></a> | 1 | 0 |
+| ansible/roles/docker-install | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-docker-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-docker-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
+| ansible/roles/haveged-install | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-haveged-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-haveged-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
+| ansible/roles/java-install | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-java-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-java-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
+| ansible/roles/lf-dev-libs | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-lf-dev-libs/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-lf-dev-libs/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
+| ansible/roles/lf-recommended-tools | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-lf-recommended-tools/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-lf-recommended-tools/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
+| ansible/roles/mono-install | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-mono-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-mono-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
+| ansible/roles/packer-install | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-packer-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-packer-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
+| ansible/roles/protobuf-install | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-protobuf-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 1 | 0 |
+| ansible/roles/puppet-install | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-puppet-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-puppet-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
+| ansible/roles/python-install | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-python-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-python-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
+| ansible/roles/shellcheck-install | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-shellcheck-install/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-shellcheck-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
+| ansible/roles/sysstat-install | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-sysstat-install/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 1 | 0 |
+| ansible/roles/system-update | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-system-update/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-ansible-roles-system-update/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
+| releng/common-packer | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-common-packer/actions/workflows/call-composed-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-composed-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-common-packer/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-common-packer/actions/workflows/release.yaml" target="_blank"><span class="status-unknown workflow-status">release.yaml</span></a> | 3 | 0 |
+| releng/docs | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-docs/actions/workflows/call-composed-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-composed-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-docs/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
+| releng/docs-conf | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-docs-conf/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-docs-conf/actions/workflows/release.yaml" target="_blank"><span class="status-unknown workflow-status">release.yaml</span></a> | 2 | 0 |
+| releng/gerrit_to_platform | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-gerrit_to_platform/actions/workflows/codeql.yaml" target="_blank"><span class="status-unknown workflow-status">codeql.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-gerrit_to_platform/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-gerrit_to_platform/actions/workflows/github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-gerrit_to_platform/actions/workflows/release.yaml" target="_blank"><span class="status-unknown workflow-status">release.yaml</span></a> | 4 | 0 |
+| releng/global-jjb | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-global-jjb/actions/workflows/call-composed-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-composed-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-global-jjb/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-global-jjb/actions/workflows/release.yaml" target="_blank"><span class="status-unknown workflow-status">release.yaml</span></a> | 3 | 0 |
+| releng/info-master | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-info-master/actions/workflows/call-composed-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-composed-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-info-master/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | 0 |
+| releng/lftools | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-lftools/actions/workflows/call-composed-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-composed-github2gerrit.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-lftools/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-lftools/actions/workflows/release-drafter.yaml" target="_blank"><span class="status-unknown workflow-status">release-drafter.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-lftools/actions/workflows/release.yaml" target="_blank"><span class="status-unknown workflow-status">release.yaml</span></a> | 4 | 0 |
+| releng/nexus-upload | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-nexus-upload/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 1 | 0 |
+| releng/python-one-password | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-python-one-password/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-python-one-password/actions/workflows/release.yaml" target="_blank"><span class="status-unknown workflow-status">release.yaml</span></a> | 2 | 0 |
+| releng/sigul-docker | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-sigul-docker/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a><br><a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-releng-sigul-docker/actions/workflows/release.yaml" target="_blank"><span class="status-unknown workflow-status">release.yaml</span></a> | 2 | 0 |
+| sandbox | <a href="https://github.com/linuxfoundation/gerrit-reporting-tool-gerrit.linuxfoundation.org-sandbox/actions/workflows/github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">github2gerrit.yaml</span></a> | 1 | 0 |
 
 **Total:** 24 repositories with CI/CD jobs
 
