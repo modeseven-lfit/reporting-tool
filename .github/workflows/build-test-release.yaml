@@ -34,7 +34,7 @@ jobs:
       - name: 'Verify Pushed Tag'
         id: 'tag-validate'
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/tag-push-verify-action@80e2bdbbb9ee7b67557a31705892b75e75d2859e # v0.1.1
+        uses: lfreleng-actions/tag-push-verify-action@80e2bdbbb9ee7b67557a31705892b75e75d2859e  # v0.1.1
         with:
           versioning: 'semver'
 
@@ -97,12 +97,12 @@ jobs:
           egress-policy: 'audit'
 
       # yamllint disable-line rule:line-length
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
 
       - name: 'Build Python project'
         id: 'python-build'
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/python-build-action@48381cece78a990a6ba93bd5924bcd40bf0d1a7d # v0.1.20
+        uses: lfreleng-actions/python-build-action@3552106f5c8bfedebe4c38116abf3b9c289359ea  # v0.1.22
         with:
           sigstore_sign: true
           attestations: true
@@ -126,11 +126,11 @@ jobs:
           egress-policy: 'audit'
 
       # yamllint disable-line rule:line-length
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
 
       - name: 'Test Python project [PYTEST]'
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/python-test-action@b997656111c9b547f8458b18baf6be139e2d2c6c # v0.1.12
+        uses: lfreleng-actions/python-test-action@b997656111c9b547f8458b18baf6be139e2d2c6c  # v0.1.12
         with:
           python_version: "${{ matrix.python-version }}"
 
@@ -153,11 +153,11 @@ jobs:
           egress-policy: 'audit'
 
       # yamllint disable-line rule:line-length
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
 
       - name: 'Audit Python project'
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/python-audit-action@d2a271bdbf08572dbd8addd3358e5e937ab3739b # v0.2.3
+        uses: lfreleng-actions/python-audit-action@d2a271bdbf08572dbd8addd3358e5e937ab3739b  # v0.2.3
         with:
           python_version: "${{ matrix.python-version }}"
 
@@ -170,20 +170,19 @@ jobs:
       contents: read
     steps:
       # yamllint disable-line rule:line-length
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
 
       - name: "Generate SBOM"
         id: sbom
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/python-sbom-action@ae4aca2ef28d7da4ec95049cc78be43e632d322a # v0.1.0
+        uses: lfreleng-actions/python-sbom-action@ae4aca2ef28d7da4ec95049cc78be43e632d322a  # v0.1.0
         with:
           include_dev: "false"
           sbom_format: "both"
 
       - name: "Upload SBOM artifacts"
         # yamllint disable-line rule:line-length
-        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
-        # v5.0.0
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4  # v5.0.0
         with:
           name: sbom-files
           path: |
@@ -191,18 +190,47 @@ jobs:
             sbom-cyclonedx.xml
           retention-days: 45
 
-      - name: "Security scan with Grype"
+      - name: "Security scan with Grype (SARIF)"
         # yamllint disable-line rule:line-length
-        uses: anchore/scan-action@568b89d27fc18c60e56937bff480c91c772cd993
-        # v7.1.0
+        uses: anchore/scan-action@3aaf50d765cfcceafa51d322ccb790e40f6cd8c5  # v7.2.0
+        id: grype-sarif
+        continue-on-error: true
         with:
           sbom: "${{ steps.sbom.outputs.sbom_json_path }}"
+          output-format: "sarif"
+          output-file: "grype-results.sarif"
+          fail-build: "true"
 
-      - name: "Summary step"
+      - name: "Security scan with Grype (Text/Table)"
+        # yamllint disable-line rule:line-length
+        uses: anchore/scan-action@3aaf50d765cfcceafa51d322ccb790e40f6cd8c5  # v7.2.0
+        id: grype-table
+        if: always()
+        with:
+          sbom: "${{ steps.sbom.outputs.sbom_json_path }}"
+          output-format: "table"
+          output-file: "grype-results.txt"
+          fail-build: "false"
+
+      - name: "Upload Grype scan results"
+        # yamllint disable-line rule:line-length
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4  # v5.0.0
+        if: always()
+        with:
+          name: grype-scan-results
+          path: |
+            grype-results.sarif
+            grype-results.txt
+          retention-days: 90
+
+      - name: "Grype summary"
+        if: always()
         run: |
-            # Summary step
-            echo "SBOM count: ${{ steps.sbom.outputs.component_count }}"
-            echo "Tool used: ${{ steps.sbom.outputs.dependency_manager }}"
+            # Grype summary
+            echo "## Grype Summary" >> "$GITHUB_STEP_SUMMARY"
+            [ -f grype-results.txt ] && cat grype-results.txt \
+              >> "$GITHUB_STEP_SUMMARY" || echo "No scan results available" \
+              >> "$GITHUB_STEP_SUMMARY"
 
   test-pypi:
     name: 'Test PyPI Publishing'
@@ -225,11 +253,11 @@ jobs:
           egress-policy: 'audit'
 
       # yamllint disable-line rule:line-length
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
 
       - name: 'Test PyPI publishing'
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/pypi-publish-action@81a056957ed050f8305760055b1fd8103a916989 # v0.1.1
+        uses: lfreleng-actions/pypi-publish-action@81a056957ed050f8305760055b1fd8103a916989  # v0.1.1
         with:
           environment: 'development'
           tag: "${{ needs.tag-validate.outputs.tag }}"
@@ -255,11 +283,11 @@ jobs:
           egress-policy: 'audit'
 
       # yamllint disable-line rule:line-length
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
 
       - name: 'PyPI release'
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/pypi-publish-action@81a056957ed050f8305760055b1fd8103a916989 # v0.1.1
+        uses: lfreleng-actions/pypi-publish-action@81a056957ed050f8305760055b1fd8103a916989  # v0.1.1
         with:
           environment: 'production'
           attestations: true
@@ -288,7 +316,7 @@ jobs:
           egress-policy: 'audit'
 
       # yamllint disable-line rule:line-length
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5.0.1
 
       - name: 'Check if release is already promoted'
         id: 'check-promoted'
@@ -311,7 +339,7 @@ jobs:
         id: 'promote-release'
         if: steps.check-promoted.outputs.already_promoted == 'false'
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/draft-release-promote-action@d7e7df12e32fa26b28dbc2f18a12766482785399 # v0.1.2
+        uses: lfreleng-actions/draft-release-promote-action@d7e7df12e32fa26b28dbc2f18a12766482785399  # v0.1.2
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
           tag: "${{ needs.tag-validate.outputs.tag }}"
@@ -353,16 +381,14 @@ jobs:
 
       - name: '⬇ Download build artefacts'
         # yamllint disable-line rule:line-length
-        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53
-        # v6.0.0
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53  # v6.0.0
         with:
           name: "${{ needs.python-build.outputs.artefact_name }}"
           path: "${{ needs.python-build.outputs.artefact_path }}"
 
       - name: 'Attach build artefacts to release'
         # yamllint disable-line rule:line-length
-        uses: alexellis/upload-assets@13926a61cdb2cb35f5fdef1c06b8b591523236d3
-        # 0.4.1
+        uses: alexellis/upload-assets@13926a61cdb2cb35f5fdef1c06b8b591523236d3  # 0.4.1
         env:
           GITHUB_TOKEN: "${{ github.token }}"
         with:
