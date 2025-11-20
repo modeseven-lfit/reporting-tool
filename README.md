@@ -155,7 +155,39 @@ reports/
 
 - **Python**: 3.10+ (supports 3.10, 3.11, 3.12, 3.13)
 - **Dependencies**: PyYAML, httpx, Jinja2, typer, rich
-- **Optional**: GitHub token for API features
+- **Optional**: GitHub token for API features (required for workflow status colors)
+
+### GitHub Token Requirements
+
+For full workflow status reporting (colored status indicators), you need a GitHub Personal Access Token with these permissions:
+
+**For public repositories:**
+
+- ☑ `public_repo` - Access public repositories
+- ☑ `workflow` - Read GitHub Actions workflows and runs
+
+**For private repositories:**
+
+- ☑ `repo` - Full repository access
+- ☑ `actions:read` - Read workflow runs and status
+
+**Setup:**
+
+```bash
+# Set environment variable
+export GITHUB_TOKEN=ghp_your_token_here
+# OR for CI/production:
+export CLASSIC_READ_ONLY_PAT_TOKEN=ghp_your_token_here
+
+# Then run the tool
+reporting-tool generate --project my-project --repos-path ./repos
+```
+
+**Create token:** <https://github.com/settings/tokens>
+
+**Without a token:** The tool detects workflows but shows them as grey (unknown status) instead of colored status indicators.
+
+**See also:** [Configuration Guide](docs/CONFIGURATION.md#github-api-integration) for detailed token setup
 
 ---
 

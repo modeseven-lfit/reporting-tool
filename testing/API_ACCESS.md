@@ -63,8 +63,10 @@ With full API access enabled, reports take much longer (3-5 minutes) because the
 Set environment variables before running the test script:
 
 ```bash
-# GitHub API access
+# GitHub API access (use either GITHUB_TOKEN or CLASSIC_READ_ONLY_PAT_TOKEN)
 export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"
+# OR for CI/production environments:
+# export CLASSIC_READ_ONLY_PAT_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"
 
 # Gerrit API access (if needed)
 export GERRIT_HOST="gerrit.onap.org"
@@ -93,7 +95,7 @@ project: ONAP
 extensions:
   github_api:
     enabled: true
-    token: ""  # Will use GITHUB_TOKEN env var
+    token: ""  # Will use GITHUB_TOKEN or CLASSIC_READ_ONLY_PAT_TOKEN env var
     github_org: "onap"
 
 # Enable Gerrit API
@@ -119,7 +121,7 @@ project: OpenDaylight
 extensions:
   github_api:
     enabled: true
-    token: ""  # Will use GITHUB_TOKEN env var
+    token: ""  # Will use GITHUB_TOKEN or CLASSIC_READ_ONLY_PAT_TOKEN env var
     github_org: "opendaylight"
 
 # Enable Gerrit API
@@ -163,8 +165,14 @@ uv run reporting-tool generate \
 **For local testing:**
 
 ```bash
+# Standard GitHub token (most common for local development)
 export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"
+
+# OR use CLASSIC_READ_ONLY_PAT_TOKEN (matches CI/production environment)
+export CLASSIC_READ_ONLY_PAT_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"
 ```
+
+**Note:** The reporting tool checks for `CLASSIC_READ_ONLY_PAT_TOKEN` first, then falls back to `GITHUB_TOKEN`. This matches the GitHub Actions production workflow configuration.
 
 **Rate limits:**
 
@@ -238,8 +246,10 @@ Here's how to run the test script with full API access:
 ```bash
 #!/bin/bash
 
-# Set API tokens
+# Set API tokens (use either GITHUB_TOKEN or CLASSIC_READ_ONLY_PAT_TOKEN)
 export GITHUB_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"
+# OR for CI-like environment:
+# export CLASSIC_READ_ONLY_PAT_TOKEN="ghp_xxxxxxxxxxxxxxxxxxxx"
 
 # Optional: Enable Gerrit/Jenkins if needed
 # export GERRIT_HOST="gerrit.onap.org"
@@ -303,8 +313,52 @@ cd reporting-tool/testing
 **Solution:**
 
 1. Check that `extensions.github_api.enabled: true` in config
-2. Set `GITHUB_TOKEN` environment variable
+2. Set `GITHUB_TOKEN` or `CLASSIC_READ_ONLY_PAT_TOKEN` environment variable
 3. Verify token has correct permissions
+4. Check resolved config with: `cat /tmp/reports/PROJECT/config_resolved.json | grep github`
+
+### "Error: GitHub API query returned error code: 401"
+
+**Cause:** Token is invalid, expired, or has "Bad credentials"
+
+**Symptoms:**
+
+```text
+[ERROR] ❌ Error: GitHub API query returned error code: 401 for onap/repo-name
+```
+
+**Solution:**
+
+1. **Test the token directly:**
+
+   ```bash
+   curl -H "Authorization: token $CLASSIC_READ_ONLY_PAT_TOKEN" \
+     https://api.github.com/user
+   ```
+
+   Expected: Your user info (JSON)
+
+   If you get `{"message": "Bad credentials", ...}` then:
+   - Token expired or revoked
+   - Token string is incorrect
+   - You must regenerate the token
+
+2. **Regenerate the token:**
+   - Go to <https://github.com/settings/tokens>
+   - Delete the old token
+   - Create new token with required scopes:
+     - ☑ `public_repo` (for public repos) OR `repo` (for all repos)
+     - ☑ `workflow` (to read workflow runs)
+   - Update your environment variable with the new token
+
+3. **Verify token permissions:**
+
+   ```bash
+   curl -H "Authorization: token $CLASSIC_READ_ONLY_PAT_TOKEN" \
+     https://api.github.com/repos/onap/integration/actions/workflows
+   ```
+
+   Should return list of workflows, not 401 error
 
 ### "GitHub API rate limit exceeded"
 
@@ -345,6 +399,20 @@ cd reporting-tool/testing
 1. Run with `--verbose` flag to see detailed logs
 2. Check API responses manually with `curl`
 3. Verify repository names match between Gerrit/GitHub
+4. Check if token environment variable detection works:
+
+   ```bash
+   # Look for "_github_token_env" in resolved config
+   cat /tmp/reports/PROJECT/config_resolved.json | grep _github_token_env
+   # Should show: "_github_token_env: GITHUB_TOKEN" or "CLASSIC_READ_ONLY_PAT_TOKEN"
+   ```
+
+5. Verify `has_runtime_status: true` in raw JSON:
+
+   ```bash
+   grep "has_runtime_status" /tmp/reports/PROJECT/report_raw.json | head -5
+   # Should show "true" if GitHub API calls succeeded
+   ```
 
 ## Performance Impact
 

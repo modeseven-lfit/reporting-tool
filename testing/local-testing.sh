@@ -150,14 +150,23 @@ check_api_configuration() {
     log_info "Checking API configuration..."
 
     local has_github_token=false
+    local github_token_env="GITHUB_TOKEN"
 
-    # Check for GitHub token
-    if [ -n "${GITHUB_TOKEN:-}" ]; then
+    # Check for GitHub token - support both GITHUB_TOKEN and CLASSIC_READ_ONLY_PAT_TOKEN
+    if [ -n "${CLASSIC_READ_ONLY_PAT_TOKEN:-}" ]; then
+        log_success "GitHub API: CLASSIC_READ_ONLY_PAT_TOKEN is set"
+        has_github_token=true
+        github_token_env="CLASSIC_READ_ONLY_PAT_TOKEN"
+    elif [ -n "${GITHUB_TOKEN:-}" ]; then
         log_success "GitHub API: GITHUB_TOKEN is set"
         has_github_token=true
+        github_token_env="GITHUB_TOKEN"
     else
-        log_warning "GitHub API: GITHUB_TOKEN not set (limited API access)"
+        log_warning "GitHub API: Neither GITHUB_TOKEN nor CLASSIC_READ_ONLY_PAT_TOKEN is set"
     fi
+
+    # Store the token env var name for later use
+    export GITHUB_TOKEN_ENV="${github_token_env}"
 
     # Check for Gerrit config (optional - not used by current implementation)
     if [ -n "${GERRIT_HOST:-}" ]; then
@@ -177,24 +186,27 @@ check_api_configuration() {
 
     if [ "$has_github_token" = false ]; then
         log_warning "=========================================="
-        log_warning "⚠️  GITHUB_TOKEN NOT SET"
+        log_warning "⚠️  GITHUB TOKEN NOT SET"
         log_warning "=========================================="
         log_warning "Reports will use GitHub API with rate limits."
         log_warning ""
-        log_warning "For full GitHub API access:"
-        log_warning "  1. Set GITHUB_TOKEN environment variable"
-        log_warning "  2. See testing/API_ACCESS.md for details"
+        log_warning "For full GitHub API access, set ONE of:"
+        log_warning "  1. GITHUB_TOKEN environment variable"
+        log_warning "  2. CLASSIC_READ_ONLY_PAT_TOKEN environment variable"
         log_warning ""
-        log_warning "Without GITHUB_TOKEN, you may hit rate limits"
+        log_warning "See testing/API_ACCESS.md for details"
+        log_warning ""
+        log_warning "Without a token, you may hit rate limits"
         log_warning "but reports will still include:"
         log_warning "  ✅ Local git data (commits, authors, etc.)"
         log_warning "  ✅ Jenkins CI/CD information (from projects.json)"
         log_warning "  ✅ INFO.yaml project data"
-        log_warning "  ⚠️  GitHub workflows (limited by rate limits)"
+        log_warning "  ⚠️  GitHub workflows (limited by rate limits, NO STATUS COLORS)"
         log_warning "=========================================="
         echo ""
     else
-        log_success "✅ Full API access configured - reports will include all external data"
+        log_success "✅ Full API access configured using ${github_token_env}"
+        log_success "   Reports will include GitHub workflow status colors"
     fi
 
     # Note about Jenkins and Gerrit
@@ -274,6 +286,12 @@ generate_project_report() {
         --output-dir \"${REPORT_BASE_DIR}\" \
         --cache \
         --workers 4"
+
+    # Add github-token-env flag if using CLASSIC_READ_ONLY_PAT_TOKEN
+    if [ -n "${GITHUB_TOKEN_ENV:-}" ] && [ "${GITHUB_TOKEN_ENV}" != "GITHUB_TOKEN" ]; then
+        cmd="${cmd} \
+        --github-token-env \"${GITHUB_TOKEN_ENV}\""
+    fi
 
     # Add Gerrit host if available
     if [ -n "${gerrit_host}" ]; then

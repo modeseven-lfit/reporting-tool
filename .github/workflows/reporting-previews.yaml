@@ -287,6 +287,7 @@ jobs:
             --project "$project" \
             --repos-path "./${{ matrix.gerrit }}" \
             --output-dir "./reports" \
+            --github-token-env CLASSIC_READ_ONLY_PAT_TOKEN \
             --verbose
 
           echo "✅ Preview reports generated for $project"
