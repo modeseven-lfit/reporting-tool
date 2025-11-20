@@ -1,6 +1,6 @@
 # 📊 Gerrit Project Analysis Report: FDio
 
-**Generated:** November 20, 2025 at 16:35 UTC
+**Generated:** November 20, 2025 at 16:47 UTC
 **Schema Version:** 1.0.0
 
 ## 📈 Global Summary
@@ -851,8 +851,8 @@
 | vpp | c_cpp | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | csit | python | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | ci-management | jjb | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ |
-| test_injector | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | main_test | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| test_injector | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | vppsb | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | .github | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
 

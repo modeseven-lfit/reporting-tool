@@ -1,6 +1,6 @@
 # 📊 Gerrit Project Analysis Report: Opendaylight
 
-**Generated:** November 20, 2025 at 16:33 UTC
+**Generated:** November 20, 2025 at 16:46 UTC
 **Schema Version:** 1.0.0
 
 ## 📈 Global Summary
@@ -1554,50 +1554,50 @@
 | ansible | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | archetypes | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | alto | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| capwap | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | bier | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| capwap | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | cardinal | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| coe | maven | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | centinel | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| coe | maven | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | coretutorials | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| eman | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | didm | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| eman | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | detnet | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| faas | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | fpc | maven | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| faas | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | federation | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | genius | maven | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | gnt | maven | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | groupbasedpolicy | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | lacp | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | iotdm | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| nemo | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | natapp | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| nemo | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | netide | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | neutron | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| next | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ocpplugin | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| next | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | nic | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| of-config | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ovil | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | openflowjava | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| of-config | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| opflex | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | packetcable | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| opflex | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | sdninterfaceapp | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | snbi | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | sfc | maven | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | snmp | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | snmp4sdn | maven | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| systemmetrics | maven | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| telemetry | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| topoprocessing | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | sxp | maven | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| tsdr | maven | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| telemetry | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| systemmetrics | maven | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| topoprocessing | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ttp | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | usc | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| tsdr | maven | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | usecplugin | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| zzz-test-release | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | vtn | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| zzz-test-release | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 
 ## 🏁 Deployed CI/CD Jobs
 
@@ -1650,20 +1650,20 @@ These Jenkins jobs belong to archived or read-only Gerrit projects and should li
 
 | Job Name | Gerrit Project | Project State | Match Score |
 |----------|----------------|---------------|-------------|
-| `integration-multipatch-test-vanadium` | `integration` | 🔒 READ_ONLY | 575 |
-| `integration-multipatch-test-titanium` | `integration` | 🔒 READ_ONLY | 575 |
-| `integration-sanity-test-titanium` | `integration` | 🔒 READ_ONLY | 575 |
 | `integration-merge-dashboard` | `integration` | 🔒 READ_ONLY | 575 |
-| `integration-patch-test-scandium` | `integration` | 🔒 READ_ONLY | 575 |
-| `integration-update-csit-tests-titanium` | `integration` | 🔒 READ_ONLY | 575 |
-| `integration-info-yaml-verify` | `integration` | 🔒 READ_ONLY | 575 |
-| `integration-patch-test-vanadium` | `integration` | 🔒 READ_ONLY | 575 |
 | `integration-multipatch-test-scandium` | `integration` | 🔒 READ_ONLY | 575 |
-| `integration-sanity-test-vanadium` | `integration` | 🔒 READ_ONLY | 575 |
-| `integration-sanity-test-scandium` | `integration` | 🔒 READ_ONLY | 575 |
+| `integration-sanity-test-titanium` | `integration` | 🔒 READ_ONLY | 575 |
 | `integration-update-csit-tests-vanadium` | `integration` | 🔒 READ_ONLY | 575 |
-| `integration-patch-test-titanium` | `integration` | 🔒 READ_ONLY | 575 |
+| `integration-multipatch-test-vanadium` | `integration` | 🔒 READ_ONLY | 575 |
+| `integration-sanity-test-vanadium` | `integration` | 🔒 READ_ONLY | 575 |
+| `integration-patch-test-vanadium` | `integration` | 🔒 READ_ONLY | 575 |
 | `integration-update-csit-tests-scandium` | `integration` | 🔒 READ_ONLY | 575 |
+| `integration-info-yaml-verify` | `integration` | 🔒 READ_ONLY | 575 |
+| `integration-update-csit-tests-titanium` | `integration` | 🔒 READ_ONLY | 575 |
+| `integration-patch-test-scandium` | `integration` | 🔒 READ_ONLY | 575 |
+| `integration-multipatch-test-titanium` | `integration` | 🔒 READ_ONLY | 575 |
+| `integration-patch-test-titanium` | `integration` | 🔒 READ_ONLY | 575 |
+| `integration-sanity-test-scandium` | `integration` | 🔒 READ_ONLY | 575 |
 
 **Recommendation:** Review these jobs and remove them if they are no longer needed, 
 since their associated Gerrit projects are archived or read-only.
