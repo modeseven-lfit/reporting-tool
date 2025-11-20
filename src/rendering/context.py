@@ -231,15 +231,44 @@ class RenderContext:
         # Collect all workflows with status
         workflows = []
         for repo in repositories:
+            gerrit_project = repo.get("gerrit_project", "Unknown")
+
+            # Collect Jenkins jobs
             jenkins_jobs = repo.get("jenkins_jobs", [])
             for job in jenkins_jobs:
                 workflows.append({
                     "name": job.get("name", "Unknown"),
-                    "repo": repo.get("gerrit_project", "Unknown"),
+                    "repo": gerrit_project,
                     "status": job.get("status", "unknown"),
                     "url": job.get("url", ""),
                     "color": self._get_status_color(job.get("color", "notbuilt")),
                 })
+
+            # Collect GitHub workflows from features data
+            features = repo.get("features", {})
+            workflows_data = features.get("workflows", {})
+            github_api_data = workflows_data.get("github_api_data", {})
+            github_workflows = github_api_data.get("workflows", [])
+
+            for gh_workflow in github_workflows:
+                # Only include active workflows
+                if gh_workflow.get("state") == "active":
+                    workflow_name = gh_workflow.get("name", "Unknown")
+                    workflow_path = gh_workflow.get("path", "")
+                    workflow_status = gh_workflow.get("status", "unknown")
+                    workflow_color = gh_workflow.get("color", "grey")
+
+                    # Get workflow URL
+                    urls = gh_workflow.get("urls", {})
+                    workflow_url = urls.get("workflow_page", "")
+
+                    workflows.append({
+                        "name": workflow_name,
+                        "repo": gerrit_project,
+                        "status": workflow_status,
+                        "url": workflow_url,
+                        "color": self._get_status_color_from_github(workflow_color),
+                    })
 
         # Count by status
         status_counts: Dict[str, int] = {}
@@ -314,6 +343,26 @@ class RenderContext:
             },
             "project_name": self.config.get("project", {}).get("name", "Repository Analysis"),
         }
+
+    def _get_status_color_from_github(self, github_color: str) -> str:
+        """
+        Map GitHub workflow color to semantic status.
+
+        Args:
+            github_color: Color from GitHub API (blue, red, grey, blue_anime, etc.)
+
+        Returns:
+            Semantic status string for display
+        """
+        color_map = {
+            "blue": "success",
+            "red": "failure",
+            "grey": "no_runs",
+            "blue_anime": "in_progress",
+            "yellow": "unstable",
+            "disabled": "disabled",
+        }
+        return color_map.get(github_color.lower(), "unknown")
 
     def _get_status_color(self, jenkins_color: str) -> str:
         """
