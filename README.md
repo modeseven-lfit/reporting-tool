@@ -112,7 +112,6 @@ reporting-tool generate --project O-RAN-SC --repos-path ./gerrit.o-ran-sc.org
 | **Basic report (ONAP)** | `reporting-tool generate --project ONAP --repos-path ./gerrit.onap.org` |
 | **With caching** | `reporting-tool generate --project O-RAN-SC --repos-path ./gerrit.o-ran-sc.org --cache --workers 8` |
 | **Check config** | `reporting-tool generate --project O-RAN-SC --repos-path ./gerrit.o-ran-sc.org --dry-run` |
-| **List features** | `reporting-tool list-features` |
 | **Get help** | `reporting-tool --help` |
 
 > **Note:** The `--repos-path` should point to the directory created by `gerrit-clone-action`, which uses the Gerrit server hostname as the directory name (e.g., `./gerrit.o-ran-sc.org` for O-RAN-SC, `./gerrit.onap.org` for ONAP).
@@ -159,17 +158,14 @@ reports/
 
 ### GitHub Token Requirements
 
-For full workflow status reporting (colored status indicators), you need a GitHub Personal Access Token with these permissions:
+For full workflow status reporting (colored status indicators), you need a GitHub Personal Access Token (Classic) with these permissions:
 
-**For public repositories:**
+**Required Scopes:**
 
-- ☑ `public_repo` - Access public repositories
-- ☑ `workflow` - Read GitHub Actions workflows and runs
+- ☑ `repo` - Full repository access (or `public_repo` for public repositories)
+- ☑ `actions:read` - Read GitHub Actions workflow runs and status
 
-**For private repositories:**
-
-- ☑ `repo` - Full repository access
-- ☑ `actions:read` - Read workflow runs and status
+**Note:** Fine-grained tokens are not supported as they cannot span organizations.
 
 **Setup:**
 

@@ -23,12 +23,6 @@ reporting-tool generate --project NAME --repos-path PATH --cache --workers 8
 # Dry run (validate only)
 reporting-tool generate --project NAME --repos-path PATH --dry-run
 
-# List features
-reporting-tool list-features
-
-# Initialize config
-reporting-tool init --project NAME
-
 # Show help
 reporting-tool --help
 ```
@@ -212,210 +206,9 @@ Notes:
 
 ---
 
-## Configuration Wizard
-
-### `--init`
-
-**Description:** Run interactive configuration wizard
-**Required:** No
-**Type:** Flag (boolean)
-
-The configuration wizard guides you through creating a complete configuration file with smart defaults and validation.
-
-Example:
-
-```bash
-reporting-tool init --project my-project
-```
-
-What it does:
-
-- Prompts for all configuration options
-- Provides context-sensitive help
-- Validates input as you go
-- Creates config file with documentation
-- Offers three template options (minimal, standard, full)
-
-**Time estimate:** 2-5 minutes (interactive)
-
-**Output:** Creates `config/{project}.yaml`
-
-**See also:** Configuration Wizard Guide
-
----
-
-### `--init-template TEMPLATE`
-
-**Description:** Create configuration from template without interactive prompts
-**Required:** Requires `--project`
-**Type:** Choice (minimal, standard, full)
-
-Non-interactive alternative to `--init` for automation and CI/CD.
-
-Example:
-
-```bash
-# Minimal configuration (essentials only)
-reporting-tool init --template minimal --project my-project
-
-# Standard configuration (recommended)
-reporting-tool init --template standard --project my-project
-
-# Full configuration (all options documented)
-reporting-tool init --template full --project my-project
-```text
-
-Template comparison:
-
-| Template | Use Case | Settings | Size |
-|----------|----------|----------|------|
-| minimal | Quick testing, CI/CD | Essential only | ~50 lines |
-| standard | Most projects | Recommended defaults | ~150 lines |
-| full | Complex projects | All options documented | ~400 lines |
-
-**Time estimate:** < 10 seconds
-
-**See also:** `--config-output`
-
----
-
-### `--config-output PATH`
-
-**Description:** Output path for configuration file (used with `--init` or `--init-template`)
-**Required:** No
-**Type:** File path
-**Default:** `config/{project}.yaml`
-
-Example:
-
-```bash
-reporting-tool init \
-  --init-template standard \
-  --project my-project \
-  --config-output /etc/reports/custom-config.yaml
-```text
-
----
-
-## Feature Discovery
-
-### `--list-features`
-
-**Description:** List all available feature checks and exit
-**Required:** No
-**Type:** Flag (boolean)
-
-Shows all features the reporting system can detect in your repositories, organized by category.
-
-Example:
-
-```bash
-# Basic list
-reporting-tool list-features
-
-# Verbose mode (more details)
-reporting-tool list-features -v
-
-# Very verbose mode (all details)
-reporting-tool list-features -vv
-```text
-
-Output:
-
-```
-
-📦 Repository Reporting System - Available Features
-
-Total: 24 features across 7 categories
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-🏗️  BUILD & PACKAGE (5 features)
-
-  📦 docker
-     Docker containerization
-
-  ⚙️  gradle
-     Gradle build configuration
-
-  📦 maven
-     Maven build configuration
-
-  📦 npm
-     NPM package configuration
-
-  📦 sonatype
-     Sonatype/Maven Central publishing
-
-🔄 CI/CD (4 features)
-  ...
-
-```text
-
-Categories:
-
-- Build & Package (5 features)
-- CI/CD (4 features)
-- Code Quality (3 features)
-- Documentation (3 features)
-- Repository (4 features)
-- Security (2 features)
-- Testing (3 features)
-
-**See also:** [Feature Discovery Guide](FEATURE_DISCOVERY_GUIDE.md)
-
----
-
-### `--show-feature NAME`
-
-**Description:** Show detailed information about a specific feature and exit
-**Required:** No
-**Type:** String (feature name)
-
-Example:
-
-```bash
-reporting-tool list-features --detail docker
-```text
-
-Output:
-
-```text
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📦 docker
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Description:
-  Docker containerization
-
-Category:
-  🏗️  Build & Package
-
-Configuration File:
-  Dockerfile
-
-Detection Method:
-  Checks for Dockerfile in repository root
-
-Configuration Example:
-  FROM python:3.11-slim
-  WORKDIR /app
-  COPY requirements.txt .
-  RUN uv sync  # Recommended
-# or: pip install .
-  COPY . .
-  CMD ["python", "app.py"]
-
-Related Features:
-  • github-actions (CI/CD)
-  • jenkins (CI/CD)
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-💡 Use --list-features to see all available features
-```
-
-**Available features:** Use `--list-features` to see all 24 features
+> **Note:** Configuration wizard (`init`) and feature listing (`list-features`) commands are not yet implemented.
+> - To create configuration: Copy `/config/default.yaml` to `/configuration/<project>.yaml` and customize
+> - Features are automatically detected during report generation (see generated reports for detected features)
 
 ---
 
@@ -632,50 +425,7 @@ Exit Codes:
 
 ---
 
-### `--validate-only`
-
-**Description:** Validate configuration file and exit
-**Required:** No
-**Type:** Flag (boolean)
-**Alias for:** `--dry-run`
-
----
-
-### `--show-config`
-
-**Description:** Display resolved configuration and exit
-**Required:** No
-**Type:** Flag (boolean)
-
-Example:
-
-```bash
-reporting-tool generate --project test --repos-path ./repos --show-config
-```text
-
-Output:
-
-```yaml
-# Resolved Configuration for project: test
-# Template: config/template.config
-# Override: config/test.config
-
-project: test
-repositories_path: ./repos
-output_directory: ./output
-
-time_windows:
-  1y:
-    days: 365
-    start: "2024-01-25T00:00:00Z"
-    end: "2025-01-25T00:00:00Z"
-  90d:
-    days: 90
-    start: "2024-10-27T00:00:00Z"
-    end: "2025-01-25T00:00:00Z"
-
-[... full configuration ...]
-```
+> **Note:** `--validate-only` and `--show-config` flags are not yet implemented. Use `--dry-run` for configuration validation.
 
 ---
 
@@ -1002,10 +752,7 @@ reporting-tool generate \
   --repos-path ./repos \
   --dry-run
 
-# Check what features are available
-reporting-tool list-features
-
-# View resolved configuration
+# View resolved configuration with dry-run
 reporting-tool generate \
   --project test \
   --repos-path ./repos \
@@ -1233,11 +980,11 @@ Check configuration:
 reporting-tool generate --project test --repos-path ./repos --show-config
 ```text
 
-List available features:
+Configuration validation:
 
 ```bash
-reporting-tool list-features
-```text
+reporting-tool generate --project test --repos-path ./repos --dry-run
+```
 
 ---
 

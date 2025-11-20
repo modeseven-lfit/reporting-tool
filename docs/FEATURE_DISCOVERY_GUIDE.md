@@ -9,21 +9,29 @@ Quick Reference for Repository Reporting System Feature Discovery
 
 ---
 
-## Overview
-
-The Repository Reporting System includes comprehensive feature discovery tools to help you understand what features can be detected in your repositories and how to configure them.
+> **⚠️ NOTICE:** The `list-features` command described in this guide is **not yet implemented**.
+>
+> Features are automatically detected during report generation and included in the generated reports.
+> To see what features were detected, run `reporting-tool generate` and review the output reports.
 
 ---
 
-## Quick Start
+## Overview
 
-### List All Features
+The Repository Reporting System automatically detects features in your repositories during report generation. This guide describes the planned feature discovery commands (not yet available) and the features that are currently detected.
+
+---
+
+## Planned Commands (Not Yet Implemented)
+
+### List All Features (Planned)
 
 ```bash
-reporting-tool list-features
-```text
+# This command is not yet available
+# reporting-tool list-features
+```
 
-Shows all 24 available features organized by 7 categories:
+Would show all available features organized by categories:
 
 - Build & Package
 - CI/CD
@@ -33,13 +41,14 @@ Shows all 24 available features organized by 7 categories:
 - Security
 - Testing
 
-### Show Detailed Feature Information
+### Show Detailed Feature Information (Planned)
 
 ```bash
-reporting-tool list-features --detail <feature-name>
+# This command is not yet available
+# reporting-tool list-features --detail <feature-name>
 ```
 
-Displays:
+Would display:
 
 - Feature description
 - Category
@@ -55,7 +64,7 @@ Displays:
 ### Build & Package (5 features)
 
 | Feature | Description |
-|---------|-------------|
+| ------- | ----------- |
 | `docker` | Docker containerization |
 | `gradle` | Gradle build configuration |
 | `maven` | Maven build configuration |
@@ -65,7 +74,7 @@ Displays:
 ### CI/CD (4 features)
 
 | Feature | Description |
-|---------|-------------|
+| ------- | ----------- |
 | `dependabot` | Dependabot configuration detection |
 | `github-actions` | GitHub Actions workflows |
 | `github2gerrit` | GitHub to Gerrit workflow synchronization |
@@ -74,7 +83,7 @@ Displays:
 ### Code Quality (3 features)
 
 | Feature | Description |
-|---------|-------------|
+| ------- | ----------- |
 | `linting` | Code linting configuration (pylint, flake8, etc.) |
 | `pre-commit` | Pre-commit hooks configuration |
 | `sonarqube` | SonarQube analysis configuration |
@@ -82,7 +91,7 @@ Displays:
 ### Documentation (3 features)
 
 | Feature | Description |
-|---------|-------------|
+| ------- | ----------- |
 | `mkdocs` | MkDocs documentation |
 | `readthedocs` | ReadTheDocs integration |
 | `sphinx` | Sphinx documentation |
@@ -90,7 +99,7 @@ Displays:
 ### Repository (4 features)
 
 | Feature | Description |
-|---------|-------------|
+| ------- | ----------- |
 | `github-mirror` | GitHub mirror repository detection |
 | `gitreview` | Gerrit git-review configuration |
 | `license` | License file detection |
@@ -99,14 +108,14 @@ Displays:
 ### Security (2 features)
 
 | Feature | Description |
-|---------|-------------|
+| ------- | ----------- |
 | `secrets-detection` | Secrets and credentials detection |
 | `security-scanning` | Security vulnerability scanning |
 
 ### Testing (3 features)
 
 | Feature | Description |
-|---------|-------------|
+| ------- | ----------- |
 | `coverage` | Code coverage reporting |
 | `junit` | JUnit testing framework |
 | `pytest` | PyTest testing framework |

@@ -1,0 +1,312 @@
+---
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2025 The Linux Foundation
+
+# =============================================================================
+# Repository Reporting Tool - Default Configuration
+# =============================================================================
+#
+# This file provides sensible defaults that work for most projects.
+# Based on the template.config from project-reports repository.
+#
+# To customize for a specific project:
+#   1. Copy this file to configuration/<project-name>.yaml
+#   2. Modify only the settings you need to change
+#   3. Project-specific settings will override these defaults
+#
+# If no project-specific configuration exists, these defaults are used.
+# =============================================================================
+
+# Project identifier (override this in project-specific config)
+project: default
+
+# =============================================================================
+# Output Configuration
+# =============================================================================
+output:
+  # Output directory for generated reports
+  directory: reports
+
+  # Output formats to generate
+  formats:
+    - json      # Machine-readable data
+    - md        # Markdown reports
+    - html      # Interactive HTML reports
+
+  # Create ZIP bundle of all outputs
+  create_bundle: true
+
+  # Bundle filename pattern (supports {project}, {date}, {timestamp})
+  bundle_name: "{project}_report_{date}.zip"
+
+  # Sections to include in the report
+  include_sections:
+    contributors: true
+    organizations: true
+    repo_feature_matrix: true
+    inactive_distributions: true
+    global_summary: true
+    activity_distribution: true
+    all_repositories: true
+    contributor_leaderboards: true
+    organization_leaderboard: true
+
+# =============================================================================
+# Time Windows
+# =============================================================================
+# Time windows for analysis (in days)
+# Note: Implementation expects dictionary format with 'days' key
+time_windows:
+  last_30:
+    days: 30
+  last_90:
+    days: 90
+  last_365:
+    days: 365
+  last_3_years:
+    days: 1095
+
+# =============================================================================
+# Activity Thresholds
+# =============================================================================
+# Unified activity status thresholds
+activity_thresholds:
+  current_days: 365      # ✅ Current: commits within last 365 days
+  active_days: 1095      # ☑️ Active: no commits between 365-1095 days
+  # 🛑 Inactive: no commits in 1095+ days
+
+# =============================================================================
+# Feature Detection Configuration
+# =============================================================================
+features:
+  enabled:
+    - dependabot
+    - github2gerrit_workflow
+    - g2g
+    - pre_commit
+    - readthedocs
+    - sonatype_config
+    - project_types
+    - workflows
+    - gitreview
+
+# =============================================================================
+# Workflow Classification
+# =============================================================================
+# Workflow classification patterns
+workflows:
+  classify:
+    verify: ["verify", "test", "ci", "check"]
+    merge: ["merge", "release", "deploy", "publish"]
+    # Everything else will be classified as "other"
+
+# =============================================================================
+# Performance Settings
+# =============================================================================
+performance:
+  max_workers: 8
+  cache: false
+
+# =============================================================================
+# Rendering Configuration
+# =============================================================================
+render:
+  # Line count display options
+  show_net_lines: true
+  show_added_removed: false
+
+  # Number formatting
+  abbreviate_large_numbers: true
+  large_number_threshold: 10000
+
+  # Emoji indicators
+  emoji:
+    active: "✅"
+    inactive: "⚠️"
+    missing: "❌"
+    present: "✅"
+    very_old: "🔴"
+    old: "🟡"
+
+  # Table formatting
+  max_repo_name_length: 50
+  max_author_name_length: 30
+
+# =============================================================================
+# Privacy and Security
+# =============================================================================
+privacy:
+  mask_emails: false
+  anonymize_authors: false
+
+# =============================================================================
+# Logging Configuration
+# =============================================================================
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  include_timestamps: true
+  log_per_repo_timing: false
+
+# =============================================================================
+# Data Quality Settings
+# =============================================================================
+data_quality:
+  # How to handle unknown/missing emails
+  unknown_email_placeholder: "unknown@unknown"
+
+  # Skip binary file changes in LOC calculations
+  skip_binary_changes: true
+
+  # NOTE: All commit history is now processed to ensure accurate reporting.
+  # Previously, max_history_years limited git log queries, but this caused
+  # repositories with only old commits to be misclassified as "no commits".
+  # Time window filtering is applied separately during commit processing.
+
+# =============================================================================
+# HTML Table Configuration
+# =============================================================================
+html_tables:
+  # Enable sortable/filterable tables using Simple-DataTables
+  sortable: true
+
+  # Search functionality
+  searchable: true
+
+  # Pagination settings
+  pagination: true
+  entries_per_page: 20
+  page_size_options: [20, 50, 100, 200]
+
+  # Minimum rows required to enable sorting (performance optimization)
+  min_rows_for_sorting: 3
+
+# =============================================================================
+# Gerrit API Integration
+# =============================================================================
+gerrit:
+  # Enabled by default - specify host in project config or via environment
+  enabled: true
+  host: ""  # e.g., "gerrit.o-ran-sc.org"
+  base_url: ""  # optional - will auto-discover if not specified
+  timeout: 30.0
+
+# =============================================================================
+# Jenkins API Integration
+# =============================================================================
+jenkins:
+  # Enabled by default - specify host in project config or via environment
+  enabled: true
+  host: ""  # e.g., "jenkins.o-ran-sc.org"
+  timeout: 30.0
+
+  # Allow fallback to HTTP if HTTPS connection fails due to SSL errors
+  # WARNING: Only enable this for internal/trusted Jenkins servers
+  # with known SSL certificate issues. This will disable SSL verification.
+  allow_http_fallback: false
+
+# =============================================================================
+# JJB Attribution
+# =============================================================================
+# JJB Attribution provides authoritative Jenkins job-to-project mapping
+# using Jenkins Job Builder (JJB) configuration files from ci-management
+# When enabled, replaces fuzzy matching with exact job allocation
+#
+# NOTE: Legacy 'ci_management' key is still supported for backward compatibility
+jjb_attribution:
+  # Enable JJB Attribution for accurate job allocation
+  # Automatically derives ci-management URL from Gerrit host configuration
+  enabled: true
+
+  # Git URL for the ci-management repository (OPTIONAL)
+  # If not provided, automatically derived as:
+  #   https://{gerrit_host}/r/ci-management
+  # Only override if your ci-management repo has a non-standard location
+  # Examples:
+  #   - https://gerrit.onap.org/r/ci-management (auto-derived)
+  #   - https://gerrit.o-ran-sc.org/r/ci-management (auto-derived)
+  #   - https://git.opendaylight.org/gerrit/releng/builder
+  #     (OpenDaylight uses different name)
+  url: ""
+
+  # Branch to use (typically "master" or "main")
+  branch: "master"
+
+  # Cache directory for cloned repositories
+  # Uses system temp directory if not specified
+  cache_dir: "/tmp"
+
+  # Update interval in seconds (default: 24 hours)
+  # Repositories older than this will be refreshed
+  update_interval: 86400
+
+# =============================================================================
+# INFO.yaml Collection
+# =============================================================================
+# INFO.yaml collection from info-master repository
+# Enabled by default for comprehensive project metadata
+info_yaml:
+  # Enable INFO.yaml committer report generation
+  enabled: true
+
+  # Option 1: Use existing local path (recommended for development/testing)
+  # Uncomment and set this for local development only - do not use in CI/CD
+  # local_path: "testing/info-master"  # Path to cloned info-master repository
+
+  # Option 2: Clone from remote URL (AUTO-DERIVED if not specified)
+  # (used if local_path is not set or doesn't exist)
+  # Default: https://gerrit.linuxfoundation.org/infra/releng/info-master
+  # Override only if using a different info-master location
+  clone_url: ""
+
+  # Exclude archived/read-only Gerrit projects from the INFO.yaml table
+  # When true (default), projects with Gerrit state READ_ONLY or
+  # HIDDEN are excluded
+  # When false, all projects from INFO.yaml are included regardless
+  # of Gerrit state
+  exclude_archived: true
+
+  # Activity time windows for committer colorization (in days)
+  # These determine the color coding of committer names based on
+  # their last commit
+  activity_windows:
+    current: 365    # Green - commits within last 365 days (✅ Current)
+    active: 1095    # Orange - commits between 365-1095 days (☑️ Active)
+    # inactive: Any commits older than 1095 days
+    # (🛑 Inactive - shown in red)
+
+  # Issue tracker URL validation
+  validate_urls: true
+  url_timeout: 10.0  # Timeout for URL validation in seconds
+
+# =============================================================================
+# Extension Points
+# =============================================================================
+extensions:
+  # GitHub API integration for workflow status
+  # Enabled by default for comprehensive CI/CD workflow analysis
+  github_api:
+    enabled: true
+    token: ""  # Will use CLASSIC_READ_ONLY_PAT_TOKEN env var if not set
+    timeout: 30.0
+    include_issues: false
+    include_prs: false
+    # GitHub organization mapping for Gerrit mirrors (AUTO-DERIVED)
+    # Automatically derived from gerrit.host
+    # Example: gerrit.onap.org -> "onap",
+    #          gerrit.o-ran-sc.org -> "o-ran-sc"
+    # Override only if your organization name differs from the Gerrit
+    # host pattern
+    github_org: ""
+
+  # Language analysis (future)
+  language_analysis:
+    enabled: false
+
+  # Security scanning (future)
+  security_scanning:
+    enabled: false
+
+# =============================================================================
+# Schema Version
+# =============================================================================
+schema_version: "1.0.0"

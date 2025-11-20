@@ -195,14 +195,7 @@ def generate(
             rich_help_panel="Validation",
         ),
     ] = False,
-    show_config: Annotated[
-        bool,
-        typer.Option(
-            "--show-config",
-            help="Display resolved configuration and exit",
-            rich_help_panel="Validation",
-        ),
-    ] = False,
+
 
     # Version
     version: Annotated[
@@ -276,7 +269,6 @@ def generate(
         verbose=verbose,
         quiet=quiet,
         validate_only=dry_run,
-        show_config=show_config,
         log_level=None,
         github_token_env=github_token_env,
     )
@@ -298,137 +290,16 @@ def generate(
         raise typer.Exit(code=130)
 
 
-@app.command()
-def init(
-    project: Annotated[
-        Optional[str],
-        typer.Option(
-            "--project",
-            "-p",
-            help="Project name for the new configuration",
-        ),
-    ] = None,
-    template: Annotated[
-        Optional[InitTemplate],
-        typer.Option(
-            "--template",
-            "-t",
-            help="Use a template instead of interactive wizard",
-        ),
-    ] = None,
-    output: Annotated[
-        Optional[Path],
-        typer.Option(
-            "--output",
-            "-o",
-            help="Output path for configuration file",
-        ),
-    ] = None,
-):
-    """
-    Initialize a new configuration file for a project.
-
-    Runs an interactive configuration wizard or uses a template to create
-    a new project configuration file with smart defaults.
-
-    \b
-    Templates:
-        minimal   - Basic configuration with essential settings only
-        standard  - Recommended configuration with common features enabled
-        full      - Complete configuration with all options documented
-
-    \b
-    Examples:
-        # Interactive wizard
-        reporting-tool init
-
-        # Create from template
-        reporting-tool init --project my-project --template standard
-
-        # Custom output location
-        reporting-tool init -p my-project -t minimal -o custom.yaml
-    """
-    # TODO: Implement configuration wizard
-    console.print("[yellow]Configuration wizard coming soon![/yellow]")
-    console.print("\nFor now, create configuration files manually:")
-    console.print("1. Create a 'configuration' directory")
-    console.print("2. Add 'template.config' with default settings")
-    console.print("3. Add '<project-name>.config' with project-specific overrides")
-    console.print("\nSee examples in the documentation.")
-    raise typer.Exit(code=0)
+# Note: init command removed - not yet implemented
+# Users should manually copy from /config/default.yaml to /configuration/
 
 
-@app.command()
-def list_features():
-    """
-    List all available feature detection checks.
-
-    Displays a comprehensive list of features that can be automatically
-    detected in repositories, including:
-
-    • CI/CD systems (Jenkins, GitHub Actions, GitLab CI)
-
-    • Dependency management (requirements.txt, package.json, pom.xml)
-
-    • Documentation (README, docs/, ReadTheDocs)
-
-    • Code quality tools (pre-commit, linters, formatters)
-
-    • Security tools (Dependabot, CodeQL, vulnerability scanning)
-    """
-    # TODO: Implement feature listing
-    console.print("[yellow]Feature listing coming soon![/yellow]")
-    console.print("\nAvailable features include:")
-    console.print("• CI/CD systems (Jenkins, GitHub Actions, GitLab CI)")
-    console.print("• Dependency management (requirements.txt, package.json, pom.xml)")
-    console.print("• Documentation (README, docs/, ReadTheDocs)")
-    console.print("• Code quality tools (pre-commit, linters, formatters)")
-    console.print("• Security tools (Dependabot, CodeQL)")
-    raise typer.Exit(code=0)
+# Note: list-features command removed - not yet implemented
+# Feature detection happens automatically during report generation
 
 
-@app.command()
-def validate(
-    config: Annotated[
-        Path,
-        typer.Argument(
-            help="Configuration file to validate",
-            exists=True,
-            file_okay=True,
-            dir_okay=False,
-            readable=True,
-        ),
-    ],
-):
-    """
-    Validate a configuration file.
-
-    Checks configuration file for:
-
-    • ✅ Valid YAML syntax
-
-    • 🔍 Required fields present
-
-    • 📝 Correct data types and values
-
-    • ⚠️  Deprecated options
-
-    • 💡 Optimization suggestions
-
-    \b
-    Examples:
-        # Validate a config file
-        reporting-tool validate config/my-project.yaml
-
-        # Validate with verbose output
-        reporting-tool validate config/my-project.yaml -v
-    """
-    # TODO: Implement proper configuration validation
-    console.print(f"[yellow]Validating configuration:[/yellow] {config}")
-    console.print("[yellow]Configuration validation coming soon![/yellow]")
-    console.print("\nFor now, run with --dry-run flag:")
-    console.print(f"  reporting-tool generate --project test --repos-path . --dry-run")
-    raise typer.Exit(code=0)
+# Note: validate command removed - not yet implemented
+# Use 'reporting-tool generate --dry-run' for configuration validation
 
 
 @app.callback(invoke_without_command=True)
@@ -456,15 +327,8 @@ def main(
         reporting-tool generate --project my-project --repos-path ./repos
 
     \b
-    📖 Common Commands:
+    📖 Main Command:
         generate        Generate analysis reports (main command)
-        init            Create a new configuration file
-        list-features   Show all available feature detections
-        validate        Validate a configuration file
-
-    \b
-    📚 Documentation:
-        https://reporting-tool.readthedocs.io
 
     \b
     🐛 Report Issues:

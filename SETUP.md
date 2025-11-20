@@ -44,14 +44,14 @@ needed for cross-org reporting.
 
 **Required Scopes**:
 
-- `repo:status` (access to repository commit statuses)
-- `actions:read` (access to workflow runs)
+- `repo` (full repository access, or `public_repo` for public repositories only)
+- `actions:read` (read GitHub Actions workflow runs and status)
 
 **Quick Setup**:
 
 1. Go to <https://github.com/settings/tokens>
 2. Click "Generate new token" → "Generate new token (classic)"
-3. Select scopes: `repo:status` and `actions:read`
+3. Select scopes: `repo` and `actions:read`
 4. Generate and copy the token
 5. Go to your repository's **Settings** → **Secrets and variables** → **Actions**
 6. Click "New repository secret"
@@ -275,16 +275,15 @@ The workflow includes comprehensive logging and error handling:
 ## Migration from Legacy System
 
 If you're migrating from the old system that used a separate `gerrit-reports`
-repository, see:
+repository:
 
-**[Migration Checklist](docs/MIGRATION_CHECKLIST.md)**
-
-Key changes:
+**Key changes:**
 
 - No longer requires `GERRIT_REPORTS_PAT_TOKEN`
 - Reports published to GitHub Pages on this repository
 - Separate production and Preview report workflows
 - Enhanced artifact retention for meta-reporting
+- See [GitHub Pages Setup Guide](docs/GITHUB_PAGES_SETUP.md) for migration steps
 
 ### Modifying Clone Behavior
 
@@ -314,7 +313,7 @@ schedule:
 4. **Permission errors**: Verify repository permissions and secrets
 5. **Grey workflow status in reports**: Check your GitHub token environment variable
    (`GITHUB_TOKEN` by default, or `CLASSIC_READ_ONLY_PAT_TOKEN` for CI) exists
-   and is a Classic PAT with required scopes (see GitHub Token Requirements)
+   and is a Classic PAT with required scopes: `repo` and `actions:read`
 6. **Report publishing failures**: Check `GERRIT_REPORTS_PAT_TOKEN` exists and has
    Contents: Read and write permissions for `lfit/gerrit-reports`
 

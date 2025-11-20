@@ -9,10 +9,7 @@ This module provides the core orchestration logic for report generation,
 coordinating configuration loading, repository analysis, and output generation.
 """
 
-import copy
 import datetime
-import hashlib
-import json
 import logging
 import os
 import sys
@@ -32,7 +29,11 @@ from util.zip_bundle import create_report_bundle
 from util.github_org import determine_github_org
 
 # Import configuration utilities
-from reporting_tool.config import save_resolved_config, load_configuration
+from reporting_tool.config import (
+    save_resolved_config,
+    load_configuration,
+    compute_config_digest,
+)
 
 # Import main orchestration
 from reporting_tool.reporter import RepositoryReporter
@@ -42,7 +43,12 @@ from reporting_tool.reporter import RepositoryReporter
 # CONSTANTS AND SCHEMA DEFINITIONS
 # =============================================================================
 
-SCRIPT_VERSION = "1.0.0"
+# Import version from package
+try:
+    from reporting_tool import __version__
+except ImportError:
+    __version__ = "0.0.0"  # Fallback if not installed
+
 SCHEMA_VERSION = "1.0.0"
 DEFAULT_CONFIG_DIR = "configuration"
 DEFAULT_OUTPUT_DIR = "reports"
@@ -244,7 +250,7 @@ api_stats = APIStatistics()
 
 
 # =============================================================================
-# CONFIGURATION MANAGEMENT
+# LOGGING SETUP
 # =============================================================================
 
 
@@ -269,38 +275,6 @@ def setup_logging(
     logging.getLogger("httpcore").setLevel(logging.WARNING)
 
     return logging.getLogger(__name__)
-
-
-def deep_merge_dicts(base: dict[str, Any], override: dict[str, Any]) -> dict[str, Any]:
-    """Recursively merge two dictionaries, with override taking precedence."""
-    result = copy.deepcopy(base)
-
-    for key, value in override.items():
-        if key in result and isinstance(result[key], dict) and isinstance(value, dict):
-            result[key] = deep_merge_dicts(result[key], value)
-        else:
-            result[key] = copy.deepcopy(value)
-
-    return result
-
-
-def load_yaml_config(config_path: Path) -> Dict[str, Any]:
-    """Load and parse a YAML configuration file."""
-    try:
-        with open(config_path, "r", encoding="utf-8") as f:
-            return yaml.safe_load(f) or {}
-    except FileNotFoundError:
-        return {}
-    except yaml.YAMLError as e:
-        raise ValueError(f"Invalid YAML in {config_path}: {e}")
-
-
-
-
-def compute_config_digest(config: Dict[str, Any]) -> str:
-    """Compute SHA256 digest of configuration for reproducibility tracking."""
-    config_json = json.dumps(config, sort_keys=True, separators=(",", ":"))
-    return hashlib.sha256(config_json.encode("utf-8")).hexdigest()
 
 
 def write_config_to_step_summary(config: dict[str, Any], project: str) -> None:
@@ -375,7 +349,7 @@ def main(args=None) -> int:
                 print(f"ℹ️  GitHub organization '{github_org}' from PROJECTS_JSON", file=sys.stderr)
 
         # Inject script and schema versions into config for reporter
-        config["_script_version"] = SCRIPT_VERSION
+        config["_script_version"] = __version__
         config["_schema_version"] = SCHEMA_VERSION
 
         # Store GitHub token environment variable name in config
@@ -395,7 +369,7 @@ def main(args=None) -> int:
             include_timestamps=log_config.get("include_timestamps", True),
         )
 
-        logger.info(f"Repository Reporting System v{SCRIPT_VERSION}")
+        logger.info(f"Repository Reporting System v{__version__}")
         logger.info(f"Project: {args.project}")
         logger.info(f"Configuration digest: {compute_config_digest(config)[:12]}...")
         logger.debug(f"Using GitHub token from environment variable: {github_token_env}")

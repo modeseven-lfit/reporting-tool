@@ -159,11 +159,11 @@ reporting-tool generate \
 ### Scenario 4: Quick Analysis (Skip Features)
 
 ```bash
-# Fastest analysis (skip optional features)
+# Quick analysis with minimal output
 reporting-tool generate \
   --project quick-test \
   --repos-path ./repos \
-  --skip-optional
+  --quiet
 ```
 
 ---
@@ -175,17 +175,15 @@ Your `config/my-project.yaml` controls report generation:
 ```yaml
 # Minimal configuration
 project: my-project
-repositories_path: ./repos
-output_directory: ./reports
 
 # Time windows for analysis
 time_windows:
-  1y:
+  last_365:
     days: 365
     label: "Last Year"
-  all:
-    days: null  # All time
-    label: "All Time"
+  last_3_years:
+    days: 1095
+    label: "Last 3 Years"
 ```
 
 **See [Configuration Guide](CONFIGURATION.md) for complete options.**
@@ -361,17 +359,17 @@ reporting-tool generate \
 ### Generate Specific Format
 
 ```bash
-# HTML only (fastest)
+# HTML only
 reporting-tool generate \
   --project my-project \
   --repos-path ./repos \
-  --format html
+  --output-format html
 
-# All formats
+# JSON only
 reporting-tool generate \
   --project my-project \
   --repos-path ./repos \
-  --format json,markdown,html
+  --output-format json
 ```
 
 ---

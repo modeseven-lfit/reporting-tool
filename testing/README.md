@@ -508,7 +508,7 @@ uv run reporting-tool generate \
     --project "ONAP" \
     --repos-path /tmp/gerrit.onap.org \
     --output-dir /tmp/reports/onap \
-    --formats json markdown  # Generate JSON and Markdown formats
+    --output-format json  # Generate JSON format (options: json, md, html, all)
 ```
 
 ## Performance Tips

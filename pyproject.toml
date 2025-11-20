@@ -69,7 +69,6 @@ dev = [
 
 [project.urls]
 Homepage = "https://github.com/lfit/reporting-tool"
-Documentation = "https://reporting-tool.readthedocs.io"
 Repository = "https://github.com/lfit/reporting-tool"
 Issues = "https://github.com/lfit/reporting-tool/issues"
 Changelog = "https://github.com/lfit/reporting-tool/blob/main/CHANGELOG.md"
@@ -108,6 +107,7 @@ exclude = [
     ".hypothesis",
     "htmlcov",
     ".coverage*",
+    "/configuration",
 ]
 
 [tool.hatch.build.targets.wheel]

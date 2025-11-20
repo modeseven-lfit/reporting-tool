@@ -713,7 +713,7 @@ reporting-tool generate --config config/my-project.yaml --dry-run
 ## Template Comparison
 
 | Feature | Minimal | Standard | Full |
-|---------|---------|----------|------|
+| ------- | ------- | -------- | ---- |
 | **Setup Time** | 30 sec | 2 min | 4 min |
 | **Project name** | ✓ | ✓ | ✓ |
 | **Time windows** | ✓ | ✓ | ✓ |
@@ -1202,7 +1202,7 @@ info_yaml:
 
 ---
 
-## GitHub API Authentication
+## GitHub API Authentication {#github-api-authentication}
 
 The reporting tool can integrate with GitHub's API to fetch additional repository data such as workflow status, pull requests, and other metadata.
 
@@ -1211,7 +1211,7 @@ The reporting tool can integrate with GitHub's API to fetch additional repositor
 GitHub offers two types of Personal Access Tokens (PAT):
 
 | Type | Multi-Organization | Use Case |
-|------|-------------------|----------|
+| ---- | ------------------ | -------- |
 | **Classic PAT** | ✅ Yes | **Recommended** - Works across all organizations |
 | **Fine-Grained PAT** | ❌ No | Single organization only |
 
@@ -1398,7 +1398,7 @@ github_api:
 GitHub API has rate limits:
 
 | Authentication | Requests/Hour |
-|---------------|---------------|
+| -------------- | ------------- |
 | Unauthenticated | 60 |
 | Authenticated (PAT) | 5,000 |
 | GitHub Actions | 1,000 (per repository) |
