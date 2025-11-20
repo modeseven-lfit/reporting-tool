@@ -223,62 +223,15 @@ jobs:
           fi
         # yamllint enable rule:line-length
 
-      - name: "Set up SSH key for info-master"
-        shell: bash
-        env:
-          SSH_KEY: ${{ secrets.LF_GERRIT_INFO_MASTER_SSH_KEY }}
-        run: |
-          if [ -z "$SSH_KEY" ]; then
-            echo "::warning::SSH key not set, will use HTTPS"
-            echo "SSH_AVAILABLE=false" >> "$GITHUB_ENV"
-          else
-            echo "🔑 Configuring SSH key"
-            mkdir -p ~/.ssh
-            chmod 700 ~/.ssh
-
-            echo "$SSH_KEY" > ~/.ssh/gerrit_info_master
-            chmod 600 ~/.ssh/gerrit_info_master
-
-            cat >> ~/.ssh/config <<EOF
-          Host gerrit.linuxfoundation.org
-            HostName gerrit.linuxfoundation.org
-            User modesevenindustrialsolutions
-            Port 29418
-            IdentityFile ~/.ssh/gerrit_info_master
-            StrictHostKeyChecking no
-            UserKnownHostsFile /dev/null
-          EOF
-            chmod 600 ~/.ssh/config
-
-            echo "✅ SSH configured"
-            echo "SSH_AVAILABLE=true" >> "$GITHUB_ENV"
-          fi
-
       - name: "Clone info-master repository"
         shell: bash
         run: |
-          echo "🔗 Cloning info-master repository"
+          echo "🔗 Cloning info-master repository via HTTPS"
 
-          ssh_url="ssh://modesevenindustrialsolutions@"
-          ssh_url="${ssh_url}gerrit.linuxfoundation.org:29418/"
-          ssh_url="${ssh_url}releng/info-master"
-          https_url="https://gerrit.linuxfoundation.org/infra/"
-          https_url="${https_url}releng/info-master"
+          https_url="https://gerrit.linuxfoundation.org/infra/releng/info-master"
 
-          if [ "${SSH_AVAILABLE:-false}" = "true" ]; then
-            echo "Attempting SSH clone..."
-            if git clone "$ssh_url" ./info-master; then
-              echo "✅ Cloned via SSH"
-            else
-              echo "::warning::SSH failed, trying HTTPS"
-              git clone "$https_url" ./info-master
-              echo "✅ Cloned via HTTPS"
-            fi
-          else
-            echo "Using HTTPS clone..."
-            git clone "$https_url" ./info-master
-            echo "✅ Cloned via HTTPS"
-          fi
+          git clone "$https_url" ./info-master
+          echo "✅ Cloned via HTTPS"
 
           echo "📂 Info-master contents:"
           find ./info-master -maxdepth 2 -type f -name "*.yaml" | head -5

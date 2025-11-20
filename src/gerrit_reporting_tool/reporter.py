@@ -84,7 +84,7 @@ class RepositoryReporter:
         # Create a temporary directory for info-master
         self.info_master_temp_dir = tempfile.mkdtemp(prefix="info-master-")
         info_master_path = Path(self.info_master_temp_dir) / "info-master"
-        info_master_url = "ssh://modesevenindustrialsolutions@gerrit.linuxfoundation.org:29418/releng/info-master"
+        info_master_url = "https://gerrit.linuxfoundation.org/infra/releng/info-master"
 
         self.logger.info(
             f"Cloning info-master repository to temporary location: {info_master_path}"
