@@ -1,0 +1,15 @@
+{
+  "project": "O-RAN-SC",
+  "gerrit_server": "gerrit.o-ran-sc.org",
+  "jenkins_server": "jenkins.o-ran-sc.org",
+  "github_org": "",
+  "generated_at": "2025-11-20T09:41:29Z",
+  "workflow_run_id": "19532394176",
+  "workflow_run_number": "4",
+  "workflow_run_attempt": "1",
+  "git_sha": "bbe63449a980839f4e8e24aa6b181feee2d0dbb3",
+  "git_ref": "fix-github-wf-colours",
+  "pr_number": 10,
+  "pr_author": "ModeSevenIndustrialSolutions",
+  "environment": "previews"
+}
