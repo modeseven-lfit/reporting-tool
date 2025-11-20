@@ -1,6 +1,6 @@
 # 📊 Gerrit Project Analysis Report: O-RAN-SC
 
-**Generated:** November 20, 2025 at 16:46 UTC
+**Generated:** November 20, 2025 at 17:02 UTC
 **Schema Version:** 1.0.0
 
 ## 📈 Global Summary
@@ -517,8 +517,8 @@
 | ric-plt/rtmgr | go | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | sim/ns3-o-ran-e2 | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
 | ric-plt/submgr | go | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
-| aiml-fw/apm/analysis-module | None | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | aiml-fw/apm/influx-wrapper | None | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
+| aiml-fw/apm/analysis-module | None | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | aiml-fw/apm/monitoring-server | go | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | nonrtric/plt/dmaapmediatorproducer | go | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | nonrtric/plt/sdnca1controller | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
@@ -559,30 +559,30 @@
 | ric-app/ric-sdk-py | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ric-app/qp-aimlfw | go | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-app/rc | go | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
-| ric-app/ts | docker | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-app/mc | c_cpp | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-app/ts | docker | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-plt/alarm-cpp | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
-| ric-plt/asn1-documents | None | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | ric-app/hw | docker | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| ric-plt/demo1 | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| ric-plt/asn1-documents | None | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | ric-app/qp | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-plt/demo1 | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ric-plt/jaegeradapter | None | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | ric-plt/ric-test | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ric-plt/ricctl | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| ric-plt/nodeb-rnib | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-plt/libe2ap | c_cpp | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-plt/nodeb-rnib | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-plt/stslgo | go | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | ric-plt/ricdms | go | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-plt/sdlgo | go | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | ric-plt/streaming-protobufs | None | ❌ | ❌ | ✅ | ❌ | ❌ | 🛑 |
 | ric-plt/sdlpy | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-plt/sdl | c_cpp | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | ric-plt/tracelibgo | go | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | ric-plt/tracelibcpp | c_cpp | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| ric-plt/sdl | c_cpp | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
-| ric-plt/utils | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | sim/e2-interface-data | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ric-plt/xapp-frame-py | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-plt/utils | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | ric-plt/xapp-frame-cpp | docker | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-plt/xapp-frame-py | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | smo/pkg | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | aiml-fw | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | sim/e2-interface | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |

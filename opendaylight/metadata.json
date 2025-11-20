@@ -3,11 +3,11 @@
   "gerrit_server": "git.opendaylight.org",
   "jenkins_server": "jenkins.opendaylight.org",
   "github_org": "",
-  "generated_at": "2025-11-20T16:45:15Z",
-  "workflow_run_id": "19544430250",
-  "workflow_run_number": "23",
+  "generated_at": "2025-11-20T17:01:03Z",
+  "workflow_run_id": "19544883365",
+  "workflow_run_number": "24",
   "workflow_run_attempt": "1",
-  "git_sha": "3fd77830064099c1c7f3546b3bb942c4fcdbb641",
+  "git_sha": "62df3030629a885a54c161ddaab0bc152cf71c42",
   "git_ref": "refs/heads/main",
   "environment": "production"
 }

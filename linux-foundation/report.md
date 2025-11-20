@@ -1,6 +1,6 @@
 # 📊 Gerrit Project Analysis Report: Linux Foundation
 
-**Generated:** November 20, 2025 at 16:48 UTC
+**Generated:** November 20, 2025 at 17:04 UTC
 **Schema Version:** 1.0.0
 
 ## 📈 Global Summary
@@ -143,8 +143,8 @@
 | 73 | Suresh Channamallu | 0 | +0 | 0 | - | 3 | linuxfoundation.org |
 | 74 | Sylvain Desbureaux | 0 | +0 | 0 | - | 1 | orange.com |
 | 75 | Thanh Ha | 0 | +0 | 0 | - | 18 | gmail.com |
-| 76 | Thanh Ha | 0 | +0 | 0 | - | 22 | linuxfoundation.org |
-| 77 | Thanh Ha | 0 | +0 | 0 | - | 9 | linux.com |
+| 76 | Thanh Ha | 0 | +0 | 0 | - | 9 | linux.com |
+| 77 | Thanh Ha | 0 | +0 | 0 | - | 22 | linuxfoundation.org |
 | 78 | Tim Johnson | 0 | +0 | 0 | - | 5 | linuxfoundation.org |
 | 79 | ToineSiebelink | 0 | +0 | 0 | - | 1 | est.tech |
 | 80 | Tomasz Wrobel | 0 | +0 | 0 | - | 1 | nokia.com |
@@ -230,14 +230,14 @@
 | ansible/roles/java-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
 | ansible/roles/puppet-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
 | ansible/roles/lf-recommended-tools | None | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
-| ansible/roles/system-update | None | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
 | ansible/roles/python-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
-| ansible/roles/haveged-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
-| ansible/roles/docker-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
-| ansible/roles/packer-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
-| ansible/roles/mono-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
-| ansible/roles/lf-dev-libs | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
+| ansible/roles/system-update | None | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
 | ansible/roles/protobuf-install | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
+| ansible/roles/docker-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
+| ansible/roles/lf-dev-libs | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
+| ansible/roles/packer-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
+| ansible/roles/haveged-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
+| ansible/roles/mono-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
 | puppet/modules/gce | ruby | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | puppet/modules/mailman3 | ruby | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ansible/roles | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
@@ -247,14 +247,14 @@
 | releng/ci-workshop | docker | ❌ | ✅ | ❌ | ✅ | ❌ | 🛑 |
 | ansible/roles/shellcheck-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
 | ansible/roles/sysstat-install | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
-| releng/docs-conf | python | ❌ | ✅ | ✅ | ✅ | ❌ | ☑️ |
 | releng/license-checker | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | releng/pipelines | gradle | ❌ | ✅ | ✅ | ✅ | ❌ | 🛑 |
+| releng/docs-conf | python | ❌ | ✅ | ✅ | ✅ | ❌ | ☑️ |
+| releng/nexus-upload | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
 | releng | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
 | sandbox-info-master | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| releng/nexus-upload | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
-| releng/python-one-password | python | ❌ | ✅ | ✅ | ✅ | ❌ | ☑️ |
 | releng/sigul-docker | docker | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
+| releng/python-one-password | python | ❌ | ✅ | ✅ | ✅ | ❌ | ☑️ |
 
 ## 🏁 Deployed CI/CD Jobs
 
