@@ -1,6 +1,6 @@
 # 📊 Gerrit Project Analysis Report: O-RAN-SC
 
-**Generated:** November 20, 2025 at 07:17 UTC
+**Generated:** November 20, 2025 at 07:47 UTC
 **Schema Version:** 1.0.0
 
 ## 📈 Global Summary
@@ -352,7 +352,7 @@
 |----------------|---------|---------|--------------|---------------|------------------|--------|
 | it/dep | 137 | +3022 | 9 | 1 | 2025-11-19 | ✅ |
 | aiml-fw/awmf/tm | 123 | +2274 | 17 | 9 | 2025-11-11 | ✅ |
-| nonrtric/plt/rappmanager | 88 | +8923 | 6 | 0 | 2025-11-20 | ✅ |
+| nonrtric/plt/rappmanager | 88 | +8923 | 6 | 1 | 2025-11-19 | ✅ |
 | aiml-fw/aimlfw-dep | 83 | +2162 | 18 | 9 | 2025-11-11 | ✅ |
 | oam/oam-controller | 76 | +212549 | 5 | 1 | 2025-11-19 | ✅ |
 | oam | 56 | +4346 | 4 | 62 | 2025-09-19 | ✅ |
@@ -425,7 +425,7 @@
 | ric-app/ccc | 0 | +0 | 0 | 797 | 2023-09-15 | ☑️ |
 | ric-app/hw | 0 | +0 | 0 | 1,727 | 2021-02-27 | 🛑 |
 | ric-app/hw-go | 0 | +0 | 0 | 1,070 | 2022-12-16 | ☑️ |
-| ric-app/hw-python | 0 | +0 | 0 | 1,069 | 2022-12-17 | ☑️ |
+| ric-app/hw-python | 0 | +0 | 0 | 1,070 | 2022-12-16 | ☑️ |
 | ric-app/hw-rust | 0 | +0 | 0 | 510 | 2024-06-28 | ☑️ |
 | ric-app/kpimon-go | 0 | +0 | 0 | 546 | 2024-05-23 | ☑️ |
 | ric-app/lp | 0 | +0 | 0 | 568 | 2024-05-01 | ☑️ |
@@ -434,7 +434,7 @@
 | ric-app/qp-aimlfw | 0 | +0 | 0 | 1,071 | 2022-12-15 | ☑️ |
 | ric-app/rc | 0 | +0 | 0 | 926 | 2023-05-09 | ☑️ |
 | ric-app/ric-sdk-py | 0 | +0 | 0 | 1,729 | 2021-02-25 | 🛑 |
-| ric-app/ts | 0 | +0 | 0 | 1,038 | 2023-01-17 | ☑️ |
+| ric-app/ts | 0 | +0 | 0 | 1,039 | 2023-01-16 | ☑️ |
 | ric-plt/alarm-cpp | 0 | +0 | 0 | 568 | 2024-05-01 | ☑️ |
 | ric-plt/asn1-documents | 0 | +0 | 0 | 811 | 2023-09-01 | ☑️ |
 | ric-plt/dbaas/hiredis-vip | 0 | +0 | 0 | 660 | 2024-01-30 | ☑️ |
@@ -456,7 +456,7 @@
 | ric-plt/utils | 0 | +0 | 0 | 1,937 | 2020-08-01 | 🛑 |
 | ric-plt/xapp-frame | 0 | +0 | 0 | 558 | 2024-05-11 | ☑️ |
 | ric-plt/xapp-frame-cpp | 0 | +0 | 0 | 568 | 2024-05-01 | ☑️ |
-| ric-plt/xapp-frame-py | 0 | +0 | 0 | 566 | 2024-05-03 | ☑️ |
+| ric-plt/xapp-frame-py | 0 | +0 | 0 | 567 | 2024-05-02 | ☑️ |
 | scp/oam/modeling | 0 | +0 | 0 | 957 | 2023-04-08 | ☑️ |
 | scp/ocu/5gnr | 0 | +0 | 0 | 1,978 | 2020-06-21 | 🛑 |
 | scp/ric-app/kpimon | 0 | +0 | 0 | 1,744 | 2021-02-10 | 🛑 |
@@ -517,8 +517,8 @@
 | ric-plt/rtmgr | go | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | sim/ns3-o-ran-e2 | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
 | ric-plt/submgr | go | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
-| aiml-fw/apm/influx-wrapper | None | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | aiml-fw/apm/analysis-module | None | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
+| aiml-fw/apm/influx-wrapper | None | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | aiml-fw/apm/monitoring-server | go | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | nonrtric/plt/dmaapmediatorproducer | go | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | nonrtric/plt/sdnca1controller | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
@@ -548,36 +548,36 @@
 | it/dev | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-app/ad-cell | python | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | ric-app/ccc | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
-| ric-app/bouncer | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | it/otf | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| ric-app/bouncer | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | ric-app/hw-go | go | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
-| ric-app/ad | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-app/hw-python | python | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | ric-app/hw-rust | docker | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
+| ric-app/ad | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-app/lp | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-app/kpimon-go | go | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
-| ric-app/ric-sdk-py | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ric-app/qp-aimlfw | go | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
-| ric-app/mc | c_cpp | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-app/ric-sdk-py | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ric-app/rc | go | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
-| ric-app/ts | docker | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-app/mc | c_cpp | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-app/hw | docker | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| ric-app/ts | docker | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-plt/alarm-cpp | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
-| ric-plt/asn1-documents | None | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | ric-app/qp | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-plt/asn1-documents | None | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | ric-plt/demo1 | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ric-plt/jaegeradapter | None | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
-| ric-plt/nodeb-rnib | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-plt/ric-test | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ric-plt/libe2ap | c_cpp | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-plt/nodeb-rnib | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-plt/ricctl | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| ric-plt/stslgo | go | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ric-plt/sdlgo | go | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | ric-plt/ricdms | go | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
-| ric-plt/streaming-protobufs | None | ❌ | ❌ | ✅ | ❌ | ❌ | 🛑 |
+| ric-plt/sdlgo | go | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
+| ric-plt/stslgo | go | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | ric-plt/sdlpy | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
-| ric-plt/sdl | c_cpp | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
+| ric-plt/streaming-protobufs | None | ❌ | ❌ | ✅ | ❌ | ❌ | 🛑 |
 | ric-plt/tracelibgo | go | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
+| ric-plt/sdl | c_cpp | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | ric-plt/tracelibcpp | c_cpp | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | ric-plt/utils | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | sim/e2-interface-data | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
@@ -605,7 +605,7 @@
 | aiml-fw/apm/influx-wrapper |  | 0 | <a href="https://jenkins.o-ran-sc.org/job/aiml-fw-apm-influx-wrapper-info-yaml-verify/" target="_blank"><span class="status-unknown jenkins-status">aiml-fw-apm-influx-wrapper-info-yaml-verify</span></a> | 1 |
 | aiml-fw/apm/monitoring-agent |  | 0 | <a href="https://jenkins.o-ran-sc.org/job/aiml-fw-apm-monitoring-agent-info-yaml-verify/" target="_blank"><span class="status-unknown jenkins-status">aiml-fw-apm-monitoring-agent-info-yaml-verify</span></a> | 1 |
 | aiml-fw/apm/monitoring-server |  | 0 | <a href="https://jenkins.o-ran-sc.org/job/aiml-fw-apm-monitoring-server-info-yaml-verify/" target="_blank"><span class="status-unknown jenkins-status">aiml-fw-apm-monitoring-server-info-yaml-verify</span></a> | 1 |
-| aiml-fw/athp/data-extraction | <a href="https://github.com/onap/aiml-fw-athp-data-extraction/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 1 | <a href="https://jenkins.o-ran-sc.org/job/aiml-fw-athp-data-extraction-docker-docker-merge-master/" target="_blank"><span class="status-success jenkins-status">aiml-fw-athp-data-extraction-docker-docker-merge-master</span></a><br><a href="https://jenkins.o-ran-sc.org/job/aiml-fw-athp-data-extraction-docker-docker-verify-master/" target="_blank"><span class="status-building jenkins-status">aiml-fw-athp-data-extraction-docker-docker-verify-master</span></a><br><a href="https://jenkins.o-ran-sc.org/job/aiml-fw-athp-data-extraction-release-merge-master/" target="_blank"><span class="status-success jenkins-status">aiml-fw-athp-data-extraction-release-merge-master</span></a><br><a href="https://jenkins.o-ran-sc.org/job/aiml-fw-athp-data-extraction-release-verify-master/" target="_blank"><span class="status-success jenkins-status">aiml-fw-athp-data-extraction-release-verify-master</span></a><br><a href="https://jenkins.o-ran-sc.org/job/aiml-fw-athp-data-extraction-tox-sonarqube/" target="_blank"><span class="status-failure jenkins-status">aiml-fw-athp-data-extraction-tox-sonarqube</span></a> | 5 |
+| aiml-fw/athp/data-extraction | <a href="https://github.com/onap/aiml-fw-athp-data-extraction/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 1 | <a href="https://jenkins.o-ran-sc.org/job/aiml-fw-athp-data-extraction-docker-docker-merge-master/" target="_blank"><span class="status-success jenkins-status">aiml-fw-athp-data-extraction-docker-docker-merge-master</span></a><br><a href="https://jenkins.o-ran-sc.org/job/aiml-fw-athp-data-extraction-docker-docker-verify-master/" target="_blank"><span class="status-success jenkins-status">aiml-fw-athp-data-extraction-docker-docker-verify-master</span></a><br><a href="https://jenkins.o-ran-sc.org/job/aiml-fw-athp-data-extraction-release-merge-master/" target="_blank"><span class="status-success jenkins-status">aiml-fw-athp-data-extraction-release-merge-master</span></a><br><a href="https://jenkins.o-ran-sc.org/job/aiml-fw-athp-data-extraction-release-verify-master/" target="_blank"><span class="status-success jenkins-status">aiml-fw-athp-data-extraction-release-verify-master</span></a><br><a href="https://jenkins.o-ran-sc.org/job/aiml-fw-athp-data-extraction-tox-sonarqube/" target="_blank"><span class="status-failure jenkins-status">aiml-fw-athp-data-extraction-tox-sonarqube</span></a> | 5 |
 | aiml-fw/athp/pipeline-components |  | 0 | <a href="https://jenkins.o-ran-sc.org/job/aiml-fw-athp-pipeline-components-info-yaml-verify/" target="_blank"><span class="status-success jenkins-status">aiml-fw-athp-pipeline-components-info-yaml-verify</span></a> | 1 |
 | aiml-fw/athp/sdk/feature-store | <a href="https://github.com/onap/aiml-fw-athp-sdk-feature-store/actions/workflows/gerrit-merge.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-merge.yaml</span></a><br><a href="https://github.com/onap/aiml-fw-athp-sdk-feature-store/actions/workflows/gerrit-publish-test.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-publish-test.yaml</span></a><br><a href="https://github.com/onap/aiml-fw-athp-sdk-feature-store/actions/workflows/gerrit-publish.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-publish.yaml</span></a><br><a href="https://github.com/onap/aiml-fw-athp-sdk-feature-store/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 4 |  | 0 |
 | aiml-fw/athp/sdk/model-storage | <a href="https://github.com/onap/aiml-fw-athp-sdk-model-storage/actions/workflows/gerrit-merge.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-merge.yaml</span></a><br><a href="https://github.com/onap/aiml-fw-athp-sdk-model-storage/actions/workflows/gerrit-publish-test.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-publish-test.yaml</span></a><br><a href="https://github.com/onap/aiml-fw-athp-sdk-model-storage/actions/workflows/gerrit-publish.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-publish.yaml</span></a><br><a href="https://github.com/onap/aiml-fw-athp-sdk-model-storage/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 4 | <a href="https://jenkins.o-ran-sc.org/job/aiml-fw-athp-sdk-model-storage-pypi-release-merge/" target="_blank"><span class="status-unknown jenkins-status">aiml-fw-athp-sdk-model-storage-pypi-release-merge</span></a><br><a href="https://jenkins.o-ran-sc.org/job/aiml-fw-athp-sdk-model-storage-pypi-release-verify/" target="_blank"><span class="status-unknown jenkins-status">aiml-fw-athp-sdk-model-storage-pypi-release-verify</span></a><br><a href="https://jenkins.o-ran-sc.org/job/aiml-fw-athp-sdk-model-storage-pypi-stage-master/" target="_blank"><span class="status-unknown jenkins-status">aiml-fw-athp-sdk-model-storage-pypi-stage-master</span></a><br><a href="https://jenkins.o-ran-sc.org/job/aiml-fw-athp-sdk-model-storage-pypi-verify-master/" target="_blank"><span class="status-success jenkins-status">aiml-fw-athp-sdk-model-storage-pypi-verify-master</span></a> | 4 |
