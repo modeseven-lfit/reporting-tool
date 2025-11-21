@@ -1,6 +1,6 @@
 # 📊 Gerrit Project Analysis Report: O-RAN-SC
 
-**Generated:** November 21, 2025 at 07:14 UTC
+**Generated:** November 21, 2025 at 08:28 UTC
 **Schema Version:** 1.0.0
 
 ## 📈 Global Summary
@@ -425,7 +425,7 @@
 | ric-app/ccc | 0 | +0 | 0 | 798 | 2023-09-15 | ☑️ |
 | ric-app/hw | 0 | +0 | 0 | 1,728 | 2021-02-27 | 🛑 |
 | ric-app/hw-go | 0 | +0 | 0 | 1,071 | 2022-12-16 | ☑️ |
-| ric-app/hw-python | 0 | +0 | 0 | 1,070 | 2022-12-17 | ☑️ |
+| ric-app/hw-python | 0 | +0 | 0 | 1,071 | 2022-12-16 | ☑️ |
 | ric-app/hw-rust | 0 | +0 | 0 | 511 | 2024-06-28 | ☑️ |
 | ric-app/kpimon-go | 0 | +0 | 0 | 547 | 2024-05-23 | ☑️ |
 | ric-app/lp | 0 | +0 | 0 | 569 | 2024-05-01 | ☑️ |
@@ -434,7 +434,7 @@
 | ric-app/qp-aimlfw | 0 | +0 | 0 | 1,072 | 2022-12-15 | ☑️ |
 | ric-app/rc | 0 | +0 | 0 | 927 | 2023-05-09 | ☑️ |
 | ric-app/ric-sdk-py | 0 | +0 | 0 | 1,730 | 2021-02-25 | 🛑 |
-| ric-app/ts | 0 | +0 | 0 | 1,039 | 2023-01-17 | ☑️ |
+| ric-app/ts | 0 | +0 | 0 | 1,040 | 2023-01-16 | ☑️ |
 | ric-plt/alarm-cpp | 0 | +0 | 0 | 569 | 2024-05-01 | ☑️ |
 | ric-plt/asn1-documents | 0 | +0 | 0 | 812 | 2023-09-01 | ☑️ |
 | ric-plt/dbaas/hiredis-vip | 0 | +0 | 0 | 661 | 2024-01-30 | ☑️ |
@@ -447,7 +447,7 @@
 | ric-plt/ricctl | 0 | +0 | 0 | 1,484 | 2021-10-29 | 🛑 |
 | ric-plt/ricdms | 0 | +0 | 0 | 661 | 2024-01-30 | ☑️ |
 | ric-plt/sdl | 0 | +0 | 0 | 569 | 2024-05-01 | ☑️ |
-| ric-plt/sdlgo | 0 | +0 | 0 | 567 | 2024-05-03 | ☑️ |
+| ric-plt/sdlgo | 0 | +0 | 0 | 568 | 2024-05-02 | ☑️ |
 | ric-plt/sdlpy | 0 | +0 | 0 | 569 | 2024-05-01 | ☑️ |
 | ric-plt/streaming-protobufs | 0 | +0 | 0 | 1,519 | 2021-09-24 | 🛑 |
 | ric-plt/stslgo | 0 | +0 | 0 | 1,158 | 2022-09-20 | 🛑 |
@@ -456,7 +456,7 @@
 | ric-plt/utils | 0 | +0 | 0 | 1,938 | 2020-08-01 | 🛑 |
 | ric-plt/xapp-frame | 0 | +0 | 0 | 559 | 2024-05-11 | ☑️ |
 | ric-plt/xapp-frame-cpp | 0 | +0 | 0 | 569 | 2024-05-01 | ☑️ |
-| ric-plt/xapp-frame-py | 0 | +0 | 0 | 567 | 2024-05-03 | ☑️ |
+| ric-plt/xapp-frame-py | 0 | +0 | 0 | 568 | 2024-05-02 | ☑️ |
 | scp/oam/modeling | 0 | +0 | 0 | 958 | 2023-04-08 | ☑️ |
 | scp/ocu/5gnr | 0 | +0 | 0 | 1,979 | 2020-06-21 | 🛑 |
 | scp/ric-app/kpimon | 0 | +0 | 0 | 1,745 | 2021-02-10 | 🛑 |
@@ -511,15 +511,15 @@
 | ric-plt/alarm-go | go | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | ric-plt/appmgr | go | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | ric-plt/dbaas | None | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
-| ric-plt/e2 | None | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | ric-plt/o1 | docker | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
+| ric-plt/e2 | None | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | ric-plt/e2mgr | None | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | ric-plt/rtmgr | go | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | sim/ns3-o-ran-e2 | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
 | ric-plt/submgr | go | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
-| aiml-fw/apm/monitoring-server | go | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
-| aiml-fw/apm/analysis-module | None | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | aiml-fw/apm/influx-wrapper | None | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
+| aiml-fw/apm/analysis-module | None | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
+| aiml-fw/apm/monitoring-server | go | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | nonrtric/plt/dmaapmediatorproducer | go | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | nonrtric/plt/sdnca1controller | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | nonrtric/rapp/healthcheck | docker | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
@@ -538,9 +538,9 @@
 | ric-plt/dbaas/hiredis-vip | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
 | scp/oam/modeling | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | scp/ocu/5gnr | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| scp/ric-app/kpimon | docker | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | scp/ric-app/ssp | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ric-plt/lib/rmr | c_cpp | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| scp/ric-app/kpimon | docker | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | com/gs-lite | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | com/golog | go | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | com/pylog | None | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
@@ -549,28 +549,28 @@
 | ric-app/ad-cell | python | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | ric-app/ccc | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
 | it/otf | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| ric-app/hw-go | go | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
-| ric-app/bouncer | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
-| ric-app/hw-python | python | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | ric-app/ad | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-app/bouncer | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
+| ric-app/hw-go | go | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
+| ric-app/hw-python | python | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | ric-app/hw-rust | docker | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
-| ric-app/kpimon-go | go | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | ric-app/lp | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-app/kpimon-go | go | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | ric-app/ric-sdk-py | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ric-app/qp-aimlfw | go | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
-| ric-app/ts | docker | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
-| ric-app/rc | go | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-app/mc | c_cpp | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-app/rc | go | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-app/ts | docker | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-plt/alarm-cpp | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | ric-plt/asn1-documents | None | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | ric-app/hw | docker | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| ric-app/qp | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-plt/demo1 | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| ric-app/qp | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-plt/jaegeradapter | None | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
 | ric-plt/ric-test | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ric-plt/ricctl | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| ric-plt/libe2ap | c_cpp | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-plt/nodeb-rnib | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-plt/libe2ap | c_cpp | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-plt/ricdms | go | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-plt/stslgo | go | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | ric-plt/sdlgo | go | ❌ | ❌ | ✅ | ❌ | ❌ | ☑️ |
@@ -581,12 +581,12 @@
 | ric-plt/tracelibcpp | c_cpp | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | ric-plt/utils | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | sim/e2-interface-data | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ric-plt/xapp-frame-cpp | docker | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | ric-plt/xapp-frame-py | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| ric-plt/xapp-frame-cpp | docker | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | smo/pkg | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | aiml-fw | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
-| ric-plt/xapp-frame | go | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | sim/e2-interface | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
+| ric-plt/xapp-frame | go | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | smo/ves | maven | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | sim/o1-interface | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 

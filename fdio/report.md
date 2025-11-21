@@ -1,6 +1,6 @@
 # 📊 Gerrit Project Analysis Report: FDio
 
-**Generated:** November 21, 2025 at 07:16 UTC
+**Generated:** November 21, 2025 at 08:30 UTC
 **Schema Version:** 1.0.0
 
 ## 📈 Global Summary
@@ -24,7 +24,7 @@
 
 | Rank | Organization | Contributors | Commits | LOC | Δ LOC | Avg LOC/Commit | Unique Repositories |
 |------|--------------|--------------|---------|-----|-------|----------------|---------------------|
-| 1 | cisco.com | 157 | 926 | +50043 | 166687 | +54.0 | 5 |
+| 1 | cisco.com | 157 | 927 | +50048 | 166720 | +54.0 | 5 |
 | 2 | icloud.com | 1 | 119 | +1565 | 85265 | +13.2 | 2 |
 | 3 | gmail.com | 113 | 79 | +4594 | 12468 | +58.2 | 4 |
 | 4 | protonmail.ch | 1 | 36 | +4597 | 17499 | +127.7 | 2 |
@@ -183,7 +183,7 @@
 |------|-------------|---------|-----|-------|----------------|--------------|--------------|
 | 1 | Matus Fabian | 188 | +23800 | 40256 | +126.6 | 2 | cisco.com |
 | 2 | Florin Coras | 184 | +5687 | 12843 | +30.9 | 3 | cisco.com |
-| 3 | Tibor Frank | 121 | -191 | 17189 | -1.6 | 3 | cisco.com |
+| 3 | Tibor Frank | 122 | -186 | 17222 | -1.5 | 3 | cisco.com |
 | 4 | Peter Mikus | 119 | +1565 | 85265 | +13.2 | 2 | icloud.com |
 | 5 | Damjan Marion | 110 | +7276 | 25838 | +66.1 | 2 | cisco.com |
 | 6 | Adrian Villin | 92 | +6418 | 17480 | +69.8 | 1 | cisco.com |
@@ -835,7 +835,7 @@
 | Gerrit Project | Commits | LOC | Contributors | Days Inactive | Last Commit Date | Status |
 |----------------|---------|---------|--------------|---------------|------------------|--------|
 | vpp | 901 | +89412 | 76 | 1 | 2025-11-20 | ✅ |
-| csit | 314 | +8564 | 8 | 0 | 2025-11-21 | ✅ |
+| csit | 315 | +8569 | 8 | 1 | 2025-11-20 | ✅ |
 | ci-management | 83 | -2196 | 11 | 0 | 2025-11-21 | ✅ |
 | .github | 0 | +0 | 0 | 539 | 2024-05-31 | ☑️ |
 | main_test | 0 | +0 | 0 | 1,847 | 2020-10-31 | 🛑 |

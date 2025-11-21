@@ -1,6 +1,6 @@
 # 📊 Gerrit Project Analysis Report: OPNFV
 
-**Generated:** November 21, 2025 at 07:16 UTC
+**Generated:** November 21, 2025 at 08:30 UTC
 **Schema Version:** 1.0.0
 
 ## 📈 Global Summary
@@ -333,8 +333,8 @@
 | 157 | EmanueleUrselli | 0 | +0 | 0 | - | 1 | icloud.com |
 | 158 | Emilien Macchi | 0 | +0 | 0 | - | 2 | redhat.com |
 | 159 | Emilien Macchi | 0 | +0 | 0 | - | 2 | enovance.com |
-| 160 | Emma Foley | 0 | +0 | 0 | - | 5 | intel.com |
-| 161 | Emma Foley | 0 | +0 | 0 | - | 3 | redhat.com |
+| 160 | Emma Foley | 0 | +0 | 0 | - | 3 | redhat.com |
+| 161 | Emma Foley | 0 | +0 | 0 | - | 5 | intel.com |
 | 162 | Emma Foley | 0 | +0 | 0 | - | 1 | gmail.com |
 | 163 | Eric Ball | 0 | +0 | 0 | - | 2 | linuxfoundation.org |
 | 164 | Eric Harney | 0 | +0 | 0 | - | 1 | redhat.com |
@@ -744,8 +744,8 @@
 | 568 | Tomaszewski, PawelX | 0 | +0 | 0 | - | 1 | intel.com |
 | 569 | Tomi Juvonen | 0 | +0 | 0 | - | 4 | nokia.com |
 | 570 | TommyLindgren@gerrit.opnfv.org | 0 | +0 | 0 | - | 1 | ericsson.com |
-| 571 | Tomofumi Hayashi | 0 | +0 | 0 | - | 2 | gmail.com |
-| 572 | Tomofumi Hayashi | 0 | +0 | 0 | - | 4 | redhat.com |
+| 571 | Tomofumi Hayashi | 0 | +0 | 0 | - | 4 | redhat.com |
+| 572 | Tomofumi Hayashi | 0 | +0 | 0 | - | 2 | gmail.com |
 | 573 | Tomoki Sekiyama | 0 | +0 | 0 | - | 1 | hds.com |
 | 574 | Tong Liu | 0 | +0 | 0 | - | 2 | vmware.com |
 | 575 | Tony Xu | 0 | +0 | 0 | - | 1 | gmail.com |
@@ -824,12 +824,12 @@
 | 648 | bdemers | 0 | +0 | 0 | - | 1 | apache.org |
 | 649 | billyom | 0 | +0 | 0 | - | 4 | intel.com |
 | 650 | blelamer | 0 | +0 | 0 | - | 1 | orange.com |
-| 651 | blsaws | 0 | +0 | 0 | - | 7 | att.com |
-| 652 | blsaws | 0 | +0 | 0 | - | 1 | hotmail.com |
-| 653 | bmichalo | 0 | +0 | 0 | - | 1 | redhat.com |
+| 651 | blsaws | 0 | +0 | 0 | - | 1 | hotmail.com |
+| 652 | bmichalo | 0 | +0 | 0 | - | 1 | redhat.com |
+| 653 | bobzhou | 0 | +0 | 0 | - | 1 | lenovo.com |
 | 654 | bobzhou | 0 | +0 | 0 | - | 2 | huawei.com |
-| 655 | bobzhou | 0 | +0 | 0 | - | 1 | lenovo.com |
-| 656 | boucherv | 0 | +0 | 0 | - | 5 | orange.com |
+| 655 | boucherv | 0 | +0 | 0 | - | 5 | orange.com |
+| 656 | bryan | 0 | +0 | 0 | - | 7 | att.com |
 | 657 | carey.xu | 0 | +0 | 0 | - | 2 | huawei.com |
 | 658 | chenjiankun | 0 | +0 | 0 | - | 4 | huawei.com |
 | 659 | chenliangyjy | 0 | +0 | 0 | - | 3 | chinamobile.com |
@@ -993,18 +993,18 @@
 | domino | 0 | +0 | 0 | 2,848 | 2018-02-03 | 🛑 |
 | dovetail | 0 | +0 | 0 | 2,116 | 2020-02-05 | 🛑 |
 | dovetail-webportal | 0 | +0 | 0 | 1,858 | 2020-10-20 | 🛑 |
-| edgecloud | 0 | +0 | 0 | 2,183 | 2019-11-30 | 🛑 |
+| edgecloud | 0 | +0 | 0 | 2,184 | 2019-11-29 | 🛑 |
 | enfv | 0 | +0 | 0 | 3,514 | 2016-04-08 | 🛑 |
 | fds | 0 | +0 | 0 | 2,620 | 2018-09-19 | 🛑 |
 | fuel | 0 | +0 | 0 | 1,981 | 2020-06-19 | 🛑 |
 | functest-requirements | 0 | +0 | 0 | 2,894 | 2017-12-19 | 🛑 |
 | infra | 0 | +0 | 0 | 2,911 | 2017-12-02 | 🛑 |
 | ipv6 | 0 | +0 | 0 | 2,337 | 2019-06-29 | 🛑 |
-| kuberef | 0 | +0 | 0 | 1,011 | 2023-02-14 | ☑️ |
-| laas | 0 | +0 | 0 | 756 | 2023-10-27 | ☑️ |
+| kuberef | 0 | +0 | 0 | 1,012 | 2023-02-13 | ☑️ |
+| laas | 0 | +0 | 0 | 757 | 2023-10-26 | ☑️ |
 | laas-reflab | 0 | +0 | 0 | 2,233 | 2019-10-11 | 🛑 |
 | models | 0 | +0 | 0 | 2,670 | 2018-07-31 | 🛑 |
-| moon | 0 | +0 | 0 | 1,996 | 2020-06-04 | 🛑 |
+| moon | 0 | +0 | 0 | 1,997 | 2020-06-03 | 🛑 |
 | nfvbench | 0 | +0 | 0 | 1,049 | 2023-01-07 | ☑️ |
 | opera | 0 | +0 | 0 | 2,848 | 2018-02-03 | 🛑 |
 | opnfvdocs | 0 | +0 | 0 | 511 | 2024-06-28 | ☑️ |
@@ -1018,7 +1018,7 @@
 | qtip | 0 | +0 | 0 | 2,733 | 2018-05-29 | 🛑 |
 | releng-anteater | 0 | +0 | 0 | 2,631 | 2018-09-08 | 🛑 |
 | releng-testresults | 0 | +0 | 0 | 1,696 | 2021-03-31 | 🛑 |
-| releng-utils | 0 | +0 | 0 | 2,887 | 2017-12-26 | 🛑 |
+| releng-utils | 0 | +0 | 0 | 2,888 | 2017-12-25 | 🛑 |
 | releng-xci | 0 | +0 | 0 | 2,270 | 2019-09-04 | 🛑 |
 | releng-xci-scenarios | 0 | +0 | 0 | 2,273 | 2019-09-01 | 🛑 |
 | rocket | 0 | +0 | 0 | 2,169 | 2019-12-14 | 🛑 |
@@ -1032,7 +1032,7 @@
 | test | 0 | +0 | 0 | 2,382 | 2019-05-15 | 🛑 |
 | test/test1 | 0 | +0 | 0 | 2,184 | 2019-11-29 | 🛑 |
 | test2 | 0 | +0 | 0 | 2,491 | 2019-01-26 | 🛑 |
-| thoth | 0 | +0 | 0 | 911 | 2023-05-25 | ☑️ |
+| thoth | 0 | +0 | 0 | 912 | 2023-05-24 | ☑️ |
 | vineperf | 0 | +0 | 0 | 1,052 | 2023-01-04 | ☑️ |
 
 **Total:** 68 repositories
@@ -1062,62 +1062,62 @@
 | apex-os-net-config | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | cirv | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | cirv-hdv | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| apex-puppet-tripleo | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | cirv-rapid | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| cirv-spirent | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | cirv-sdv | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| apex | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| conductor | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| calipso | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| cirv-spirent | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | barometer | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| conductor | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| apex-puppet-tripleo | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| calipso | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | container4nfv | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | cran | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | domino | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| edgecloud | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| enfv | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| doctor | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| dovetail-webportal | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| fds | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| apex | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | .github | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
+| enfv | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| edgecloud | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| fds | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| dovetail-webportal | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| doctor | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | functest-requirements | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | infra | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ipv6 | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | dovetail | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | kuberef | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | laas-reflab | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| laas | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | models | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| nfvbench | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| laas | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | fuel | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | opera | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| nfvbench | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | opnfvtsc | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | orchestra | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ovsnfv | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | clover | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| parser | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| apex-tripleo-heat-templates | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| policytest | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| pharos | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| releng-anteater | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | bottlenecks | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| releng-utils | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| opnfvdocs | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
-| releng-xci-scenarios | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| apex-tripleo-heat-templates | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| parser | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | puppet-barometer | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| policytest | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| releng-anteater | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| releng-utils | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| pharos | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | qtip | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | rocket | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| sandbox | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | releng-testresults | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| releng-xci | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| opnfvdocs | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | moon | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| sandbox-zuul-untrusted | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| sandbox-zuul-config | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| securityscanning | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| releng-xci-scenarios | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| releng-xci | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | spark-model-runner | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| test | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| sandbox-zuul-config | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| sandbox-zuul-untrusted | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| sandbox | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| securityscanning | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | test2 | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| storperf | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
+| test | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | thoth | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| storperf | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | vineperf | python | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | stor4nfv | python | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 
