@@ -79,18 +79,32 @@ jobs:
             ${{ secrets.CLASSIC_READ_ONLY_PAT_TOKEN }}
           LF_GERRIT_INFO_MASTER_SSH_KEY: >-
             ${{ secrets.LF_GERRIT_INFO_MASTER_SSH_KEY }}
+        # yamllint disable rule:line-length
         run: |
           validation_failed=false
 
           echo "🔐 Validating required secrets..."
 
           # Check CLASSIC_READ_ONLY_PAT_TOKEN
+          NULL_SHA1="da39a3ee5e6b4b0d3255bfef95601890afd80709"
+
           if [ -z "$CLASSIC_READ_ONLY_PAT_TOKEN" ]; then
             echo "::error::CLASSIC_READ_ONLY_PAT_TOKEN secret is not set"
             echo "❌ CLASSIC_READ_ONLY_PAT_TOKEN: MISSING"
             validation_failed=true
           else
-            echo "✅ CLASSIC_READ_ONLY_PAT_TOKEN: Present"
+            # Calculate SHA1 of the token for verification (without exposing it)
+            token_sha1=""
+            token_sha1=$(echo -n "$CLASSIC_READ_ONLY_PAT_TOKEN" | sha1sum | cut -d' ' -f1)
+
+            if [ "$token_sha1" = "$NULL_SHA1" ]; then
+              echo "::warning::CLASSIC_READ_ONLY_PAT_TOKEN is empty/null: GitHub API queries may fail"
+              echo "⚠️  CLASSIC_READ_ONLY_PAT_TOKEN is empty/null: GitHub API queries may fail"
+              echo "   SHA1: $token_sha1"
+            else
+              echo "✅ CLASSIC_READ_ONLY_PAT_TOKEN: Present"
+              echo "   SHA1: $token_sha1"
+            fi
           fi
 
           # Check LF_GERRIT_INFO_MASTER_SSH_KEY (warning only)
@@ -105,10 +119,12 @@ jobs:
           {
             echo "### 🔐 Secrets Validation"
             echo ""
-            if [ -n "$CLASSIC_READ_ONLY_PAT_TOKEN" ]; then
-              echo "- ✅ **CLASSIC_READ_ONLY_PAT_TOKEN:** Present"
-            else
+            if [ -z "$CLASSIC_READ_ONLY_PAT_TOKEN" ]; then
               echo "- ❌ **CLASSIC_READ_ONLY_PAT_TOKEN:** MISSING"
+            elif [ "$token_sha1" = "$NULL_SHA1" ]; then
+              echo "- ⚠️ **CLASSIC_READ_ONLY_PAT_TOKEN:** Empty/Null (SHA1: \`$token_sha1\`)"
+            else
+              echo "- ✅ **CLASSIC_READ_ONLY_PAT_TOKEN:** Present (SHA1: \`$token_sha1\`)"
             fi
 
             if [ -n "$LF_GERRIT_INFO_MASTER_SSH_KEY" ]; then
@@ -125,6 +141,7 @@ jobs:
           fi
 
           echo "✅ All required secrets validated"
+        # yamllint enable rule:line-length
 
       - name: "Parse and validate PROJECTS_JSON"
         id: parse-projects
