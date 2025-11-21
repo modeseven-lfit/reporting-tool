@@ -1,6 +1,6 @@
 # 📊 Gerrit Project Analysis Report: ONAP
 
-**Generated:** November 21, 2025 at 14:07 UTC
+**Generated:** November 21, 2025 at 14:20 UTC
 **Schema Version:** 1.0.0
 
 ## 📈 Global Summary
@@ -25,7 +25,7 @@
 | Rank | Organization | Contributors | Commits | LOC | Δ LOC | Avg LOC/Commit | Unique Repositories |
 |------|--------------|--------------|---------|-----|-------|----------------|---------------------|
 | 1 | est.tech | 109 | 1374 | +34440 | 260990 | +25.1 | 88 |
-| 2 | telekom.de | 11 | 614 | +45857 | 253757 | +74.7 | 72 |
+| 2 | telekom.de | 11 | 613 | +45850 | 253750 | +74.8 | 72 |
 | 3 | linuxfoundation.org | 20 | 251 | +4393 | 8931 | +17.5 | 177 |
 | 4 | techmahindra.com | 44 | 131 | +31515 | 56253 | +240.6 | 38 |
 | 5 | att.com | 374 | 123 | +1760 | 14536 | +14.3 | 101 |
@@ -146,7 +146,7 @@
 
 | Rank | Contributor | Commits | LOC | Δ LOC | Avg LOC/Commit | Repositories | Organization |
 |------|-------------|---------|-----|-------|----------------|--------------|--------------|
-| 1 | Fiete Ostkamp | 469 | -1008 | 186686 | -2.1 | 48 | telekom.de |
+| 1 | Fiete Ostkamp | 468 | -1015 | 186679 | -2.2 | 48 | telekom.de |
 | 2 | waynedunican | 309 | +420 | 16438 | +1.4 | 15 | est.tech |
 | 3 | Kevin Sandi | 177 | +2300 | 5960 | +13.0 | 105 | linuxfoundation.org |
 | 4 | Toine Siebelink | 147 | +719 | 16089 | +4.9 | 5 | est.tech |
@@ -340,8 +340,8 @@
 | 192 | BharathS24 | 0 | +0 | 0 | - | 1 | techmahindra.com |
 | 193 | Bhatt, Prema | 0 | +0 | 0 | - | 1 | att.com |
 | 194 | Bilal A | 0 | +0 | 0 | - | 10 | att.com |
-| 195 | Bin Hu | 0 | +0 | 0 | - | 4 | att.com |
-| 196 | Bin Hu | 0 | +0 | 0 | - | 2 | att.com |
+| 195 | Bin Hu | 0 | +0 | 0 | - | 2 | att.com |
+| 196 | Bin Hu | 0 | +0 | 0 | - | 4 | att.com |
 | 197 | Bin Lu | 0 | +0 | 0 | - | 1 | arm.com |
 | 198 | Bin Sun | 0 | +0 | 0 | - | 5 | vmware.com |
 | 199 | Bin Yang | 0 | +0 | 0 | - | 12 | windriver.com |
@@ -435,1094 +435,1094 @@
 | 287 | Divyang Patel | 0 | +0 | 0 | - | 2 | telstra.com |
 | 288 | Dmitry Puzikov | 0 | +0 | 0 | - | 21 | tieto.com |
 | 289 | Dmitry Puzikov | 0 | +0 | 0 | - | 2 | samsung.com |
-| 290 | Dominik Mizyn | 0 | +0 | 0 | - | 7 | samsung.com |
-| 291 | Dominik Mizyn | 0 | +0 | 0 | - | 3 | samsung.com |
-| 292 | Donald Hunter | 0 | +0 | 0 | - | 5 | cisco.com |
-| 293 | Dongho Kim | 0 | +0 | 0 | - | 2 | att.com |
-| 294 | Driptaroop Das | 0 | +0 | 0 | - | 6 | ibm.com |
-| 295 | Dunietz, Irwin | 0 | +0 | 0 | - | 1 | att.com |
+| 290 | Dominic Lunanuova | 0 | +0 | 0 | - | 9 | att.com |
+| 291 | Dominik Mizyn | 0 | +0 | 0 | - | 7 | samsung.com |
+| 292 | Dominik Mizyn | 0 | +0 | 0 | - | 3 | samsung.com |
+| 293 | Donald Hunter | 0 | +0 | 0 | - | 5 | cisco.com |
+| 294 | Dongho Kim | 0 | +0 | 0 | - | 2 | att.com |
+| 295 | Driptaroop Das | 0 | +0 | 0 | - | 6 | ibm.com |
 | 296 | Dunietz, Irwin | 0 | +0 | 0 | - | 1 | att.com |
-| 297 | Durgpal | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 298 | Dusan Rozman | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 299 | DushyantSinghThakur | 0 | +0 | 0 | - | 2 | techmahindra.com |
-| 300 | DylanB95EST | 0 | +0 | 0 | - | 4 | est.tech |
-| 301 | EC2 Default User | 0 | +0 | 0 | - | 1 | hotmail.com |
-| 302 | ERIMROB | 0 | +0 | 0 | - | 5 | est.tech |
-| 303 | Edwin Lawrance | 0 | +0 | 0 | - | 5 | amdocs.com |
-| 304 | Edyta Krukowska | 0 | +0 | 0 | - | 17 | nokia.com |
-| 305 | Einat Vinouze | 0 | +0 | 0 | - | 1 | att.com |
-| 306 | Einav Keidar | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 307 | Ekko Chang | 0 | +0 | 0 | - | 2 | qct.io |
-| 308 | Elena Kuleshov | 0 | +0 | 0 | - | 4 | att.com |
-| 309 | Elena Kuleshov | 0 | +0 | 0 | - | 1 | att.com |
-| 310 | Eli Halych | 0 | +0 | 0 | - | 1 | gmail.com |
-| 311 | Eltanany Shaaban | 0 | +0 | 0 | - | 3 | orange.com |
-| 312 | Emmanuel Bidet | 0 | +0 | 0 | - | 1 | m4x.org |
-| 313 | Emmett Cox | 0 | +0 | 0 | - | 4 | ericsson.com |
-| 314 | EmmettCox | 0 | +0 | 0 | - | 5 | est.tech |
-| 315 | Enbo Wang | 0 | +0 | 0 | - | 8 | huawei.com |
-| 316 | Eoin Hanan | 0 | +0 | 0 | - | 5 | ericsson.com |
-| 317 | Epp, Richard (re6517) | 0 | +0 | 0 | - | 1 | att.com |
-| 318 | Eric Adams | 0 | +0 | 0 | - | 1 | intel.com |
-| 319 | Eric Au | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 320 | Eric Debeau | 0 | +0 | 0 | - | 32 | orange.com |
-| 321 | Eric Multanen | 0 | +0 | 0 | - | 8 | intel.com |
-| 322 | Eric Santos | 0 | +0 | 0 | - | 4 | yoppworks.com |
-| 323 | Eric Tang | 0 | +0 | 0 | - | 1 | gmail.com |
-| 324 | EricMoore | 0 | +0 | 0 | - | 2 | est.tech |
-| 325 | Erol Ozcan (Argela) | 0 | +0 | 0 | - | 1 | com.tr |
-| 326 | Ester Rotstein | 0 | +0 | 0 | - | 2 | att.com |
-| 327 | Ethan Hampton | 0 | +0 | 0 | - | 2 | intel.com |
-| 328 | Ethan Lynn | 0 | +0 | 0 | - | 4 | gmail.com |
-| 329 | Ethan Lynn | 0 | +0 | 0 | - | 8 | vmware.com |
-| 330 | Eylon Malin | 0 | +0 | 0 | - | 1 | att.com |
-| 331 | EzekielaRakotoarijaona | 0 | +0 | 0 | - | 1 | orange.com |
-| 332 | Fabian_BZH | 0 | +0 | 0 | - | 1 | orange.com |
-| 333 | Fabio Palumbo | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
-| 334 | Fatih Degirmenci | 0 | +0 | 0 | - | 1 | gmail.com |
-| 335 | Fei Tang | 0 | +0 | 0 | - | 1 | zte.com.cn |
-| 336 | Felix Sangalang | 0 | +0 | 0 | - | 2 | att.com |
-| 337 | Felix Sangalang | 0 | +0 | 0 | - | 1 | att.com |
-| 338 | FernandoOliveira | 0 | +0 | 0 | - | 1 | verizon.com |
-| 339 | Fiachra Corcoran | 0 | +0 | 0 | - | 4 | ericsson.com |
-| 340 | Filip Krzywka | 0 | +0 | 0 | - | 7 | nokia.com |
-| 341 | Fraboni, Gino (gf403a) | 0 | +0 | 0 | - | 5 | amdocs.com |
-| 342 | Francis Toth | 0 | +0 | 0 | - | 3 | yoppworks.com |
-| 343 | Frank A. Zdarsky | 0 | +0 | 0 | - | 2 | redhat.com |
-| 344 | Frank Grutzmacher | 0 | +0 | 0 | - | 1 | t-systems.com |
-| 345 | Frank Kimmlingen | 0 | +0 | 0 | - | 2 | telekom.de |
-| 346 | Frank Sandoval | 0 | +0 | 0 | - | 1 | cablelabs.com |
-| 347 | Franklin Dsilva | 0 | +0 | 0 | - | 3 | fujitsu.com |
-| 348 | Fred Oliveira | 0 | +0 | 0 | - | 1 | verizon.com |
-| 349 | Fuss, Areli (af732p) | 0 | +0 | 0 | - | 2 | att.com |
-| 350 | Fuss, Areli (af732p) | 0 | +0 | 0 | - | 1 | att.com |
-| 351 | GOPINATH MATHIVANAN | 0 | +0 | 0 | - | 2 | ibm.com |
-| 352 | GUNDAPANENI | 0 | +0 | 0 | - | 1 | att.com |
-| 353 | Gadicherla, Shiva | 0 | +0 | 0 | - | 1 | att.com |
+| 297 | Dunietz, Irwin | 0 | +0 | 0 | - | 1 | att.com |
+| 298 | Durgpal | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 299 | Dusan Rozman | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 300 | DushyantSinghThakur | 0 | +0 | 0 | - | 2 | techmahindra.com |
+| 301 | DylanB95EST | 0 | +0 | 0 | - | 4 | est.tech |
+| 302 | EC2 Default User | 0 | +0 | 0 | - | 1 | hotmail.com |
+| 303 | ERIMROB | 0 | +0 | 0 | - | 5 | est.tech |
+| 304 | Edwin Lawrance | 0 | +0 | 0 | - | 5 | amdocs.com |
+| 305 | Edyta Krukowska | 0 | +0 | 0 | - | 17 | nokia.com |
+| 306 | Einat Vinouze | 0 | +0 | 0 | - | 1 | att.com |
+| 307 | Einav Keidar | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 308 | Ekko Chang | 0 | +0 | 0 | - | 2 | qct.io |
+| 309 | Elena Kuleshov | 0 | +0 | 0 | - | 4 | att.com |
+| 310 | Elena Kuleshov | 0 | +0 | 0 | - | 1 | att.com |
+| 311 | Eli Halych | 0 | +0 | 0 | - | 1 | gmail.com |
+| 312 | Eltanany Shaaban | 0 | +0 | 0 | - | 3 | orange.com |
+| 313 | Emmanuel Bidet | 0 | +0 | 0 | - | 1 | m4x.org |
+| 314 | Emmett Cox | 0 | +0 | 0 | - | 4 | ericsson.com |
+| 315 | EmmettCox | 0 | +0 | 0 | - | 5 | est.tech |
+| 316 | Enbo Wang | 0 | +0 | 0 | - | 8 | huawei.com |
+| 317 | Eoin Hanan | 0 | +0 | 0 | - | 5 | ericsson.com |
+| 318 | Epp, Richard (re6517) | 0 | +0 | 0 | - | 1 | att.com |
+| 319 | Eric Adams | 0 | +0 | 0 | - | 1 | intel.com |
+| 320 | Eric Au | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 321 | Eric Debeau | 0 | +0 | 0 | - | 32 | orange.com |
+| 322 | Eric Multanen | 0 | +0 | 0 | - | 8 | intel.com |
+| 323 | Eric Santos | 0 | +0 | 0 | - | 4 | yoppworks.com |
+| 324 | Eric Tang | 0 | +0 | 0 | - | 1 | gmail.com |
+| 325 | EricMoore | 0 | +0 | 0 | - | 2 | est.tech |
+| 326 | Erol Ozcan (Argela) | 0 | +0 | 0 | - | 1 | com.tr |
+| 327 | Ester Rotstein | 0 | +0 | 0 | - | 2 | att.com |
+| 328 | Ethan Hampton | 0 | +0 | 0 | - | 2 | intel.com |
+| 329 | Ethan Lynn | 0 | +0 | 0 | - | 4 | gmail.com |
+| 330 | Ethan Lynn | 0 | +0 | 0 | - | 8 | vmware.com |
+| 331 | Eylon Malin | 0 | +0 | 0 | - | 1 | att.com |
+| 332 | EzekielaRakotoarijaona | 0 | +0 | 0 | - | 1 | orange.com |
+| 333 | Fabian_BZH | 0 | +0 | 0 | - | 1 | orange.com |
+| 334 | Fabio Palumbo | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
+| 335 | Fatih Degirmenci | 0 | +0 | 0 | - | 1 | gmail.com |
+| 336 | Fei Tang | 0 | +0 | 0 | - | 1 | zte.com.cn |
+| 337 | Felix Sangalang | 0 | +0 | 0 | - | 2 | att.com |
+| 338 | Felix Sangalang | 0 | +0 | 0 | - | 1 | att.com |
+| 339 | FernandoOliveira | 0 | +0 | 0 | - | 1 | verizon.com |
+| 340 | Fiachra Corcoran | 0 | +0 | 0 | - | 4 | ericsson.com |
+| 341 | Filip Krzywka | 0 | +0 | 0 | - | 7 | nokia.com |
+| 342 | Fraboni, Gino (gf403a) | 0 | +0 | 0 | - | 5 | amdocs.com |
+| 343 | Francis Toth | 0 | +0 | 0 | - | 3 | yoppworks.com |
+| 344 | Frank A. Zdarsky | 0 | +0 | 0 | - | 2 | redhat.com |
+| 345 | Frank Grutzmacher | 0 | +0 | 0 | - | 1 | t-systems.com |
+| 346 | Frank Kimmlingen | 0 | +0 | 0 | - | 2 | telekom.de |
+| 347 | Frank Sandoval | 0 | +0 | 0 | - | 1 | cablelabs.com |
+| 348 | Franklin Dsilva | 0 | +0 | 0 | - | 3 | fujitsu.com |
+| 349 | Fred Oliveira | 0 | +0 | 0 | - | 1 | verizon.com |
+| 350 | Fuss, Areli (af732p) | 0 | +0 | 0 | - | 2 | att.com |
+| 351 | Fuss, Areli (af732p) | 0 | +0 | 0 | - | 1 | att.com |
+| 352 | GOPINATH MATHIVANAN | 0 | +0 | 0 | - | 2 | ibm.com |
+| 353 | GUNDAPANENI | 0 | +0 | 0 | - | 1 | att.com |
 | 354 | Gadicherla, Shiva | 0 | +0 | 0 | - | 1 | att.com |
-| 355 | Gal Grottas | 0 | +0 | 0 | - | 2 | att.com |
-| 356 | Gamboa, Gilbert | 0 | +0 | 0 | - | 2 | att.com |
-| 357 | Ganesh Chandrasekaran | 0 | +0 | 0 | - | 4 | samsung.com |
-| 358 | Gao, Chenfei (cg287m) | 0 | +0 | 0 | - | 1 | gmail.com |
-| 359 | Gary Wu | 0 | +0 | 0 | - | 50 | huawei.com |
-| 360 | Gary Wu | 0 | +0 | 0 | - | 2 | gmail.com |
-| 361 | Gary Wu | 0 | +0 | 0 | - | 6 | futurewei.com |
-| 362 | Gary Wu | 0 | +0 | 0 | - | 5 | futurewei.com |
-| 363 | Gathman, Jonathan (jg1555) | 0 | +0 | 0 | - | 2 | att.com |
-| 364 | Gautam Shah | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 365 | Geora Barsky | 0 | +0 | 0 | - | 7 | amdocs.com |
-| 366 | George, Lina (lg941u) | 0 | +0 | 0 | - | 1 | att.com |
-| 367 | Gerard Hickey | 0 | +0 | 0 | - | 12 | ericsson.com |
-| 368 | Gergely Csatari | 0 | +0 | 0 | - | 1 | nokia.com |
-| 369 | Gildas Lanilis | 0 | +0 | 0 | - | 30 | huawei.com |
-| 370 | Gildas Lanilis | 0 | +0 | 0 | - | 1 | gildass-macbook-air.local |
-| 371 | Gilding, Joyce (jg640n) | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 372 | Gokul Singaraju | 0 | +0 | 0 | - | 2 | att.com |
-| 373 | Gokul Singaraju | 0 | +0 | 0 | - | 2 | gmail.com |
-| 374 | GregSulek | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 375 | Gregory Glover | 0 | +0 | 0 | - | 1 | att.com |
-| 376 | Grinberg Moti | 0 | +0 | 0 | - | 1 | att.com |
-| 377 | Grzegorz Wielgosinski | 0 | +0 | 0 | - | 4 | samsung.com |
-| 378 | Grzegorz-Lis | 0 | +0 | 0 | - | 6 | nokia.com |
-| 379 | GuangrongFu | 0 | +0 | 0 | - | 7 | zte.com.cn |
-| 380 | Guo Ruijing | 0 | +0 | 0 | - | 9 | intel.com |
-| 381 | Guobiao Mo | 0 | +0 | 0 | - | 4 | chinamobile.com |
-| 382 | Gurjeet Bedi | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 383 | HOCKLA | 0 | +0 | 0 | - | 15 | att.com |
-| 384 | Haddox, Anthony (ah0647) | 0 | +0 | 0 | - | 2 | att.com |
-| 385 | Hagop Bozawglanian | 0 | +0 | 0 | - | 7 | att.com |
-| 386 | Haibin Huang | 0 | +0 | 0 | - | 10 | intel.com |
-| 387 | Hanif Kukkalli | 0 | +0 | 0 | - | 1 | outlook.com |
-| 388 | Hansen, Tony (th1395) | 0 | +0 | 0 | - | 14 | att.com |
-| 389 | Hao Kuang | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 390 | Hao Kuang | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 391 | Hari Om Verma | 0 | +0 | 0 | - | 1 | techmahindra.com |
-| 392 | Hariharan | 0 | +0 | 0 | - | 1 | wipro.com |
-| 393 | Harish Venkata Kajur | 0 | +0 | 0 | - | 19 | att.com |
-| 394 | Harry Huang | 0 | +0 | 0 | - | 2 | huawei.com |
-| 395 | Havaldar Girish | 0 | +0 | 0 | - | 1 | techmahindra.com |
-| 396 | HePeng | 0 | +0 | 0 | - | 2 | zte.com.cn |
-| 397 | Hector Anapan-Lavalle | 0 | +0 | 0 | - | 5 | att.com |
-| 398 | Helen Chen | 0 | +0 | 0 | - | 6 | huawei.com |
-| 399 | HelenaLydon | 0 | +0 | 0 | - | 3 | est.tech |
-| 400 | Hengye | 0 | +0 | 0 | - | 10 | est.tech |
-| 401 | Henrik Andersson | 0 | +0 | 0 | - | 8 | est.tech |
-| 402 | Henry.Sun | 0 | +0 | 0 | - | 5 | est.tech |
-| 403 | Herb Patten | 0 | +0 | 0 | - | 3 | att.com |
-| 404 | Hesam Rahimi | 0 | +0 | 0 | - | 7 | huawei.com |
-| 405 | Hong Guan | 0 | +0 | 0 | - | 4 | att.com |
-| 406 | Hong Guan | 0 | +0 | 0 | - | 2 | att.com |
-| 407 | Hong Hui Xiao | 0 | +0 | 0 | - | 3 | yeah.net |
-| 408 | Houa Yang | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
-| 409 | Huabing Zhao | 0 | +0 | 0 | - | 8 | gmail.com |
-| 410 | HuabingZhao | 0 | +0 | 0 | - | 8 | zte.com.cn |
-| 411 | Huang Cheng | 0 | +0 | 0 | - | 3 | huawei.com |
-| 412 | Hui Deng | 0 | +0 | 0 | - | 2 | huawei.com |
-| 413 | IanHowell | 0 | +0 | 0 | - | 1 | att.com |
-| 414 | Idan Amit | 0 | +0 | 0 | - | 10 | att.com |
-| 415 | Idan Amit | 0 | +0 | 0 | - | 3 | att.com |
-| 416 | Igor D.C | 0 | +0 | 0 | - | 1 | intel.com |
-| 417 | Igor Dysko | 0 | +0 | 0 | - | 7 | orange.com |
-| 418 | Ikram Ikramullah | 0 | +0 | 0 | - | 5 | att.com |
-| 419 | Ikramullah, Ikram (fi241c) | 0 | +0 | 0 | - | 2 | att.com |
-| 420 | Ilana Paktor | 0 | +0 | 0 | - | 5 | amdocs.com |
-| 421 | Illia Halych | 0 | +0 | 0 | - | 4 | t-mobile.pl |
-| 422 | Instrumental | 0 | +0 | 0 | - | 6 | att.com |
-| 423 | Instrumental | 0 | +0 | 0 | - | 3 | gathman.org |
-| 424 | Instrumental | 0 | +0 | 0 | - | 2 | gathman.org |
-| 425 | Isaac Manuel Raj | 0 | +0 | 0 | - | 5 | huawei.com |
-| 426 | Isaku Yamahata | 0 | +0 | 0 | - | 1 | intel.com |
-| 427 | Israel Lavi | 0 | +0 | 0 | - | 1 | att.com |
-| 428 | Israel Lavi | 0 | +0 | 0 | - | 2 | att.com |
-| 429 | Israel Lavi | 0 | +0 | 0 | - | 3 | att.com |
-| 430 | Itay Hassid | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 431 | Itohan | 0 | +0 | 0 | - | 4 | intel.com |
-| 432 | Ittay Stern | 0 | +0 | 0 | - | 6 | att.com |
-| 433 | Izabela Zawadzka | 0 | +0 | 0 | - | 2 | nokia.com |
-| 434 | Jack Lucas | 0 | +0 | 0 | - | 7 | att.com |
-| 435 | Jack Lucas | 0 | +0 | 0 | - | 12 | sonoris.net |
-| 436 | JakobKrieg | 0 | +0 | 0 | - | 2 | bcmsolutions.de |
-| 437 | Jakub Dominik | 0 | +0 | 0 | - | 1 | samsung.com |
-| 438 | Jakub Dudycz | 0 | +0 | 0 | - | 8 | nokia.com |
-| 439 | Jakub Dudycz | 0 | +0 | 0 | - | 1 | nokia.com |
-| 440 | Jakub Latusek | 0 | +0 | 0 | - | 2 | samsung.com |
-| 441 | Jakub Latusek | 0 | +0 | 0 | - | 1 | gmail.com |
-| 442 | Jakub Zieba | 0 | +0 | 0 | - | 3 | nokia.com |
-| 443 | James Guistwite | 0 | +0 | 0 | - | 2 | iconectiv.com |
-| 444 | James MacNider | 0 | +0 | 0 | - | 7 | amdocs.com |
-| 445 | Jamil Chawki | 0 | +0 | 0 | - | 1 | orange.com |
-| 446 | Jan Benedikt | 0 | +0 | 0 | - | 2 | samsung.com |
-| 447 | Jan Malkiewicz | 0 | +0 | 0 | - | 8 | nokia.com |
-| 448 | Jean-Yves Geury | 0 | +0 | 0 | - | 3 | nokia.com |
-| 449 | Jennie Jia | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 450 | Jeremy Phelps | 0 | +0 | 0 | - | 5 | linuxfoundation.org |
-| 451 | Jeremy Wolf | 0 | +0 | 0 | - | 1 | att.com |
-| 452 | Jerome Doucerain | 0 | +0 | 0 | - | 5 | bell.ca |
-| 453 | Jerry Flood | 0 | +0 | 0 | - | 6 | att.com |
-| 454 | Jerry Flood | 0 | +0 | 0 | - | 5 | att.com |
-| 455 | JerzySzachniewicz | 0 | +0 | 0 | - | 7 | nokia.com |
-| 456 | Jim Hahn | 0 | +0 | 0 | - | 21 | att.com |
-| 457 | Jim Hahn | 0 | +0 | 0 | - | 1 | gmail.com |
-| 458 | Jimmy Forsyth | 0 | +0 | 0 | - | 18 | att.com |
-| 459 | Jithendra | 0 | +0 | 0 | - | 1 | wipro.com |
-| 460 | Joanna Jeremicz | 0 | +0 | 0 | - | 19 | nokia.com |
-| 461 | Joey Sullivan | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 462 | John J. Franey | 0 | +0 | 0 | - | 4 | att.com |
-| 463 | John McClung | 0 | +0 | 0 | - | 1 | att.com |
-| 464 | Johnson Li | 0 | +0 | 0 | - | 1 | intel.com |
-| 465 | Jonathan Platt | 0 | +0 | 0 | - | 4 | att.com |
-| 466 | Jorge Hernandez | 0 | +0 | 0 | - | 13 | att.com |
-| 467 | Joseph Chou | 0 | +0 | 0 | - | 4 | att.com |
-| 468 | Joseph O'Leary | 0 | +0 | 0 | - | 20 | est.tech |
-| 469 | JosephKeenan | 0 | +0 | 0 | - | 2 | est.tech |
-| 470 | Joshua Reich | 0 | +0 | 0 | - | 4 | att.com |
-| 471 | Joss Armstrong | 0 | +0 | 0 | - | 2 | ericsson.com |
-| 472 | Jozsef Csongvai | 0 | +0 | 0 | - | 10 | bell.ca |
-| 473 | Juhi Arora | 0 | +0 | 0 | - | 1 | bell.ca |
-| 474 | Julien Barbot | 0 | +0 | 0 | - | 6 | barbot.org |
-| 475 | Julien Fontaine | 0 | +0 | 0 | - | 4 | bell.ca |
-| 476 | JulienBe | 0 | +0 | 0 | - | 4 | att.com |
-| 477 | JulienBe | 0 | +0 | 0 | - | 6 | att.com |
-| 478 | Jun (Nicolas) Hu | 0 | +0 | 0 | - | 3 | att.com |
-| 479 | Jun (Nicolas) Hu | 0 | +0 | 0 | - | 1 | att.com |
-| 480 | JunfengWang | 0 | +0 | 0 | - | 2 | ericsson.com |
-| 481 | Junyi | 0 | +0 | 0 | - | 4 | foxmail.com |
-| 482 | JvD_Ericsson | 0 | +0 | 0 | - | 7 | est.tech |
-| 483 | Kai | 0 | +0 | 0 | - | 4 | chinamobile.com |
-| 484 | Kailun Qin | 0 | +0 | 0 | - | 2 | intel.com |
-| 485 | Kajur, Venkata Harish (vk250x) | 0 | +0 | 0 | - | 2 | att.com |
-| 486 | Kalkere Ramesh, Sharan | 0 | +0 | 0 | - | 2 | att.com |
-| 487 | Kalkere Ramesh, Sharan (sk720x) | 0 | +0 | 0 | - | 3 | att.com |
-| 488 | Kanagaraj Manickam | 0 | +0 | 0 | - | 6 | gmail.com |
-| 489 | Kanagaraj Manickam | 0 | +0 | 0 | - | 1 | gamil.com |
-| 490 | Kanagaraj Manickam k00365106 | 0 | +0 | 0 | - | 10 | huawei.com |
-| 491 | Kang Xi | 0 | +0 | 0 | - | 2 | huawei.com |
-| 492 | Kartik Hegde | 0 | +0 | 0 | - | 1 | techmahindra.com |
-| 493 | Katarzyna Wasiel | 0 | +0 | 0 | - | 2 | nokia.com |
-| 494 | Kate Hsuan | 0 | +0 | 0 | - | 1 | redhat.com |
-| 495 | Kate Hsuan | 0 | +0 | 0 | - | 3 | qct.io |
-| 496 | Kavitha P | 0 | +0 | 0 | - | 2 | aarnanetworks.com |
-| 497 | Kedar Ambekar | 0 | +0 | 0 | - | 2 | t-systems.com |
-| 498 | Keighron, Lori (lk2924) | 0 | +0 | 0 | - | 1 | att.com |
-| 499 | Keighron, Lori (lk2924) | 0 | +0 | 0 | - | 1 | att.com |
-| 500 | Kenny Paul | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
-| 501 | Keong Lim | 0 | +0 | 0 | - | 9 | huawei.com |
-| 502 | Keren Joseph | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 503 | Kevin McKiou | 0 | +0 | 0 | - | 2 | att.com |
-| 504 | Kevin Scaggs | 0 | +0 | 0 | - | 2 | att.com |
-| 505 | Kiran | 0 | +0 | 0 | - | 3 | t-systems.com |
-| 506 | Kiran Kamineni | 0 | +0 | 0 | - | 10 | intel.com |
-| 507 | Kishore Reddy Dwaram | 0 | +0 | 0 | - | 1 | att.com |
-| 508 | Kishore Reddy, Gujja (kg811t) | 0 | +0 | 0 | - | 1 | att.com |
-| 509 | Kishore Reddy, Gujja (kg811t) | 0 | +0 | 0 | - | 1 | att.com |
-| 510 | Konrad Bańka | 0 | +0 | 0 | - | 9 | samsung.com |
-| 511 | Konrad Bańka | 0 | +0 | 0 | - | 1 | gmail.com |
-| 512 | Konstantinos Kanonakis | 0 | +0 | 0 | - | 1 | huawei.com |
-| 513 | Kotagiri, Ramprasad (rp5662) | 0 | +0 | 0 | - | 1 | att.com |
-| 514 | Kotta, Shireesha (sk434m) | 0 | +0 | 0 | - | 2 | att.com |
-| 515 | Krishna | 0 | +0 | 0 | - | 2 | stl.tech |
-| 516 | Krishnajinka | 0 | +0 | 0 | - | 6 | samsung.com |
-| 517 | Krysiak Adam Gabriel | 0 | +0 | 0 | - | 8 | nokia.com |
-| 518 | Krzysztof Bijakowski | 0 | +0 | 0 | - | 1 | cloudify.co |
-| 519 | Krzysztof Bijakowski | 0 | +0 | 0 | - | 1 | gigaspaces.com |
-| 520 | Krzysztof Frukacz | 0 | +0 | 0 | - | 1 | gigaspaces.com |
-| 521 | Krzysztof Gajewski | 0 | +0 | 0 | - | 9 | nokia.com |
-| 522 | Krzysztof Kuzmicki | 0 | +0 | 0 | - | 19 | nokia.com |
-| 523 | Krzysztof Kwiecien | 0 | +0 | 0 | - | 3 | orange.com |
-| 524 | Krzysztof Opasiak | 0 | +0 | 0 | - | 23 | samsung.com |
-| 525 | Kuldip Rai | 0 | +0 | 0 | - | 1 | bell.ca |
-| 526 | Kumar, Sudarshan (sk670p) | 0 | +0 | 0 | - | 3 | att.com |
-| 527 | Kuralamudhan Ramakrishnan | 0 | +0 | 0 | - | 2 | intel.com |
-| 528 | Kyle Stewart | 0 | +0 | 0 | - | 1 | ericsson.com |
-| 529 | LF Jenkins CI | 0 | +0 | 0 | - | 90 | linuxfoundation.org |
-| 530 | LaMont, William (wl2432) | 0 | +0 | 0 | - | 4 | att.com |
-| 531 | LaMont, William(wl2432) | 0 | +0 | 0 | - | 6 | att.com |
-| 532 | Ladue, David (dl3158) | 0 | +0 | 0 | - | 3 | att.com |
-| 533 | Larry Sachs | 0 | +0 | 0 | - | 2 | intel.com |
-| 534 | Lasse Kaihlavirta | 0 | +0 | 0 | - | 16 | samsung.com |
-| 535 | Lathish | 0 | +0 | 0 | - | 10 | est.tech |
-| 536 | Lathishbabu Ganesan | 0 | +0 | 0 | - | 1 | ericsson.com |
-| 537 | Lee, Tian (tl5884) | 0 | +0 | 0 | - | 16 | amdocs.com |
-| 538 | Lee, Tian (tl5884) | 0 | +0 | 0 | - | 2 | att.com |
-| 539 | Leonard, Mark (ml401d) | 0 | +0 | 0 | - | 2 | att.com |
-| 540 | Leonardo Bellini | 0 | +0 | 0 | - | 2 | att.com |
-| 541 | LiZi | 0 | +0 | 0 | - | 7 | zte.com.cn |
-| 542 | LiamBurke | 0 | +0 | 0 | - | 3 | ericsson.com |
-| 543 | Liang Ding | 0 | +0 | 0 | - | 6 | intel.com |
-| 544 | Lianhao Lu | 0 | +0 | 0 | - | 8 | intel.com |
-| 545 | Liard Samuel | 0 | +0 | 0 | - | 3 | orange.com |
-| 546 | Liexiang Yue | 0 | +0 | 0 | - | 7 | chinamobile.com |
-| 547 | Lin, Jerry (jl319x) | 0 | +0 | 0 | - | 3 | att.com |
-| 548 | Lior Nachmias | 0 | +0 | 0 | - | 6 | att.com |
-| 549 | Lior Nachmias | 0 | +0 | 0 | - | 3 | att.com |
-| 550 | Lisa Revel | 0 | +0 | 0 | - | 1 | att.com |
-| 551 | Litao Gao | 0 | +0 | 0 | - | 2 | windriver.com |
-| 552 | Lo, WEI-TING(wl849v) | 0 | +0 | 0 | - | 1 | att.com |
-| 553 | Lorraine Welch | 0 | +0 | 0 | - | 4 | att.com |
-| 554 | Lott, Christopher (cl778h) | 0 | +0 | 0 | - | 1 | att.com |
-| 555 | Lovett, Trevor | 0 | +0 | 0 | - | 12 | att.com |
-| 556 | Lovett, Trevor (tl2972) | 0 | +0 | 0 | - | 2 | att.com |
-| 557 | Lucjan Bryndza | 0 | +0 | 0 | - | 6 | samsung.com |
-| 558 | Lucjan Bryndza | 0 | +0 | 0 | - | 2 | samsung.com |
-| 559 | Ludmila Schlegelova | 0 | +0 | 0 | - | 1 | telekom.com |
-| 560 | Luji7 | 0 | +0 | 0 | - | 5 | zte.com.cn |
-| 561 | Lukasz Muszkieta | 0 | +0 | 0 | - | 11 | nokia.com |
-| 562 | Lukasz Rajewski | 0 | +0 | 0 | - | 18 | orange.com |
-| 563 | Luke Gleeson | 0 | +0 | 0 | - | 3 | est.tech |
-| 564 | Luke Parker | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 565 | Lusheng Ji | 0 | +0 | 0 | - | 16 | att.com |
-| 566 | Lvbo163 | 0 | +0 | 0 | - | 6 | zte.com.cn |
-| 567 | M.Hosnidokht | 0 | +0 | 0 | - | 5 | yoppworks.com |
-| 568 | MD IRSHAD SHEIKH | 0 | +0 | 0 | - | 7 | huawei.com |
-| 569 | Maciej Lisowski | 0 | +0 | 0 | - | 3 | samsung.com |
-| 570 | Maciej Malewski | 0 | +0 | 0 | - | 7 | nokia.com |
-| 571 | Maciej Wejs | 0 | +0 | 0 | - | 4 | nokia.com |
-| 572 | Maciej Wereski | 0 | +0 | 0 | - | 2 | samsung.com |
-| 573 | Magnusen, Drew (dm741q) | 0 | +0 | 0 | - | 3 | att.com |
-| 574 | Maharajh, Robby (rx2202) | 0 | +0 | 0 | - | 4 | att.com |
-| 575 | Mahendra Raghuwanshi | 0 | +0 | 0 | - | 6 | amdocs.com |
-| 576 | Mahmoud Abdelhamid | 0 | +0 | 0 | - | 1 | orange.com |
-| 577 | Mahsa MonemMoharrer | 0 | +0 | 0 | - | 1 | gmail.com |
-| 578 | Malek | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 579 | Mamed Mamedov | 0 | +0 | 0 | - | 1 | telekom.com |
-| 580 | Mamtha | 0 | +0 | 0 | - | 1 | ibm.com |
-| 581 | Manamohan | 0 | +0 | 0 | - | 2 | techmahindra.com |
-| 582 | Mandar Sawant | 0 | +0 | 0 | - | 5 | att.com |
-| 583 | Mandeep Khinda | 0 | +0 | 0 | - | 6 | amdocs.com |
-| 584 | Mandeep Khinda | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 585 | Manish Kumar | 0 | +0 | 0 | - | 6 | gmail.com |
-| 586 | Manisha Aggarwal | 0 | +0 | 0 | - | 6 | att.com |
-| 587 | Manisha Aggarwal | 0 | +0 | 0 | - | 7 | att.com |
-| 588 | Manjeet Singh Bhatia | 0 | +0 | 0 | - | 1 | intel.com |
-| 589 | Manjunath Ranganathaiah | 0 | +0 | 0 | - | 5 | intel.com |
-| 590 | Manoj Marneni | 0 | +0 | 0 | - | 1 | att.com |
-| 591 | Manoop Talasila | 0 | +0 | 0 | - | 4 | att.com |
-| 592 | Manzon, Inna (im453s) | 0 | +0 | 0 | - | 3 | att.com |
-| 593 | Marat Salakhutdinov | 0 | +0 | 0 | - | 1 | bell.ca |
-| 594 | Marc-Alexandre Choquette | 0 | +0 | 0 | - | 2 | bell.ca |
-| 595 | Marcin Krasowski | 0 | +0 | 0 | - | 3 | samsung.com |
-| 596 | Marcin Migdal | 0 | +0 | 0 | - | 8 | nokia.com |
-| 597 | Marcin Przybysz | 0 | +0 | 0 | - | 8 | nokia.com |
-| 598 | Marcin Wilk | 0 | +0 | 0 | - | 2 | samsung.com |
-| 599 | Marco Platania | 0 | +0 | 0 | - | 12 | att.com |
-| 600 | Marcus G K Williams | 0 | +0 | 0 | - | 16 | intel.com |
-| 601 | Marek Wolczanski | 0 | +0 | 0 | - | 2 | cloudify.co |
-| 602 | Mariah Jacobs | 0 | +0 | 0 | - | 3 | intel.com |
-| 603 | Mariano Diaz | 0 | +0 | 0 | - | 2 | yoppworks.com |
-| 604 | Mariusz Sygnowski | 0 | +0 | 0 | - | 1 | nokia.com |
-| 605 | Mariusz Wagner | 0 | +0 | 0 | - | 5 | nokia.com |
-| 606 | Mark Tooski | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 607 | Mars Toktonaliev | 0 | +0 | 0 | - | 1 | nokia.com |
-| 608 | Martin Klozik | 0 | +0 | 0 | - | 4 | tieto.com |
-| 609 | Martin Ouimet | 0 | +0 | 0 | - | 2 | bell.ca |
-| 610 | Matej Babej | 0 | +0 | 0 | - | 2 | tieto.com |
-| 611 | Matej Klotton | 0 | +0 | 0 | - | 4 | pantheon.tech |
-| 612 | Matej Perina | 0 | +0 | 0 | - | 3 | pantheon.tech |
-| 613 | Mateusz Gołuchowski | 0 | +0 | 0 | - | 3 | nokia.com |
-| 614 | Mateusz Pilat | 0 | +0 | 0 | - | 4 | samsung.com |
-| 615 | Matt Welch | 0 | +0 | 0 | - | 1 | intel.com |
-| 616 | Matthew Davis | 0 | +0 | 0 | - | 1 | telstra.com |
-| 617 | MatthewHarffy | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 618 | Matthieu Cauffiez | 0 | +0 | 0 | - | 2 | bell.ca |
-| 619 | Matthieu Geerebaert | 0 | +0 | 0 | - | 6 | orange.com |
-| 620 | Matus Szabo | 0 | +0 | 0 | - | 2 | orange.com |
-| 621 | Max Benjamin | 0 | +0 | 0 | - | 3 | att.com |
-| 622 | May Lin | 0 | +0 | 0 | - | 1 | qct.io |
-| 623 | Mcblain, Thomas | 0 | +0 | 0 | - | 2 | att.com |
-| 624 | Mehreen Kaleem | 0 | +0 | 0 | - | 5 | fujitsu.com |
-| 625 | Mehreen Kaleem | 0 | +0 | 0 | - | 1 | wipro.com |
-| 626 | Mei Su | 0 | +0 | 0 | - | 1 | att.com |
-| 627 | Mei Su | 0 | +0 | 0 | - | 1 | email |
-| 628 | Merkel, Jeff | 0 | +0 | 0 | - | 2 | att.com |
-| 629 | Michael Arrastia | 0 | +0 | 0 | - | 5 | amdocs.com |
-| 630 | Michael Borokhovich | 0 | +0 | 0 | - | 1 | att.com |
-| 631 | Michael Hwang | 0 | +0 | 0 | - | 6 | att.com |
-| 632 | Michael Lando | 0 | +0 | 0 | - | 13 | att.com |
-| 633 | Michael Lando | 0 | +0 | 0 | - | 5 | att.com |
-| 634 | Michael Lando | 0 | +0 | 0 | - | 1 | att.com |
-| 635 | Michael Mokry | 0 | +0 | 0 | - | 6 | att.com |
-| 636 | Michael Mokry | 0 | +0 | 0 | - | 7 | att.com |
-| 637 | Michael O'Brien | 0 | +0 | 0 | - | 9 | amdocs.com |
-| 638 | Michael O'Brien | 0 | +0 | 0 | - | 4 | obrienlabs.org |
-| 639 | Michael Pruss | 0 | +0 | 0 | - | 2 | bell.ca |
-| 640 | Michael Shitrit | 0 | +0 | 0 | - | 2 | att.com |
-| 641 | MichaelMorris | 0 | +0 | 0 | - | 17 | est.tech |
-| 642 | Michal Banka | 0 | +0 | 0 | - | 17 | nokia.com |
-| 643 | Michal Chabiera | 0 | +0 | 0 | - | 3 | orange.com |
-| 644 | Michal Kabaj | 0 | +0 | 0 | - | 5 | nokia.com |
-| 645 | Michal Korman | 0 | +0 | 0 | - | 1 | nokia.com |
-| 646 | Michal Ptacek | 0 | +0 | 0 | - | 8 | samsung.com |
-| 647 | Michal Zegan | 0 | +0 | 0 | - | 2 | samsung.com |
-| 648 | Michał Grzesik | 0 | +0 | 0 | - | 1 | orange.com |
-| 649 | Mickael JEZEQUEL | 0 | +0 | 0 | - | 4 | orange.com |
-| 650 | Mike Babinski | 0 | +0 | 0 | - | 2 | att.com |
-| 651 | Mike Elliott | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 652 | Milan Verespej | 0 | +0 | 0 | - | 2 | samsung.com |
-| 653 | Milin | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
-| 654 | Miroslav Los | 0 | +0 | 0 | - | 4 | pantheon.tech |
-| 655 | Mnushkin, Dmitry | 0 | +0 | 0 | - | 2 | att.com |
-| 656 | Mnushkin, Dmitry (dm4252) | 0 | +0 | 0 | - | 2 | att.com |
-| 657 | Modaboina, Kusumakumari (km583p) | 0 | +0 | 0 | - | 1 | att.com |
-| 658 | Modaboina, Kusumakumari (km583p) | 0 | +0 | 0 | - | 1 | att.com |
-| 659 | Mohamed Waly | 0 | +0 | 0 | - | 2 | orange.com |
-| 660 | Mohammad | 0 | +0 | 0 | - | 1 | highstreet-technologies.com |
-| 661 | Mohammadreza Pasandideh | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 662 | Mohammed Naser | 0 | +0 | 0 | - | 5 | vexxhost.com |
-| 663 | Mor Dabastany | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 664 | Moshe | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 665 | Mukesh Paliwal | 0 | +0 | 0 | - | 15 | huawei.com |
-| 666 | MukeshKumar | 0 | +0 | 0 | - | 13 | est.tech |
-| 667 | Mukul | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 668 | Muller, Andrew (am8383) | 0 | +0 | 0 | - | 3 | att.com |
-| 669 | Muller, Andrew (am8383) | 0 | +0 | 0 | - | 1 | att.com |
-| 670 | Muni Mohan Kunchi | 0 | +0 | 0 | - | 1 | att.com |
-| 671 | Munir Ahmad | 0 | +0 | 0 | - | 7 | bell.ca |
-| 672 | Murali-P | 0 | +0 | 0 | - | 8 | huawei.com |
-| 673 | Muthuramalingam, Brinda Santh | 0 | +0 | 0 | - | 6 | ibm.com |
-| 674 | Muthuramalingam, Brinda Santh | 0 | +0 | 0 | - | 4 | att.com |
-| 675 | NGUYEN | 0 | +0 | 0 | - | 1 | att.com |
-| 676 | NITIN KAWA | 0 | +0 | 0 | - | 2 | huawei.com |
-| 677 | Nagendra90287 | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 678 | Nate Potter | 0 | +0 | 0 | - | 3 | intel.com |
-| 679 | Nayan Deshmukh | 0 | +0 | 0 | - | 2 | samsung.com |
-| 680 | Neal Chatterley | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 681 | Neha Jain | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 682 | Neha Sood | 0 | +0 | 0 | - | 1 | att.com |
-| 683 | Neil Derraugh | 0 | +0 | 0 | - | 4 | yoppworks.com |
-| 684 | Nekrassov, Alexei (an4828) | 0 | +0 | 0 | - | 1 | att.com |
-| 685 | Nelson, Thomas (tn1381) | 0 | +0 | 0 | - | 4 | att.com |
-| 686 | Netajisu | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 687 | Nicolas Edel | 0 | +0 | 0 | - | 2 | orange.com |
-| 688 | NicolasLaplaud | 0 | +0 | 0 | - | 1 | orange.com |
-| 689 | Niharika Sharma | 0 | +0 | 0 | - | 7 | amdocs.com |
-| 690 | Niharika Sharma | 0 | +0 | 0 | - | 1 | bell.ca |
-| 691 | Nilay Ranjan | 0 | +0 | 0 | - | 2 | telstra.com |
-| 692 | NingSun | 0 | +0 | 0 | - | 1 | intel.com |
-| 693 | Niranjana | 0 | +0 | 0 | - | 11 | wipro.com |
-| 694 | Nirvan Ramjuttun | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 695 | Nishukumar | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 696 | Noemi Wagner | 0 | +0 | 0 | - | 1 | nokia.com |
-| 697 | Norm Traxler | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 698 | O'Connor, Lina (lo8949) | 0 | +0 | 0 | - | 4 | att.com |
-| 699 | O'Connor, Lina (lo8949) | 0 | +0 | 0 | - | 2 | att.com |
-| 700 | Ofir Sonsino | 0 | +0 | 0 | - | 12 | att.com |
-| 701 | Ofir Sonsino | 0 | +0 | 0 | - | 3 | att.com |
-| 702 | Ofir Sonsino | 0 | +0 | 0 | - | 4 | att.com |
-| 703 | Ojas Dubey | 0 | +0 | 0 | - | 5 | amdocs.com |
-| 704 | Oleg Beltz | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 705 | Oleg Mitsura | 0 | +0 | 0 | - | 7 | amdocs.com |
-| 706 | Oleg Mitsura | 0 | +0 | 0 | - | 1 | bell.ca |
-| 707 | Oleksandr Moliavko | 0 | +0 | 0 | - | 2 | samsung.com |
-| 708 | Olivia.Zhan | 0 | +0 | 0 | - | 2 | zte.com.cn |
-| 709 | Ondrej Frindrich | 0 | +0 | 0 | - | 3 | orange.com |
-| 710 | Ondřej Šmalec | 0 | +0 | 0 | - | 3 | samsung.com |
-| 711 | Oren  Kleks | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 712 | Ostap Batih | 0 | +0 | 0 | - | 1 | samsung.com |
-| 713 | PATRACHARI | 0 | +0 | 0 | - | 2 | att.com |
-| 714 | Paira, Saurav (sp694w) sp694w@att.com | 0 | +0 | 0 | - | 3 | att.com |
-| 715 | Pamela Dragosh | 0 | +0 | 0 | - | 21 | att.com |
-| 716 | Pamela Dragosh | 0 | +0 | 0 | - | 11 | att.com |
-| 717 | Parshad Patel | 0 | +0 | 0 | - | 15 | samsung.com |
-| 718 | Patel, Ankitkumar | 0 | +0 | 0 | - | 4 | att.com |
-| 719 | Patrick ANAT | 0 | +0 | 0 | - | 1 | orange.com |
-| 720 | Patrick Brady | 0 | +0 | 0 | - | 7 | att.com |
-| 721 | Patrick Brady | 0 | +0 | 0 | - | 4 | att.com |
-| 722 | PatrikBuhr | 0 | +0 | 0 | - | 3 | est.tech |
-| 723 | Paul Dennehy | 0 | +0 | 0 | - | 8 | ericsson.com |
-| 724 | Paul Vaduva | 0 | +0 | 0 | - | 3 | enea.com |
-| 725 | Pavel Aharoni | 0 | +0 | 0 | - | 3 | att.com |
-| 726 | Pavel Paroulek | 0 | +0 | 0 | - | 9 | orange.com |
-| 727 | Pawel | 0 | +0 | 0 | - | 21 | nokia.com |
-| 728 | Pawel Baniewski | 0 | +0 | 0 | - | 3 | nokia.com |
-| 729 | Pawel Pawlak | 0 | +0 | 0 | - | 1 | f5.com |
-| 730 | Pawel Pawlak | 0 | +0 | 0 | - | 1 | orange.com |
-| 731 | Pawel Slowikowski | 0 | +0 | 0 | - | 2 | samsung.com |
-| 732 | Pawel Wieczorek | 0 | +0 | 0 | - | 12 | samsung.com |
-| 733 | PawelSzalapski | 0 | +0 | 0 | - | 1 | nokia.com |
-| 734 | Petr Ospalý | 0 | +0 | 0 | - | 6 | samsung.com |
-| 735 | Peyton Puckett | 0 | +0 | 0 | - | 5 | att.com |
-| 736 | Peyton Puckett | 0 | +0 | 0 | - | 2 | att.com |
-| 737 | Phillip Leigh | 0 | +0 | 0 | - | 6 | amdocs.com |
-| 738 | Pierre Rioux | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 739 | Piotr Bocheński | 0 | +0 | 0 | - | 6 | nokia.com |
-| 740 | Piotr Borelowski | 0 | +0 | 0 | - | 7 | samsung.com |
-| 741 | Piotr Darosz | 0 | +0 | 0 | - | 11 | nokia.com |
-| 742 | Piotr Jaszczyk | 0 | +0 | 0 | - | 9 | nokia.com |
-| 743 | Piotr Krysiak | 0 | +0 | 0 | - | 2 | nokia.com |
-| 744 | Piotr Magalski | 0 | +0 | 0 | - | 1 | orange.com |
-| 745 | Piotr Marcinkiewicz | 0 | +0 | 0 | - | 16 | nokia.com |
-| 746 | Piotr Perzanowski | 0 | +0 | 0 | - | 1 | samsung.com |
-| 747 | Piotr Stanior | 0 | +0 | 0 | - | 2 | t-mobile.pl |
-| 748 | Piotr Wielebski | 0 | +0 | 0 | - | 12 | nokia.com |
-| 749 | Piyush Garg | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 750 | Plummer, Brittany | 0 | +0 | 0 | - | 2 | att.com |
-| 751 | Polavarapu, Chaitanya (cp8128) | 0 | +0 | 0 | - | 2 | att.com |
-| 752 | Pooja03 | 0 | +0 | 0 | - | 4 | techmahindra.com |
-| 753 | Prabhjot Singh Sethi | 0 | +0 | 0 | - | 1 | aarnanetworks.com |
-| 754 | Prabhu Balan | 0 | +0 | 0 | - | 1 | vodafone.com |
-| 755 | Pradeep Patel | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 756 | PrakashH | 0 | +0 | 0 | - | 4 | techmahindra.com |
-| 757 | Prakhar Pandey | 0 | +0 | 0 | - | 5 | bell.ca |
-| 758 | Pramod | 0 | +0 | 0 | - | 3 | intel.com |
-| 759 | Praneta Paithankar | 0 | +0 | 0 | - | 2 | intel.com |
-| 760 | PrasadNaidu | 0 | +0 | 0 | - | 3 | techmahindra.com |
-| 761 | Prateekinlinux | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 762 | Pratik raj | 0 | +0 | 0 | - | 14 | gmail.com |
-| 763 | Prativa Dora | 0 | +0 | 0 | - | 1 | techmahindra.com |
-| 764 | Prema Bhatt | 0 | +0 | 0 | - | 1 | att.com |
+| 355 | Gadicherla, Shiva | 0 | +0 | 0 | - | 1 | att.com |
+| 356 | Gal Grottas | 0 | +0 | 0 | - | 2 | att.com |
+| 357 | Gamboa, Gilbert | 0 | +0 | 0 | - | 2 | att.com |
+| 358 | Ganesh Chandrasekaran | 0 | +0 | 0 | - | 4 | samsung.com |
+| 359 | Gao, Chenfei (cg287m) | 0 | +0 | 0 | - | 1 | gmail.com |
+| 360 | Gareth Roper | 0 | +0 | 0 | - | 2 | ericsson.com |
+| 361 | Gary Wu | 0 | +0 | 0 | - | 50 | huawei.com |
+| 362 | Gary Wu | 0 | +0 | 0 | - | 2 | gmail.com |
+| 363 | Gary Wu | 0 | +0 | 0 | - | 6 | futurewei.com |
+| 364 | Gary Wu | 0 | +0 | 0 | - | 5 | futurewei.com |
+| 365 | Gathman, Jonathan (jg1555) | 0 | +0 | 0 | - | 2 | att.com |
+| 366 | Gautam Shah | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 367 | Geora Barsky | 0 | +0 | 0 | - | 7 | amdocs.com |
+| 368 | George, Lina (lg941u) | 0 | +0 | 0 | - | 1 | att.com |
+| 369 | Gerard Hickey | 0 | +0 | 0 | - | 12 | ericsson.com |
+| 370 | Gergely Csatari | 0 | +0 | 0 | - | 1 | nokia.com |
+| 371 | Gildas Lanilis | 0 | +0 | 0 | - | 30 | huawei.com |
+| 372 | Gildas Lanilis | 0 | +0 | 0 | - | 1 | gildass-macbook-air.local |
+| 373 | Gilding, Joyce (jg640n) | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 374 | Gokul Singaraju | 0 | +0 | 0 | - | 2 | att.com |
+| 375 | Gokul Singaraju | 0 | +0 | 0 | - | 2 | gmail.com |
+| 376 | GregSulek | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 377 | Gregory Glover | 0 | +0 | 0 | - | 1 | att.com |
+| 378 | Grinberg Moti | 0 | +0 | 0 | - | 1 | att.com |
+| 379 | Grzegorz Wielgosinski | 0 | +0 | 0 | - | 4 | samsung.com |
+| 380 | Grzegorz-Lis | 0 | +0 | 0 | - | 6 | nokia.com |
+| 381 | GuangrongFu | 0 | +0 | 0 | - | 7 | zte.com.cn |
+| 382 | Guillaume Lambert | 0 | +0 | 0 | - | 3 | orange.com |
+| 383 | Guo Ruijing | 0 | +0 | 0 | - | 9 | intel.com |
+| 384 | Guobiao Mo | 0 | +0 | 0 | - | 4 | chinamobile.com |
+| 385 | Gurjeet Bedi | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 386 | HOCKLA | 0 | +0 | 0 | - | 15 | att.com |
+| 387 | Haddox, Anthony (ah0647) | 0 | +0 | 0 | - | 2 | att.com |
+| 388 | Hagop Bozawglanian | 0 | +0 | 0 | - | 7 | att.com |
+| 389 | Haibin Huang | 0 | +0 | 0 | - | 10 | intel.com |
+| 390 | Hanif Kukkalli | 0 | +0 | 0 | - | 1 | outlook.com |
+| 391 | Hansen, Tony (th1395) | 0 | +0 | 0 | - | 14 | att.com |
+| 392 | Hao Kuang | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 393 | Hao Kuang | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 394 | Hari Om Verma | 0 | +0 | 0 | - | 1 | techmahindra.com |
+| 395 | Hariharan | 0 | +0 | 0 | - | 1 | wipro.com |
+| 396 | Harish Venkata Kajur | 0 | +0 | 0 | - | 19 | att.com |
+| 397 | Harry Huang | 0 | +0 | 0 | - | 2 | huawei.com |
+| 398 | Havaldar Girish | 0 | +0 | 0 | - | 1 | techmahindra.com |
+| 399 | HePeng | 0 | +0 | 0 | - | 2 | zte.com.cn |
+| 400 | Hector Anapan-Lavalle | 0 | +0 | 0 | - | 5 | att.com |
+| 401 | Helen Chen | 0 | +0 | 0 | - | 6 | huawei.com |
+| 402 | HelenaLydon | 0 | +0 | 0 | - | 3 | est.tech |
+| 403 | Hengye | 0 | +0 | 0 | - | 10 | est.tech |
+| 404 | Henrik Andersson | 0 | +0 | 0 | - | 8 | est.tech |
+| 405 | Henry.Sun | 0 | +0 | 0 | - | 5 | est.tech |
+| 406 | Herb Patten | 0 | +0 | 0 | - | 3 | att.com |
+| 407 | Hesam Rahimi | 0 | +0 | 0 | - | 7 | huawei.com |
+| 408 | Hong Guan | 0 | +0 | 0 | - | 4 | att.com |
+| 409 | Hong Guan | 0 | +0 | 0 | - | 2 | att.com |
+| 410 | Hong Hui Xiao | 0 | +0 | 0 | - | 3 | yeah.net |
+| 411 | Houa Yang | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
+| 412 | Huabing Zhao | 0 | +0 | 0 | - | 8 | gmail.com |
+| 413 | HuabingZhao | 0 | +0 | 0 | - | 8 | zte.com.cn |
+| 414 | Huang Cheng | 0 | +0 | 0 | - | 3 | huawei.com |
+| 415 | Hui Deng | 0 | +0 | 0 | - | 2 | huawei.com |
+| 416 | IanHowell | 0 | +0 | 0 | - | 1 | att.com |
+| 417 | Idan Amit | 0 | +0 | 0 | - | 10 | att.com |
+| 418 | Idan Amit | 0 | +0 | 0 | - | 3 | att.com |
+| 419 | Igor D.C | 0 | +0 | 0 | - | 1 | intel.com |
+| 420 | Igor Dysko | 0 | +0 | 0 | - | 7 | orange.com |
+| 421 | Ikram Ikramullah | 0 | +0 | 0 | - | 5 | att.com |
+| 422 | Ikramullah, Ikram (fi241c) | 0 | +0 | 0 | - | 2 | att.com |
+| 423 | Ilana Paktor | 0 | +0 | 0 | - | 5 | amdocs.com |
+| 424 | Illia Halych | 0 | +0 | 0 | - | 4 | t-mobile.pl |
+| 425 | Instrumental | 0 | +0 | 0 | - | 6 | att.com |
+| 426 | Instrumental | 0 | +0 | 0 | - | 2 | gathman.org |
+| 427 | Instrumental | 0 | +0 | 0 | - | 3 | gathman.org |
+| 428 | Isaac Manuel Raj | 0 | +0 | 0 | - | 5 | huawei.com |
+| 429 | Isaku Yamahata | 0 | +0 | 0 | - | 1 | intel.com |
+| 430 | Israel Lavi | 0 | +0 | 0 | - | 1 | att.com |
+| 431 | Israel Lavi | 0 | +0 | 0 | - | 2 | att.com |
+| 432 | Israel Lavi | 0 | +0 | 0 | - | 3 | att.com |
+| 433 | Itay Hassid | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 434 | Itohan | 0 | +0 | 0 | - | 4 | intel.com |
+| 435 | Ittay Stern | 0 | +0 | 0 | - | 6 | att.com |
+| 436 | Izabela Zawadzka | 0 | +0 | 0 | - | 2 | nokia.com |
+| 437 | Jack Lucas | 0 | +0 | 0 | - | 7 | att.com |
+| 438 | Jack Lucas | 0 | +0 | 0 | - | 12 | sonoris.net |
+| 439 | JakobKrieg | 0 | +0 | 0 | - | 2 | bcmsolutions.de |
+| 440 | Jakub Dominik | 0 | +0 | 0 | - | 1 | samsung.com |
+| 441 | Jakub Dudycz | 0 | +0 | 0 | - | 8 | nokia.com |
+| 442 | Jakub Dudycz | 0 | +0 | 0 | - | 1 | nokia.com |
+| 443 | Jakub Latusek | 0 | +0 | 0 | - | 2 | samsung.com |
+| 444 | Jakub Latusek | 0 | +0 | 0 | - | 1 | gmail.com |
+| 445 | Jakub Zieba | 0 | +0 | 0 | - | 3 | nokia.com |
+| 446 | James Guistwite | 0 | +0 | 0 | - | 2 | iconectiv.com |
+| 447 | James MacNider | 0 | +0 | 0 | - | 7 | amdocs.com |
+| 448 | Jamil Chawki | 0 | +0 | 0 | - | 1 | orange.com |
+| 449 | Jan Benedikt | 0 | +0 | 0 | - | 2 | samsung.com |
+| 450 | Jan Malkiewicz | 0 | +0 | 0 | - | 8 | nokia.com |
+| 451 | Jean-Yves Geury | 0 | +0 | 0 | - | 3 | nokia.com |
+| 452 | Jennie Jia | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 453 | Jeremy Phelps | 0 | +0 | 0 | - | 5 | linuxfoundation.org |
+| 454 | Jeremy Wolf | 0 | +0 | 0 | - | 1 | att.com |
+| 455 | Jerome Doucerain | 0 | +0 | 0 | - | 5 | bell.ca |
+| 456 | Jerry Flood | 0 | +0 | 0 | - | 6 | att.com |
+| 457 | Jerry Flood | 0 | +0 | 0 | - | 5 | att.com |
+| 458 | JerzySzachniewicz | 0 | +0 | 0 | - | 7 | nokia.com |
+| 459 | Jim Hahn | 0 | +0 | 0 | - | 21 | att.com |
+| 460 | Jim Hahn | 0 | +0 | 0 | - | 1 | gmail.com |
+| 461 | Jimmy Forsyth | 0 | +0 | 0 | - | 18 | att.com |
+| 462 | Jithendra | 0 | +0 | 0 | - | 1 | wipro.com |
+| 463 | Joanna Jeremicz | 0 | +0 | 0 | - | 19 | nokia.com |
+| 464 | Joey Sullivan | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 465 | John Franey | 0 | +0 | 0 | - | 4 | att.com |
+| 466 | John McClung | 0 | +0 | 0 | - | 1 | att.com |
+| 467 | Johnson Li | 0 | +0 | 0 | - | 1 | intel.com |
+| 468 | Jonathan Platt | 0 | +0 | 0 | - | 4 | att.com |
+| 469 | Jorge Hernandez | 0 | +0 | 0 | - | 13 | att.com |
+| 470 | Joseph Chou | 0 | +0 | 0 | - | 4 | att.com |
+| 471 | Joseph O'Leary | 0 | +0 | 0 | - | 20 | est.tech |
+| 472 | JosephKeenan | 0 | +0 | 0 | - | 2 | est.tech |
+| 473 | Joshua Reich | 0 | +0 | 0 | - | 4 | att.com |
+| 474 | Joss Armstrong | 0 | +0 | 0 | - | 2 | ericsson.com |
+| 475 | Jozsef Csongvai | 0 | +0 | 0 | - | 10 | bell.ca |
+| 476 | Juhi Arora | 0 | +0 | 0 | - | 1 | bell.ca |
+| 477 | Julien Barbot | 0 | +0 | 0 | - | 6 | barbot.org |
+| 478 | Julien Fontaine | 0 | +0 | 0 | - | 4 | bell.ca |
+| 479 | JulienBe | 0 | +0 | 0 | - | 4 | att.com |
+| 480 | JulienBe | 0 | +0 | 0 | - | 6 | att.com |
+| 481 | Jun (Nicolas) Hu | 0 | +0 | 0 | - | 3 | att.com |
+| 482 | Jun (Nicolas) Hu | 0 | +0 | 0 | - | 1 | att.com |
+| 483 | JunfengWang | 0 | +0 | 0 | - | 2 | ericsson.com |
+| 484 | Junyi | 0 | +0 | 0 | - | 4 | foxmail.com |
+| 485 | JvD_Ericsson | 0 | +0 | 0 | - | 7 | est.tech |
+| 486 | Kai | 0 | +0 | 0 | - | 4 | chinamobile.com |
+| 487 | Kailun Qin | 0 | +0 | 0 | - | 2 | intel.com |
+| 488 | Kajur, Venkata Harish (vk250x) | 0 | +0 | 0 | - | 2 | att.com |
+| 489 | Kalkere Ramesh, Sharan | 0 | +0 | 0 | - | 2 | att.com |
+| 490 | Kalkere Ramesh, Sharan (sk720x) | 0 | +0 | 0 | - | 3 | att.com |
+| 491 | Kanagaraj Manickam | 0 | +0 | 0 | - | 6 | gmail.com |
+| 492 | Kanagaraj Manickam | 0 | +0 | 0 | - | 1 | gamil.com |
+| 493 | Kanagaraj Manickam k00365106 | 0 | +0 | 0 | - | 10 | huawei.com |
+| 494 | Kang Xi | 0 | +0 | 0 | - | 2 | huawei.com |
+| 495 | Kartik Hegde | 0 | +0 | 0 | - | 1 | techmahindra.com |
+| 496 | Kasperki | 0 | +0 | 0 | - | 21 | nokia.com |
+| 497 | Katarzyna Wasiel | 0 | +0 | 0 | - | 2 | nokia.com |
+| 498 | Kate Hsuan | 0 | +0 | 0 | - | 1 | redhat.com |
+| 499 | Kate Hsuan | 0 | +0 | 0 | - | 3 | qct.io |
+| 500 | Kavitha P | 0 | +0 | 0 | - | 2 | aarnanetworks.com |
+| 501 | Kedar Ambekar | 0 | +0 | 0 | - | 2 | t-systems.com |
+| 502 | Keighron, Lori (lk2924) | 0 | +0 | 0 | - | 1 | att.com |
+| 503 | Keighron, Lori (lk2924) | 0 | +0 | 0 | - | 1 | att.com |
+| 504 | Kenny Paul | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
+| 505 | Keong Lim | 0 | +0 | 0 | - | 9 | huawei.com |
+| 506 | Keren Joseph | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 507 | Kevin McKiou | 0 | +0 | 0 | - | 2 | att.com |
+| 508 | Kevin Scaggs | 0 | +0 | 0 | - | 2 | att.com |
+| 509 | Kiran | 0 | +0 | 0 | - | 3 | t-systems.com |
+| 510 | Kiran Kamineni | 0 | +0 | 0 | - | 10 | intel.com |
+| 511 | Kishore Reddy Dwaram | 0 | +0 | 0 | - | 1 | att.com |
+| 512 | Kishore Reddy, Gujja (kg811t) | 0 | +0 | 0 | - | 1 | att.com |
+| 513 | Kishore Reddy, Gujja (kg811t) | 0 | +0 | 0 | - | 1 | att.com |
+| 514 | Konrad Bańka | 0 | +0 | 0 | - | 9 | samsung.com |
+| 515 | Konrad Bańka | 0 | +0 | 0 | - | 1 | gmail.com |
+| 516 | Konstantinos Kanonakis | 0 | +0 | 0 | - | 1 | huawei.com |
+| 517 | Kotagiri, Ramprasad (rp5662) | 0 | +0 | 0 | - | 1 | att.com |
+| 518 | Kotta, Shireesha (sk434m) | 0 | +0 | 0 | - | 2 | att.com |
+| 519 | Krishna | 0 | +0 | 0 | - | 2 | stl.tech |
+| 520 | Krishnakumar Jinka | 0 | +0 | 0 | - | 6 | samsung.com |
+| 521 | Krysiak Adam Gabriel | 0 | +0 | 0 | - | 8 | nokia.com |
+| 522 | Krzysztof Bijakowski | 0 | +0 | 0 | - | 1 | cloudify.co |
+| 523 | Krzysztof Bijakowski | 0 | +0 | 0 | - | 1 | gigaspaces.com |
+| 524 | Krzysztof Frukacz | 0 | +0 | 0 | - | 1 | gigaspaces.com |
+| 525 | Krzysztof Gajewski | 0 | +0 | 0 | - | 9 | nokia.com |
+| 526 | Krzysztof Kuzmicki | 0 | +0 | 0 | - | 19 | nokia.com |
+| 527 | Krzysztof Kwiecien | 0 | +0 | 0 | - | 3 | orange.com |
+| 528 | Krzysztof Opasiak | 0 | +0 | 0 | - | 23 | samsung.com |
+| 529 | Kuldip Rai | 0 | +0 | 0 | - | 1 | bell.ca |
+| 530 | Kuralamudhan Ramakrishnan | 0 | +0 | 0 | - | 2 | intel.com |
+| 531 | Kyle Stewart | 0 | +0 | 0 | - | 1 | ericsson.com |
+| 532 | LF Jenkins CI | 0 | +0 | 0 | - | 90 | linuxfoundation.org |
+| 533 | LaMont, William (wl2432) | 0 | +0 | 0 | - | 4 | att.com |
+| 534 | LaMont, William(wl2432) | 0 | +0 | 0 | - | 6 | att.com |
+| 535 | Ladue, David (dl3158) | 0 | +0 | 0 | - | 3 | att.com |
+| 536 | Larry Sachs | 0 | +0 | 0 | - | 2 | intel.com |
+| 537 | Lasse Kaihlavirta | 0 | +0 | 0 | - | 16 | samsung.com |
+| 538 | Lathish | 0 | +0 | 0 | - | 10 | est.tech |
+| 539 | Lathishbabu Ganesan | 0 | +0 | 0 | - | 1 | ericsson.com |
+| 540 | Lee, Tian (tl5884) | 0 | +0 | 0 | - | 16 | amdocs.com |
+| 541 | Lee, Tian (tl5884) | 0 | +0 | 0 | - | 2 | att.com |
+| 542 | Leonard, Mark (ml401d) | 0 | +0 | 0 | - | 2 | att.com |
+| 543 | Leonardo Bellini | 0 | +0 | 0 | - | 2 | att.com |
+| 544 | LiZi | 0 | +0 | 0 | - | 7 | zte.com.cn |
+| 545 | LiamBurke | 0 | +0 | 0 | - | 3 | ericsson.com |
+| 546 | Liang Ding | 0 | +0 | 0 | - | 6 | intel.com |
+| 547 | Lianhao Lu | 0 | +0 | 0 | - | 8 | intel.com |
+| 548 | Liard Samuel | 0 | +0 | 0 | - | 3 | orange.com |
+| 549 | Liexiang Yue | 0 | +0 | 0 | - | 7 | chinamobile.com |
+| 550 | Lin, Jerry (jl319x) | 0 | +0 | 0 | - | 3 | att.com |
+| 551 | Lior Nachmias | 0 | +0 | 0 | - | 6 | att.com |
+| 552 | Lior Nachmias | 0 | +0 | 0 | - | 3 | att.com |
+| 553 | Lisa Revel | 0 | +0 | 0 | - | 1 | att.com |
+| 554 | Litao Gao | 0 | +0 | 0 | - | 2 | windriver.com |
+| 555 | Lo, WEI-TING(wl849v) | 0 | +0 | 0 | - | 1 | att.com |
+| 556 | Lorraine Welch | 0 | +0 | 0 | - | 4 | att.com |
+| 557 | Lott, Christopher (cl778h) | 0 | +0 | 0 | - | 1 | att.com |
+| 558 | Lovett, Trevor | 0 | +0 | 0 | - | 12 | att.com |
+| 559 | Lovett, Trevor (tl2972) | 0 | +0 | 0 | - | 2 | att.com |
+| 560 | Lucjan Bryndza | 0 | +0 | 0 | - | 6 | samsung.com |
+| 561 | Lucjan Bryndza | 0 | +0 | 0 | - | 2 | samsung.com |
+| 562 | Ludmila Schlegelova | 0 | +0 | 0 | - | 1 | telekom.com |
+| 563 | Luji7 | 0 | +0 | 0 | - | 5 | zte.com.cn |
+| 564 | Lukasz Muszkieta | 0 | +0 | 0 | - | 11 | nokia.com |
+| 565 | Lukasz Rajewski | 0 | +0 | 0 | - | 18 | orange.com |
+| 566 | Luke Gleeson | 0 | +0 | 0 | - | 3 | est.tech |
+| 567 | Luke Parker | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 568 | Lusheng Ji | 0 | +0 | 0 | - | 16 | att.com |
+| 569 | Lvbo163 | 0 | +0 | 0 | - | 6 | zte.com.cn |
+| 570 | M.Hosnidokht | 0 | +0 | 0 | - | 5 | yoppworks.com |
+| 571 | MD IRSHAD SHEIKH | 0 | +0 | 0 | - | 7 | huawei.com |
+| 572 | Maciej Lisowski | 0 | +0 | 0 | - | 3 | samsung.com |
+| 573 | Maciej Malewski | 0 | +0 | 0 | - | 7 | nokia.com |
+| 574 | Maciej Wejs | 0 | +0 | 0 | - | 4 | nokia.com |
+| 575 | Maciej Wereski | 0 | +0 | 0 | - | 2 | samsung.com |
+| 576 | Magnusen, Drew (dm741q) | 0 | +0 | 0 | - | 3 | att.com |
+| 577 | Maharajh, Robby (rx2202) | 0 | +0 | 0 | - | 4 | att.com |
+| 578 | Mahendra Raghuwanshi | 0 | +0 | 0 | - | 6 | amdocs.com |
+| 579 | Mahmoud Abdelhamid | 0 | +0 | 0 | - | 1 | orange.com |
+| 580 | Mahsa MonemMoharrer | 0 | +0 | 0 | - | 1 | gmail.com |
+| 581 | Malek | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 582 | Mamed Mamedov | 0 | +0 | 0 | - | 1 | telekom.com |
+| 583 | Mamtha | 0 | +0 | 0 | - | 1 | ibm.com |
+| 584 | Manamohan | 0 | +0 | 0 | - | 2 | techmahindra.com |
+| 585 | Mandar Sawant | 0 | +0 | 0 | - | 5 | att.com |
+| 586 | Mandeep Khinda | 0 | +0 | 0 | - | 6 | amdocs.com |
+| 587 | Mandeep Khinda | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 588 | Manish Kumar | 0 | +0 | 0 | - | 6 | gmail.com |
+| 589 | Manisha Aggarwal | 0 | +0 | 0 | - | 6 | att.com |
+| 590 | Manisha Aggarwal | 0 | +0 | 0 | - | 7 | att.com |
+| 591 | Manjeet Singh Bhatia | 0 | +0 | 0 | - | 1 | intel.com |
+| 592 | Manjunath Ranganathaiah | 0 | +0 | 0 | - | 5 | intel.com |
+| 593 | Manoj Marneni | 0 | +0 | 0 | - | 1 | att.com |
+| 594 | Manoop Talasila | 0 | +0 | 0 | - | 4 | att.com |
+| 595 | Manzon, Inna (im453s) | 0 | +0 | 0 | - | 3 | att.com |
+| 596 | Marat Salakhutdinov | 0 | +0 | 0 | - | 1 | bell.ca |
+| 597 | Marc-Alexandre Choquette | 0 | +0 | 0 | - | 2 | bell.ca |
+| 598 | Marcin Krasowski | 0 | +0 | 0 | - | 3 | samsung.com |
+| 599 | Marcin Migdal | 0 | +0 | 0 | - | 8 | nokia.com |
+| 600 | Marcin Przybysz | 0 | +0 | 0 | - | 8 | nokia.com |
+| 601 | Marcin Wilk | 0 | +0 | 0 | - | 2 | samsung.com |
+| 602 | Marco Platania | 0 | +0 | 0 | - | 12 | att.com |
+| 603 | Marcus G K Williams | 0 | +0 | 0 | - | 16 | intel.com |
+| 604 | Marek Wolczanski | 0 | +0 | 0 | - | 2 | cloudify.co |
+| 605 | Mariah Jacobs | 0 | +0 | 0 | - | 3 | intel.com |
+| 606 | Mariano Diaz | 0 | +0 | 0 | - | 2 | yoppworks.com |
+| 607 | Mariusz Sygnowski | 0 | +0 | 0 | - | 1 | nokia.com |
+| 608 | Mariusz Wagner | 0 | +0 | 0 | - | 5 | nokia.com |
+| 609 | Mark Tooski | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 610 | Mars Toktonaliev | 0 | +0 | 0 | - | 1 | nokia.com |
+| 611 | Martin Klozik | 0 | +0 | 0 | - | 4 | tieto.com |
+| 612 | Martin Ouimet | 0 | +0 | 0 | - | 2 | bell.ca |
+| 613 | Matej Babej | 0 | +0 | 0 | - | 2 | tieto.com |
+| 614 | Matej Klotton | 0 | +0 | 0 | - | 4 | pantheon.tech |
+| 615 | Matej Perina | 0 | +0 | 0 | - | 3 | pantheon.tech |
+| 616 | Mateusz Gołuchowski | 0 | +0 | 0 | - | 3 | nokia.com |
+| 617 | Mateusz Pilat | 0 | +0 | 0 | - | 4 | samsung.com |
+| 618 | Matt Welch | 0 | +0 | 0 | - | 1 | intel.com |
+| 619 | Matthew Davis | 0 | +0 | 0 | - | 1 | telstra.com |
+| 620 | MatthewHarffy | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 621 | Matthieu Cauffiez | 0 | +0 | 0 | - | 2 | bell.ca |
+| 622 | Matthieu Geerebaert | 0 | +0 | 0 | - | 6 | orange.com |
+| 623 | Matus Szabo | 0 | +0 | 0 | - | 2 | orange.com |
+| 624 | Max Benjamin | 0 | +0 | 0 | - | 3 | att.com |
+| 625 | May Lin | 0 | +0 | 0 | - | 1 | qct.io |
+| 626 | Mcblain, Thomas | 0 | +0 | 0 | - | 2 | att.com |
+| 627 | Mehreen Kaleem | 0 | +0 | 0 | - | 5 | fujitsu.com |
+| 628 | Mehreen Kaleem | 0 | +0 | 0 | - | 1 | wipro.com |
+| 629 | Mei Su | 0 | +0 | 0 | - | 1 | att.com |
+| 630 | Mei Su | 0 | +0 | 0 | - | 1 | email |
+| 631 | Merkel, Jeff | 0 | +0 | 0 | - | 2 | att.com |
+| 632 | Michael Arrastia | 0 | +0 | 0 | - | 5 | amdocs.com |
+| 633 | Michael Borokhovich | 0 | +0 | 0 | - | 1 | att.com |
+| 634 | Michael Hwang | 0 | +0 | 0 | - | 6 | att.com |
+| 635 | Michael Lando | 0 | +0 | 0 | - | 13 | att.com |
+| 636 | Michael Lando | 0 | +0 | 0 | - | 5 | att.com |
+| 637 | Michael Lando | 0 | +0 | 0 | - | 1 | att.com |
+| 638 | Michael Mokry | 0 | +0 | 0 | - | 6 | att.com |
+| 639 | Michael Mokry | 0 | +0 | 0 | - | 7 | att.com |
+| 640 | Michael O'Brien | 0 | +0 | 0 | - | 9 | amdocs.com |
+| 641 | Michael O'Brien | 0 | +0 | 0 | - | 4 | obrienlabs.org |
+| 642 | Michael Pruss | 0 | +0 | 0 | - | 2 | bell.ca |
+| 643 | Michael Shitrit | 0 | +0 | 0 | - | 2 | att.com |
+| 644 | MichaelMorris | 0 | +0 | 0 | - | 17 | est.tech |
+| 645 | Michal Banka | 0 | +0 | 0 | - | 17 | nokia.com |
+| 646 | Michal Chabiera | 0 | +0 | 0 | - | 3 | orange.com |
+| 647 | Michal Kabaj | 0 | +0 | 0 | - | 5 | nokia.com |
+| 648 | Michal Korman | 0 | +0 | 0 | - | 1 | nokia.com |
+| 649 | Michal Ptacek | 0 | +0 | 0 | - | 8 | samsung.com |
+| 650 | Michal Zegan | 0 | +0 | 0 | - | 2 | samsung.com |
+| 651 | Michał Grzesik | 0 | +0 | 0 | - | 1 | orange.com |
+| 652 | Mickael JEZEQUEL | 0 | +0 | 0 | - | 4 | orange.com |
+| 653 | Mike Babinski | 0 | +0 | 0 | - | 2 | att.com |
+| 654 | Mike Elliott | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 655 | Milan Verespej | 0 | +0 | 0 | - | 2 | samsung.com |
+| 656 | Milin | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
+| 657 | Miroslav Los | 0 | +0 | 0 | - | 4 | pantheon.tech |
+| 658 | Mnushkin, Dmitry | 0 | +0 | 0 | - | 2 | att.com |
+| 659 | Mnushkin, Dmitry (dm4252) | 0 | +0 | 0 | - | 2 | att.com |
+| 660 | Modaboina, Kusumakumari (km583p) | 0 | +0 | 0 | - | 1 | att.com |
+| 661 | Modaboina, Kusumakumari (km583p) | 0 | +0 | 0 | - | 1 | att.com |
+| 662 | Mohamed Waly | 0 | +0 | 0 | - | 2 | orange.com |
+| 663 | Mohammad | 0 | +0 | 0 | - | 1 | highstreet-technologies.com |
+| 664 | Mohammadreza Pasandideh | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 665 | Mohammed Naser | 0 | +0 | 0 | - | 5 | vexxhost.com |
+| 666 | Mor Dabastany | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 667 | Moshe | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 668 | Mukesh Paliwal | 0 | +0 | 0 | - | 15 | huawei.com |
+| 669 | MukeshKumar | 0 | +0 | 0 | - | 13 | est.tech |
+| 670 | Mukul | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 671 | Muller, Andrew (am8383) | 0 | +0 | 0 | - | 3 | att.com |
+| 672 | Muller, Andrew (am8383) | 0 | +0 | 0 | - | 1 | att.com |
+| 673 | Muni Mohan Kunchi | 0 | +0 | 0 | - | 1 | att.com |
+| 674 | Munir Ahmad | 0 | +0 | 0 | - | 7 | bell.ca |
+| 675 | Murali-P | 0 | +0 | 0 | - | 8 | huawei.com |
+| 676 | Muthuramalingam, Brinda Santh | 0 | +0 | 0 | - | 6 | ibm.com |
+| 677 | Muthuramalingam, Brinda Santh | 0 | +0 | 0 | - | 4 | att.com |
+| 678 | NGUYEN | 0 | +0 | 0 | - | 1 | att.com |
+| 679 | NITIN KAWA | 0 | +0 | 0 | - | 2 | huawei.com |
+| 680 | Nagendra90287 | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 681 | Nate Potter | 0 | +0 | 0 | - | 3 | intel.com |
+| 682 | Nayan Deshmukh | 0 | +0 | 0 | - | 2 | samsung.com |
+| 683 | Neal Chatterley | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 684 | Neha Jain | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 685 | Neha Sood | 0 | +0 | 0 | - | 1 | att.com |
+| 686 | Neil Derraugh | 0 | +0 | 0 | - | 4 | yoppworks.com |
+| 687 | Nekrassov, Alexei (an4828) | 0 | +0 | 0 | - | 1 | att.com |
+| 688 | Netajisu | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 689 | Nicolas Edel | 0 | +0 | 0 | - | 2 | orange.com |
+| 690 | NicolasLaplaud | 0 | +0 | 0 | - | 1 | orange.com |
+| 691 | Niharika Sharma | 0 | +0 | 0 | - | 7 | amdocs.com |
+| 692 | Niharika Sharma | 0 | +0 | 0 | - | 1 | bell.ca |
+| 693 | Nilay Ranjan | 0 | +0 | 0 | - | 2 | telstra.com |
+| 694 | NingSun | 0 | +0 | 0 | - | 1 | intel.com |
+| 695 | Niranjana | 0 | +0 | 0 | - | 11 | wipro.com |
+| 696 | Nirvan Ramjuttun | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 697 | Nishukumar | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 698 | Noemi Wagner | 0 | +0 | 0 | - | 1 | nokia.com |
+| 699 | Norm Traxler | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 700 | O'Connor, Lina (lo8949) | 0 | +0 | 0 | - | 4 | att.com |
+| 701 | O'Connor, Lina (lo8949) | 0 | +0 | 0 | - | 2 | att.com |
+| 702 | Ofir Sonsino | 0 | +0 | 0 | - | 12 | att.com |
+| 703 | Ofir Sonsino | 0 | +0 | 0 | - | 3 | att.com |
+| 704 | Ofir Sonsino | 0 | +0 | 0 | - | 4 | att.com |
+| 705 | Ojas Dubey | 0 | +0 | 0 | - | 5 | amdocs.com |
+| 706 | Oleg Beltz | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 707 | Oleg Mitsura | 0 | +0 | 0 | - | 7 | amdocs.com |
+| 708 | Oleg Mitsura | 0 | +0 | 0 | - | 1 | bell.ca |
+| 709 | Oleksandr Moliavko | 0 | +0 | 0 | - | 2 | samsung.com |
+| 710 | Olivia.Zhan | 0 | +0 | 0 | - | 2 | zte.com.cn |
+| 711 | Ondrej Frindrich | 0 | +0 | 0 | - | 3 | orange.com |
+| 712 | Ondřej Šmalec | 0 | +0 | 0 | - | 3 | samsung.com |
+| 713 | Oren  Kleks | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 714 | Ostap Batih | 0 | +0 | 0 | - | 1 | samsung.com |
+| 715 | PATRACHARI | 0 | +0 | 0 | - | 2 | att.com |
+| 716 | Paira, Saurav (sp694w) sp694w@att.com | 0 | +0 | 0 | - | 3 | att.com |
+| 717 | Pamela Dragosh | 0 | +0 | 0 | - | 21 | att.com |
+| 718 | Pamela Dragosh | 0 | +0 | 0 | - | 11 | att.com |
+| 719 | Parshad Patel | 0 | +0 | 0 | - | 15 | samsung.com |
+| 720 | Patel, Ankitkumar | 0 | +0 | 0 | - | 4 | att.com |
+| 721 | Patrick ANAT | 0 | +0 | 0 | - | 1 | orange.com |
+| 722 | Patrick Brady | 0 | +0 | 0 | - | 7 | att.com |
+| 723 | Patrick Brady | 0 | +0 | 0 | - | 4 | att.com |
+| 724 | PatrikBuhr | 0 | +0 | 0 | - | 3 | est.tech |
+| 725 | Paul Dennehy | 0 | +0 | 0 | - | 8 | ericsson.com |
+| 726 | Paul Vaduva | 0 | +0 | 0 | - | 3 | enea.com |
+| 727 | Pavel Aharoni | 0 | +0 | 0 | - | 3 | att.com |
+| 728 | Pavel Paroulek | 0 | +0 | 0 | - | 9 | orange.com |
+| 729 | Pawel Baniewski | 0 | +0 | 0 | - | 3 | nokia.com |
+| 730 | Pawel Pawlak | 0 | +0 | 0 | - | 1 | f5.com |
+| 731 | Pawel Pawlak | 0 | +0 | 0 | - | 1 | orange.com |
+| 732 | Pawel Slowikowski | 0 | +0 | 0 | - | 2 | samsung.com |
+| 733 | Pawel Wieczorek | 0 | +0 | 0 | - | 12 | samsung.com |
+| 734 | PawelSzalapski | 0 | +0 | 0 | - | 1 | nokia.com |
+| 735 | Petr Ospalý | 0 | +0 | 0 | - | 6 | samsung.com |
+| 736 | Peyton Puckett | 0 | +0 | 0 | - | 5 | att.com |
+| 737 | Peyton Puckett | 0 | +0 | 0 | - | 2 | att.com |
+| 738 | Phillip Leigh | 0 | +0 | 0 | - | 6 | amdocs.com |
+| 739 | Pierre Rioux | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 740 | Piotr Bocheński | 0 | +0 | 0 | - | 6 | nokia.com |
+| 741 | Piotr Borelowski | 0 | +0 | 0 | - | 7 | samsung.com |
+| 742 | Piotr Darosz | 0 | +0 | 0 | - | 11 | nokia.com |
+| 743 | Piotr Jaszczyk | 0 | +0 | 0 | - | 9 | nokia.com |
+| 744 | Piotr Krysiak | 0 | +0 | 0 | - | 2 | nokia.com |
+| 745 | Piotr Magalski | 0 | +0 | 0 | - | 1 | orange.com |
+| 746 | Piotr Marcinkiewicz | 0 | +0 | 0 | - | 16 | nokia.com |
+| 747 | Piotr Perzanowski | 0 | +0 | 0 | - | 1 | samsung.com |
+| 748 | Piotr Stanior | 0 | +0 | 0 | - | 2 | t-mobile.pl |
+| 749 | Piotr Wielebski | 0 | +0 | 0 | - | 12 | nokia.com |
+| 750 | Piyush Garg | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 751 | Plummer, Brittany | 0 | +0 | 0 | - | 2 | att.com |
+| 752 | Polavarapu, Chaitanya (cp8128) | 0 | +0 | 0 | - | 2 | att.com |
+| 753 | Pooja03 | 0 | +0 | 0 | - | 4 | techmahindra.com |
+| 754 | Prabhjot Singh Sethi | 0 | +0 | 0 | - | 1 | aarnanetworks.com |
+| 755 | Prabhu Balan | 0 | +0 | 0 | - | 1 | vodafone.com |
+| 756 | Pradeep Patel | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 757 | PrakashH | 0 | +0 | 0 | - | 4 | techmahindra.com |
+| 758 | Prakhar Pandey | 0 | +0 | 0 | - | 5 | bell.ca |
+| 759 | Pramod | 0 | +0 | 0 | - | 3 | intel.com |
+| 760 | Praneta Paithankar | 0 | +0 | 0 | - | 2 | intel.com |
+| 761 | PrasadNaidu | 0 | +0 | 0 | - | 3 | techmahindra.com |
+| 762 | Prateekinlinux | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 763 | Pratik raj | 0 | +0 | 0 | - | 14 | gmail.com |
+| 764 | Prativa Dora | 0 | +0 | 0 | - | 1 | techmahindra.com |
 | 765 | Prema Bhatt | 0 | +0 | 0 | - | 1 | att.com |
-| 766 | Priyadharshini | 0 | +0 | 0 | - | 5 | wipro.com |
-| 767 | Priyanka | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 768 | PriyanshuAgarwal | 0 | +0 | 0 | - | 5 | amdocs.com |
-| 769 | Projit Roy | 0 | +0 | 0 | - | 1 | aarnanetworks.com |
-| 770 | Prudence Au | 0 | +0 | 0 | - | 1 | bell.com |
-| 771 | Prudence Au | 0 | +0 | 0 | - | 8 | amdocs.com |
-| 772 | Przemyslaw Wasala | 0 | +0 | 0 | - | 6 | nokia.com |
-| 773 | Pérez Caparrós David | 0 | +0 | 0 | - | 4 | swisscom.com |
-| 774 | Quoc-Nghia Nguyen | 0 | +0 | 0 | - | 4 | orange.com |
-| 775 | RAJU | 0 | +0 | 0 | - | 2 | att.com |
-| 776 | RPMishra | 0 | +0 | 0 | - | 1 | aarnanetworks.com |
-| 777 | RachelF | 0 | +0 | 0 | - | 1 | att.com |
-| 778 | Rachitha Ramappa | 0 | +0 | 0 | - | 1 | att.com |
-| 779 | Rafal Wrzesniak | 0 | +0 | 0 | - | 1 | samsung.com |
-| 780 | Raghav Kataria | 0 | +0 | 0 | - | 1 | bell.ca |
-| 781 | Rahul Sharma | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 782 | Rahul Sharma (153216) | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 783 | Rahul Yadav | 0 | +0 | 0 | - | 2 | gmail.com |
-| 784 | Rahul_cool | 0 | +0 | 0 | - | 4 | huawei.com |
-| 785 | Rajamohan Raj | 0 | +0 | 0 | - | 3 | intel.com |
-| 786 | Ralph Knag | 0 | +0 | 0 | - | 1 | att.com |
-| 787 | Ralph Straubs | 0 | +0 | 0 | - | 4 | att.com |
-| 788 | Ram Koya | 0 | +0 | 0 | - | 4 | att.com |
-| 789 | Ram Krishna Verma | 0 | +0 | 0 | - | 16 | bell.ca |
-| 790 | RamaPrasad Amaranarayana (ra5425) | 0 | +0 | 0 | - | 1 | att.com |
-| 791 | Ramesh Parthasarathy | 0 | +0 | 0 | - | 5 | att.com |
-| 792 | Ramesh Parthasarathy | 0 | +0 | 0 | - | 3 | att.com |
-| 793 | Rami | 0 | +0 | 0 | - | 1 | orange.com |
-| 794 | Rashmi Pujar | 0 | +0 | 0 | - | 7 | bell.ca |
-| 795 | Rashmi Pujar | 0 | +0 | 0 | - | 12 | bell.ca |
-| 796 | Ravi Pendurty | 0 | +0 | 0 | - | 5 | highstreet-technologies.com |
-| 797 | RaviGeda | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 798 | Raviteja Cherughattu | 0 | +0 | 0 | - | 1 | att.com |
-| 799 | RehanRaza | 0 | +0 | 0 | - | 9 | est.tech |
-| 800 | Remigiusz Janeczek | 0 | +0 | 0 | - | 25 | nokia.com |
-| 801 | Rene Glover | 0 | +0 | 0 | - | 1 | att.com |
-| 802 | Rene Robert | 0 | +0 | 0 | - | 5 | orange.com |
-| 803 | Renu Kumari | 0 | +0 | 0 | - | 5 | bell.ca |
-| 804 | Reo Inoue | 0 | +0 | 0 | - | 2 | fujitsu.com |
-| 805 | Reshmasree | 0 | +0 | 0 | - | 7 | wipro.com |
-| 806 | Rich Bennett | 0 | +0 | 0 | - | 13 | att.com |
-| 807 | Rich Bennett | 0 | +0 | 0 | - | 1 | att.com |
-| 808 | Rich Tabedzki | 0 | +0 | 0 | - | 5 | att.com |
-| 809 | Rina Roi | 0 | +0 | 0 | - | 1 | att.com |
-| 810 | Rishi.Chail | 0 | +0 | 0 | - | 2 | est.tech |
-| 811 | Ritu Sood | 0 | +0 | 0 | - | 5 | intel.com |
-| 812 | Rob Daugherty | 0 | +0 | 0 | - | 9 | att.com |
-| 813 | Robby Maharajh | 0 | +0 | 0 | - | 10 | att.com |
-| 814 | Rodrigo Lima | 0 | +0 | 0 | - | 5 | yoppworks.com |
-| 815 | Roger Maitland | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 816 | Roger Maitland | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 817 | Rogers, Reneal(rr267j) | 0 | +0 | 0 | - | 2 | att.com |
-| 818 | Rokhvarg David | 0 | +0 | 0 | - | 2 | att.com |
-| 819 | Rommel Pawar | 0 | +0 | 0 | - | 4 | bell.ca |
-| 820 | Ronan Kenny | 0 | +0 | 0 | - | 2 | ericsson.com |
-| 821 | Ronan Keogh | 0 | +0 | 0 | - | 3 | ericsson.com |
-| 822 | RossC | 0 | +0 | 0 | - | 14 | est.tech |
-| 823 | Rotundo, Al (ar3165) | 0 | +0 | 0 | - | 2 | att.com |
-| 824 | Roy, Amresh | 0 | +0 | 0 | - | 2 | att.com |
-| 825 | Ruoyu | 0 | +0 | 0 | - | 9 | intel.com |
-| 826 | Rupali Shirode | 0 | +0 | 0 | - | 1 | t-systems.com |
-| 827 | Rupinder | 0 | +0 | 0 | - | 5 | ibm.com |
-| 828 | Ruslan Kashapov | 0 | +0 | 0 | - | 2 | pantheon.tech |
-| 829 | Ruslan Kashapov | 0 | +0 | 0 | - | 1 | gmail.com |
-| 830 | Ryan Goulding | 0 | +0 | 0 | - | 2 | gmail.com |
-| 831 | Ryan Young | 0 | +0 | 0 | - | 1 | att.com |
-| 832 | SRINIVAS V | 0 | +0 | 0 | - | 2 | huawei.com |
-| 833 | SRicci | 0 | +0 | 0 | - | 1 | att.com |
-| 834 | SagarS | 0 | +0 | 0 | - | 2 | est.tech |
-| 835 | Sai Gandham | 0 | +0 | 0 | - | 6 | att.com |
-| 836 | Sai Gandham | 0 | +0 | 0 | - | 1 | gmail.com |
-| 837 | Sai Gandham | 0 | +0 | 0 | - | 1 | att.com |
-| 838 | Salichos Michail, INI-INO-ECO-HCT | 0 | +0 | 0 | - | 1 | gmail.com |
-| 839 | Sam Huang | 0 | +0 | 0 | - | 2 | yoppworks.com |
-| 840 | Sam Ollo | 0 | +0 | 0 | - | 1 | att.com |
-| 841 | Sambasiva K | 0 | +0 | 0 | - | 1 | verizon.com |
-| 842 | Samuel Kontris | 0 | +0 | 0 | - | 1 | pantheon.tech |
-| 843 | Samuel Liard | 0 | +0 | 0 | - | 7 | gmail.com |
-| 844 | Samuli Silvius | 0 | +0 | 0 | - | 7 | samsung.com |
-| 845 | Sanchez, Gabriel (gs882h) | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 846 | Sandeep J | 0 | +0 | 0 | - | 8 | ibm.com |
-| 847 | Sandeep Shah | 0 | +0 | 0 | - | 6 | gmail.com |
-| 848 | Sandeep Shah | 0 | +0 | 0 | - | 5 | techmahindra.com |
-| 849 | Sangalang, Felix | 0 | +0 | 0 | - | 2 | att.com |
-| 850 | SantoshB | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 851 | Sara Weiss | 0 | +0 | 0 | - | 1 | att.com |
-| 852 | Sarah Abouzainah | 0 | +0 | 0 | - | 2 | orange.com |
-| 853 | Sarah Abouzainah | 0 | +0 | 0 | - | 1 | sarahs-macbook-pro.local |
-| 854 | Saravanan A | 0 | +0 | 0 | - | 5 | wipro.com |
-| 855 | Saravanan, Madheswaran | 0 | +0 | 0 | - | 2 | ibm.com |
-| 856 | Saryu Shah | 0 | +0 | 0 | - | 2 | att.com |
-| 857 | Sastry Isukapalli | 0 | +0 | 0 | - | 2 | att.com |
-| 858 | Satoshi Fujii | 0 | +0 | 0 | - | 6 | fujitsu.com |
-| 859 | Satyaki Mallick | 0 | +0 | 0 | - | 2 | huawei.com |
-| 860 | Satyaki Mallick | 0 | +0 | 0 | - | 2 | gmail.com |
-| 861 | Schmalzried, Terry (ts862m) | 0 | +0 | 0 | - | 3 | att.com |
-| 862 | Scott Seabolt | 0 | +0 | 0 | - | 1 | att.com |
-| 863 | Sean Hassan | 0 | +0 | 0 | - | 1 | att.com |
-| 864 | Sebastien Premont-Tendland | 0 | +0 | 0 | - | 6 | bell.ca |
-| 865 | Serban Jora | 0 | +0 | 0 | - | 3 | att.com |
+| 766 | Prema Bhatt | 0 | +0 | 0 | - | 1 | att.com |
+| 767 | Priyadharshini | 0 | +0 | 0 | - | 5 | wipro.com |
+| 768 | Priyanka | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 769 | PriyanshuAgarwal | 0 | +0 | 0 | - | 5 | amdocs.com |
+| 770 | Projit Roy | 0 | +0 | 0 | - | 1 | aarnanetworks.com |
+| 771 | Prudence Au | 0 | +0 | 0 | - | 1 | bell.com |
+| 772 | Prudence Au | 0 | +0 | 0 | - | 8 | amdocs.com |
+| 773 | Przemyslaw Wasala | 0 | +0 | 0 | - | 6 | nokia.com |
+| 774 | Pérez Caparrós David | 0 | +0 | 0 | - | 4 | swisscom.com |
+| 775 | Quoc-Nghia Nguyen | 0 | +0 | 0 | - | 4 | orange.com |
+| 776 | RAJU | 0 | +0 | 0 | - | 2 | att.com |
+| 777 | RPMishra | 0 | +0 | 0 | - | 1 | aarnanetworks.com |
+| 778 | RachelF | 0 | +0 | 0 | - | 1 | att.com |
+| 779 | Rachitha Ramappa | 0 | +0 | 0 | - | 1 | att.com |
+| 780 | Rafal Wrzesniak | 0 | +0 | 0 | - | 1 | samsung.com |
+| 781 | Raghav Kataria | 0 | +0 | 0 | - | 1 | bell.ca |
+| 782 | Rahul Sharma | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 783 | Rahul Sharma (153216) | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 784 | Rahul Yadav | 0 | +0 | 0 | - | 2 | gmail.com |
+| 785 | Rahul_cool | 0 | +0 | 0 | - | 4 | huawei.com |
+| 786 | Rajamohan Raj | 0 | +0 | 0 | - | 3 | intel.com |
+| 787 | Ralph Knag | 0 | +0 | 0 | - | 1 | att.com |
+| 788 | Ralph Straubs | 0 | +0 | 0 | - | 4 | att.com |
+| 789 | Ram Koya | 0 | +0 | 0 | - | 4 | att.com |
+| 790 | Ram Krishna Verma | 0 | +0 | 0 | - | 16 | bell.ca |
+| 791 | RamaPrasad Amaranarayana (ra5425) | 0 | +0 | 0 | - | 1 | att.com |
+| 792 | Ramesh Parthasarathy | 0 | +0 | 0 | - | 5 | att.com |
+| 793 | Ramesh Parthasarathy | 0 | +0 | 0 | - | 3 | att.com |
+| 794 | Rami | 0 | +0 | 0 | - | 1 | orange.com |
+| 795 | Rashmi Pujar | 0 | +0 | 0 | - | 7 | bell.ca |
+| 796 | Rashmi Pujar | 0 | +0 | 0 | - | 12 | bell.ca |
+| 797 | Ravi Pendurty | 0 | +0 | 0 | - | 5 | highstreet-technologies.com |
+| 798 | RaviGeda | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 799 | Raviteja Cherughattu | 0 | +0 | 0 | - | 1 | att.com |
+| 800 | RehanRaza | 0 | +0 | 0 | - | 9 | est.tech |
+| 801 | Remigiusz Janeczek | 0 | +0 | 0 | - | 25 | nokia.com |
+| 802 | Rene Glover | 0 | +0 | 0 | - | 1 | att.com |
+| 803 | Rene Robert | 0 | +0 | 0 | - | 5 | orange.com |
+| 804 | Renu Kumari | 0 | +0 | 0 | - | 5 | bell.ca |
+| 805 | Reo Inoue | 0 | +0 | 0 | - | 2 | fujitsu.com |
+| 806 | Reshmasree | 0 | +0 | 0 | - | 7 | wipro.com |
+| 807 | Rich Bennett | 0 | +0 | 0 | - | 13 | att.com |
+| 808 | Rich Bennett | 0 | +0 | 0 | - | 1 | att.com |
+| 809 | Rich Tabedzki | 0 | +0 | 0 | - | 5 | att.com |
+| 810 | Rina Roi | 0 | +0 | 0 | - | 1 | att.com |
+| 811 | Rishi Chail | 0 | +0 | 0 | - | 2 | est.tech |
+| 812 | Ritu Sood | 0 | +0 | 0 | - | 5 | intel.com |
+| 813 | Rob Daugherty | 0 | +0 | 0 | - | 9 | att.com |
+| 814 | Robby Maharajh | 0 | +0 | 0 | - | 10 | att.com |
+| 815 | Rodrigo Lima | 0 | +0 | 0 | - | 5 | yoppworks.com |
+| 816 | Roger Maitland | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 817 | Roger Maitland | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 818 | Rogers, Reneal(rr267j) | 0 | +0 | 0 | - | 2 | att.com |
+| 819 | Rokhvarg David | 0 | +0 | 0 | - | 2 | att.com |
+| 820 | Rommel Pawar | 0 | +0 | 0 | - | 4 | bell.ca |
+| 821 | Ronan Kenny | 0 | +0 | 0 | - | 2 | ericsson.com |
+| 822 | Ronan Keogh | 0 | +0 | 0 | - | 3 | ericsson.com |
+| 823 | RossC | 0 | +0 | 0 | - | 14 | est.tech |
+| 824 | Rotundo, Al (ar3165) | 0 | +0 | 0 | - | 2 | att.com |
+| 825 | Roy, Amresh | 0 | +0 | 0 | - | 2 | att.com |
+| 826 | Ruoyu | 0 | +0 | 0 | - | 9 | intel.com |
+| 827 | Rupali Shirode | 0 | +0 | 0 | - | 1 | t-systems.com |
+| 828 | Rupinder | 0 | +0 | 0 | - | 5 | ibm.com |
+| 829 | Ruslan Kashapov | 0 | +0 | 0 | - | 2 | pantheon.tech |
+| 830 | Ruslan Kashapov | 0 | +0 | 0 | - | 1 | gmail.com |
+| 831 | Ryan Goulding | 0 | +0 | 0 | - | 2 | gmail.com |
+| 832 | Ryan Young | 0 | +0 | 0 | - | 1 | att.com |
+| 833 | SRINIVAS V | 0 | +0 | 0 | - | 2 | huawei.com |
+| 834 | SRicci | 0 | +0 | 0 | - | 1 | att.com |
+| 835 | SagarS | 0 | +0 | 0 | - | 2 | est.tech |
+| 836 | Sai Gandham | 0 | +0 | 0 | - | 6 | att.com |
+| 837 | Sai Gandham | 0 | +0 | 0 | - | 1 | gmail.com |
+| 838 | Sai Gandham | 0 | +0 | 0 | - | 1 | att.com |
+| 839 | Salichos Michail, INI-INO-ECO-HCT | 0 | +0 | 0 | - | 1 | gmail.com |
+| 840 | Sam Huang | 0 | +0 | 0 | - | 2 | yoppworks.com |
+| 841 | Sam Ollo | 0 | +0 | 0 | - | 1 | att.com |
+| 842 | Sambasiva K | 0 | +0 | 0 | - | 1 | verizon.com |
+| 843 | Samuel Kontris | 0 | +0 | 0 | - | 1 | pantheon.tech |
+| 844 | Samuel Liard | 0 | +0 | 0 | - | 7 | gmail.com |
+| 845 | Samuli Silvius | 0 | +0 | 0 | - | 7 | samsung.com |
+| 846 | Sanchez, Gabriel (gs882h) | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 847 | Sandeep J | 0 | +0 | 0 | - | 8 | ibm.com |
+| 848 | Sandeep Shah | 0 | +0 | 0 | - | 6 | gmail.com |
+| 849 | Sandeep Shah | 0 | +0 | 0 | - | 5 | techmahindra.com |
+| 850 | Sangalang, Felix | 0 | +0 | 0 | - | 2 | att.com |
+| 851 | SantoshB | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 852 | Sara Weiss | 0 | +0 | 0 | - | 1 | att.com |
+| 853 | Sarah Abouzainah | 0 | +0 | 0 | - | 2 | orange.com |
+| 854 | Sarah Abouzainah | 0 | +0 | 0 | - | 1 | sarahs-macbook-pro.local |
+| 855 | Saravanan A | 0 | +0 | 0 | - | 5 | wipro.com |
+| 856 | Saravanan, Madheswaran | 0 | +0 | 0 | - | 2 | ibm.com |
+| 857 | Saryu Shah | 0 | +0 | 0 | - | 2 | att.com |
+| 858 | Sastry Isukapalli | 0 | +0 | 0 | - | 2 | att.com |
+| 859 | Satoshi Fujii | 0 | +0 | 0 | - | 6 | fujitsu.com |
+| 860 | Satyaki Mallick | 0 | +0 | 0 | - | 2 | huawei.com |
+| 861 | Satyaki Mallick | 0 | +0 | 0 | - | 2 | gmail.com |
+| 862 | Schmalzried, Terry (ts862m) | 0 | +0 | 0 | - | 3 | att.com |
+| 863 | Scott Seabolt | 0 | +0 | 0 | - | 1 | att.com |
+| 864 | Sean Hassan | 0 | +0 | 0 | - | 1 | att.com |
+| 865 | Sebastien Premont-Tendland | 0 | +0 | 0 | - | 6 | bell.ca |
 | 866 | Serban Jora | 0 | +0 | 0 | - | 1 | att.com |
-| 867 | Serban Popescu | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 868 | Serban Popescu | 0 | +0 | 0 | - | 1 | att.com |
-| 869 | Serge Simard | 0 | +0 | 0 | - | 3 | agilitae.com |
-| 870 | Serhii Siabruk | 0 | +0 | 0 | - | 1 | jabil.com |
-| 871 | Seshu Kumar Mudiganti | 0 | +0 | 0 | - | 1 | windriver.com |
-| 872 | Seshu-Kumar-M | 0 | +0 | 0 | - | 22 | huawei.com |
-| 873 | Shaaban Ebrahim | 0 | +0 | 0 | - | 1 | gmail.com |
-| 874 | Shabanov, Marina (ms656r) | 0 | +0 | 0 | - | 2 | att.com |
-| 875 | Shailendra Borale | 0 | +0 | 0 | - | 5 | att.com |
-| 876 | Shankar Narayanan | 0 | +0 | 0 | - | 6 | att.com |
-| 877 | Shantaram Sawant | 0 | +0 | 0 | - | 2 | accenture.com |
-| 878 | Shashank Kumar Shankar | 0 | +0 | 0 | - | 8 | intel.com |
-| 879 | Shawn Severin | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 880 | Shay Weizman | 0 | +0 | 0 | - | 1 | att.com |
-| 881 | Sheshukov, Natalia (ns019t) | 0 | +0 | 0 | - | 2 | att.com |
-| 882 | ShivendraSaxena | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 883 | Shiwei Tian | 0 | +0 | 0 | - | 2 | zte.com.cn |
-| 884 | Shnaider, Marina (ms7589) | 0 | +0 | 0 | - | 2 | att.com |
-| 885 | Shobana Jothi | 0 | +0 | 0 | - | 2 | verizon.com |
-| 886 | Shubhada Ramkrishna Vaze | 0 | +0 | 0 | - | 4 | techmahindra.com |
-| 887 | ShuhaoCai | 0 | +0 | 0 | - | 1 | huawei.com |
-| 888 | Shwetank Dave | 0 | +0 | 0 | - | 6 | amdocs.com |
-| 889 | Shwetha_R | 0 | +0 | 0 | - | 1 | wipro.com |
-| 890 | Simon Hrabos | 0 | +0 | 0 | - | 4 | tieto.com |
-| 891 | Simon Hrabos | 0 | +0 | 0 | - | 1 | samsung.com |
-| 892 | Sindhuri.A | 0 | +0 | 0 | - | 4 | huawei.com |
-| 893 | Singh, Ajay (as396y) | 0 | +0 | 0 | - | 2 | att.com |
-| 894 | Singh, Rupinderjeet (rs830d) | 0 | +0 | 0 | - | 1 | att.com |
-| 895 | Singhsumalee, Pete (ps2418) | 0 | +0 | 0 | - | 2 | att.com |
-| 896 | Singla, Rajiv (rs153v) | 0 | +0 | 0 | - | 2 | att.com |
-| 897 | Sirisha Gopigiri | 0 | +0 | 0 | - | 1 | verizon.com |
-| 898 | Sirisha_Manchikanti | 0 | +0 | 0 | - | 10 | est.tech |
-| 899 | Sithara Nambiar | 0 | +0 | 0 | - | 3 | huawei.com |
-| 900 | Siva.ye | 0 | +0 | 0 | - | 3 | huawei.com |
-| 901 | Skip Wonnell | 0 | +0 | 0 | - | 2 | att.com |
-| 902 | Smokowski, Kevin (ks6305) | 0 | +0 | 0 | - | 8 | att.com |
-| 903 | Smokowski, Kevin (ks6305) | 0 | +0 | 0 | - | 2 | att.com |
-| 904 | Smokowski, Kevin (ks6305) | 0 | +0 | 0 | - | 4 | att.com |
-| 905 | Smokowski, Steve (ss835w) | 0 | +0 | 0 | - | 6 | att.com |
-| 906 | Smokowski, Steven | 0 | +0 | 0 | - | 2 | att.com |
-| 907 | Sneha Dantkale | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 908 | Snigdha Sucharita Patra | 0 | +0 | 0 | - | 1 | techmahindra.com |
-| 909 | Sofia Wallin | 0 | +0 | 0 | - | 1 | est.tech |
-| 910 | Sonali Das | 0 | +0 | 0 | - | 1 | att.com |
-| 911 | Sooriyaa | 0 | +0 | 0 | - | 2 | ibm.com |
-| 912 | Sotiropoulos, Ioannis (is948x) | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 913 | Sowmya_Narayanasetty | 0 | +0 | 0 | - | 2 | ltts.com |
-| 914 | Sreeja Gattagouni | 0 | +0 | 0 | - | 3 | techmahindra.com |
-| 915 | Sreenivasa Reddy Chinnannagari | 0 | +0 | 0 | - | 3 | techmahindra.com |
-| 916 | SrikanthNaidu | 0 | +0 | 0 | - | 2 | att.com |
-| 917 | Srinivasan Ramanathan | 0 | +0 | 0 | - | 4 | fujitsu.com |
-| 918 | Srinivasan Selvam | 0 | +0 | 0 | - | 2 | huawei.com |
-| 919 | Sripad | 0 | +0 | 0 | - | 2 | att.com |
-| 920 | Srivahni Chivukula | 0 | +0 | 0 | - | 4 | intel.com |
-| 921 | Stanislav Chlebec | 0 | +0 | 0 | - | 17 | pantheon.tech |
-| 922 | Stanislav Marszalek | 0 | +0 | 0 | - | 5 | samsung.com |
-| 923 | Stanislav Vishnevetskiy | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 924 | Starec Vlastimil | 0 | +0 | 0 | - | 4 | orange.com |
-| 925 | Stavros Kanarakis | 0 | +0 | 0 | - | 5 | nokia.com |
-| 926 | Stefan Dierichs | 0 | +0 | 0 | - | 1 | telekom.de |
-| 927 | Stela Stoykova | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 928 | Steve Alphonse Siani | 0 | +0 | 0 | - | 4 | ibm.com |
-| 929 | Steve Siani | 0 | +0 | 0 | - | 2 | bell.ca |
-| 930 | Steve Smokowski | 0 | +0 | 0 | - | 7 | att.com |
-| 931 | Steve Thomas | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 932 | Steven Thomas | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 933 | Steven Wright | 0 | +0 | 0 | - | 3 | att.com |
-| 934 | Steven Wright | 0 | +0 | 0 | - | 2 | att.com |
-| 935 | Stilwell, David (stilwelld) | 0 | +0 | 0 | - | 8 | att.com |
-| 936 | Stone, Avi (as206k) | 0 | +0 | 0 | - | 1 | att.com |
-| 937 | Sudarshan Kumar | 0 | +0 | 0 | - | 4 | ibm.com |
-| 938 | Sudhakar Reddy | 0 | +0 | 0 | - | 7 | amdocs.com |
-| 939 | Sumapriya Sarvepalli | 0 | +0 | 0 | - | 2 | techmahindra.com |
-| 940 | Summers, Gregory (gs2953) | 0 | +0 | 0 | - | 1 | att.com |
-| 941 | SunilB | 0 | +0 | 0 | - | 4 | techmahindra.com |
-| 942 | Surendra Reddy Katam | 0 | +0 | 0 | - | 2 | techmahindra.com |
-| 943 | Suresh Charan | 0 | +0 | 0 | - | 11 | bell.ca |
-| 944 | SwapnilPathak | 0 | +0 | 0 | - | 2 | techmahindra.com |
-| 945 | Sylhare | 0 | +0 | 0 | - | 2 | gmail.com |
-| 946 | Sylvain Desbureaux | 0 | +0 | 0 | - | 23 | orange.com |
-| 947 | Sylwia Jakubek | 0 | +0 | 0 | - | 4 | nokia.com |
-| 948 | System Administrator | 0 | +0 | 0 | - | 1 | vmware.com |
-| 949 | Szabolcs Hutvagner | 0 | +0 | 0 | - | 2 | ericsson.com |
-| 950 | Tait,Trevor(rt0435) | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 951 | Taka Cho | 0 | +0 | 0 | - | 19 | att.com |
-| 952 | Taka Cho | 0 | +0 | 0 | - | 3 | att.com |
-| 953 | Takamune Cho | 0 | +0 | 0 | - | 1 | takamunes-mbp.home |
-| 954 | Tal Gitelman | 0 | +0 | 0 | - | 4 | att.com |
-| 955 | Tal Gitelman | 0 | +0 | 0 | - | 5 | att.com |
-| 956 | Tal Karbachinsky | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 957 | TamasBakai | 0 | +0 | 0 | - | 5 | est.tech |
-| 958 | Tao Shen | 0 | +0 | 0 | - | 7 | chinamobile.com |
-| 959 | Ted Humphrey | 0 | +0 | 0 | - | 2 | att.com |
-| 960 | Tej, Tarun | 0 | +0 | 0 | - | 3 | att.com |
-| 961 | Temoc Rodriguez | 0 | +0 | 0 | - | 5 | att.com |
-| 962 | ThamlurRaju | 0 | +0 | 0 | - | 2 | techmahindra.com |
-| 963 | Thanh Ha | 0 | +0 | 0 | - | 2 | linuxfoundation.org |
-| 964 | Thierry Hardy | 0 | +0 | 0 | - | 2 | orange.com |
-| 965 | Thomas Nelson | 0 | +0 | 0 | - | 3 | att.com |
-| 966 | Threefoot, Jane (jt6620) | 0 | +0 | 0 | - | 4 | att.com |
-| 967 | Thugutla sailakshmi | 0 | +0 | 0 | - | 4 | ibm.com |
-| 968 | Tim Johnson | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
-| 969 | Tin Lam | 0 | +0 | 0 | - | 1 | irrational.io |
-| 970 | Toan Nguyen | 0 | +0 | 0 | - | 1 | att.com |
-| 971 | Todd Larchuk | 0 | +0 | 0 | - | 1 | att.com |
-| 972 | Todd Malsbary | 0 | +0 | 0 | - | 1 | intel.com |
-| 973 | Tomasz Golabek | 0 | +0 | 0 | - | 13 | nokia.com |
-| 974 | Tomasz Gwozdecki | 0 | +0 | 0 | - | 2 | nokia.com |
-| 975 | Tomasz Pietruszkiewicz | 0 | +0 | 0 | - | 14 | nokia.com |
-| 976 | Tomasz Switon | 0 | +0 | 0 | - | 1 | nokia.com |
-| 977 | Tomasz Wrobel | 0 | +0 | 0 | - | 17 | nokia.com |
-| 978 | Tomek Kaminski | 0 | +0 | 0 | - | 3 | nokia.com |
-| 979 | Tomek Osinski | 0 | +0 | 0 | - | 1 | orange.com |
-| 980 | Tommy Carpenter | 0 | +0 | 0 | - | 1 | att.com |
-| 981 | Tommy Carpenter | 0 | +0 | 0 | - | 1 | att.com |
-| 982 | Tomáš Levora | 0 | +0 | 0 | - | 4 | samsung.com |
-| 983 | Tony Hansen | 0 | +0 | 0 | - | 16 | att.com |
-| 984 | Toshimichi Fukuda | 0 | +0 | 0 | - | 3 | fujitsu.com |
-| 985 | Tschaen, Brendan | 0 | +0 | 0 | - | 5 | att.com |
-| 986 | Tschaen, Brendan (bt054f) | 0 | +0 | 0 | - | 2 | att.com |
-| 987 | Tufman, Shay | 0 | +0 | 0 | - | 2 | att.com |
-| 988 | Tufman, Shay | 0 | +0 | 0 | - | 2 | gmail.com |
-| 989 | Tufman, Shay (st198j) | 0 | +0 | 0 | - | 2 | att.com |
-| 990 | Ubuntu | 0 | +0 | 0 | - | 1 | telekom.de |
-| 991 | Ubuntu | 0 | +0 | 0 | - | 1 | windstream.com |
-| 992 | Ubuntu | 0 | +0 | 0 | - | 2 | example.com |
-| 993 | Ubuntu | 0 | +0 | 0 | - | 1 | nokia.com |
-| 994 | Usaraswat | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 995 | Utkarsh Jauhari | 0 | +0 | 0 | - | 7 | att.com |
-| 996 | Vanessa Valderrama | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
-| 997 | Varma, Vikas (vv8305) | 0 | +0 | 0 | - | 1 | att.com |
-| 998 | Vasyl Razinkov | 0 | +0 | 0 | - | 2 | sidero.ie |
-| 999 | Venkata Harish K Kajur | 0 | +0 | 0 | - | 6 | gmail.com |
-| 1000 | Venkata Molluru | 0 | +0 | 0 | - | 2 | techmahindra.com |
-| 1001 | Victor Gao | 0 | +0 | 0 | - | 9 | huawei.com |
-| 1002 | Victor Morales | 0 | +0 | 0 | - | 13 | intel.com |
-| 1003 | Victor Morales | 0 | +0 | 0 | - | 1 | samsung.com |
-| 1004 | Vidisha | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1005 | Vidya Shinde | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1006 | Vidya Shinde | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1007 | Vidyashree Rama | 0 | +0 | 0 | - | 9 | huawei.com |
-| 1008 | Vijay Venkatesh Kumar | 0 | +0 | 0 | - | 24 | att.com |
-| 1009 | Vikram Potturi(apotturi) | 0 | +0 | 0 | - | 1 | gmail.com |
-| 1010 | Vincent Colas | 0 | +0 | 0 | - | 2 | orange.com |
-| 1011 | Virginie | 0 | +0 | 0 | - | 2 | orange.com |
-| 1012 | Vishal Varvate | 0 | +0 | 0 | - | 1 | capgemini.com |
-| 1013 | Viswanath Kumar Skand Priya | 0 | +0 | 0 | - | 1 | verizon.com |
-| 1014 | Vitaly Lavrusevich | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1015 | Vladislav Sheshalevich | 0 | +0 | 0 | - | 1 | gmail.com |
-| 1016 | Vodafone | 0 | +0 | 0 | - | 7 | vodafone.com |
-| 1017 | Wang,Frank(gw1218) | 0 | +0 | 0 | - | 1 | att.com |
-| 1018 | WeberLaurent | 0 | +0 | 0 | - | 2 | gmail.com |
-| 1019 | Wiktor Garbarek | 0 | +0 | 0 | - | 5 | nokia.com |
-| 1020 | William Reehil | 0 | +0 | 0 | - | 11 | att.com |
-| 1021 | Witold Ficio Kopel | 0 | +0 | 0 | - | 2 | samsung.com |
-| 1022 | Wong, Ben | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 1023 | Wonnell, Skip (kw5258) | 0 | +0 | 0 | - | 1 | att.com |
-| 1024 | Xiaohua Zhang | 0 | +0 | 0 | - | 5 | windriver.com |
-| 1025 | Xin Miao | 0 | +0 | 0 | - | 1 | huawei.com |
-| 1026 | Xin Miao | 0 | +0 | 0 | - | 2 | fujitsu.com |
-| 1027 | XingXiaocheng | 0 | +0 | 0 | - | 1 | huawei.com |
-| 1028 | Yang Xu | 0 | +0 | 0 | - | 12 | huawei.com |
-| 1029 | Yang Xu | 0 | +0 | 0 | - | 5 | futurewei.com |
-| 1030 | Yang Xu | 0 | +0 | 0 | - | 4 | gmail.com |
-| 1031 | Yang Xu | 0 | +0 | 0 | - | 4 | futurewei.com |
-| 1032 | Yao Le | 0 | +0 | 0 | - | 1 | intel.com |
-| 1033 | Yaoguang Wang | 0 | +0 | 0 | - | 4 | huawei.com |
-| 1034 | Yarin Dekel | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 1035 | Yashwanth | 0 | +0 | 0 | - | 4 | wipro.com |
-| 1036 | Yatian XU | 0 | +0 | 0 | - | 1 | nokia-sbell.com |
-| 1037 | YiLi | 0 | +0 | 0 | - | 1 | zte.com.cn |
-| 1038 | Yoav Schneiderman | 0 | +0 | 0 | - | 1 | att.com |
-| 1039 | YongchaoWu | 0 | +0 | 0 | - | 4 | est.tech |
-| 1040 | Yoo, Brian (by703c) | 0 | +0 | 0 | - | 3 | att.com |
-| 1041 | YuanHu | 0 | +0 | 0 | - | 5 | zte.com.cn |
-| 1042 | Yuli | 0 | +0 | 0 | - | 3 | gmail.com |
-| 1043 | Yuli Shlosberg | 0 | +0 | 0 | - | 8 | att.com |
-| 1044 | Yulian Han | 0 | +0 | 0 | - | 5 | huawei.com |
-| 1045 | Yun Huang | 0 | +0 | 0 | - | 3 | windriver.com |
-| 1046 | ZhangZihao | 0 | +0 | 0 | - | 2 | chinamobile.com |
-| 1047 | Zhaoxing Meng | 0 | +0 | 0 | - | 8 | zte.com.cn |
-| 1048 | Zhuangyang | 0 | +0 | 0 | - | 1 | qq.com |
-| 1049 | Zhuoyao Huang | 0 | +0 | 0 | - | 6 | zte.com.cn |
-| 1050 | Zihmin Hoover | 0 | +0 | 0 | - | 1 | att.com |
-| 1051 | Zlatko Murgoski | 0 | +0 | 0 | - | 5 | nokia.com |
-| 1052 | a.sreekumar | 0 | +0 | 0 | - | 16 | bell.ca |
-| 1053 | a.sreekumar | 0 | +0 | 0 | - | 14 | est.tech |
-| 1054 | a.sreekumar | 0 | +0 | 0 | - | 1 | ericsson.com |
-| 1055 | abatos | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 1056 | abbas | 0 | +0 | 0 | - | 1 | wipro.com |
-| 1057 | abhishek.c92 | 0 | +0 | 0 | - | 1 | samsung.com |
-| 1058 | aditya | 0 | +0 | 0 | - | 4 | att.com |
-| 1059 | aditya.puthuparambil | 0 | +0 | 0 | - | 7 | est.tech |
-| 1060 | afenner | 0 | +0 | 0 | - | 3 | est.tech |
-| 1061 | afenner | 0 | +0 | 0 | - | 4 | ericsson.com |
-| 1062 | aishkashyap | 0 | +0 | 0 | - | 3 | techmahindra.com |
-| 1063 | ajay priyadarshi | 0 | +0 | 0 | - | 1 | ril.com |
-| 1064 | ajay_dp001 | 0 | +0 | 0 | - | 13 | est.tech |
-| 1065 | akhilakishore | 0 | +0 | 0 | - | 3 | intel.com |
-| 1066 | akhosla | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 1067 | aleem.raja@t-systems.com | 0 | +0 | 0 | - | 7 | t-systems.com |
-| 1068 | aleemraja | 0 | +0 | 0 | - | 4 | techmahindra.com |
-| 1069 | alex.stancu | 0 | +0 | 0 | - | 1 | highstreet-technologies.com |
-| 1070 | alkac | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1071 | amatthews | 0 | +0 | 0 | - | 1 | est.tech |
-| 1072 | ambrishest | 0 | +0 | 0 | - | 1 | est.tech |
-| 1073 | amine ezziati | 0 | +0 | 0 | - | 1 | gmail.com |
-| 1074 | amitjai | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 1075 | amohamad | 0 | +0 | 0 | - | 1 | queensu.ca |
-| 1076 | amshegokar | 0 | +0 | 0 | - | 4 | techmahindra.com |
-| 1077 | andre.schmid | 0 | +0 | 0 | - | 5 | est.tech |
-| 1078 | andrzejszukuc | 0 | +0 | 0 | - | 5 | nokia.com |
-| 1079 | anjali.walsatwar | 0 | +0 | 0 | - | 6 | huawei.com |
-| 1080 | ankitbhatt | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 1081 | ankitg@aarnanetworks.com | 0 | +0 | 0 | - | 1 | aarnanetworks.com |
-| 1082 | antonys | 0 | +0 | 0 | - | 1 | est.tech |
-| 1083 | anujkap | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1084 | anupmarathe | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1085 | anushadasari | 0 | +0 | 0 | - | 4 | ibm.com |
-| 1086 | aosull01 | 0 | +0 | 0 | - | 4 | huawei.com |
-| 1087 | aribeiro | 0 | +0 | 0 | - | 2 | est.tech |
-| 1088 | arkadiusz.adamski | 0 | +0 | 0 | - | 4 | est.tech |
-| 1089 | arun chapagain | 0 | +0 | 0 | - | 2 | huawei.com |
-| 1090 | as005h | 0 | +0 | 0 | - | 1 | att.com |
-| 1091 | asgar | 0 | +0 | 0 | - | 2 | ibm.com |
-| 1092 | atulan | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1093 | atulpurohit | 0 | +0 | 0 | - | 2 | vodafone.com |
-| 1094 | avigaffa | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 1095 | avinash.akkera | 0 | +0 | 0 | - | 1 | accenture.com |
-| 1096 | ayalaben | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 1097 | barak | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1098 | bb3476 | 0 | +0 | 0 | - | 2 | att.com |
-| 1099 | bdfreeman1421 | 0 | +0 | 0 | - | 1 | att.com |
-| 1100 | beili.zhou | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 1101 | bencheung | 0 | +0 | 0 | - | 3 | nokia.com |
-| 1102 | bharath | 0 | +0 | 0 | - | 3 | hotmail.com |
-| 1103 | bhedstrom | 0 | +0 | 0 | - | 2 | oamtechnologies.com |
-| 1104 | biancunkang | 0 | +0 | 0 | - | 2 | zte.com.cn |
-| 1105 | bilal.iqbal | 0 | +0 | 0 | - | 3 | est.tech |
-| 1106 | biniek | 0 | +0 | 0 | - | 6 | nokia.com |
-| 1107 | biswajit.deswali | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1108 | bmiklos | 0 | +0 | 0 | - | 1 | est.tech |
-| 1109 | bobbymander | 0 | +0 | 0 | - | 1 | att.com |
-| 1110 | bran-wang | 0 | +0 | 0 | - | 1 | vmware.com |
-| 1111 | brucetcisco | 0 | +0 | 0 | - | 2 | cisco.com |
-| 1112 | brunomilitzer | 0 | +0 | 0 | - | 3 | est.tech |
-| 1113 | bt2983 | 0 | +0 | 0 | - | 4 | att.com |
-| 1114 | burdziak | 0 | +0 | 0 | - | 10 | nokia.com |
-| 1115 | cb478c | 0 | +0 | 0 | - | 1 | att.com |
-| 1116 | chandana.g.n | 0 | +0 | 0 | - | 1 | accenture.com |
-| 1117 | chenjie1 | 0 | +0 | 0 | - | 2 | intel.com |
-| 1118 | chenkai | 0 | +0 | 0 | - | 1 | fiberhome.com |
-| 1119 | chenying83 | 0 | +0 | 0 | - | 2 | huawei.com |
-| 1120 | chrisreece | 0 | +0 | 0 | - | 1 | awardsolutions.com |
-| 1121 | chsailakshmi | 0 | +0 | 0 | - | 1 | aarnanetworks.com |
-| 1122 | cluckenbaugh | 0 | +0 | 0 | - | 1 | att.com |
-| 1123 | cmrizhangzhen | 0 | +0 | 0 | - | 4 | qq.com |
-| 1124 | colvert | 0 | +0 | 0 | - | 2 | gmail.com |
-| 1125 | cyuamber | 0 | +0 | 0 | - | 5 | chinamobile.com |
-| 1126 | dasarathi528024 | 0 | +0 | 0 | - | 1 | techmahindra.com |
-| 1127 | dave.adams (da490c) | 0 | +0 | 0 | - | 6 | amdocs.com |
-| 1128 | david.mcweeney | 0 | +0 | 0 | - | 12 | est.tech |
-| 1129 | davsad | 0 | +0 | 0 | - | 1 | est.tech |
-| 1130 | decheng zhang | 0 | +0 | 0 | - | 8 | huawei.com |
-| 1131 | deen1985 | 0 | +0 | 0 | - | 13 | nokia.com |
-| 1132 | deepikasatheesh | 0 | +0 | 0 | - | 8 | wipro.com |
-| 1133 | dekstroza | 0 | +0 | 0 | - | 2 | ericsson.com |
-| 1134 | demskeq8 | 0 | +0 | 0 | - | 2 | highstreet-technologies.com |
-| 1135 | demx8as6 | 0 | +0 | 0 | - | 1 | highstreet-technologies.com |
-| 1136 | denghui (L) | 0 | +0 | 0 | - | 1 | huawei.com |
-| 1137 | denglingli | 0 | +0 | 0 | - | 2 | chinamobile.com |
-| 1138 | denilson.l65 | 0 | +0 | 0 | - | 6 | wipro.com |
-| 1139 | dermot123 | 0 | +0 | 0 | - | 2 | est.tech |
-| 1140 | dfarrelly | 0 | +0 | 0 | - | 9 | est.tech |
-| 1141 | dfilppi | 0 | +0 | 0 | - | 3 | cloudify.co |
-| 1142 | dfilppi | 0 | +0 | 0 | - | 1 | gigaspaces.com |
-| 1143 | dfx1971 | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 1144 | dg5762 | 0 | +0 | 0 | - | 2 | att.com |
-| 1145 | dgermain | 0 | +0 | 0 | - | 1 | cgi.com |
-| 1146 | dglFromAtt | 0 | +0 | 0 | - | 9 | att.com |
-| 1147 | dharani | 0 | +0 | 0 | - | 1 | wipro.com |
-| 1148 | dhebeha | 0 | +0 | 0 | - | 4 | wipro.com |
-| 1149 | dinesha | 0 | +0 | 0 | - | 2 | ibm.com |
-| 1150 | dkamdocs | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1151 | drveerendra | 0 | +0 | 0 | - | 2 | att.com |
-| 1152 | dsingh.278 | 0 | +0 | 0 | - | 1 | gmail.com |
-| 1153 | dyh | 0 | +0 | 0 | - | 7 | chinamobile.com |
-| 1154 | eHanan | 0 | +0 | 0 | - | 5 | est.tech |
-| 1155 | earthmant | 0 | +0 | 0 | - | 1 | cloudify.co |
-| 1156 | ebo | 0 | +0 | 0 | - | 5 | est.tech |
-| 1157 | ecaiyanlinux | 0 | +0 | 0 | - | 8 | est.tech |
-| 1158 | econwar | 0 | +0 | 0 | - | 6 | est.tech |
-| 1159 | ed852m | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1160 | edepaul | 0 | +0 | 0 | - | 2 | est.tech |
-| 1161 | eeginux | 0 | +0 | 0 | - | 4 | est.tech |
-| 1162 | efiacor | 0 | +0 | 0 | - | 29 | est.tech |
-| 1163 | eh552t | 0 | +0 | 0 | - | 9 | att.com |
-| 1164 | eh552t | 0 | +0 | 0 | - | 1 | att.com |
-| 1165 | eikrwaq | 0 | +0 | 0 | - | 9 | ericsson.com |
-| 1166 | ejamcud | 0 | +0 | 0 | - | 2 | est.tech |
-| 1167 | eleonorali | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 1168 | emartin | 0 | +0 | 0 | - | 5 | est.tech |
-| 1169 | enyinna1234 | 0 | +0 | 0 | - | 3 | intel.com |
-| 1170 | erlei | 0 | +0 | 0 | - | 1 | zte.com.cn |
-| 1171 | eronkeo | 0 | +0 | 0 | - | 4 | est.tech |
-| 1172 | eschcam | 0 | +0 | 0 | - | 2 | est.tech |
-| 1173 | esobmar | 0 | +0 | 0 | - | 3 | est.tech |
-| 1174 | esobmar | 0 | +0 | 0 | - | 2 | ericsson.com |
-| 1175 | eyalholz | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 1176 | ezhil | 0 | +0 | 0 | - | 7 | ibm.com |
-| 1177 | farida azmy | 0 | +0 | 0 | - | 2 | orange.com |
-| 1178 | fengyuanxing | 0 | +0 | 0 | - | 4 | zte.com.cn |
-| 1179 | fpaquett | 0 | +0 | 0 | - | 7 | amdocs.com |
-| 1180 | franciscovila | 0 | +0 | 0 | - | 1 | est.tech |
-| 1181 | frederic desnoes | 0 | +0 | 0 | - | 1 | orange.com |
-| 1182 | fujinhua | 0 | +0 | 0 | - | 8 | zte.com.cn |
-| 1183 | fzhang | 0 | +0 | 0 | - | 2 | ericsson.com |
-| 1184 | gabe.maurer | 0 | +0 | 0 | - | 1 | att.com |
-| 1185 | gaurav | 0 | +0 | 0 | - | 7 | huawei.com |
-| 1186 | gautamk189 | 0 | +0 | 0 | - | 1 | hcl.com |
-| 1187 | git config --global user.name | 0 | +0 | 0 | - | 3 | samsung.com |
-| 1188 | gjaibm1314 | 0 | +0 | 0 | - | 1 | qq.com |
-| 1189 | gongjief | 0 | +0 | 0 | - | 1 | isoftstone.com |
-| 1190 | grabinsk | 0 | +0 | 0 | - | 3 | nokia.com |
-| 1191 | gregory.hayes | 0 | +0 | 0 | - | 3 | est.tech |
-| 1192 | guillaume.lambert | 0 | +0 | 0 | - | 3 | orange.com |
-| 1193 | gummar | 0 | +0 | 0 | - | 5 | est.tech |
-| 1194 | guochong | 0 | +0 | 0 | - | 3 | chinamobile.com |
-| 1195 | h00397475 | 0 | +0 | 0 | - | 1 | huawei.com |
-| 1196 | hanybaki | 0 | +0 | 0 | - | 4 | orange.com |
-| 1197 | hariharan97 | 0 | +0 | 0 | - | 4 | wipro.com |
-| 1198 | hb123f | 0 | +0 | 0 | - | 1 | att.com |
-| 1199 | hb123f | 0 | +0 | 0 | - | 2 | att.com |
-| 1200 | hetengjiao | 0 | +0 | 0 | - | 3 | chinamobile.com |
-| 1201 | hewei-cmss | 0 | +0 | 0 | - | 1 | chinamobile.com |
-| 1202 | hongyu zhao | 0 | +0 | 0 | - | 2 | zte.com.cn |
-| 1203 | hthieu | 0 | +0 | 0 | - | 1 | nokia-bell-labs.com |
-| 1204 | huangsam | 0 | +0 | 0 | - | 3 | 163.com |
-| 1205 | huaxing | 0 | +0 | 0 | - | 5 | est.tech |
-| 1206 | hyu2010 | 0 | +0 | 0 | - | 3 | gmail.com |
-| 1207 | hyu2010 | 0 | +0 | 0 | - | 2 | huawei.com |
-| 1208 | ig6133 | 0 | +0 | 0 | - | 3 | att.com |
-| 1209 | imamSidero | 0 | +0 | 0 | - | 1 | est.tech |
-| 1210 | ingitk | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1211 | isaac | 0 | +0 | 0 | - | 4 | att.com |
-| 1212 | j.blixt | 0 | +0 | 0 | - | 1 | samsung.com |
-| 1213 | janani b | 0 | +0 | 0 | - | 8 | huawei.com |
-| 1214 | jasmineWen | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 1215 | jbalasub | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 1216 | jczestochowska | 0 | +0 | 0 | - | 1 | nokia.com |
-| 1217 | jeanluc-auge | 0 | +0 | 0 | - | 1 | orange.com |
-| 1218 | jegadeeshbabu1 | 0 | +0 | 0 | - | 3 | ibm.com |
-| 1219 | jh7358 | 0 | +0 | 0 | - | 9 | att.com |
-| 1220 | jhh | 0 | +0 | 0 | - | 19 | att.com |
-| 1221 | jingjincs | 0 | +0 | 0 | - | 1 | gmail.com |
-| 1222 | jinquanni | 0 | +0 | 0 | - | 4 | zte.com.cn |
-| 1223 | jitendra sharma | 0 | +0 | 0 | - | 3 | huawei.com |
-| 1224 | jjewitt58 | 0 | +0 | 0 | - | 2 | oamtechnologies.com |
-| 1225 | joquiltyL | 0 | +0 | 0 | - | 2 | ericsson.com |
-| 1226 | joxu | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1227 | jsbeaulac | 0 | +0 | 0 | - | 1 | ericsson.com |
-| 1228 | jsseidel | 0 | +0 | 0 | - | 1 | att.com |
-| 1229 | jsseidel | 0 | +0 | 0 | - | 1 | fastmail.com |
-| 1230 | juhi arora | 0 | +0 | 0 | - | 1 | cgi.com |
-| 1231 | jwang5 | 0 | +0 | 0 | - | 1 | huawei.com |
-| 1232 | jz385p | 0 | +0 | 0 | - | 1 | att.com |
-| 1233 | k.kazak | 0 | +0 | 0 | - | 4 | samsung.com |
-| 1234 | k.kedron | 0 | +0 | 0 | - | 19 | samsung.com |
-| 1235 | karbon | 0 | +0 | 0 | - | 1 | chinatelecom.cn |
-| 1236 | katy.rotman | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 1237 | kevin.tang | 0 | +0 | 0 | - | 1 | gmail.com |
-| 1238 | kevin.tang | 0 | +0 | 0 | - | 1 | stl.tech |
-| 1239 | kevinmcdonnell | 0 | +0 | 0 | - | 1 | huawei.com |
-| 1240 | kiranya | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 1241 | kishore | 0 | +0 | 0 | - | 3 | att.com |
-| 1242 | kissand | 0 | +0 | 0 | - | 1 | est.tech |
-| 1243 | kjaniak | 0 | +0 | 0 | - | 11 | nokia.com |
-| 1244 | koblosz | 0 | +0 | 0 | - | 4 | nokia.com |
-| 1245 | kooper | 0 | +0 | 0 | - | 3 | est.tech |
-| 1246 | kosewski | 0 | +0 | 0 | - | 1 | nokia.com |
-| 1247 | kranthi guttikonda | 0 | +0 | 0 | - | 1 | gmail.com |
-| 1248 | kranthikirang | 0 | +0 | 0 | - | 3 | b-yond.com |
-| 1249 | krickwix | 0 | +0 | 0 | - | 1 | gmail.com |
-| 1250 | krishna | 0 | +0 | 0 | - | 10 | wipro.com |
-| 1251 | krishnaa96 | 0 | +0 | 0 | - | 1 | gmail.com |
-| 1252 | krishnajinka | 0 | +0 | 0 | - | 4 | gmail.com |
-| 1253 | ksinghn247 | 0 | +0 | 0 | - | 1 | hcl.com |
-| 1254 | ktimoney | 0 | +0 | 0 | - | 8 | est.tech |
-| 1255 | kuldipr | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 1256 | kurczews | 0 | +0 | 0 | - | 8 | nokia.com |
-| 1257 | laili | 0 | +0 | 0 | - | 2 | zte.com.cn |
-| 1258 | lalena.aria | 0 | +0 | 0 | - | 5 | att.com |
-| 1259 | leila | 0 | +0 | 0 | - | 4 | bell.ca |
-| 1260 | lgrech | 0 | +0 | 0 | - | 2 | nokia.com |
-| 1261 | liamfallon | 0 | +0 | 0 | - | 17 | est.tech |
-| 1262 | liamfallon | 0 | +0 | 0 | - | 10 | ericsson.com |
-| 1263 | liangke | 0 | +0 | 0 | - | 8 | 163.com |
-| 1264 | liboNet | 0 | +0 | 0 | - | 10 | intel.com |
-| 1265 | liboz | 0 | +0 | 0 | - | 2 | arris.com |
-| 1266 | libujacob | 0 | +0 | 0 | - | 1 | huawei.com |
-| 1267 | lishitao | 0 | +0 | 0 | - | 1 | huawei.com |
-| 1268 | liuqian | 0 | +0 | 0 | - | 1 | huawei.com |
-| 1269 | liuwh7 | 0 | +0 | 0 | - | 1 | asiainfo.com |
-| 1270 | liuyuan | 0 | +0 | 0 | - | 1 | chinamobile.com |
-| 1271 | liying_cmcc | 0 | +0 | 0 | - | 2 | chinamobile.com |
-| 1272 | luna | 0 | +0 | 0 | - | 2 | vmware.com |
-| 1273 | luxin | 0 | +0 | 0 | - | 6 | huawei.com |
-| 1274 | lvqidi | 0 | +0 | 0 | - | 1 | chinamobile.com |
-| 1275 | m.kowalski3 | 0 | +0 | 0 | - | 4 | samsung.com |
-| 1276 | m.miernik | 0 | +0 | 0 | - | 1 | samsung.com |
-| 1277 | ma987d | 0 | +0 | 0 | - | 1 | att.com |
-| 1278 | malar | 0 | +0 | 0 | - | 7 | wipro.com |
-| 1279 | manisha07 | 0 | +0 | 0 | - | 2 | ibm.com |
-| 1280 | maopeng zhang | 0 | +0 | 0 | - | 8 | zte.com.cn |
-| 1281 | marcin krasowski | 0 | +0 | 0 | - | 1 | krasm.net |
-| 1282 | marcinrzepeckiwroc | 0 | +0 | 0 | - | 8 | nokia.com |
-| 1283 | marekpl | 0 | +0 | 0 | - | 6 | nokia.com |
-| 1284 | marge.hillis | 0 | +0 | 0 | - | 1 | nokia.com |
-| 1285 | marian.vaclavik@telekom.com | 0 | +0 | 0 | - | 1 | telekom.com |
-| 1286 | marineMD | 0 | +0 | 0 | - | 15 | att.com |
-| 1287 | marios.iakovidis | 0 | +0 | 0 | - | 1 | huawei.com |
-| 1288 | mark.j.leonard | 0 | +0 | 0 | - | 8 | gmail.com |
-| 1289 | marvinYu | 0 | +0 | 0 | - | 2 | intel.com |
-| 1290 | matthew-mcneilly | 0 | +0 | 0 | - | 1 | est.tech |
-| 1291 | maximesson | 0 | +0 | 0 | - | 6 | est.tech |
-| 1292 | mayankg2703 | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 1293 | mayankg2703 | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 1294 | meriem zidane | 0 | +0 | 0 | - | 1 | bell.ca |
-| 1295 | mharazin | 0 | +0 | 0 | - | 7 | nokia.com |
-| 1296 | micdzied | 0 | +0 | 0 | - | 6 | nokia.com |
-| 1297 | michaere | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 1298 | minfanyang | 0 | +0 | 0 | - | 1 | zte.com.cn |
-| 1299 | miriame | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 1300 | miroslav.masaryk | 0 | +0 | 0 | - | 1 | telekom.com |
-| 1301 | mkerrigan | 0 | +0 | 0 | - | 2 | est.tech |
-| 1302 | mkidd | 0 | +0 | 0 | - | 1 | est.tech |
-| 1303 | ml636r | 0 | +0 | 0 | - | 3 | att.com |
-| 1304 | mmis | 0 | +0 | 0 | - | 10 | ericsson.com |
-| 1305 | mojahidi | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 1306 | morganrol | 0 | +0 | 0 | - | 36 | orange.com |
-| 1307 | ms236b | 0 | +0 | 0 | - | 2 | att.com |
-| 1308 | mukesh.landge@t-systems.com | 0 | +0 | 0 | - | 1 | t-systems.com |
-| 1309 | nadeeshani.jayathilake | 0 | +0 | 0 | - | 2 | est.tech |
-| 1310 | nagu | 0 | +0 | 0 | - | 1 | infosys.com |
-| 1311 | nandkumar | 0 | +0 | 0 | - | 1 | techmahindra.com |
-| 1312 | necuser | 0 | +0 | 0 | - | 5 | hotmail.com |
-| 1313 | niamhcore | 0 | +0 | 0 | - | 3 | est.tech |
-| 1314 | ning.xi | 0 | +0 | 0 | - | 6 | est.tech |
-| 1315 | nitincg | 0 | +0 | 0 | - | 1 | capgemini.com |
-| 1316 | nkshankar | 0 | +0 | 0 | - | 1 | gmail.com |
-| 1317 | noahs | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 1318 | noahs | 0 | +0 | 0 | - | 2 | gmail.com |
-| 1319 | nrpandya | 0 | +0 | 0 | - | 2 | att.com |
-| 1320 | od7427 | 0 | +0 | 0 | - | 1 | att.com |
-| 1321 | onapuser | 0 | +0 | 0 | - | 1 | localhost.local |
-| 1322 | osgn422w | 0 | +0 | 0 | - | 6 | att.com |
-| 1323 | osgn422w | 0 | +0 | 0 | - | 3 | att.com |
-| 1324 | osinstom | 0 | +0 | 0 | - | 1 | gmail.com |
-| 1325 | othman touijer | 0 | +0 | 0 | - | 2 | soprasteria.com |
-| 1326 | ottero | 0 | +0 | 0 | - | 3 | est.tech |
-| 1327 | pa834y | 0 | +0 | 0 | - | 1 | att.com |
-| 1328 | pawel.kadlubanski | 0 | +0 | 0 | - | 3 | nokia.com |
-| 1329 | paweldenst | 0 | +0 | 0 | - | 5 | t-mobile.pl |
-| 1330 | pbiniek | 0 | +0 | 0 | - | 4 | nokia.com |
-| 1331 | phani.y | 0 | +0 | 0 | - | 3 | huawei.com |
-| 1332 | piclose | 0 | +0 | 0 | - | 2 | att.com |
-| 1333 | pkaras | 0 | +0 | 0 | - | 7 | nokia.com |
-| 1334 | pprakhar | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1335 | pradip01 | 0 | +0 | 0 | - | 1 | amdocs.com |
-| 1336 | prakash.e | 0 | +0 | 0 | - | 5 | huawei.com |
-| 1337 | pramod | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 1338 | pramod.jamkhedkar | 0 | +0 | 0 | - | 3 | att.com |
-| 1339 | pranavdi | 0 | +0 | 0 | - | 4 | amdocs.com |
-| 1340 | pranitk1905 | 0 | +0 | 0 | - | 8 | t-systems.com |
-| 1341 | prashank | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 1342 | prathamesh | 0 | +0 | 0 | - | 3 | yahoo.ca |
-| 1343 | prathamesh morde | 0 | +0 | 0 | - | 5 | bell.ca |
-| 1344 | priyanka.akhade | 0 | +0 | 0 | - | 2 | huawei.com |
-| 1345 | pswang | 0 | +0 | 0 | - | 2 | gmail.com |
-| 1346 | puthuparambil.aditya | 0 | +0 | 0 | - | 12 | bell.ca |
-| 1347 | qiang zu | 0 | +0 | 0 | - | 2 | gmail.com |
-| 1348 | qingshuting | 0 | +0 | 0 | - | 9 | huawei.com |
-| 1349 | r.bogacki | 0 | +0 | 0 | - | 5 | samsung.com |
-| 1350 | rajeevme | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 1351 | rajendrajaiswal | 0 | +0 | 0 | - | 12 | ericsson.com |
-| 1352 | rajeshkalai | 0 | +0 | 0 | - | 3 | amdocs.com |
-| 1353 | rama-huawei | 0 | +0 | 0 | - | 11 | huawei.com |
-| 1354 | ramagp | 0 | +0 | 0 | - | 7 | aarnanetworks.com |
-| 1355 | ramamani yeleswarapu | 0 | +0 | 0 | - | 2 | intel.com |
-| 1356 | ramanjaneya | 0 | +0 | 0 | - | 5 | huawei.com |
-| 1357 | ramki krishnan | 0 | +0 | 0 | - | 1 | gmail.com |
-| 1358 | ramu.n | 0 | +0 | 0 | - | 8 | huawei.com |
-| 1359 | ramverma | 0 | +0 | 0 | - | 15 | est.tech |
-| 1360 | ramverma | 0 | +0 | 0 | - | 9 | ericsson.com |
-| 1361 | ramya | 0 | +0 | 0 | - | 2 | wipro.com |
-| 1362 | ranpollak | 0 | +0 | 0 | - | 2 | amdocs.com |
-| 1363 | rb7147 | 0 | +0 | 0 | - | 2 | att.com |
-| 1364 | renealr | 0 | +0 | 0 | - | 6 | amdocs.com |
-| 1365 | rl001m | 0 | +0 | 0 | - | 1 | att.com |
-| 1366 | rn509j | 0 | +0 | 0 | - | 1 | att.com |
-| 1367 | robert.tomczyk | 0 | +0 | 0 | - | 1 | est.tech |
-| 1368 | roger yuan | 0 | +0 | 0 | - | 3 | yoppworks.com |
-| 1369 | rokenny | 0 | +0 | 0 | - | 2 | est.tech |
-| 1370 | romaingimbert | 0 | +0 | 0 | - | 1 | orange.com |
-| 1371 | root | 0 | +0 | 0 | - | 1 | nsn-intra.net |
-| 1372 | root | 0 | +0 | 0 | - | 1 | kosmos-ranczer.novalocal |
-| 1373 | root | 0 | +0 | 0 | - | 3 | fujitsu.com |
-| 1374 | root | 0 | +0 | 0 | - | 1 | cloudapp.net |
-| 1375 | root | 0 | +0 | 0 | - | 1 | intel.com |
-| 1376 | root | 0 | +0 | 0 | - | 1 | att.com |
-| 1377 | root | 0 | +0 | 0 | - | 2 | ericsson.com |
+| 867 | Serban Jora | 0 | +0 | 0 | - | 3 | att.com |
+| 868 | Serban Popescu | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 869 | Serban Popescu | 0 | +0 | 0 | - | 1 | att.com |
+| 870 | Serge Simard | 0 | +0 | 0 | - | 3 | agilitae.com |
+| 871 | Serhii Siabruk | 0 | +0 | 0 | - | 1 | jabil.com |
+| 872 | Seshu Kumar Mudiganti | 0 | +0 | 0 | - | 1 | windriver.com |
+| 873 | Seshu-Kumar-M | 0 | +0 | 0 | - | 22 | huawei.com |
+| 874 | Shaaban Ebrahim | 0 | +0 | 0 | - | 1 | gmail.com |
+| 875 | Shabanov, Marina (ms656r) | 0 | +0 | 0 | - | 2 | att.com |
+| 876 | Shailendra Borale | 0 | +0 | 0 | - | 5 | att.com |
+| 877 | Shankar Narayanan | 0 | +0 | 0 | - | 6 | att.com |
+| 878 | Shantaram Sawant | 0 | +0 | 0 | - | 2 | accenture.com |
+| 879 | Shashank Kumar Shankar | 0 | +0 | 0 | - | 8 | intel.com |
+| 880 | Shawn Severin | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 881 | Shay Weizman | 0 | +0 | 0 | - | 1 | att.com |
+| 882 | Sheshukov, Natalia (ns019t) | 0 | +0 | 0 | - | 2 | att.com |
+| 883 | ShivendraSaxena | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 884 | Shiwei Tian | 0 | +0 | 0 | - | 2 | zte.com.cn |
+| 885 | Shnaider, Marina (ms7589) | 0 | +0 | 0 | - | 2 | att.com |
+| 886 | Shobana Jothi | 0 | +0 | 0 | - | 2 | verizon.com |
+| 887 | Shubhada Ramkrishna Vaze | 0 | +0 | 0 | - | 4 | techmahindra.com |
+| 888 | ShuhaoCai | 0 | +0 | 0 | - | 1 | huawei.com |
+| 889 | Shwetank Dave | 0 | +0 | 0 | - | 6 | amdocs.com |
+| 890 | Shwetha_R | 0 | +0 | 0 | - | 1 | wipro.com |
+| 891 | Simon Hrabos | 0 | +0 | 0 | - | 4 | tieto.com |
+| 892 | Simon Hrabos | 0 | +0 | 0 | - | 1 | samsung.com |
+| 893 | Sindhuri.A | 0 | +0 | 0 | - | 4 | huawei.com |
+| 894 | Singh, Ajay (as396y) | 0 | +0 | 0 | - | 2 | att.com |
+| 895 | Singh, Rupinderjeet (rs830d) | 0 | +0 | 0 | - | 1 | att.com |
+| 896 | Singhsumalee, Pete (ps2418) | 0 | +0 | 0 | - | 2 | att.com |
+| 897 | Singla, Rajiv (rs153v) | 0 | +0 | 0 | - | 2 | att.com |
+| 898 | Sirisha Gopigiri | 0 | +0 | 0 | - | 1 | verizon.com |
+| 899 | Sirisha_Manchikanti | 0 | +0 | 0 | - | 10 | est.tech |
+| 900 | Sithara Nambiar | 0 | +0 | 0 | - | 3 | huawei.com |
+| 901 | Siva.ye | 0 | +0 | 0 | - | 3 | huawei.com |
+| 902 | Skip Wonnell | 0 | +0 | 0 | - | 2 | att.com |
+| 903 | Smokowski, Kevin (ks6305) | 0 | +0 | 0 | - | 8 | att.com |
+| 904 | Smokowski, Kevin (ks6305) | 0 | +0 | 0 | - | 2 | att.com |
+| 905 | Smokowski, Kevin (ks6305) | 0 | +0 | 0 | - | 4 | att.com |
+| 906 | Smokowski, Steve (ss835w) | 0 | +0 | 0 | - | 6 | att.com |
+| 907 | Smokowski, Steven | 0 | +0 | 0 | - | 2 | att.com |
+| 908 | Sneha Dantkale | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 909 | Snigdha Sucharita Patra | 0 | +0 | 0 | - | 1 | techmahindra.com |
+| 910 | Sofia Wallin | 0 | +0 | 0 | - | 1 | est.tech |
+| 911 | Sonali Das | 0 | +0 | 0 | - | 1 | att.com |
+| 912 | Sooriyaa | 0 | +0 | 0 | - | 2 | ibm.com |
+| 913 | Sotiropoulos, Ioannis (is948x) | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 914 | Sowmya_Narayanasetty | 0 | +0 | 0 | - | 2 | ltts.com |
+| 915 | Sreeja Gattagouni | 0 | +0 | 0 | - | 3 | techmahindra.com |
+| 916 | Sreenivasa Reddy Chinnannagari | 0 | +0 | 0 | - | 3 | techmahindra.com |
+| 917 | SrikanthNaidu | 0 | +0 | 0 | - | 2 | att.com |
+| 918 | Srinivasan Ramanathan | 0 | +0 | 0 | - | 4 | fujitsu.com |
+| 919 | Srinivasan Selvam | 0 | +0 | 0 | - | 2 | huawei.com |
+| 920 | Sripad | 0 | +0 | 0 | - | 2 | att.com |
+| 921 | Srivahni Chivukula | 0 | +0 | 0 | - | 4 | intel.com |
+| 922 | Stanislav Chlebec | 0 | +0 | 0 | - | 17 | pantheon.tech |
+| 923 | Stanislav Marszalek | 0 | +0 | 0 | - | 5 | samsung.com |
+| 924 | Stanislav Vishnevetskiy | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 925 | Starec Vlastimil | 0 | +0 | 0 | - | 4 | orange.com |
+| 926 | Stavros Kanarakis | 0 | +0 | 0 | - | 5 | nokia.com |
+| 927 | Stefan Dierichs | 0 | +0 | 0 | - | 1 | telekom.de |
+| 928 | Stela Stoykova | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 929 | Steve Alphonse Siani | 0 | +0 | 0 | - | 4 | ibm.com |
+| 930 | Steve Siani | 0 | +0 | 0 | - | 2 | bell.ca |
+| 931 | Steve Smokowski | 0 | +0 | 0 | - | 7 | att.com |
+| 932 | Steve Thomas | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 933 | Steven Thomas | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 934 | Steven Wright | 0 | +0 | 0 | - | 3 | att.com |
+| 935 | Steven Wright | 0 | +0 | 0 | - | 2 | att.com |
+| 936 | Stilwell, David (stilwelld) | 0 | +0 | 0 | - | 8 | att.com |
+| 937 | Stone, Avi (as206k) | 0 | +0 | 0 | - | 1 | att.com |
+| 938 | Sudarshan Kumar | 0 | +0 | 0 | - | 4 | ibm.com |
+| 939 | Sudarshan Kumar | 0 | +0 | 0 | - | 3 | att.com |
+| 940 | SudhakarReddy | 0 | +0 | 0 | - | 7 | amdocs.com |
+| 941 | Sumapriya Sarvepalli | 0 | +0 | 0 | - | 2 | techmahindra.com |
+| 942 | Summers, Gregory (gs2953) | 0 | +0 | 0 | - | 1 | att.com |
+| 943 | SunilB | 0 | +0 | 0 | - | 4 | techmahindra.com |
+| 944 | Surendra Reddy Katam | 0 | +0 | 0 | - | 2 | techmahindra.com |
+| 945 | Suresh Charan | 0 | +0 | 0 | - | 11 | bell.ca |
+| 946 | SwapnilPathak | 0 | +0 | 0 | - | 2 | techmahindra.com |
+| 947 | Sylhare | 0 | +0 | 0 | - | 2 | gmail.com |
+| 948 | Sylvain Desbureaux | 0 | +0 | 0 | - | 23 | orange.com |
+| 949 | Sylwia Jakubek | 0 | +0 | 0 | - | 4 | nokia.com |
+| 950 | System Administrator | 0 | +0 | 0 | - | 1 | vmware.com |
+| 951 | Szabolcs Hutvagner | 0 | +0 | 0 | - | 2 | ericsson.com |
+| 952 | Tait,Trevor(rt0435) | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 953 | Taka Cho | 0 | +0 | 0 | - | 19 | att.com |
+| 954 | Taka Cho | 0 | +0 | 0 | - | 3 | att.com |
+| 955 | Takamune Cho | 0 | +0 | 0 | - | 1 | takamunes-mbp.home |
+| 956 | Tal Gitelman | 0 | +0 | 0 | - | 4 | att.com |
+| 957 | Tal Gitelman | 0 | +0 | 0 | - | 5 | att.com |
+| 958 | Tal Karbachinsky | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 959 | TamasBakai | 0 | +0 | 0 | - | 5 | est.tech |
+| 960 | Tao Shen | 0 | +0 | 0 | - | 7 | chinamobile.com |
+| 961 | Ted Humphrey | 0 | +0 | 0 | - | 2 | att.com |
+| 962 | Tej, Tarun | 0 | +0 | 0 | - | 3 | att.com |
+| 963 | Temoc Rodriguez | 0 | +0 | 0 | - | 5 | att.com |
+| 964 | ThamlurRaju | 0 | +0 | 0 | - | 2 | techmahindra.com |
+| 965 | Thanh Ha | 0 | +0 | 0 | - | 2 | linuxfoundation.org |
+| 966 | Thierry Hardy | 0 | +0 | 0 | - | 2 | orange.com |
+| 967 | Thomas Nelson | 0 | +0 | 0 | - | 3 | att.com |
+| 968 | Thomas Nelson | 0 | +0 | 0 | - | 4 | att.com |
+| 969 | Threefoot, Jane (jt6620) | 0 | +0 | 0 | - | 4 | att.com |
+| 970 | Thugutla sailakshmi | 0 | +0 | 0 | - | 4 | ibm.com |
+| 971 | Tim Johnson | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
+| 972 | Tin Lam | 0 | +0 | 0 | - | 1 | irrational.io |
+| 973 | Toan Nguyen | 0 | +0 | 0 | - | 1 | att.com |
+| 974 | Todd Larchuk | 0 | +0 | 0 | - | 1 | att.com |
+| 975 | Todd Malsbary | 0 | +0 | 0 | - | 1 | intel.com |
+| 976 | Tomasz Golabek | 0 | +0 | 0 | - | 13 | nokia.com |
+| 977 | Tomasz Gwozdecki | 0 | +0 | 0 | - | 2 | nokia.com |
+| 978 | Tomasz Pietruszkiewicz | 0 | +0 | 0 | - | 14 | nokia.com |
+| 979 | Tomasz Switon | 0 | +0 | 0 | - | 1 | nokia.com |
+| 980 | Tomasz Wrobel | 0 | +0 | 0 | - | 17 | nokia.com |
+| 981 | Tomek Kaminski | 0 | +0 | 0 | - | 3 | nokia.com |
+| 982 | Tomek Osinski | 0 | +0 | 0 | - | 1 | orange.com |
+| 983 | Tommy Carpenter | 0 | +0 | 0 | - | 1 | att.com |
+| 984 | Tommy Carpenter | 0 | +0 | 0 | - | 1 | att.com |
+| 985 | Tomáš Levora | 0 | +0 | 0 | - | 4 | samsung.com |
+| 986 | Tony Hansen | 0 | +0 | 0 | - | 16 | att.com |
+| 987 | Toshimichi Fukuda | 0 | +0 | 0 | - | 3 | fujitsu.com |
+| 988 | Tschaen, Brendan | 0 | +0 | 0 | - | 5 | att.com |
+| 989 | Tschaen, Brendan (bt054f) | 0 | +0 | 0 | - | 2 | att.com |
+| 990 | Tufman, Shay | 0 | +0 | 0 | - | 2 | att.com |
+| 991 | Tufman, Shay | 0 | +0 | 0 | - | 2 | gmail.com |
+| 992 | Tufman, Shay (st198j) | 0 | +0 | 0 | - | 2 | att.com |
+| 993 | Ubuntu | 0 | +0 | 0 | - | 1 | telekom.de |
+| 994 | Ubuntu | 0 | +0 | 0 | - | 1 | windstream.com |
+| 995 | Ubuntu | 0 | +0 | 0 | - | 2 | example.com |
+| 996 | Ubuntu | 0 | +0 | 0 | - | 1 | nokia.com |
+| 997 | Usaraswat | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 998 | Utkarsh Jauhari | 0 | +0 | 0 | - | 7 | att.com |
+| 999 | Vanessa Valderrama | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
+| 1000 | Varma, Vikas (vv8305) | 0 | +0 | 0 | - | 1 | att.com |
+| 1001 | Vasyl Razinkov | 0 | +0 | 0 | - | 2 | sidero.ie |
+| 1002 | Venkata Harish K Kajur | 0 | +0 | 0 | - | 6 | gmail.com |
+| 1003 | Venkata Molluru | 0 | +0 | 0 | - | 2 | techmahindra.com |
+| 1004 | Victor Gao | 0 | +0 | 0 | - | 9 | huawei.com |
+| 1005 | Victor Morales | 0 | +0 | 0 | - | 13 | intel.com |
+| 1006 | Victor Morales | 0 | +0 | 0 | - | 1 | samsung.com |
+| 1007 | Vidisha | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1008 | Vidya Shinde | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1009 | Vidya Shinde | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1010 | Vidyashree Rama | 0 | +0 | 0 | - | 9 | huawei.com |
+| 1011 | Vijay Venkatesh Kumar | 0 | +0 | 0 | - | 24 | att.com |
+| 1012 | Vikram Potturi(apotturi) | 0 | +0 | 0 | - | 1 | gmail.com |
+| 1013 | Vincent Colas | 0 | +0 | 0 | - | 2 | orange.com |
+| 1014 | Virginie | 0 | +0 | 0 | - | 2 | orange.com |
+| 1015 | Vishal Varvate | 0 | +0 | 0 | - | 1 | capgemini.com |
+| 1016 | Viswanath Kumar Skand Priya | 0 | +0 | 0 | - | 1 | verizon.com |
+| 1017 | Vitaly Lavrusevich | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1018 | Vladislav Sheshalevich | 0 | +0 | 0 | - | 1 | gmail.com |
+| 1019 | Vodafone | 0 | +0 | 0 | - | 7 | vodafone.com |
+| 1020 | Wang,Frank(gw1218) | 0 | +0 | 0 | - | 1 | att.com |
+| 1021 | WeberLaurent | 0 | +0 | 0 | - | 2 | gmail.com |
+| 1022 | Wiktor Garbarek | 0 | +0 | 0 | - | 5 | nokia.com |
+| 1023 | William Reehil | 0 | +0 | 0 | - | 11 | att.com |
+| 1024 | Witold Ficio Kopel | 0 | +0 | 0 | - | 2 | samsung.com |
+| 1025 | Wong, Ben | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 1026 | Wonnell, Skip (kw5258) | 0 | +0 | 0 | - | 1 | att.com |
+| 1027 | Xiaohua Zhang | 0 | +0 | 0 | - | 5 | windriver.com |
+| 1028 | Xin Miao | 0 | +0 | 0 | - | 1 | huawei.com |
+| 1029 | Xin Miao | 0 | +0 | 0 | - | 2 | fujitsu.com |
+| 1030 | XingXiaocheng | 0 | +0 | 0 | - | 1 | huawei.com |
+| 1031 | Yang Xu | 0 | +0 | 0 | - | 12 | huawei.com |
+| 1032 | Yang Xu | 0 | +0 | 0 | - | 5 | futurewei.com |
+| 1033 | Yang Xu | 0 | +0 | 0 | - | 4 | gmail.com |
+| 1034 | Yang Xu | 0 | +0 | 0 | - | 4 | futurewei.com |
+| 1035 | Yao Le | 0 | +0 | 0 | - | 1 | intel.com |
+| 1036 | Yaoguang Wang | 0 | +0 | 0 | - | 4 | huawei.com |
+| 1037 | Yarin Dekel | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 1038 | Yashwanth | 0 | +0 | 0 | - | 4 | wipro.com |
+| 1039 | Yatian XU | 0 | +0 | 0 | - | 1 | nokia-sbell.com |
+| 1040 | YiLi | 0 | +0 | 0 | - | 1 | zte.com.cn |
+| 1041 | Yoav Schneiderman | 0 | +0 | 0 | - | 1 | att.com |
+| 1042 | YongchaoWu | 0 | +0 | 0 | - | 4 | est.tech |
+| 1043 | Yoo, Brian (by703c) | 0 | +0 | 0 | - | 3 | att.com |
+| 1044 | YuanHu | 0 | +0 | 0 | - | 5 | zte.com.cn |
+| 1045 | Yuli | 0 | +0 | 0 | - | 3 | gmail.com |
+| 1046 | Yuli Shlosberg | 0 | +0 | 0 | - | 8 | att.com |
+| 1047 | Yulian Han | 0 | +0 | 0 | - | 5 | huawei.com |
+| 1048 | Yun Huang | 0 | +0 | 0 | - | 3 | windriver.com |
+| 1049 | ZhangZihao | 0 | +0 | 0 | - | 2 | chinamobile.com |
+| 1050 | Zhaoxing Meng | 0 | +0 | 0 | - | 8 | zte.com.cn |
+| 1051 | Zhuangyang | 0 | +0 | 0 | - | 1 | qq.com |
+| 1052 | Zhuoyao Huang | 0 | +0 | 0 | - | 6 | zte.com.cn |
+| 1053 | Zihmin Hoover | 0 | +0 | 0 | - | 1 | att.com |
+| 1054 | Zlatko Murgoski | 0 | +0 | 0 | - | 5 | nokia.com |
+| 1055 | a.sreekumar | 0 | +0 | 0 | - | 16 | bell.ca |
+| 1056 | a.sreekumar | 0 | +0 | 0 | - | 14 | est.tech |
+| 1057 | a.sreekumar | 0 | +0 | 0 | - | 1 | ericsson.com |
+| 1058 | abatos | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 1059 | abbas | 0 | +0 | 0 | - | 1 | wipro.com |
+| 1060 | abhishek.c92 | 0 | +0 | 0 | - | 1 | samsung.com |
+| 1061 | aditya | 0 | +0 | 0 | - | 4 | att.com |
+| 1062 | aditya.puthuparambil | 0 | +0 | 0 | - | 7 | est.tech |
+| 1063 | afenner | 0 | +0 | 0 | - | 3 | est.tech |
+| 1064 | afenner | 0 | +0 | 0 | - | 4 | ericsson.com |
+| 1065 | aishkashyap | 0 | +0 | 0 | - | 3 | techmahindra.com |
+| 1066 | ajay priyadarshi | 0 | +0 | 0 | - | 1 | ril.com |
+| 1067 | ajay_dp001 | 0 | +0 | 0 | - | 13 | est.tech |
+| 1068 | akhilakishore | 0 | +0 | 0 | - | 3 | intel.com |
+| 1069 | akhosla | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 1070 | aleem.raja@t-systems.com | 0 | +0 | 0 | - | 7 | t-systems.com |
+| 1071 | aleemraja | 0 | +0 | 0 | - | 4 | techmahindra.com |
+| 1072 | alex.stancu | 0 | +0 | 0 | - | 1 | highstreet-technologies.com |
+| 1073 | alkac | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1074 | amatthews | 0 | +0 | 0 | - | 1 | est.tech |
+| 1075 | ambrishest | 0 | +0 | 0 | - | 1 | est.tech |
+| 1076 | amine ezziati | 0 | +0 | 0 | - | 1 | gmail.com |
+| 1077 | amitjai | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 1078 | amohamad | 0 | +0 | 0 | - | 1 | queensu.ca |
+| 1079 | amshegokar | 0 | +0 | 0 | - | 4 | techmahindra.com |
+| 1080 | andre.schmid | 0 | +0 | 0 | - | 5 | est.tech |
+| 1081 | andrzejszukuc | 0 | +0 | 0 | - | 5 | nokia.com |
+| 1082 | anjali.walsatwar | 0 | +0 | 0 | - | 6 | huawei.com |
+| 1083 | ankitbhatt | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 1084 | ankitg@aarnanetworks.com | 0 | +0 | 0 | - | 1 | aarnanetworks.com |
+| 1085 | antonys | 0 | +0 | 0 | - | 1 | est.tech |
+| 1086 | anujkap | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1087 | anupmarathe | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1088 | anushadasari | 0 | +0 | 0 | - | 4 | ibm.com |
+| 1089 | aosull01 | 0 | +0 | 0 | - | 4 | huawei.com |
+| 1090 | aribeiro | 0 | +0 | 0 | - | 2 | est.tech |
+| 1091 | arkadiusz.adamski | 0 | +0 | 0 | - | 4 | est.tech |
+| 1092 | arun chapagain | 0 | +0 | 0 | - | 2 | huawei.com |
+| 1093 | as005h | 0 | +0 | 0 | - | 1 | att.com |
+| 1094 | asgar | 0 | +0 | 0 | - | 2 | ibm.com |
+| 1095 | atulan | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1096 | atulpurohit | 0 | +0 | 0 | - | 2 | vodafone.com |
+| 1097 | avigaffa | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 1098 | avinash.akkera | 0 | +0 | 0 | - | 1 | accenture.com |
+| 1099 | ayalaben | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 1100 | barak | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1101 | bb3476 | 0 | +0 | 0 | - | 2 | att.com |
+| 1102 | bdfreeman1421 | 0 | +0 | 0 | - | 1 | att.com |
+| 1103 | beili.zhou | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 1104 | bencheung | 0 | +0 | 0 | - | 3 | nokia.com |
+| 1105 | bharath | 0 | +0 | 0 | - | 3 | hotmail.com |
+| 1106 | bhedstrom | 0 | +0 | 0 | - | 2 | oamtechnologies.com |
+| 1107 | biancunkang | 0 | +0 | 0 | - | 2 | zte.com.cn |
+| 1108 | bilal.iqbal | 0 | +0 | 0 | - | 3 | est.tech |
+| 1109 | biniek | 0 | +0 | 0 | - | 6 | nokia.com |
+| 1110 | biswajit.deswali | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1111 | bmiklos | 0 | +0 | 0 | - | 1 | est.tech |
+| 1112 | bobbymander | 0 | +0 | 0 | - | 1 | att.com |
+| 1113 | bran-wang | 0 | +0 | 0 | - | 1 | vmware.com |
+| 1114 | brucetcisco | 0 | +0 | 0 | - | 2 | cisco.com |
+| 1115 | brunomilitzer | 0 | +0 | 0 | - | 3 | est.tech |
+| 1116 | bt2983 | 0 | +0 | 0 | - | 4 | att.com |
+| 1117 | burdziak | 0 | +0 | 0 | - | 10 | nokia.com |
+| 1118 | cb478c | 0 | +0 | 0 | - | 1 | att.com |
+| 1119 | chandana.g.n | 0 | +0 | 0 | - | 1 | accenture.com |
+| 1120 | chenjie1 | 0 | +0 | 0 | - | 2 | intel.com |
+| 1121 | chenkai | 0 | +0 | 0 | - | 1 | fiberhome.com |
+| 1122 | chenying83 | 0 | +0 | 0 | - | 2 | huawei.com |
+| 1123 | chrisreece | 0 | +0 | 0 | - | 1 | awardsolutions.com |
+| 1124 | chsailakshmi | 0 | +0 | 0 | - | 1 | aarnanetworks.com |
+| 1125 | cluckenbaugh | 0 | +0 | 0 | - | 1 | att.com |
+| 1126 | cmrizhangzhen | 0 | +0 | 0 | - | 4 | qq.com |
+| 1127 | colvert | 0 | +0 | 0 | - | 2 | gmail.com |
+| 1128 | cyuamber | 0 | +0 | 0 | - | 5 | chinamobile.com |
+| 1129 | dasarathi528024 | 0 | +0 | 0 | - | 1 | techmahindra.com |
+| 1130 | dave.adams (da490c) | 0 | +0 | 0 | - | 6 | amdocs.com |
+| 1131 | david.mcweeney | 0 | +0 | 0 | - | 12 | est.tech |
+| 1132 | davsad | 0 | +0 | 0 | - | 1 | est.tech |
+| 1133 | decheng zhang | 0 | +0 | 0 | - | 8 | huawei.com |
+| 1134 | deen1985 | 0 | +0 | 0 | - | 13 | nokia.com |
+| 1135 | deepikasatheesh | 0 | +0 | 0 | - | 8 | wipro.com |
+| 1136 | dekstroza | 0 | +0 | 0 | - | 2 | ericsson.com |
+| 1137 | demskeq8 | 0 | +0 | 0 | - | 2 | highstreet-technologies.com |
+| 1138 | demx8as6 | 0 | +0 | 0 | - | 1 | highstreet-technologies.com |
+| 1139 | denghui (L) | 0 | +0 | 0 | - | 1 | huawei.com |
+| 1140 | denglingli | 0 | +0 | 0 | - | 2 | chinamobile.com |
+| 1141 | denilson.l65 | 0 | +0 | 0 | - | 6 | wipro.com |
+| 1142 | dermot123 | 0 | +0 | 0 | - | 2 | est.tech |
+| 1143 | dfarrelly | 0 | +0 | 0 | - | 9 | est.tech |
+| 1144 | dfilppi | 0 | +0 | 0 | - | 3 | cloudify.co |
+| 1145 | dfilppi | 0 | +0 | 0 | - | 1 | gigaspaces.com |
+| 1146 | dfx1971 | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 1147 | dg5762 | 0 | +0 | 0 | - | 2 | att.com |
+| 1148 | dgermain | 0 | +0 | 0 | - | 1 | cgi.com |
+| 1149 | dharani | 0 | +0 | 0 | - | 1 | wipro.com |
+| 1150 | dhebeha | 0 | +0 | 0 | - | 4 | wipro.com |
+| 1151 | dinesha | 0 | +0 | 0 | - | 2 | ibm.com |
+| 1152 | dkamdocs | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1153 | drveerendra | 0 | +0 | 0 | - | 2 | att.com |
+| 1154 | dsingh.278 | 0 | +0 | 0 | - | 1 | gmail.com |
+| 1155 | dyh | 0 | +0 | 0 | - | 7 | chinamobile.com |
+| 1156 | eHanan | 0 | +0 | 0 | - | 5 | est.tech |
+| 1157 | earthmant | 0 | +0 | 0 | - | 1 | cloudify.co |
+| 1158 | ebo | 0 | +0 | 0 | - | 5 | est.tech |
+| 1159 | ecaiyanlinux | 0 | +0 | 0 | - | 8 | est.tech |
+| 1160 | econwar | 0 | +0 | 0 | - | 6 | est.tech |
+| 1161 | ed852m | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1162 | edepaul | 0 | +0 | 0 | - | 2 | est.tech |
+| 1163 | eeginux | 0 | +0 | 0 | - | 4 | est.tech |
+| 1164 | efiacor | 0 | +0 | 0 | - | 29 | est.tech |
+| 1165 | eh552t | 0 | +0 | 0 | - | 9 | att.com |
+| 1166 | eh552t | 0 | +0 | 0 | - | 1 | att.com |
+| 1167 | eikrwaq | 0 | +0 | 0 | - | 9 | ericsson.com |
+| 1168 | ejamcud | 0 | +0 | 0 | - | 2 | est.tech |
+| 1169 | eleonorali | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 1170 | emartin | 0 | +0 | 0 | - | 5 | est.tech |
+| 1171 | enyinna1234 | 0 | +0 | 0 | - | 3 | intel.com |
+| 1172 | erlei | 0 | +0 | 0 | - | 1 | zte.com.cn |
+| 1173 | eronkeo | 0 | +0 | 0 | - | 4 | est.tech |
+| 1174 | eschcam | 0 | +0 | 0 | - | 2 | est.tech |
+| 1175 | esobmar | 0 | +0 | 0 | - | 3 | est.tech |
+| 1176 | esobmar | 0 | +0 | 0 | - | 2 | ericsson.com |
+| 1177 | eyalholz | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 1178 | ezhil | 0 | +0 | 0 | - | 7 | ibm.com |
+| 1179 | farida azmy | 0 | +0 | 0 | - | 2 | orange.com |
+| 1180 | fengyuanxing | 0 | +0 | 0 | - | 4 | zte.com.cn |
+| 1181 | fpaquett | 0 | +0 | 0 | - | 7 | amdocs.com |
+| 1182 | franciscovila | 0 | +0 | 0 | - | 1 | est.tech |
+| 1183 | frederic desnoes | 0 | +0 | 0 | - | 1 | orange.com |
+| 1184 | fujinhua | 0 | +0 | 0 | - | 8 | zte.com.cn |
+| 1185 | fzhang | 0 | +0 | 0 | - | 2 | ericsson.com |
+| 1186 | gabe.maurer | 0 | +0 | 0 | - | 1 | att.com |
+| 1187 | gaurav | 0 | +0 | 0 | - | 7 | huawei.com |
+| 1188 | gautamk189 | 0 | +0 | 0 | - | 1 | hcl.com |
+| 1189 | git config --global user.name | 0 | +0 | 0 | - | 3 | samsung.com |
+| 1190 | gjaibm1314 | 0 | +0 | 0 | - | 1 | qq.com |
+| 1191 | gongjief | 0 | +0 | 0 | - | 1 | isoftstone.com |
+| 1192 | grabinsk | 0 | +0 | 0 | - | 3 | nokia.com |
+| 1193 | gregory.hayes | 0 | +0 | 0 | - | 3 | est.tech |
+| 1194 | gummar | 0 | +0 | 0 | - | 5 | est.tech |
+| 1195 | guochong | 0 | +0 | 0 | - | 3 | chinamobile.com |
+| 1196 | h00397475 | 0 | +0 | 0 | - | 1 | huawei.com |
+| 1197 | hanybaki | 0 | +0 | 0 | - | 4 | orange.com |
+| 1198 | hariharan97 | 0 | +0 | 0 | - | 4 | wipro.com |
+| 1199 | hb123f | 0 | +0 | 0 | - | 1 | att.com |
+| 1200 | hb123f | 0 | +0 | 0 | - | 2 | att.com |
+| 1201 | hetengjiao | 0 | +0 | 0 | - | 3 | chinamobile.com |
+| 1202 | hewei-cmss | 0 | +0 | 0 | - | 1 | chinamobile.com |
+| 1203 | hongyu zhao | 0 | +0 | 0 | - | 2 | zte.com.cn |
+| 1204 | hthieu | 0 | +0 | 0 | - | 1 | nokia-bell-labs.com |
+| 1205 | huangsam | 0 | +0 | 0 | - | 3 | 163.com |
+| 1206 | huaxing | 0 | +0 | 0 | - | 5 | est.tech |
+| 1207 | hyu2010 | 0 | +0 | 0 | - | 3 | gmail.com |
+| 1208 | hyu2010 | 0 | +0 | 0 | - | 2 | huawei.com |
+| 1209 | ig6133 | 0 | +0 | 0 | - | 3 | att.com |
+| 1210 | imamSidero | 0 | +0 | 0 | - | 1 | est.tech |
+| 1211 | ingitk | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1212 | isaac | 0 | +0 | 0 | - | 4 | att.com |
+| 1213 | j.blixt | 0 | +0 | 0 | - | 1 | samsung.com |
+| 1214 | janani b | 0 | +0 | 0 | - | 8 | huawei.com |
+| 1215 | jasmineWen | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 1216 | jbalasub | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 1217 | jczestochowska | 0 | +0 | 0 | - | 1 | nokia.com |
+| 1218 | jeanluc-auge | 0 | +0 | 0 | - | 1 | orange.com |
+| 1219 | jegadeeshbabu1 | 0 | +0 | 0 | - | 3 | ibm.com |
+| 1220 | jh7358 | 0 | +0 | 0 | - | 9 | att.com |
+| 1221 | jhh | 0 | +0 | 0 | - | 19 | att.com |
+| 1222 | jingjincs | 0 | +0 | 0 | - | 1 | gmail.com |
+| 1223 | jinquanni | 0 | +0 | 0 | - | 4 | zte.com.cn |
+| 1224 | jitendra sharma | 0 | +0 | 0 | - | 3 | huawei.com |
+| 1225 | jjewitt58 | 0 | +0 | 0 | - | 2 | oamtechnologies.com |
+| 1226 | joquiltyL | 0 | +0 | 0 | - | 2 | ericsson.com |
+| 1227 | joxu | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1228 | jsbeaulac | 0 | +0 | 0 | - | 1 | ericsson.com |
+| 1229 | jsseidel | 0 | +0 | 0 | - | 1 | att.com |
+| 1230 | jsseidel | 0 | +0 | 0 | - | 1 | fastmail.com |
+| 1231 | juhi arora | 0 | +0 | 0 | - | 1 | cgi.com |
+| 1232 | jwang5 | 0 | +0 | 0 | - | 1 | huawei.com |
+| 1233 | jz385p | 0 | +0 | 0 | - | 1 | att.com |
+| 1234 | k.kazak | 0 | +0 | 0 | - | 4 | samsung.com |
+| 1235 | k.kedron | 0 | +0 | 0 | - | 19 | samsung.com |
+| 1236 | karbon | 0 | +0 | 0 | - | 1 | chinatelecom.cn |
+| 1237 | katy.rotman | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 1238 | kevin.tang | 0 | +0 | 0 | - | 1 | gmail.com |
+| 1239 | kevin.tang | 0 | +0 | 0 | - | 1 | stl.tech |
+| 1240 | kevinmcdonnell | 0 | +0 | 0 | - | 1 | huawei.com |
+| 1241 | kiranya | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 1242 | kishore | 0 | +0 | 0 | - | 3 | att.com |
+| 1243 | kissand | 0 | +0 | 0 | - | 1 | est.tech |
+| 1244 | kjaniak | 0 | +0 | 0 | - | 11 | nokia.com |
+| 1245 | koblosz | 0 | +0 | 0 | - | 4 | nokia.com |
+| 1246 | kooper | 0 | +0 | 0 | - | 3 | est.tech |
+| 1247 | kosewski | 0 | +0 | 0 | - | 1 | nokia.com |
+| 1248 | kranthi guttikonda | 0 | +0 | 0 | - | 1 | gmail.com |
+| 1249 | kranthikirang | 0 | +0 | 0 | - | 3 | b-yond.com |
+| 1250 | krickwix | 0 | +0 | 0 | - | 1 | gmail.com |
+| 1251 | krishna | 0 | +0 | 0 | - | 10 | wipro.com |
+| 1252 | krishnaa96 | 0 | +0 | 0 | - | 1 | gmail.com |
+| 1253 | krishnajinka | 0 | +0 | 0 | - | 4 | gmail.com |
+| 1254 | ksinghn247 | 0 | +0 | 0 | - | 1 | hcl.com |
+| 1255 | ktimoney | 0 | +0 | 0 | - | 8 | est.tech |
+| 1256 | kuldipr | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 1257 | kurczews | 0 | +0 | 0 | - | 8 | nokia.com |
+| 1258 | laili | 0 | +0 | 0 | - | 2 | zte.com.cn |
+| 1259 | lalena.aria | 0 | +0 | 0 | - | 5 | att.com |
+| 1260 | leila | 0 | +0 | 0 | - | 4 | bell.ca |
+| 1261 | lgrech | 0 | +0 | 0 | - | 2 | nokia.com |
+| 1262 | liamfallon | 0 | +0 | 0 | - | 17 | est.tech |
+| 1263 | liamfallon | 0 | +0 | 0 | - | 10 | ericsson.com |
+| 1264 | liangke | 0 | +0 | 0 | - | 8 | 163.com |
+| 1265 | liboNet | 0 | +0 | 0 | - | 10 | intel.com |
+| 1266 | liboz | 0 | +0 | 0 | - | 2 | arris.com |
+| 1267 | libujacob | 0 | +0 | 0 | - | 1 | huawei.com |
+| 1268 | lishitao | 0 | +0 | 0 | - | 1 | huawei.com |
+| 1269 | liuqian | 0 | +0 | 0 | - | 1 | huawei.com |
+| 1270 | liuwh7 | 0 | +0 | 0 | - | 1 | asiainfo.com |
+| 1271 | liuyuan | 0 | +0 | 0 | - | 1 | chinamobile.com |
+| 1272 | liying_cmcc | 0 | +0 | 0 | - | 2 | chinamobile.com |
+| 1273 | luna | 0 | +0 | 0 | - | 2 | vmware.com |
+| 1274 | luxin | 0 | +0 | 0 | - | 6 | huawei.com |
+| 1275 | lvqidi | 0 | +0 | 0 | - | 1 | chinamobile.com |
+| 1276 | m.kowalski3 | 0 | +0 | 0 | - | 4 | samsung.com |
+| 1277 | m.miernik | 0 | +0 | 0 | - | 1 | samsung.com |
+| 1278 | ma987d | 0 | +0 | 0 | - | 1 | att.com |
+| 1279 | malar | 0 | +0 | 0 | - | 7 | wipro.com |
+| 1280 | manisha07 | 0 | +0 | 0 | - | 2 | ibm.com |
+| 1281 | maopeng zhang | 0 | +0 | 0 | - | 8 | zte.com.cn |
+| 1282 | marcin krasowski | 0 | +0 | 0 | - | 1 | krasm.net |
+| 1283 | marcinrzepeckiwroc | 0 | +0 | 0 | - | 8 | nokia.com |
+| 1284 | marekpl | 0 | +0 | 0 | - | 6 | nokia.com |
+| 1285 | marge.hillis | 0 | +0 | 0 | - | 1 | nokia.com |
+| 1286 | marian.vaclavik@telekom.com | 0 | +0 | 0 | - | 1 | telekom.com |
+| 1287 | marineMD | 0 | +0 | 0 | - | 15 | att.com |
+| 1288 | marios.iakovidis | 0 | +0 | 0 | - | 1 | huawei.com |
+| 1289 | mark.j.leonard | 0 | +0 | 0 | - | 8 | gmail.com |
+| 1290 | marvinYu | 0 | +0 | 0 | - | 2 | intel.com |
+| 1291 | matthew-mcneilly | 0 | +0 | 0 | - | 1 | est.tech |
+| 1292 | maximesson | 0 | +0 | 0 | - | 6 | est.tech |
+| 1293 | mayankg2703 | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 1294 | mayankg2703 | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 1295 | meriem zidane | 0 | +0 | 0 | - | 1 | bell.ca |
+| 1296 | mharazin | 0 | +0 | 0 | - | 7 | nokia.com |
+| 1297 | micdzied | 0 | +0 | 0 | - | 6 | nokia.com |
+| 1298 | michaere | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 1299 | minfanyang | 0 | +0 | 0 | - | 1 | zte.com.cn |
+| 1300 | miriame | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 1301 | miroslav.masaryk | 0 | +0 | 0 | - | 1 | telekom.com |
+| 1302 | mkerrigan | 0 | +0 | 0 | - | 2 | est.tech |
+| 1303 | mkidd | 0 | +0 | 0 | - | 1 | est.tech |
+| 1304 | ml636r | 0 | +0 | 0 | - | 3 | att.com |
+| 1305 | mmis | 0 | +0 | 0 | - | 10 | ericsson.com |
+| 1306 | mojahidi | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 1307 | morganrol | 0 | +0 | 0 | - | 36 | orange.com |
+| 1308 | ms236b | 0 | +0 | 0 | - | 2 | att.com |
+| 1309 | mukesh.landge@t-systems.com | 0 | +0 | 0 | - | 1 | t-systems.com |
+| 1310 | nadeeshani.jayathilake | 0 | +0 | 0 | - | 2 | est.tech |
+| 1311 | nagu | 0 | +0 | 0 | - | 1 | infosys.com |
+| 1312 | nandkumar | 0 | +0 | 0 | - | 1 | techmahindra.com |
+| 1313 | necuser | 0 | +0 | 0 | - | 5 | hotmail.com |
+| 1314 | niamhcore | 0 | +0 | 0 | - | 3 | est.tech |
+| 1315 | ning.xi | 0 | +0 | 0 | - | 6 | est.tech |
+| 1316 | nitincg | 0 | +0 | 0 | - | 1 | capgemini.com |
+| 1317 | nkshankar | 0 | +0 | 0 | - | 1 | gmail.com |
+| 1318 | noahs | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 1319 | noahs | 0 | +0 | 0 | - | 2 | gmail.com |
+| 1320 | nrpandya | 0 | +0 | 0 | - | 2 | att.com |
+| 1321 | od7427 | 0 | +0 | 0 | - | 1 | att.com |
+| 1322 | onapuser | 0 | +0 | 0 | - | 1 | localhost.local |
+| 1323 | osgn422w | 0 | +0 | 0 | - | 6 | att.com |
+| 1324 | osgn422w | 0 | +0 | 0 | - | 3 | att.com |
+| 1325 | osinstom | 0 | +0 | 0 | - | 1 | gmail.com |
+| 1326 | othman touijer | 0 | +0 | 0 | - | 2 | soprasteria.com |
+| 1327 | ottero | 0 | +0 | 0 | - | 3 | est.tech |
+| 1328 | pa834y | 0 | +0 | 0 | - | 1 | att.com |
+| 1329 | pawel.kadlubanski | 0 | +0 | 0 | - | 3 | nokia.com |
+| 1330 | paweldenst | 0 | +0 | 0 | - | 5 | t-mobile.pl |
+| 1331 | pbiniek | 0 | +0 | 0 | - | 4 | nokia.com |
+| 1332 | phani.y | 0 | +0 | 0 | - | 3 | huawei.com |
+| 1333 | piclose | 0 | +0 | 0 | - | 2 | att.com |
+| 1334 | pkaras | 0 | +0 | 0 | - | 7 | nokia.com |
+| 1335 | pprakhar | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1336 | pradip01 | 0 | +0 | 0 | - | 1 | amdocs.com |
+| 1337 | prakash.e | 0 | +0 | 0 | - | 5 | huawei.com |
+| 1338 | pramod | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 1339 | pramod.jamkhedkar | 0 | +0 | 0 | - | 3 | att.com |
+| 1340 | pranavdi | 0 | +0 | 0 | - | 4 | amdocs.com |
+| 1341 | pranitk1905 | 0 | +0 | 0 | - | 8 | t-systems.com |
+| 1342 | prashank | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 1343 | prathamesh | 0 | +0 | 0 | - | 3 | yahoo.ca |
+| 1344 | prathamesh morde | 0 | +0 | 0 | - | 5 | bell.ca |
+| 1345 | priyanka.akhade | 0 | +0 | 0 | - | 2 | huawei.com |
+| 1346 | pswang | 0 | +0 | 0 | - | 2 | gmail.com |
+| 1347 | puthuparambil.aditya | 0 | +0 | 0 | - | 12 | bell.ca |
+| 1348 | qiang zu | 0 | +0 | 0 | - | 2 | gmail.com |
+| 1349 | qingshuting | 0 | +0 | 0 | - | 9 | huawei.com |
+| 1350 | r.bogacki | 0 | +0 | 0 | - | 5 | samsung.com |
+| 1351 | rajeevme | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 1352 | rajendrajaiswal | 0 | +0 | 0 | - | 12 | ericsson.com |
+| 1353 | rajeshkalai | 0 | +0 | 0 | - | 3 | amdocs.com |
+| 1354 | rama-huawei | 0 | +0 | 0 | - | 11 | huawei.com |
+| 1355 | ramagp | 0 | +0 | 0 | - | 7 | aarnanetworks.com |
+| 1356 | ramamani yeleswarapu | 0 | +0 | 0 | - | 2 | intel.com |
+| 1357 | ramanjaneya | 0 | +0 | 0 | - | 5 | huawei.com |
+| 1358 | ramki krishnan | 0 | +0 | 0 | - | 1 | gmail.com |
+| 1359 | ramu.n | 0 | +0 | 0 | - | 8 | huawei.com |
+| 1360 | ramverma | 0 | +0 | 0 | - | 15 | est.tech |
+| 1361 | ramverma | 0 | +0 | 0 | - | 9 | ericsson.com |
+| 1362 | ramya | 0 | +0 | 0 | - | 2 | wipro.com |
+| 1363 | ranpollak | 0 | +0 | 0 | - | 2 | amdocs.com |
+| 1364 | rb7147 | 0 | +0 | 0 | - | 2 | att.com |
+| 1365 | renealr | 0 | +0 | 0 | - | 6 | amdocs.com |
+| 1366 | rl001m | 0 | +0 | 0 | - | 1 | att.com |
+| 1367 | rn509j | 0 | +0 | 0 | - | 1 | att.com |
+| 1368 | robert.tomczyk | 0 | +0 | 0 | - | 1 | est.tech |
+| 1369 | roger yuan | 0 | +0 | 0 | - | 3 | yoppworks.com |
+| 1370 | rokenny | 0 | +0 | 0 | - | 2 | est.tech |
+| 1371 | romaingimbert | 0 | +0 | 0 | - | 1 | orange.com |
+| 1372 | root | 0 | +0 | 0 | - | 1 | nsn-intra.net |
+| 1373 | root | 0 | +0 | 0 | - | 1 | kosmos-ranczer.novalocal |
+| 1374 | root | 0 | +0 | 0 | - | 3 | fujitsu.com |
+| 1375 | root | 0 | +0 | 0 | - | 1 | att.com |
+| 1376 | root | 0 | +0 | 0 | - | 1 | cloudapp.net |
+| 1377 | root | 0 | +0 | 0 | - | 1 | intel.com |
 | 1378 | root@nfs | 0 | +0 | 0 | - | 1 | nfs |
 | 1379 | root@rancher | 0 | +0 | 0 | - | 2 | rancher |
 | 1380 | rope252 | 0 | +0 | 0 | - | 7 | est.tech |
@@ -1703,8 +1703,8 @@
 | policy/xacml-pdp | 33 | +2633 | 5 | 16 | 2025-11-05 | ✅ |
 | portal-ng/bff | 33 | +74 | 5 | 15 | 2025-11-06 | ✅ |
 | policy/drools-pdp | 31 | +154 | 4 | 16 | 2025-11-05 | ✅ |
-| aai/graphadmin | 29 | -610 | 8 | 15 | 2025-11-06 | ✅ |
 | aai/traversal | 29 | +2047 | 10 | 15 | 2025-11-06 | ✅ |
+| aai/graphadmin | 28 | -617 | 8 | 15 | 2025-11-06 | ✅ |
 | aai/resources | 28 | -441 | 7 | 1 | 2025-11-20 | ✅ |
 | ccsdk/parent | 27 | +2358 | 10 | 8 | 2025-11-13 | ✅ |
 | usecase-ui | 27 | +4083 | 4 | 100 | 2025-08-13 | ✅ |
@@ -1888,8 +1888,8 @@
 | portal-ng/bff | gradle | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ |
 | policy/xacml-pdp | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | policy/drools-pdp | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
-| aai/graphadmin | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | aai/traversal | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
+| aai/graphadmin | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | aai/resources | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | ccsdk/parent | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | usecase-ui | maven | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ |
@@ -1912,8 +1912,8 @@
 | portal-ng/preferences | gradle | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | testsuite | python | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | aai/babel | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
-| integration/xtesting | python | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | multicloud/framework | maven | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ |
+| integration/xtesting | python | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | aai/model-loader | maven | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ |
 | sdnc/oam | maven | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ |
 | multicloud/k8s | None | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ |
@@ -1941,12 +1941,12 @@
 | doc/doc-best-practice | None | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | testsuite/cds-mock-odl | None | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ |
 | sdnc/apps | maven | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
-| logging-analytics | maven | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | portal-ng | None | ✅ | ❌ | ❌ | ✅ | ✅ | ✅ |
+| logging-analytics | maven | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | integration | None | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | dcaegen2/analytics/tca-gen2 | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
-| dcaegen2/collectors/restconf | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | dcaegen2/collectors/hv-ves | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
+| dcaegen2/collectors/restconf | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | integration/simulators/nf-simulator/netconf-server | docker | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | dcaegen2/platform/ves-openapi-manager | docker | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | dcaegen2/services/mapper | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
@@ -1956,8 +1956,8 @@
 | integration/simulators/core-nssmf-simulator | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | integration/simulators/ran-nssmf-simulator | None | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | multicloud/openstack/windriver | None | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
-| vfc/nfvo/db | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | oom/platform/keycloak | None | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
+| vfc/nfvo/db | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | aai/graphgraph | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | aai/logging-service | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | aai/rest-client | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
@@ -1965,8 +1965,8 @@
 | dcaegen2/utils | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | integration/csit | None | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | integration/ietf-actn-tools | None | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
-| integration/data-provider | python | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | dcaegen2/services | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
+| integration/data-provider | python | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | multicloud/openstack | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | integration/onap-component-simulators | None | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | modeling/modelspec | None | ✅ | ❌ | ✅ | ✅ | ❌ | ✅ |
@@ -1985,8 +1985,8 @@
 | oparent | maven | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | relman | None | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | integration/simulators/nf-simulator/pm-https-server | docker | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| dcaegen2/collectors/snmptrap | python | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | integration/simulators/nf-simulator/avcn-manager | maven | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| dcaegen2/collectors/snmptrap | python | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | dcaegen2/services/heartbeat | python | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | dcaegen2/collectors/ves | maven | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | integration/docker/onap-java11 | docker | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
@@ -1994,21 +1994,21 @@
 | dcaegen2/services/sdk | maven | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | dcaegen2/services/son-handler | maven | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
 | integration/docker/onap-python | docker | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
-| integration/simulators/nf-simulator | maven | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
+| integration/pipelines/oom-automatic-installation | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | integration/pipelines/chained-ci | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
 | integration/pipelines/xtesting-onap | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
-| integration/pipelines/oom-automatic-installation | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
+| integration/simulators/nf-simulator | maven | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
 | integration/simulators/ran-app | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
 | integration/simulators/ran-simulator | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
 | oom/platform/cert-manager | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | multicloud/openstack/vmware | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| oom/platform/cert-service | maven | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | aai/oom | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| oom/platform/cert-service | maven | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | dcaegen2/deployments | maven | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | dmaap/buscontroller | maven | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
-| dmaap/datarouter | maven | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | integration/seccom | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
 | dmaap/kafka11aaf | maven | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
+| dmaap/datarouter | maven | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | oom/consul | docker | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | oom/offline-installer | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | msb/service-mesh | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
@@ -2026,24 +2026,24 @@
 | vnfrqts/requirements | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | vnfsdk/lctest | maven | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | vnfrqts/guidelines | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| vnfrqts/testcases | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | vnfrqts/usecases | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
-| vnfsdk/model | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
+| vnfrqts/testcases | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | vnfsdk/pkgtools | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| vnfsdk/model | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | aai | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | dmaap | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ccsdk | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | holmes | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ccsdk | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | multicloud | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| osa | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | msb | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| osa | None | ❌ | ❌ | ✅ | ✅ | ❌ | ☑️ |
 | policy | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| sandbox-3 | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | sandbox-2 | maven | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| sandbox-3 | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | sdnc | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | university | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| vnfrqts | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | vfc | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| vnfrqts | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | vnfsdk | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 
 ## 🏁 Deployed CI/CD Jobs
@@ -2074,7 +2074,7 @@
 | ccsdk/oran | <a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-ccsdk-oran/actions/workflows/gerrit-merge-cbom.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-merge-cbom.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-ccsdk-oran/actions/workflows/gerrit-oran-functional-test-case-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-oran-functional-test-case-verify.yaml</span></a> | 2 | <a href="https://jenkins.onap.org/job/ccsdk-oran-maven-verify-oslo-mvn38-openjdk17/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-maven-verify-oslo-mvn38-openjdk17</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-verify-newdelhi-mvn38-openjdk17/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-oran-maven-verify-newdelhi-mvn38-openjdk17</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-merge-oslo/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-maven-merge-oslo</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-merge-newdelhi/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-maven-merge-newdelhi</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-oran-maven-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-stage-newdelhi/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-maven-stage-newdelhi</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-docker-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-oran-maven-docker-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-docker-stage-newdelhi/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-maven-docker-stage-newdelhi</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-release-verify-oslo/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-oran-release-verify-oslo</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-release-verify-newdelhi/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-release-verify-newdelhi</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-release-merge-oslo/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-oran-release-merge-oslo</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-release-merge-newdelhi/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-release-merge-newdelhi</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-verify-master-mvn39-openjdk21/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-maven-verify-master-mvn39-openjdk21</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-verify-paris-mvn39-openjdk21/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-maven-verify-paris-mvn39-openjdk21</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-merge-master/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-maven-merge-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-merge-paris/" target="_blank"><span class="status-failure jenkins-status">ccsdk-oran-maven-merge-paris</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-stage-master/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-maven-stage-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-stage-paris/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-maven-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-docker-stage-master/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-maven-docker-stage-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-docker-stage-paris/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-oran-maven-docker-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-release-verify-master/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-release-verify-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-release-verify-paris/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-oran-release-verify-paris</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-release-merge-master/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-release-merge-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-release-merge-paris/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-oran-release-merge-paris</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-maven-clm-master/" target="_blank"><span class="status-failure jenkins-status">ccsdk-oran-maven-clm-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-sonar/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-sonar</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-merge-verification-maven-master/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-merge-verification-maven-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-merge-verification-maven-newdelhi/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-merge-verification-maven-newdelhi</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-merge-verification-maven-oslo/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-merge-verification-maven-oslo</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-merge-verification-maven-paris/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-merge-verification-maven-paris</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-review-verification-maven-master/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-review-verification-maven-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-review-verification-maven-newdelhi/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-review-verification-maven-newdelhi</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-review-verification-maven-oslo/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-review-verification-maven-oslo</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-oran-review-verification-maven-paris/" target="_blank"><span class="status-success jenkins-status">ccsdk-oran-review-verification-maven-paris</span></a> | 34 |
 | ccsdk/parent | <a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-ccsdk-parent/actions/workflows/gerrit-merge-cbom.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-merge-cbom.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-ccsdk-parent/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 2 | <a href="https://jenkins.onap.org/job/ccsdk-parent-maven-verify-oslo-mvn38-openjdk17/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-maven-verify-oslo-mvn38-openjdk17</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-maven-verify-newdelhi-mvn38-openjdk17/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-parent-maven-verify-newdelhi-mvn38-openjdk17</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-maven-merge-oslo/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-maven-merge-oslo</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-maven-merge-newdelhi/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-maven-merge-newdelhi</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-maven-stage-oslo/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-maven-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-maven-stage-newdelhi/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-maven-stage-newdelhi</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-release-verify-oslo/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-release-verify-oslo</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-release-verify-newdelhi/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-release-verify-newdelhi</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-release-merge-oslo/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-release-merge-oslo</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-release-merge-newdelhi/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-release-merge-newdelhi</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-maven-verify-paris-mvn39-openjdk21/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-maven-verify-paris-mvn39-openjdk21</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-maven-verify-master-mvn39-openjdk21/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-maven-verify-master-mvn39-openjdk21</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-maven-merge-paris/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-maven-merge-paris</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-maven-merge-master/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-maven-merge-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-maven-stage-paris/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-parent-maven-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-maven-stage-master/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-maven-stage-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-release-verify-paris/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-parent-release-verify-paris</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-release-verify-master/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-release-verify-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-release-merge-paris/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-parent-release-merge-paris</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-release-merge-master/" target="_blank"><span class="status-success jenkins-status">ccsdk-parent-release-merge-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-parent-maven-clm-master/" target="_blank"><span class="status-failure jenkins-status">ccsdk-parent-maven-clm-master</span></a> | 21 |
 | ccsdk/sli | <a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-ccsdk-sli/actions/workflows/clm-scan.yaml" target="_blank"><span class="status-unknown workflow-status">clm-scan.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-ccsdk-sli/actions/workflows/gerrit-merge-cbom.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-merge-cbom.yaml</span></a> | 2 | <a href="https://jenkins.onap.org/job/ccsdk-sli-maven-verify-oslo-mvn38-openjdk17/" target="_blank"><span class="status-success jenkins-status">ccsdk-sli-maven-verify-oslo-mvn38-openjdk17</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-maven-verify-newdelhi-mvn38-openjdk17/" target="_blank"><span class="status-success jenkins-status">ccsdk-sli-maven-verify-newdelhi-mvn38-openjdk17</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-maven-merge-oslo/" target="_blank"><span class="status-success jenkins-status">ccsdk-sli-maven-merge-oslo</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-maven-merge-newdelhi/" target="_blank"><span class="status-success jenkins-status">ccsdk-sli-maven-merge-newdelhi</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-maven-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-sli-maven-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-maven-stage-newdelhi/" target="_blank"><span class="status-success jenkins-status">ccsdk-sli-maven-stage-newdelhi</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-release-verify-oslo/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-sli-release-verify-oslo</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-release-verify-newdelhi/" target="_blank"><span class="status-success jenkins-status">ccsdk-sli-release-verify-newdelhi</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-release-merge-oslo/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-sli-release-merge-oslo</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-release-merge-newdelhi/" target="_blank"><span class="status-success jenkins-status">ccsdk-sli-release-merge-newdelhi</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-current-maven-verify-master-mvn39-openjdk21/" target="_blank"><span class="status-success jenkins-status">ccsdk-sli-current-maven-verify-master-mvn39-openjdk21</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-current-maven-verify-paris-mvn39-openjdk21/" target="_blank"><span class="status-success jenkins-status">ccsdk-sli-current-maven-verify-paris-mvn39-openjdk21</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-current-maven-merge-master/" target="_blank"><span class="status-success jenkins-status">ccsdk-sli-current-maven-merge-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-current-maven-merge-paris/" target="_blank"><span class="status-success jenkins-status">ccsdk-sli-current-maven-merge-paris</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-current-maven-stage-master/" target="_blank"><span class="status-success jenkins-status">ccsdk-sli-current-maven-stage-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-current-maven-stage-paris/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-sli-current-maven-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-current-release-verify-master/" target="_blank"><span class="status-success jenkins-status">ccsdk-sli-current-release-verify-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-current-release-verify-paris/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-sli-current-release-verify-paris</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-current-release-merge-master/" target="_blank"><span class="status-success jenkins-status">ccsdk-sli-current-release-merge-master</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-current-release-merge-paris/" target="_blank"><span class="status-unknown jenkins-status">ccsdk-sli-current-release-merge-paris</span></a><br><a href="https://jenkins.onap.org/job/ccsdk-sli-sonar/" target="_blank"><span class="status-success jenkins-status">ccsdk-sli-sonar</span></a> | 21 |
-| ci-management | <a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-ci-management/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-ci-management/actions/workflows/gerrit-ci-management-merge.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-ci-management-merge.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-ci-management/actions/workflows/gerrit-ci-management-novote-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-ci-management-novote-verify.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-ci-management/actions/workflows/gerrit-ci-management-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-ci-management-verify.yaml</span></a> | 4 | <a href="https://jenkins.onap.org/job/ci-management-jenkins-cfg-verify/" target="_blank"><span class="status-success jenkins-status">ci-management-jenkins-cfg-verify</span></a><br><a href="https://jenkins.onap.org/job/ci-management-jenkins-sandbox-cleanup/" target="_blank"><span class="status-failure jenkins-status">ci-management-jenkins-sandbox-cleanup</span></a><br><a href="https://jenkins.onap.org/job/ci-management-jjb-deploy-job/" target="_blank"><span class="status-success jenkins-status">ci-management-jjb-deploy-job</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-verify</span></a><br><a href="https://jenkins.onap.org/job/ci-management-openstack-cron/" target="_blank"><span class="status-success jenkins-status">ci-management-openstack-cron</span></a><br><a href="https://jenkins.onap.org/job/ci-management-openstack-update-cloud-image/" target="_blank"><span class="status-failure jenkins-status">ci-management-openstack-update-cloud-image</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-centos-7-docker/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-centos-7-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-centos-cs-8-builder/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-centos-cs-8-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-centos-cs-8-devstack/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-centos-cs-8-devstack</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-centos-cs-8-devstack-pre-pip-yoga/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-centos-cs-8-devstack-pre-pip-yoga</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-centos-cs-8-docker/" target="_blank"><span class="status-failure jenkins-status">ci-management-packer-merge-centos-cs-8-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-centos-cs-8-redis/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-merge-centos-cs-8-redis</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-18.04-builder/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-18.04-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-18.04-docker/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-18.04-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-20.04-builder/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-20.04-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-20.04-devstack/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-20.04-devstack</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-20.04-docker/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-20.04-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-20.04-helm/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-20.04-helm</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-20.04-memcached/" target="_blank"><span class="status-failure jenkins-status">ci-management-packer-merge-ubuntu-20.04-memcached</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-22.04-builder/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-22.04-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-22.04-devstack/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-22.04-devstack</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-22.04-docker/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-22.04-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-22.04-helm/" target="_blank"><span class="status-failure jenkins-status">ci-management-packer-merge-ubuntu-22.04-helm</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-22.04-memcached/" target="_blank"><span class="status-failure jenkins-status">ci-management-packer-merge-ubuntu-22.04-memcached</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-centos-7-docker/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-centos-7-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-centos-cs-8-builder/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-centos-cs-8-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-centos-cs-8-devstack/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-centos-cs-8-devstack</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-centos-cs-8-devstack-pre-pip-yoga/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-centos-cs-8-devstack-pre-pip-yoga</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-centos-cs-8-docker/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-centos-cs-8-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-centos-cs-8-redis/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-centos-cs-8-redis</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-18.04-builder/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-18.04-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-18.04-docker/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-18.04-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-20.04-builder/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-20.04-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-20.04-devstack/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-20.04-devstack</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-20.04-docker/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-20.04-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-20.04-helm/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-20.04-helm</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-20.04-memcached/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-20.04-memcached</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-22.04-builder/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-22.04-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-22.04-devstack/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-22.04-devstack</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-22.04-docker/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-22.04-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-22.04-helm/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-22.04-helm</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-22.04-memcached/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-22.04-memcached</span></a> | 42 |
+| ci-management | <a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-ci-management/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-ci-management/actions/workflows/gerrit-ci-management-merge.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-ci-management-merge.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-ci-management/actions/workflows/gerrit-ci-management-novote-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-ci-management-novote-verify.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-ci-management/actions/workflows/gerrit-ci-management-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-ci-management-verify.yaml</span></a> | 4 | <a href="https://jenkins.onap.org/job/ci-management-jenkins-cfg-verify/" target="_blank"><span class="status-success jenkins-status">ci-management-jenkins-cfg-verify</span></a><br><a href="https://jenkins.onap.org/job/ci-management-jenkins-sandbox-cleanup/" target="_blank"><span class="status-failure jenkins-status">ci-management-jenkins-sandbox-cleanup</span></a><br><a href="https://jenkins.onap.org/job/ci-management-jjb-deploy-job/" target="_blank"><span class="status-success jenkins-status">ci-management-jjb-deploy-job</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-verify</span></a><br><a href="https://jenkins.onap.org/job/ci-management-openstack-cron/" target="_blank"><span class="status-success jenkins-status">ci-management-openstack-cron</span></a><br><a href="https://jenkins.onap.org/job/ci-management-openstack-update-cloud-image/" target="_blank"><span class="status-failure jenkins-status">ci-management-openstack-update-cloud-image</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-centos-7-docker/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-centos-7-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-centos-cs-8-builder/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-centos-cs-8-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-centos-cs-8-devstack/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-centos-cs-8-devstack</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-centos-cs-8-devstack-pre-pip-yoga/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-centos-cs-8-devstack-pre-pip-yoga</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-centos-cs-8-docker/" target="_blank"><span class="status-failure jenkins-status">ci-management-packer-merge-centos-cs-8-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-centos-cs-8-redis/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-merge-centos-cs-8-redis</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-18.04-builder/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-18.04-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-18.04-docker/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-18.04-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-20.04-builder/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-20.04-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-20.04-devstack/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-20.04-devstack</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-20.04-docker/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-20.04-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-20.04-helm/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-20.04-helm</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-20.04-memcached/" target="_blank"><span class="status-failure jenkins-status">ci-management-packer-merge-ubuntu-20.04-memcached</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-22.04-builder/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-22.04-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-22.04-devstack/" target="_blank"><span class="status-building jenkins-status">ci-management-packer-merge-ubuntu-22.04-devstack</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-22.04-docker/" target="_blank"><span class="status-success jenkins-status">ci-management-packer-merge-ubuntu-22.04-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-22.04-helm/" target="_blank"><span class="status-failure jenkins-status">ci-management-packer-merge-ubuntu-22.04-helm</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-merge-ubuntu-22.04-memcached/" target="_blank"><span class="status-failure jenkins-status">ci-management-packer-merge-ubuntu-22.04-memcached</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-centos-7-docker/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-centos-7-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-centos-cs-8-builder/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-centos-cs-8-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-centos-cs-8-devstack/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-centos-cs-8-devstack</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-centos-cs-8-devstack-pre-pip-yoga/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-centos-cs-8-devstack-pre-pip-yoga</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-centos-cs-8-docker/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-centos-cs-8-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-centos-cs-8-redis/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-centos-cs-8-redis</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-18.04-builder/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-18.04-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-18.04-docker/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-18.04-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-20.04-builder/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-20.04-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-20.04-devstack/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-20.04-devstack</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-20.04-docker/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-20.04-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-20.04-helm/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-20.04-helm</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-20.04-memcached/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-20.04-memcached</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-22.04-builder/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-22.04-builder</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-22.04-devstack/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-22.04-devstack</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-22.04-docker/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-22.04-docker</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-22.04-helm/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-22.04-helm</span></a><br><a href="https://jenkins.onap.org/job/ci-management-packer-verify-build-ubuntu-22.04-memcached/" target="_blank"><span class="status-unknown jenkins-status">ci-management-packer-verify-build-ubuntu-22.04-memcached</span></a> | 42 |
 | cps | <a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-cps/actions/workflows/call-github2gerrit.yaml" target="_blank"><span class="status-unknown workflow-status">call-github2gerrit.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-cps/actions/workflows/scorecard.yml" target="_blank"><span class="status-unknown workflow-status">scorecard.yml</span></a> | 2 | <a href="https://jenkins.onap.org/job/cps-master-verify-java/" target="_blank"><span class="status-failure jenkins-status">cps-master-verify-java</span></a><br><a href="https://jenkins.onap.org/job/cps-paris-verify-java/" target="_blank"><span class="status-success jenkins-status">cps-paris-verify-java</span></a><br><a href="https://jenkins.onap.org/job/cps-oslo-verify-java/" target="_blank"><span class="status-success jenkins-status">cps-oslo-verify-java</span></a><br><a href="https://jenkins.onap.org/job/cps-master-merge-java/" target="_blank"><span class="status-success jenkins-status">cps-master-merge-java</span></a><br><a href="https://jenkins.onap.org/job/cps-paris-merge-java/" target="_blank"><span class="status-success jenkins-status">cps-paris-merge-java</span></a><br><a href="https://jenkins.onap.org/job/cps-oslo-merge-java/" target="_blank"><span class="status-success jenkins-status">cps-oslo-merge-java</span></a><br><a href="https://jenkins.onap.org/job/cps-maven-stage-master/" target="_blank"><span class="status-success jenkins-status">cps-maven-stage-master</span></a><br><a href="https://jenkins.onap.org/job/cps-maven-stage-paris/" target="_blank"><span class="status-success jenkins-status">cps-maven-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/cps-maven-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">cps-maven-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/cps-maven-docker-stage-master/" target="_blank"><span class="status-success jenkins-status">cps-maven-docker-stage-master</span></a><br><a href="https://jenkins.onap.org/job/cps-maven-docker-stage-paris/" target="_blank"><span class="status-success jenkins-status">cps-maven-docker-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/cps-maven-docker-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">cps-maven-docker-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/cps-release-verify-master/" target="_blank"><span class="status-success jenkins-status">cps-release-verify-master</span></a><br><a href="https://jenkins.onap.org/job/cps-release-verify-paris/" target="_blank"><span class="status-success jenkins-status">cps-release-verify-paris</span></a><br><a href="https://jenkins.onap.org/job/cps-release-verify-oslo/" target="_blank"><span class="status-unknown jenkins-status">cps-release-verify-oslo</span></a><br><a href="https://jenkins.onap.org/job/cps-release-merge-master/" target="_blank"><span class="status-success jenkins-status">cps-release-merge-master</span></a><br><a href="https://jenkins.onap.org/job/cps-release-merge-paris/" target="_blank"><span class="status-success jenkins-status">cps-release-merge-paris</span></a><br><a href="https://jenkins.onap.org/job/cps-release-merge-oslo/" target="_blank"><span class="status-unknown jenkins-status">cps-release-merge-oslo</span></a><br><a href="https://jenkins.onap.org/job/cps-sonar/" target="_blank"><span class="status-failure jenkins-status">cps-sonar</span></a><br><a href="https://jenkins.onap.org/job/cps-sonar-verify/" target="_blank"><span class="status-failure jenkins-status">cps-sonar-verify</span></a><br><a href="https://jenkins.onap.org/job/cps-maven-clm-master/" target="_blank"><span class="status-warning jenkins-status">cps-maven-clm-master</span></a><br><a href="https://jenkins.onap.org/job/cps-merge-verification-maven-master/" target="_blank"><span class="status-success jenkins-status">cps-merge-verification-maven-master</span></a><br><a href="https://jenkins.onap.org/job/cps-merge-verification-maven-oslo/" target="_blank"><span class="status-success jenkins-status">cps-merge-verification-maven-oslo</span></a><br><a href="https://jenkins.onap.org/job/cps-merge-verification-maven-paris/" target="_blank"><span class="status-success jenkins-status">cps-merge-verification-maven-paris</span></a><br><a href="https://jenkins.onap.org/job/cps-review-verification-maven-master/" target="_blank"><span class="status-success jenkins-status">cps-review-verification-maven-master</span></a><br><a href="https://jenkins.onap.org/job/cps-review-verification-maven-oslo/" target="_blank"><span class="status-success jenkins-status">cps-review-verification-maven-oslo</span></a><br><a href="https://jenkins.onap.org/job/cps-review-verification-maven-paris/" target="_blank"><span class="status-success jenkins-status">cps-review-verification-maven-paris</span></a> | 27 |
 | cps/ncmp-dmi-plugin |  | 0 | <a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-maven-docker-verify-master-mvn36-openjdk17/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-maven-docker-verify-master-mvn36-openjdk17</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-maven-docker-verify-paris-mvn36-openjdk17/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-maven-docker-verify-paris-mvn36-openjdk17</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-maven-docker-verify-oslo-mvn36-openjdk17/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-maven-docker-verify-oslo-mvn36-openjdk17</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-maven-merge-master/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-maven-merge-master</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-maven-merge-paris/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-maven-merge-paris</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-maven-merge-oslo/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-maven-merge-oslo</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-maven-stage-master/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-maven-stage-master</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-maven-stage-paris/" target="_blank"><span class="status-unknown jenkins-status">cps-ncmp-dmi-plugin-maven-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-maven-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">cps-ncmp-dmi-plugin-maven-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-maven-docker-stage-master/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-maven-docker-stage-master</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-maven-docker-stage-paris/" target="_blank"><span class="status-unknown jenkins-status">cps-ncmp-dmi-plugin-maven-docker-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-maven-docker-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">cps-ncmp-dmi-plugin-maven-docker-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-release-verify-master/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-release-verify-master</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-release-verify-paris/" target="_blank"><span class="status-unknown jenkins-status">cps-ncmp-dmi-plugin-release-verify-paris</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-release-verify-oslo/" target="_blank"><span class="status-unknown jenkins-status">cps-ncmp-dmi-plugin-release-verify-oslo</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-release-merge-master/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-release-merge-master</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-release-merge-paris/" target="_blank"><span class="status-unknown jenkins-status">cps-ncmp-dmi-plugin-release-merge-paris</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-release-merge-oslo/" target="_blank"><span class="status-unknown jenkins-status">cps-ncmp-dmi-plugin-release-merge-oslo</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-sonar/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-sonar</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-sonar-verify/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-sonar-verify</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-maven-clm-master/" target="_blank"><span class="status-warning jenkins-status">cps-ncmp-dmi-plugin-maven-clm-master</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-merge-verification-maven-master/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-merge-verification-maven-master</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-merge-verification-maven-oslo/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-merge-verification-maven-oslo</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-merge-verification-maven-paris/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-merge-verification-maven-paris</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-review-verification-maven-master/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-review-verification-maven-master</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-review-verification-maven-oslo/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-review-verification-maven-oslo</span></a><br><a href="https://jenkins.onap.org/job/cps-ncmp-dmi-plugin-review-verification-maven-paris/" target="_blank"><span class="status-success jenkins-status">cps-ncmp-dmi-plugin-review-verification-maven-paris</span></a> | 27 |
 | dcaegen2 |  | 0 | <a href="https://jenkins.onap.org/job/dcaegen2-maven-merge-master/" target="_blank"><span class="status-failure jenkins-status">dcaegen2-maven-merge-master</span></a><br><a href="https://jenkins.onap.org/job/dcaegen2-master-csit-prh-testsuites/" target="_blank"><span class="status-success jenkins-status">dcaegen2-master-csit-prh-testsuites</span></a><br><a href="https://jenkins.onap.org/job/dcaegen2-master-csit-testsuites/" target="_blank"><span class="status-success jenkins-status">dcaegen2-master-csit-testsuites</span></a><br><a href="https://jenkins.onap.org/job/dcaegen2-master-verify-csit-prh-testsuites/" target="_blank"><span class="status-success jenkins-status">dcaegen2-master-verify-csit-prh-testsuites</span></a><br><a href="https://jenkins.onap.org/job/dcaegen2-master-verify-csit-testsuites/" target="_blank"><span class="status-success jenkins-status">dcaegen2-master-verify-csit-testsuites</span></a><br><a href="https://jenkins.onap.org/job/dcaegen2-maven-clm-master/" target="_blank"><span class="status-success jenkins-status">dcaegen2-maven-clm-master</span></a><br><a href="https://jenkins.onap.org/job/dcaegen2-maven-verify-master-mvn35-openjdk11/" target="_blank"><span class="status-success jenkins-status">dcaegen2-maven-verify-master-mvn35-openjdk11</span></a><br><a href="https://jenkins.onap.org/job/dcaegen2-platform-release-merge-master/" target="_blank"><span class="status-unknown jenkins-status">dcaegen2-platform-release-merge-master</span></a><br><a href="https://jenkins.onap.org/job/dcaegen2-platform-release-verify-master/" target="_blank"><span class="status-unknown jenkins-status">dcaegen2-platform-release-verify-master</span></a> | 9 |
@@ -2130,7 +2130,7 @@
 | oom/readiness |  | 0 | <a href="https://jenkins.onap.org/job/oom-readiness-master-verify-golang/" target="_blank"><span class="status-success jenkins-status">oom-readiness-master-verify-golang</span></a><br><a href="https://jenkins.onap.org/job/oom-readiness-docker-verify-master/" target="_blank"><span class="status-success jenkins-status">oom-readiness-docker-verify-master</span></a><br><a href="https://jenkins.onap.org/job/oom-readiness-docker-merge-master/" target="_blank"><span class="status-success jenkins-status">oom-readiness-docker-merge-master</span></a><br><a href="https://jenkins.onap.org/job/oom-readiness-master-py-lint/" target="_blank"><span class="status-unknown jenkins-status">oom-readiness-master-py-lint</span></a><br><a href="https://jenkins.onap.org/job/oom-readiness-master-yaml-lint/" target="_blank"><span class="status-success jenkins-status">oom-readiness-master-yaml-lint</span></a><br><a href="https://jenkins.onap.org/job/oom-readiness-master-yml-lint/" target="_blank"><span class="status-success jenkins-status">oom-readiness-master-yml-lint</span></a><br><a href="https://jenkins.onap.org/job/oom-readiness-release-merge-master/" target="_blank"><span class="status-success jenkins-status">oom-readiness-release-merge-master</span></a><br><a href="https://jenkins.onap.org/job/oom-readiness-release-verify-master/" target="_blank"><span class="status-success jenkins-status">oom-readiness-release-verify-master</span></a> | 8 |
 | oom/registrator | <a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-oom-registrator/actions/workflows/gerrit-merge-cbom.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-merge-cbom.yaml</span></a> | 1 | <a href="https://jenkins.onap.org/job/oom-registrator-master-verify-java/" target="_blank"><span class="status-success jenkins-status">oom-registrator-master-verify-java</span></a><br><a href="https://jenkins.onap.org/job/oom-registrator-master-merge-java/" target="_blank"><span class="status-failure jenkins-status">oom-registrator-master-merge-java</span></a><br><a href="https://jenkins.onap.org/job/oom-registrator-maven-stage-master/" target="_blank"><span class="status-success jenkins-status">oom-registrator-maven-stage-master</span></a><br><a href="https://jenkins.onap.org/job/oom-registrator-master-release-version-java-daily/" target="_blank"><span class="status-success jenkins-status">oom-registrator-master-release-version-java-daily</span></a><br><a href="https://jenkins.onap.org/job/oom-registrator-maven-docker-stage-master/" target="_blank"><span class="status-success jenkins-status">oom-registrator-maven-docker-stage-master</span></a><br><a href="https://jenkins.onap.org/job/oom-registrator-release-verify-master/" target="_blank"><span class="status-unknown jenkins-status">oom-registrator-release-verify-master</span></a><br><a href="https://jenkins.onap.org/job/oom-registrator-release-merge-master/" target="_blank"><span class="status-unknown jenkins-status">oom-registrator-release-merge-master</span></a><br><a href="https://jenkins.onap.org/job/oom-registrator-maven-clm-master/" target="_blank"><span class="status-success jenkins-status">oom-registrator-maven-clm-master</span></a> | 8 |
 | oparent | <a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-oparent/actions/workflows/gerrit-verify.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-verify.yaml</span></a> | 1 | <a href="https://jenkins.onap.org/job/oparent-master-verify-java/" target="_blank"><span class="status-success jenkins-status">oparent-master-verify-java</span></a><br><a href="https://jenkins.onap.org/job/oparent-master-merge-java/" target="_blank"><span class="status-failure jenkins-status">oparent-master-merge-java</span></a><br><a href="https://jenkins.onap.org/job/oparent-maven-stage-master/" target="_blank"><span class="status-success jenkins-status">oparent-maven-stage-master</span></a><br><a href="https://jenkins.onap.org/job/oparent-release-verify-master/" target="_blank"><span class="status-unknown jenkins-status">oparent-release-verify-master</span></a><br><a href="https://jenkins.onap.org/job/oparent-release-merge-master/" target="_blank"><span class="status-unknown jenkins-status">oparent-release-merge-master</span></a><br><a href="https://jenkins.onap.org/job/oparent-maven-clm-master/" target="_blank"><span class="status-warning jenkins-status">oparent-maven-clm-master</span></a> | 6 |
-| policy/apex-pdp | <a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-policy-apex-pdp/actions/workflows/gerrit-apex-performance-test.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-apex-performance-test.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-policy-apex-pdp/actions/workflows/gerrit-apex-stability-test.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-apex-stability-test.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-policy-apex-pdp/actions/workflows/open-ssf-scorecard.yaml" target="_blank"><span class="status-unknown workflow-status">open-ssf-scorecard.yaml</span></a> | 3 | <a href="https://jenkins.onap.org/job/policy-apex-pdp-master-verify-java/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-master-verify-java</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-oslo-verify-java/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-oslo-verify-java</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-paris-verify-java/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-paris-verify-java</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-master-merge-java/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-master-merge-java</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-oslo-merge-java/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-oslo-merge-java</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-paris-merge-java/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-paris-merge-java</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-maven-stage-master/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-maven-stage-master</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-maven-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-maven-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-maven-stage-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-maven-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-maven-docker-stage-master/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-maven-docker-stage-master</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-maven-docker-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-maven-docker-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-maven-docker-stage-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-maven-docker-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-release-verify-master/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-release-verify-master</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-release-verify-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-release-verify-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-release-verify-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-release-verify-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-release-merge-master/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-release-merge-master</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-release-merge-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-release-merge-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-release-merge-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-release-merge-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-sonar/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-sonar</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-sonar-verify/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-sonar-verify</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-maven-clm-master/" target="_blank"><span class="status-warning jenkins-status">policy-apex-pdp-maven-clm-master</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-master-project-csit-apex-pdp/" target="_blank"><span class="status-warning jenkins-status">policy-apex-pdp-master-project-csit-apex-pdp</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-master-project-csit-verify-apex-pdp/" target="_blank"><span class="status-warning jenkins-status">policy-apex-pdp-master-project-csit-verify-apex-pdp</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-oslo-project-csit-apex-pdp/" target="_blank"><span class="status-warning jenkins-status">policy-apex-pdp-oslo-project-csit-apex-pdp</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-oslo-project-csit-verify-apex-pdp/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-oslo-project-csit-verify-apex-pdp</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-paris-project-csit-apex-pdp/" target="_blank"><span class="status-warning jenkins-status">policy-apex-pdp-paris-project-csit-apex-pdp</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-paris-project-csit-verify-apex-pdp/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-paris-project-csit-verify-apex-pdp</span></a> | 27 |
+| policy/apex-pdp | <a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-policy-apex-pdp/actions/workflows/gerrit-apex-performance-test.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-apex-performance-test.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-policy-apex-pdp/actions/workflows/gerrit-apex-stability-test.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-apex-stability-test.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-policy-apex-pdp/actions/workflows/open-ssf-scorecard.yaml" target="_blank"><span class="status-unknown workflow-status">open-ssf-scorecard.yaml</span></a> | 3 | <a href="https://jenkins.onap.org/job/policy-apex-pdp-master-verify-java/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-master-verify-java</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-oslo-verify-java/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-oslo-verify-java</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-paris-verify-java/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-paris-verify-java</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-master-merge-java/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-master-merge-java</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-oslo-merge-java/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-oslo-merge-java</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-paris-merge-java/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-paris-merge-java</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-maven-stage-master/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-maven-stage-master</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-maven-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-maven-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-maven-stage-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-maven-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-maven-docker-stage-master/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-maven-docker-stage-master</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-maven-docker-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-maven-docker-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-maven-docker-stage-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-maven-docker-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-release-verify-master/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-release-verify-master</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-release-verify-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-release-verify-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-release-verify-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-release-verify-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-release-merge-master/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-release-merge-master</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-release-merge-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-release-merge-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-release-merge-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-release-merge-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-sonar/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-sonar</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-sonar-verify/" target="_blank"><span class="status-success jenkins-status">policy-apex-pdp-sonar-verify</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-maven-clm-master/" target="_blank"><span class="status-warning jenkins-status">policy-apex-pdp-maven-clm-master</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-master-project-csit-apex-pdp/" target="_blank"><span class="status-warning jenkins-status">policy-apex-pdp-master-project-csit-apex-pdp</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-master-project-csit-verify-apex-pdp/" target="_blank"><span class="status-warning jenkins-status">policy-apex-pdp-master-project-csit-verify-apex-pdp</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-oslo-project-csit-apex-pdp/" target="_blank"><span class="status-warning jenkins-status">policy-apex-pdp-oslo-project-csit-apex-pdp</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-oslo-project-csit-verify-apex-pdp/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-oslo-project-csit-verify-apex-pdp</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-paris-project-csit-apex-pdp/" target="_blank"><span class="status-building jenkins-status">policy-apex-pdp-paris-project-csit-apex-pdp</span></a><br><a href="https://jenkins.onap.org/job/policy-apex-pdp-paris-project-csit-verify-apex-pdp/" target="_blank"><span class="status-unknown jenkins-status">policy-apex-pdp-paris-project-csit-verify-apex-pdp</span></a> | 27 |
 | policy/api | <a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-policy-api/actions/workflows/gerrit-policy-api-performance.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-policy-api-performance.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-policy-api/actions/workflows/gerrit-policy-api-stability.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-policy-api-stability.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-policy-api/actions/workflows/open-ssf-scorecard.yaml" target="_blank"><span class="status-unknown workflow-status">open-ssf-scorecard.yaml</span></a> | 3 | <a href="https://jenkins.onap.org/job/policy-api-master-verify-java/" target="_blank"><span class="status-success jenkins-status">policy-api-master-verify-java</span></a><br><a href="https://jenkins.onap.org/job/policy-api-oslo-verify-java/" target="_blank"><span class="status-success jenkins-status">policy-api-oslo-verify-java</span></a><br><a href="https://jenkins.onap.org/job/policy-api-paris-verify-java/" target="_blank"><span class="status-unknown jenkins-status">policy-api-paris-verify-java</span></a><br><a href="https://jenkins.onap.org/job/policy-api-master-merge-java/" target="_blank"><span class="status-success jenkins-status">policy-api-master-merge-java</span></a><br><a href="https://jenkins.onap.org/job/policy-api-oslo-merge-java/" target="_blank"><span class="status-success jenkins-status">policy-api-oslo-merge-java</span></a><br><a href="https://jenkins.onap.org/job/policy-api-paris-merge-java/" target="_blank"><span class="status-unknown jenkins-status">policy-api-paris-merge-java</span></a><br><a href="https://jenkins.onap.org/job/policy-api-maven-stage-master/" target="_blank"><span class="status-success jenkins-status">policy-api-maven-stage-master</span></a><br><a href="https://jenkins.onap.org/job/policy-api-maven-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-api-maven-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-api-maven-stage-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-api-maven-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-api-maven-docker-stage-master/" target="_blank"><span class="status-success jenkins-status">policy-api-maven-docker-stage-master</span></a><br><a href="https://jenkins.onap.org/job/policy-api-maven-docker-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-api-maven-docker-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-api-maven-docker-stage-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-api-maven-docker-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-api-release-verify-master/" target="_blank"><span class="status-success jenkins-status">policy-api-release-verify-master</span></a><br><a href="https://jenkins.onap.org/job/policy-api-release-verify-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-api-release-verify-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-api-release-verify-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-api-release-verify-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-api-release-merge-master/" target="_blank"><span class="status-success jenkins-status">policy-api-release-merge-master</span></a><br><a href="https://jenkins.onap.org/job/policy-api-release-merge-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-api-release-merge-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-api-release-merge-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-api-release-merge-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-api-sonar/" target="_blank"><span class="status-success jenkins-status">policy-api-sonar</span></a><br><a href="https://jenkins.onap.org/job/policy-api-sonar-verify/" target="_blank"><span class="status-success jenkins-status">policy-api-sonar-verify</span></a><br><a href="https://jenkins.onap.org/job/policy-api-maven-clm-master/" target="_blank"><span class="status-warning jenkins-status">policy-api-maven-clm-master</span></a><br><a href="https://jenkins.onap.org/job/policy-api-master-project-csit-api/" target="_blank"><span class="status-success jenkins-status">policy-api-master-project-csit-api</span></a><br><a href="https://jenkins.onap.org/job/policy-api-master-project-csit-verify-api/" target="_blank"><span class="status-success jenkins-status">policy-api-master-project-csit-verify-api</span></a><br><a href="https://jenkins.onap.org/job/policy-api-oslo-project-csit-api/" target="_blank"><span class="status-success jenkins-status">policy-api-oslo-project-csit-api</span></a><br><a href="https://jenkins.onap.org/job/policy-api-oslo-project-csit-verify-api/" target="_blank"><span class="status-unknown jenkins-status">policy-api-oslo-project-csit-verify-api</span></a><br><a href="https://jenkins.onap.org/job/policy-api-paris-project-csit-api/" target="_blank"><span class="status-success jenkins-status">policy-api-paris-project-csit-api</span></a><br><a href="https://jenkins.onap.org/job/policy-api-paris-project-csit-verify-api/" target="_blank"><span class="status-unknown jenkins-status">policy-api-paris-project-csit-verify-api</span></a> | 27 |
 | policy/clamp | <a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-policy-clamp/actions/workflows/gerrit-clamp-performance-test.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-clamp-performance-test.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-policy-clamp/actions/workflows/gerrit-clamp-stability-test.yaml" target="_blank"><span class="status-unknown workflow-status">gerrit-clamp-stability-test.yaml</span></a><br><a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-policy-clamp/actions/workflows/openssfscorecard.yaml" target="_blank"><span class="status-unknown workflow-status">openssfscorecard.yaml</span></a> | 3 | <a href="https://jenkins.onap.org/job/policy-clamp-maven-stage-master/" target="_blank"><span class="status-success jenkins-status">policy-clamp-maven-stage-master</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-maven-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-clamp-maven-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-maven-stage-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-clamp-maven-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-maven-docker-stage-master/" target="_blank"><span class="status-success jenkins-status">policy-clamp-maven-docker-stage-master</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-maven-docker-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-clamp-maven-docker-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-maven-docker-stage-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-clamp-maven-docker-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-master-verify-java/" target="_blank"><span class="status-success jenkins-status">policy-clamp-master-verify-java</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-oslo-verify-java/" target="_blank"><span class="status-unknown jenkins-status">policy-clamp-oslo-verify-java</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-paris-verify-java/" target="_blank"><span class="status-unknown jenkins-status">policy-clamp-paris-verify-java</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-master-merge-java/" target="_blank"><span class="status-success jenkins-status">policy-clamp-master-merge-java</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-oslo-merge-java/" target="_blank"><span class="status-success jenkins-status">policy-clamp-oslo-merge-java</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-paris-merge-java/" target="_blank"><span class="status-unknown jenkins-status">policy-clamp-paris-merge-java</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-release-verify-master/" target="_blank"><span class="status-success jenkins-status">policy-clamp-release-verify-master</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-release-verify-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-clamp-release-verify-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-release-verify-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-clamp-release-verify-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-release-merge-master/" target="_blank"><span class="status-success jenkins-status">policy-clamp-release-merge-master</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-release-merge-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-clamp-release-merge-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-release-merge-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-clamp-release-merge-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-sonar/" target="_blank"><span class="status-success jenkins-status">policy-clamp-sonar</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-sonar-verify/" target="_blank"><span class="status-success jenkins-status">policy-clamp-sonar-verify</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-maven-clm-master/" target="_blank"><span class="status-warning jenkins-status">policy-clamp-maven-clm-master</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-master-project-csit-clamp/" target="_blank"><span class="status-warning jenkins-status">policy-clamp-master-project-csit-clamp</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-master-project-csit-verify-clamp/" target="_blank"><span class="status-warning jenkins-status">policy-clamp-master-project-csit-verify-clamp</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-oslo-project-csit-clamp/" target="_blank"><span class="status-success jenkins-status">policy-clamp-oslo-project-csit-clamp</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-oslo-project-csit-verify-clamp/" target="_blank"><span class="status-unknown jenkins-status">policy-clamp-oslo-project-csit-verify-clamp</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-paris-project-csit-clamp/" target="_blank"><span class="status-success jenkins-status">policy-clamp-paris-project-csit-clamp</span></a><br><a href="https://jenkins.onap.org/job/policy-clamp-paris-project-csit-verify-clamp/" target="_blank"><span class="status-unknown jenkins-status">policy-clamp-paris-project-csit-verify-clamp</span></a> | 27 |
 | policy/common | <a href="https://github.com/onap/gerrit-reporting-tool-gerrit.onap.org-policy-common/actions/workflows/open-ssf-scorecard.yaml" target="_blank"><span class="status-unknown workflow-status">open-ssf-scorecard.yaml</span></a> | 1 | <a href="https://jenkins.onap.org/job/policy-common-master-verify-java/" target="_blank"><span class="status-success jenkins-status">policy-common-master-verify-java</span></a><br><a href="https://jenkins.onap.org/job/policy-common-oslo-verify-java/" target="_blank"><span class="status-unknown jenkins-status">policy-common-oslo-verify-java</span></a><br><a href="https://jenkins.onap.org/job/policy-common-paris-verify-java/" target="_blank"><span class="status-unknown jenkins-status">policy-common-paris-verify-java</span></a><br><a href="https://jenkins.onap.org/job/policy-common-master-merge-java/" target="_blank"><span class="status-success jenkins-status">policy-common-master-merge-java</span></a><br><a href="https://jenkins.onap.org/job/policy-common-oslo-merge-java/" target="_blank"><span class="status-success jenkins-status">policy-common-oslo-merge-java</span></a><br><a href="https://jenkins.onap.org/job/policy-common-paris-merge-java/" target="_blank"><span class="status-unknown jenkins-status">policy-common-paris-merge-java</span></a><br><a href="https://jenkins.onap.org/job/policy-common-maven-stage-master/" target="_blank"><span class="status-success jenkins-status">policy-common-maven-stage-master</span></a><br><a href="https://jenkins.onap.org/job/policy-common-maven-stage-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-common-maven-stage-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-common-maven-stage-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-common-maven-stage-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-common-release-verify-master/" target="_blank"><span class="status-success jenkins-status">policy-common-release-verify-master</span></a><br><a href="https://jenkins.onap.org/job/policy-common-release-verify-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-common-release-verify-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-common-release-verify-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-common-release-verify-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-common-release-merge-master/" target="_blank"><span class="status-success jenkins-status">policy-common-release-merge-master</span></a><br><a href="https://jenkins.onap.org/job/policy-common-release-merge-oslo/" target="_blank"><span class="status-unknown jenkins-status">policy-common-release-merge-oslo</span></a><br><a href="https://jenkins.onap.org/job/policy-common-release-merge-paris/" target="_blank"><span class="status-unknown jenkins-status">policy-common-release-merge-paris</span></a><br><a href="https://jenkins.onap.org/job/policy-common-sonar/" target="_blank"><span class="status-success jenkins-status">policy-common-sonar</span></a><br><a href="https://jenkins.onap.org/job/policy-common-sonar-verify/" target="_blank"><span class="status-success jenkins-status">policy-common-sonar-verify</span></a><br><a href="https://jenkins.onap.org/job/policy-common-maven-clm-master/" target="_blank"><span class="status-warning jenkins-status">policy-common-maven-clm-master</span></a> | 18 |
