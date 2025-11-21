@@ -322,6 +322,7 @@ jobs:
 
           if [ -n "$CLASSIC_READ_ONLY_PAT_TOKEN" ]; then
             echo "🔧 GitHub API integration enabled"
+            echo "🔍 Using token environment variable: CLASSIC_READ_ONLY_PAT_TOKEN"
             # Debug token format (show prefix only for security)
             token_prefix="${CLASSIC_READ_ONLY_PAT_TOKEN:0:10}"
             token_length="${#CLASSIC_READ_ONLY_PAT_TOKEN}"
@@ -354,6 +355,14 @@ jobs:
             echo "🔍 GITHUB_ORG environment variable: ${GITHUB_ORG}"
           else
             echo "🔍 GITHUB_ORG environment variable: NOT SET (will auto-derive)"
+          fi
+
+          echo "📝 Running command with --github-token-env CLASSIC_READ_ONLY_PAT_TOKEN"
+          echo "📝 Verifying environment variable is set:"
+          if [ -n "$CLASSIC_READ_ONLY_PAT_TOKEN" ]; then
+            echo "✅ CLASSIC_READ_ONLY_PAT_TOKEN is available to command"
+          else
+            echo "❌ CLASSIC_READ_ONLY_PAT_TOKEN is NOT available to command"
           fi
 
           uv run gerrit-reporting-tool generate \

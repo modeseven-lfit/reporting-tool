@@ -998,7 +998,9 @@ class FeatureRegistry:
             # Find the Gerrit host in the path (e.g., "gerrit.onap.org")
             gerrit_host_index = -1
             for i, part in enumerate(path_parts):
-                if "gerrit" in part.lower() or "git" in part.lower():
+                # Only match actual Gerrit server hostnames (e.g., "gerrit.onap.org")
+                # Not directory names like "gerrit-reporting-tool"
+                if "gerrit." in part.lower() or part.lower().startswith("git."):
                     gerrit_host_index = i
                     break
 
