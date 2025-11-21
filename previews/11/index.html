@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Preview - Linux Foundation Reports</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+                   'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #2d3748;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #718096;
+      margin-bottom: 1rem;
+    }
+
+    .meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      color: #718096;
+      padding-top: 1rem;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .meta-icon {
+      font-size: 1.2rem;
+    }
+
+    main {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .reports-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .reports-title {
+      font-size: 1.5rem;
+      color: #2d3748;
+    }
+
+    .report-count {
+      background: #667eea;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .reports-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .report-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      background: #fafafa;
+    }
+
+    .report-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
+      border-color: #667eea;
+    }
+
+    .report-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 0.5rem;
+    }
+
+    .report-info {
+      font-size: 0.85rem;
+      color: #718096;
+      margin-bottom: 1rem;
+    }
+
+    .report-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #5568d3;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #4a5568;
+    }
+
+    .btn-secondary:hover {
+      background: #cbd5e0;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #718096;
+    }
+
+    .empty-state-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: white;
+      margin-top: 2rem;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .reports-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .meta {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📊 Report Preview</h1>
+      <p class="subtitle">Preview reports for changes under review</p>
+      <div class="meta">
+        <div class="meta-item">
+          <span class="meta-icon">🕐</span>
+          <span>Generated: 2025-11-21 13:24 UTC</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-icon">🏢</span>
+          <span>Linux Foundation</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-icon">🔄</span>
+          <span>Preview Environment</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="reports-header">
+        <h2 class="reports-title">Available Reports</h2>
+        <span class="report-count">2 reports</span>
+      </div>
+
+<div class="reports-grid">
+        <div class="report-card">
+          <div class="report-name">ONAP</div>
+          <div class="report-info">
+            <div>🔖 Slug: <code>onap</code></div>
+            <div>📅 Generated: 2025-11-21 13:19 UTC</div>
+          </div>
+          <div class="report-links">
+            <a href="/gerrit-reporting-tool/previews/11/onap/report.html" class="btn btn-primary">
+              📊 View Report
+            </a>
+            <a href="/gerrit-reporting-tool/previews/11/onap/report_raw.json" class="btn btn-secondary">
+              📄 JSON
+            </a>
+          </div>
+        </div>
+        <div class="report-card">
+          <div class="report-name">O-RAN-SC</div>
+          <div class="report-info">
+            <div>🔖 Slug: <code>oran</code></div>
+            <div>📅 Generated: 2025-11-21 13:19 UTC</div>
+          </div>
+          <div class="report-links">
+            <a href="/gerrit-reporting-tool/previews/11/oran/report.html" class="btn btn-primary">
+              📊 View Report
+            </a>
+            <a href="/gerrit-reporting-tool/previews/11/oran/report_raw.json" class="btn btn-secondary">
+              📄 JSON
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        Generated by
+        <a href="https://github.com/modeseven-lfit/gerrit-reporting-tool" target="_blank">
+          Linux Foundation Reporting Tool
+        </a>
+      </p>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+        &copy; 2025 The Linux Foundation | Apache-2.0 License
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

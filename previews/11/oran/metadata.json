@@ -1,0 +1,16 @@
+{
+  "project": "O-RAN-SC",
+  "slug": "oran",
+  "gerrit_server": "gerrit.o-ran-sc.org",
+  "jenkins_server": "jenkins.o-ran-sc.org",
+  "github_org": "",
+  "generated_at": "2025-11-21T13:19:49Z",
+  "workflow_run_id": "19571773850",
+  "workflow_run_number": "5",
+  "workflow_run_attempt": "1",
+  "git_sha": "f96a73768ae2cc264a9dc4c54cb9c23c5b715c14",
+  "git_ref": "fix/readme-projects-list",
+  "pr_number": 11,
+  "pr_author": "ModeSevenIndustrialSolutions",
+  "environment": "previews"
+}
