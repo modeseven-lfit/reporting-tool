@@ -680,6 +680,7 @@ jobs:
           GERRIT_REPORTS_PAT_TOKEN: ${{ secrets.GERRIT_REPORTS_PAT_TOKEN }}
           GITHUB_RUN_ID: ${{ github.run_id }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
+          PROJECTS_JSON: ${{ vars.PROJECTS_JSON }}
         run: |
           chmod +x .github/scripts/copy-api.sh
           .github/scripts/copy-api.sh \

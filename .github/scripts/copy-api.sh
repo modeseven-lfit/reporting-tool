@@ -203,6 +203,22 @@ FAILED_FILES=0
 declare -A PROJECT_NAMES
 declare -A PROJECT_FILE_COUNTS
 
+# Parse PROJECTS_JSON to build project name lookup table
+log_info "Parsing PROJECTS_JSON to extract project names..."
+if [ -n "${PROJECTS_JSON:-}" ]; then
+    # Parse JSON and populate PROJECT_NAMES array
+    while IFS='|' read -r slug project_name; do
+        if [ -n "$slug" ] && [ -n "$project_name" ]; then
+            PROJECT_NAMES["${slug}"]="${project_name}"
+            log_info "  Loaded project: ${project_name} (slug: ${slug})"
+        fi
+    done < <(echo "$PROJECTS_JSON" | jq -r '.[] | "\(.slug)|\(.project)"')
+
+    log_info "Loaded ${#PROJECT_NAMES[@]} project names from PROJECTS_JSON"
+else
+    log_warning "PROJECTS_JSON not provided - project names will use slugs as fallback"
+fi
+
 log_info "Processing artifacts from: ${ARTIFACTS_DIR}"
 
 # Debug: Show directory structure with files
@@ -257,15 +273,10 @@ for artifact_dir in "${ARTIFACTS_DIR}"/reports-*; do
     PROJECTS_PROCESSED=$((PROJECTS_PROCESSED + 1))
     log_info "Processing report files for project: ${SLUG}"
 
-    # Try to extract the full project name from metadata.json
-    PROJECT_NAME="${SLUG}"
-    if [ -f "$artifact_dir/metadata.json" ] && command -v jq &> /dev/null; then
-        EXTRACTED_NAME=$(jq -r '.project // empty' "$artifact_dir/metadata.json" 2>/dev/null || echo "")
-        if [ -n "$EXTRACTED_NAME" ]; then
-            PROJECT_NAME="$EXTRACTED_NAME"
-        fi
-    fi
-    PROJECT_NAMES["${SLUG}"]="${PROJECT_NAME}"
+    # Get project name from lookup table (already populated from PROJECTS_JSON)
+    # Fallback to slug if not found
+    PROJECT_NAME="${PROJECT_NAMES[${SLUG}]:-${SLUG}}"
+    log_info "  Project name: ${PROJECT_NAME}"
 
     # Files are expected to be at the root of the artifact directory
     # Upload each file we find
