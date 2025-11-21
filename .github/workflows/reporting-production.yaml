@@ -617,20 +617,10 @@ jobs:
         # yamllint disable-line rule:line-length
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
-      - name: "Download all report artifacts"
+      - name: "Download all artifacts"
         # yamllint disable-line rule:line-length
         uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
         with:
-          pattern: "reports-*"
-          path: ./downloaded-artifacts
-          merge-multiple: false
-        continue-on-error: false
-
-      - name: "Download all raw data artifacts"
-        # yamllint disable-line rule:line-length
-        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
-        with:
-          pattern: "raw-data-*"
           path: ./downloaded-artifacts
           merge-multiple: false
         continue-on-error: false
@@ -646,67 +636,51 @@ jobs:
       - name: "Debug: Show downloaded artifacts"
         shell: bash
         run: |
-          echo "=== Current directory ==="
-          pwd
-          echo ""
-          echo "=== Contents of current directory ==="
-          ls -la
-          echo ""
-          echo "=== Contents of ./downloaded-artifacts ==="
+          echo "=== Downloaded artifacts structure ==="
           if [ -d "./downloaded-artifacts" ]; then
-            ls -la ./downloaded-artifacts/
+            find ./downloaded-artifacts -maxdepth 2 -type d | sort
             echo ""
-            echo "=== First level subdirectories ==="
-            find ./downloaded-artifacts -maxdepth 1 -type d
-            echo ""
-            echo "=== All files (first 50) ==="
-            find ./downloaded-artifacts -type f | head -50
+            echo "=== Total artifact count ==="
+            find ./downloaded-artifacts -mindepth 1 -maxdepth 1 -type d | wc -l
             echo ""
             echo "=== Total file count ==="
             find ./downloaded-artifacts -type f | wc -l
           else
             echo "ERROR: ./downloaded-artifacts directory does not exist!"
+            exit 1
           fi
-
-      - name: "Install dependencies (jq)"
-        shell: bash
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y jq
 
       - name: "Copy artifacts to gerrit-reports repository"
         shell: bash
         env:
           GERRIT_REPORTS_PAT_TOKEN: ${{ secrets.GERRIT_REPORTS_PAT_TOKEN }}
-          GITHUB_RUN_ID: ${{ github.run_id }}
-          GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: |
-          chmod +x .github/scripts/copy-api.sh
-          .github/scripts/copy-api.sh \
+          chmod +x .github/scripts/copy-artifacts-simple.sh
+          .github/scripts/copy-artifacts-simple.sh \
             "${{ steps.date.outputs.folder }}" \
+            "${{ github.run_id }}" \
             "./downloaded-artifacts" \
-            "modeseven-lfit/gerrit-reports" \
             "$GERRIT_REPORTS_PAT_TOKEN"
 
       - name: "Generate job summary"
         if: always()
         shell: bash
+        # yamllint disable rule:line-length
         run: |
           {
-            echo "## 📦 Artifacts Copied to gerrit-reports"
+            echo "## 📦 Artifacts Transferred"
             echo ""
             echo "**Date Folder:** ${{ steps.date.outputs.folder }}"
+            echo "**Workflow Run:** ${{ github.run_id }}"
             echo "**Target Repository:** modeseven-lfit/gerrit-reports"
             echo "**Status:** ${{ job.status }}"
             echo ""
             echo "### 🔗 View in Repository"
             echo ""
-            repo="modeseven-lfit/gerrit-reports"
-            date_folder="${{ steps.date.outputs.folder }}"
-            url="https://github.com/${repo}/tree/main"
-            echo "${url}/data/artifacts/${date_folder}"
+            echo "https://github.com/modeseven-lfit/gerrit-reports/tree/main/data/artifacts/${{ steps.date.outputs.folder }}"
             echo ""
           } >> "$GITHUB_STEP_SUMMARY"
+      # yamllint enable rule:line-length
 
   summary:
     name: "Workflow Summary"
