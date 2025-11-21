@@ -333,7 +333,7 @@ def main(
 
     \b
     🐛 Report Issues:
-        https://github.com/lfit/gerrit-reporting-tool/issues
+        https://github.com/modeseven-lfit/gerrit-reporting-tool/issues
     """
     if ctx.invoked_subcommand is None:
         # No subcommand provided, show help

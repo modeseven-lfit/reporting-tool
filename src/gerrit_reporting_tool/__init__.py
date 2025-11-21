@@ -23,7 +23,7 @@ Usage:
         $ gerrit-reporting-tool generate --project my-project --config-dir ./config
 
 For more information:
-    - GitHub: https://github.com/lfit/gerrit-reporting-tool
+    - GitHub: https://github.com/modeseven-lfit/gerrit-reporting-tool
     - License: Apache-2.0
 """
 

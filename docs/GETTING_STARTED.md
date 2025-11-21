@@ -422,7 +422,7 @@ gerrit-reporting-tool generate \
 
 - [FAQ](FAQ.md) - Frequently asked questions
 - [Troubleshooting Guide](TROUBLESHOOTING.md) - Common issues
-- [GitHub Issues](https://github.com/lfit/gerrit-reporting-tool/issues) - Report bugs
+- [GitHub Issues](https://github.com/modeseven-lfit/gerrit-reporting-tool/issues) - Report bugs
 
 ---
 

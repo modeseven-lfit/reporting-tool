@@ -14,7 +14,7 @@ jobs, GitHub CI/CD workflows, and development practices across repositories.
 
 ## 🗒️ Published Reports
 
-<https://lfit.github.io/gerrit-reporting-tool/>
+<https://modeseven-lfit.github.io/gerrit-reporting-tool/>
 
 ## ⚡ Quick Start
 
@@ -216,7 +216,7 @@ gerrit-reporting-tool generate --project my-project --repos-path ./repos
 ## 🤝 Support
 
 - **Documentation**: [Complete Index](docs/INDEX.md)
-- **Issues**: [GitHub Issues](https://github.com/lfit/gerrit-reporting-tool/issues)
+- **Issues**: [GitHub Issues](https://github.com/modeseven-lfit/gerrit-reporting-tool/issues)
 
 ---
 
