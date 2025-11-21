@@ -196,7 +196,12 @@ log_info "Target base directory: ${TARGET_BASE}"
 # Track progress
 FILES_COPIED=0
 PROJECTS_PROCESSED=0
+PROJECTS_SKIPPED=0
 FAILED_FILES=0
+
+# Track project info for README (associative arrays need bash 4+)
+declare -A PROJECT_NAMES
+declare -A PROJECT_FILE_COUNTS
 
 log_info "Processing artifacts from: ${ARTIFACTS_DIR}"
 
@@ -206,18 +211,23 @@ find "${ARTIFACTS_DIR}" -maxdepth 3 2>/dev/null | head -30 || true
 log_info ""
 
 TOTAL_FILES=$(find "${ARTIFACTS_DIR}" -type f 2>/dev/null | wc -l | tr -d ' ')
-log_info "Total items in artifacts directory: ${TOTAL_FILES}"
+log_info "Total files in artifacts directory: ${TOTAL_FILES}"
 
 if [ "${TOTAL_FILES}" -eq 0 ]; then
     log_error "No files found in artifacts directory!"
     exit 1
 fi
 
-# Process each project's artifacts (reports-*)
-while IFS= read -r -d '' artifact_dir; do
+# Process each project's report artifacts (reports-*)
+for artifact_dir in "${ARTIFACTS_DIR}"/reports-*; do
+    if [ ! -d "$artifact_dir" ]; then
+        continue
+    fi
+
+    # Extract slug from artifact directory name (reports-{slug})
     SLUG=$(basename "$artifact_dir" | sed 's/^reports-//')
 
-    log_info "Found artifact directory: ${artifact_dir}"
+    log_info "Found report artifact directory: ${artifact_dir}"
     log_info "Project slug: ${SLUG}"
 
     # Skip if no files in the report directory
@@ -228,7 +238,7 @@ while IFS= read -r -d '' artifact_dir; do
 
     # Check if this specific project's directory already exists in the target repo
     PROJECT_TARGET_DIR="${TARGET_BASE}/reports-${SLUG}"
-    EXISTING_PROJECT=$(get_file_sha "${PROJECT_TARGET_DIR}/README.md" 2>/dev/null || get_file_sha "${PROJECT_TARGET_DIR}/index.html" 2>/dev/null || echo "")
+    EXISTING_PROJECT=$(get_file_sha "${PROJECT_TARGET_DIR}/metadata.json" 2>/dev/null || get_file_sha "${PROJECT_TARGET_DIR}/report.html" 2>/dev/null || echo "")
 
     if [ -n "$EXISTING_PROJECT" ]; then
         log_warning "Target directory already exists for project ${SLUG}: ${PROJECT_TARGET_DIR}"
@@ -237,6 +247,7 @@ while IFS= read -r -d '' artifact_dir; do
         if [ "${GITHUB_EVENT_NAME:-}" = "workflow_dispatch" ]; then
             log_warning "Manual workflow invocation detected - skipping ${SLUG} to avoid overwriting existing data"
             log_info "If you need to update the reports for ${SLUG}, please manually delete the existing folder in the target repository first"
+            PROJECTS_SKIPPED=$((PROJECTS_SKIPPED + 1))
             continue
         else
             log_warning "Scheduled run detected - will overwrite existing data for ${SLUG}"
@@ -244,35 +255,56 @@ while IFS= read -r -d '' artifact_dir; do
     fi
 
     PROJECTS_PROCESSED=$((PROJECTS_PROCESSED + 1))
-    log_info "Processing project: ${SLUG}"
+    log_info "Processing report files for project: ${SLUG}"
 
-    # Upload all files from this directory
-    while IFS= read -r -d '' file; do
-        # Get relative path from artifact_dir
-        rel_path="${file#"${artifact_dir}"/}"
-        remote_path="${TARGET_BASE}/reports-${SLUG}/${rel_path}"
+    # Try to extract the full project name from metadata.json
+    PROJECT_NAME="${SLUG}"
+    if [ -f "$artifact_dir/metadata.json" ] && command -v jq &> /dev/null; then
+        EXTRACTED_NAME=$(jq -r '.project // empty' "$artifact_dir/metadata.json" 2>/dev/null || echo "")
+        if [ -n "$EXTRACTED_NAME" ]; then
+            PROJECT_NAME="$EXTRACTED_NAME"
+        fi
+    fi
+    PROJECT_NAMES["${SLUG}"]="${PROJECT_NAME}"
 
-        log_info "  Uploading: ${rel_path}"
+    # Files are expected to be at the root of the artifact directory
+    # Upload each file we find
+    PROJECT_FILES=0
+    for file in "$artifact_dir"/*; do
+        if [ ! -f "$file" ]; then
+            continue
+        fi
+
+        filename=$(basename "$file")
+        remote_path="${TARGET_BASE}/reports-${SLUG}/${filename}"
+
+        log_info "  Uploading: ${filename}"
 
         if upload_file "$file" "$remote_path"; then
             FILES_COPIED=$((FILES_COPIED + 1))
+            PROJECT_FILES=$((PROJECT_FILES + 1))
         else
             FAILED_FILES=$((FAILED_FILES + 1))
         fi
 
         # Add small delay to avoid rate limiting
         sleep 0.1
-    done < <(find "$artifact_dir" -type f -print0 2>/dev/null)
+    done
 
-    log_success "Processed ${SLUG}"
-
-done < <(find "${ARTIFACTS_DIR}" -maxdepth 1 -type d -name "reports-*" -print0 2>/dev/null)
+    PROJECT_FILE_COUNTS["${SLUG}"]=${PROJECT_FILES}
+    log_success "Processed report files for ${SLUG}"
+done
 
 # Process raw data artifacts (raw-data-*)
-while IFS= read -r -d '' artifact_dir; do
+for artifact_dir in "${ARTIFACTS_DIR}"/raw-data-*; do
+    if [ ! -d "$artifact_dir" ]; then
+        continue
+    fi
+
+    # Extract slug from artifact directory name (raw-data-{slug})
     SLUG=$(basename "$artifact_dir" | sed 's/^raw-data-//')
 
-    log_info "Found raw data directory: ${artifact_dir}"
+    log_info "Found raw data artifact directory: ${artifact_dir}"
 
     # Skip if no files
     if [ -z "$(ls -A "$artifact_dir" 2>/dev/null)" ]; then
@@ -282,7 +314,7 @@ while IFS= read -r -d '' artifact_dir; do
 
     # Check if this specific project's directory already exists in the target repo
     PROJECT_TARGET_DIR="${TARGET_BASE}/reports-${SLUG}"
-    EXISTING_PROJECT=$(get_file_sha "${PROJECT_TARGET_DIR}/README.md" 2>/dev/null || get_file_sha "${PROJECT_TARGET_DIR}/index.html" 2>/dev/null || echo "")
+    EXISTING_PROJECT=$(get_file_sha "${PROJECT_TARGET_DIR}/metadata.json" 2>/dev/null || get_file_sha "${PROJECT_TARGET_DIR}/report.html" 2>/dev/null || echo "")
 
     if [ -n "$EXISTING_PROJECT" ]; then
         log_warning "Target directory already exists for project ${SLUG}: ${PROJECT_TARGET_DIR}"
@@ -291,6 +323,7 @@ while IFS= read -r -d '' artifact_dir; do
         if [ "${GITHUB_EVENT_NAME:-}" = "workflow_dispatch" ]; then
             log_warning "Manual workflow invocation detected - skipping raw data for ${SLUG} to avoid overwriting existing data"
             log_info "If you need to update the raw data for ${SLUG}, please manually delete the existing folder in the target repository first"
+            # Don't increment skipped counter again if already skipped in reports section
             continue
         else
             log_warning "Scheduled run detected - will overwrite existing raw data for ${SLUG}"
@@ -299,35 +332,47 @@ while IFS= read -r -d '' artifact_dir; do
 
     log_info "Processing raw data for: ${SLUG}"
 
-    # Upload all files from this directory
-    while IFS= read -r -d '' file; do
-        # Get relative path from artifact_dir
-        rel_path="${file#"${artifact_dir}"/}"
-        remote_path="${TARGET_BASE}/reports-${SLUG}/${rel_path}"
+    # Raw data files should be at the root of the artifact directory
+    # Upload each JSON file we find
+    for file in "$artifact_dir"/*.json; do
+        if [ ! -f "$file" ]; then
+            continue
+        fi
 
-        log_info "  Uploading: ${rel_path}"
+        filename=$(basename "$file")
+        remote_path="${TARGET_BASE}/reports-${SLUG}/${filename}"
+
+        log_info "  Uploading raw data: ${filename}"
 
         if upload_file "$file" "$remote_path"; then
             FILES_COPIED=$((FILES_COPIED + 1))
+            # Update file count for this project
+            if [ -n "${PROJECT_FILE_COUNTS[${SLUG}]}" ]; then
+                PROJECT_FILE_COUNTS["${SLUG}"]=$((PROJECT_FILE_COUNTS["${SLUG}"] + 1))
+            else
+                PROJECT_FILE_COUNTS["${SLUG}"]=1
+            fi
         else
             FAILED_FILES=$((FAILED_FILES + 1))
         fi
 
         # Add small delay to avoid rate limiting
         sleep 0.1
-    done < <(find "$artifact_dir" -type f -print0 2>/dev/null)
+    done
 
     log_success "Processed raw data for ${SLUG}"
+done
 
-done < <(find "${ARTIFACTS_DIR}" -maxdepth 1 -type d -name "raw-data-*" -print0 2>/dev/null)
-
-# Check if we actually copied anything
-if [ $FILES_COPIED -eq 0 ] && [ $PROJECTS_PROCESSED -eq 0 ]; then
-    log_error "No files were copied from artifacts and no projects were processed"
+# Check if we actually copied anything or if everything was skipped
+if [ $FILES_COPIED -eq 0 ] && [ $PROJECTS_PROCESSED -eq 0 ] && [ $PROJECTS_SKIPPED -eq 0 ]; then
+    log_error "No files were copied and no projects were found"
     exit 1
-elif [ $FILES_COPIED -eq 0 ] && [ $PROJECTS_PROCESSED -gt 0 ]; then
-    log_warning "No new files were copied (all projects may have been skipped due to existing data)"
-    log_info "This is expected for manual runs when data already exists"
+elif [ $FILES_COPIED -eq 0 ] && [ $PROJECTS_SKIPPED -gt 0 ]; then
+    log_warning "No new files were copied - all ${PROJECTS_SKIPPED} project(s) were skipped due to existing data"
+    log_info "This is expected for manual runs when data already exists for today's date"
+    # Don't exit with error if projects were intentionally skipped
+elif [ $FILES_COPIED -eq 0 ]; then
+    log_warning "No files were uploaded despite processing ${PROJECTS_PROCESSED} project(s)"
 fi
 
 log_success "Total files uploaded: ${FILES_COPIED}"
@@ -335,6 +380,9 @@ if [ $FAILED_FILES -gt 0 ]; then
     log_warning "Failed uploads: ${FAILED_FILES}"
 fi
 log_success "Total projects processed: ${PROJECTS_PROCESSED}"
+if [ $PROJECTS_SKIPPED -gt 0 ]; then
+    log_info "Total projects skipped: ${PROJECTS_SKIPPED}"
+fi
 
 # Create README.md with metadata
 README_CONTENT="# Gerrit Reports - ${DATE_FOLDER}
@@ -345,6 +393,7 @@ Generated on: $(date -u +"%Y-%m-%d %H:%M:%S UTC")
 
 - **Date**: ${DATE_FOLDER}
 - **Projects Processed**: ${PROJECTS_PROCESSED}
+- **Projects Skipped**: ${PROJECTS_SKIPPED}
 - **Total Files**: ${FILES_COPIED}
 - **Workflow Run**: ${GITHUB_RUN_ID:-N/A}
 - **Trigger**: ${GITHUB_EVENT_NAME:-manual}
@@ -354,35 +403,50 @@ Generated on: $(date -u +"%Y-%m-%d %H:%M:%S UTC")
 This directory contains report artifacts for ${PROJECTS_PROCESSED} projects.
 
 Each project has a subdirectory named \`reports-<slug>\` containing:
-- Report HTML files and assets
+- Report HTML files (\`report.html\`)
+- Report Markdown files (\`report.md\`)
 - Raw JSON data files (\`report_raw.json\`, \`config_resolved.json\`, \`metadata.json\`)
 
 ## Projects
 
 "
 
-# List all project directories (from what we processed)
-for artifact_dir in "${ARTIFACTS_DIR}"/reports-*; do
-    if [ -d "$artifact_dir" ]; then
-        SLUG=$(basename "$artifact_dir" | sed 's/^reports-//')
-        FILE_COUNT=$(find "$artifact_dir" -type f 2>/dev/null | wc -l | tr -d ' ')
+# List all processed projects sorted by project name
+if [ ${#PROJECT_NAMES[@]} -gt 0 ]; then
+    # Create a temporary array for sorting
+    declare -a SORTED_PROJECTS
+
+    for SLUG in "${!PROJECT_NAMES[@]}"; do
+        PROJECT_NAME="${PROJECT_NAMES[${SLUG}]}"
+        FILE_COUNT="${PROJECT_FILE_COUNTS[${SLUG}]:-0}"
+        SORTED_PROJECTS+=("${PROJECT_NAME}|${SLUG}|${FILE_COUNT}")
+    done
+
+    # Sort by project name (case-insensitive) and add to README
+    for info in $(printf '%s\n' "${SORTED_PROJECTS[@]}" | sort -f); do
+        PROJECT_NAME=$(echo "$info" | cut -d'|' -f1)
+        SLUG=$(echo "$info" | cut -d'|' -f2)
+        FILE_COUNT=$(echo "$info" | cut -d'|' -f3)
         README_CONTENT="${README_CONTENT}
-- **${SLUG}**: ${FILE_COUNT} files"
-    fi
-done
-
-# Create README in temp file
-README_FILE=$(mktemp)
-echo "$README_CONTENT" > "$README_FILE"
-
-log_info "Creating README.md..."
-if upload_file "$README_FILE" "${TARGET_BASE}/README.md"; then
-    log_success "Created README.md"
-else
-    log_warning "Failed to create README.md"
+- **${PROJECT_NAME}** (\`${SLUG}\`): ${FILE_COUNT} files"
+    done
 fi
 
-rm -f "$README_FILE"
+# Only create README if we processed some projects
+if [ $PROJECTS_PROCESSED -gt 0 ] || [ $PROJECTS_SKIPPED -gt 0 ]; then
+    # Create README in temp file
+    README_FILE=$(mktemp)
+    echo "$README_CONTENT" > "$README_FILE"
 
-log_success "✨ All artifacts successfully uploaded to gerrit-reports repository!"
+    log_info "Creating README.md..."
+    if upload_file "$README_FILE" "${TARGET_BASE}/README.md"; then
+        log_success "Created README.md"
+    else
+        log_warning "Failed to create README.md"
+    fi
+
+    rm -f "$README_FILE"
+fi
+
+log_success "✨ Artifact transfer completed!"
 log_info "View at: https://github.com/${REMOTE_REPO}/tree/main/${TARGET_BASE}"

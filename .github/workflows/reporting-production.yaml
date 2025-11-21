@@ -338,16 +338,37 @@ jobs:
 
           echo "✅ Metadata created"
 
+      - name: "Copy raw data files to temp directory"
+        if: always()
+        shell: bash
+        run: |
+          # Create temp directory for raw data files
+          mkdir -p ./temp-raw-data-${{ matrix.slug }}
+
+          # Copy JSON files to temp directory (flattening the structure)
+          project="${{ matrix.project }}"
+          if [ -f "./reports/$project/report_raw.json" ]; then
+            cp "./reports/$project/report_raw.json" \
+              ./temp-raw-data-${{ matrix.slug }}/
+          fi
+          if [ -f "./reports/$project/config_resolved.json" ]; then
+            cp "./reports/$project/config_resolved.json" \
+              ./temp-raw-data-${{ matrix.slug }}/
+          fi
+          if [ -f "./reports/$project/metadata.json" ]; then
+            cp "./reports/$project/metadata.json" \
+              ./temp-raw-data-${{ matrix.slug }}/
+          fi
+
+          echo "Raw data files prepared for upload"
+
       - name: "Upload raw data artifacts"
         if: always()
         # yamllint disable-line rule:line-length
         uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: raw-data-${{ matrix.slug }}
-          path: |
-            ./reports/${{ matrix.project }}/report_raw.json
-            ./reports/${{ matrix.project }}/config_resolved.json
-            ./reports/${{ matrix.project }}/metadata.json
+          path: ./temp-raw-data-${{ matrix.slug }}/
           retention-days: 90
           if-no-files-found: warn
           compression-level: 9
