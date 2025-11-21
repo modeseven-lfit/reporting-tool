@@ -248,16 +248,13 @@ for artifact_dir in "${ARTIFACTS_DIR}"/reports-*; do
             log_warning "Manual workflow invocation detected - skipping ${SLUG} to avoid overwriting existing data"
             log_info "If you need to update the reports for ${SLUG}, please manually delete the existing folder in the target repository first"
             PROJECTS_SKIPPED=$((PROJECTS_SKIPPED + 1))
-            continue
         else
             log_warning "Scheduled run detected - will overwrite existing data for ${SLUG}"
+            EXISTING_PROJECT=""  # Clear flag so we process it
         fi
     fi
 
-    PROJECTS_PROCESSED=$((PROJECTS_PROCESSED + 1))
-    log_info "Processing report files for project: ${SLUG}"
-
-    # Try to extract the full project name from metadata.json
+    # Try to extract the full project name from metadata.json (do this before skip check)
     PROJECT_NAME="${SLUG}"
     if [ -f "$artifact_dir/metadata.json" ] && command -v jq &> /dev/null; then
         EXTRACTED_NAME=$(jq -r '.project // empty' "$artifact_dir/metadata.json" 2>/dev/null || echo "")
@@ -266,6 +263,16 @@ for artifact_dir in "${ARTIFACTS_DIR}"/reports-*; do
         fi
     fi
     PROJECT_NAMES["${SLUG}"]="${PROJECT_NAME}"
+
+    # Check if project was skipped or processed
+    if [ -n "$EXISTING_PROJECT" ] && [ "${GITHUB_EVENT_NAME:-}" = "workflow_dispatch" ]; then
+        # Project was skipped, set file count to the count in artifact dir for README
+        PROJECT_FILE_COUNTS["${SLUG}"]=$(find "$artifact_dir" -type f 2>/dev/null | wc -l | tr -d ' ')
+        continue
+    fi
+
+    PROJECTS_PROCESSED=$((PROJECTS_PROCESSED + 1))
+    log_info "Processing report files for project: ${SLUG}"
 
     # Files are expected to be at the root of the artifact directory
     # Upload each file we find
