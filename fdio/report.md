@@ -1,6 +1,6 @@
 # 📊 Gerrit Project Analysis Report: FDio
 
-**Generated:** November 22, 2025 at 15:19 UTC
+**Generated:** November 22, 2025 at 15:38 UTC
 **Schema Version:** 1.0.0
 
 ## 📈 Global Summary
@@ -415,8 +415,8 @@ The data presented in the table below covers the past 365 days.
 | 223 | Fangyin Hu | 0 | +0 | 0 | - | 2 | intel.com |
 | 224 | Federico Claramonte | 0 | +0 | 0 | - | 1 | caviumnetworks.com |
 | 225 | Feng Pan | 0 | +0 | 0 | - | 1 | redhat.com |
-| 226 | Filip Tehlar | 0 | +0 | 0 | - | 2 | cisco.com |
-| 227 | Filip Tehlar | 0 | +0 | 0 | - | 1 | gmail.com |
+| 226 | Filip Tehlar | 0 | +0 | 0 | - | 1 | gmail.com |
+| 227 | Filip Tehlar | 0 | +0 | 0 | - | 2 | cisco.com |
 | 228 | Filip Varga | 0 | +0 | 0 | - | 1 | cisco.com |
 | 229 | Filip Varga | 0 | +0 | 0 | - | 1 | gmail.com |
 | 230 | Filip Varga | 0 | +0 | 0 | - | 1 | pantheon.tech |
@@ -426,8 +426,8 @@ The data presented in the table below covers the past 365 days.
 | 234 | Francois Clad | 0 | +0 | 0 | - | 1 | cisco.com |
 | 235 | Frédéric Perrin | 0 | +0 | 0 | - | 1 | fperrin.net |
 | 236 | Gabriel Ganne | 0 | +0 | 0 | - | 2 | qosmos.com |
-| 237 | Gabriel Ganne | 0 | +0 | 0 | - | 2 | enea.com |
-| 238 | Gabriel Ganne | 0 | +0 | 0 | - | 1 | gmail.com |
+| 237 | Gabriel Ganne | 0 | +0 | 0 | - | 1 | gmail.com |
+| 238 | Gabriel Ganne | 0 | +0 | 0 | - | 2 | enea.com |
 | 239 | Gabriel Oginski | 0 | +0 | 0 | - | 1 | intel.com |
 | 240 | Gao Feng | 0 | +0 | 0 | - | 1 | outlook.com |
 | 241 | Gao Feng | 0 | +0 | 0 | - | 1 | tencent.com |
@@ -616,8 +616,8 @@ The data presented in the table below covers the past 365 days.
 | 424 | Patrik Hrnciar | 0 | +0 | 0 | - | 1 | cisco.com |
 | 425 | Paul Atkins | 0 | +0 | 0 | - | 1 | graphiant.com |
 | 426 | Paul Vinciguerra | 0 | +0 | 0 | - | 3 | vinciconsulting.com |
-| 427 | Pavel Kotucek | 0 | +0 | 0 | - | 2 | cisco.com |
-| 428 | Pavel Kotucek | 0 | +0 | 0 | - | 1 | pantheon.tech |
+| 427 | Pavel Kotucek | 0 | +0 | 0 | - | 1 | pantheon.tech |
+| 428 | Pavel Kotucek | 0 | +0 | 0 | - | 2 | cisco.com |
 | 429 | Peter Ginchev | 0 | +0 | 0 | - | 2 | cisco.com |
 | 430 | Peter Lei | 0 | +0 | 0 | - | 1 | cisco.com |
 | 431 | Peter Mikus | 0 | +0 | 0 | - | 3 | cisco.com |
@@ -819,8 +819,8 @@ The data presented in the table below covers the past 365 days.
 | 627 | spencercoder | 0 | +0 | 0 | - | 1 | com.cn |
 | 628 | tjanciga | 0 | +0 | 0 | - | 1 | pantheon.tech |
 | 629 | tomas.smado | 0 | +0 | 0 | - | 1 | pantheon.tech |
-| 630 | vagrant | 0 | +0 | 0 | - | 1 | cisco.com |
-| 631 | vagrant | 0 | +0 | 0 | - | 1 | localhost.localdomain |
+| 630 | vagrant | 0 | +0 | 0 | - | 1 | localhost.localdomain |
+| 631 | vagrant | 0 | +0 | 0 | - | 1 | cisco.com |
 | 632 | varasteh | 0 | +0 | 0 | - | 1 | gmail.com |
 | 633 | viliam.luc | 0 | +0 | 0 | - | 1 | pantheon.tech |
 | 634 | vinay tripathi | 0 | +0 | 0 | - | 1 | intel.com |
@@ -860,8 +860,8 @@ The data presented in the table below covers the past 365 days.
 | vpp | c_cpp | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ |
 | csit | python | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | ci-management | jjb | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ |
-| test_injector | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | main_test | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| test_injector | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | vppsb | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | .github | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
 
