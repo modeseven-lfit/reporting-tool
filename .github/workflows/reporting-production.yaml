@@ -812,10 +812,19 @@ jobs:
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: "Send email notification"
-        if: always()
+      - name: "Prepare email notification"
+        if: always() && vars.SEND_EMAIL_NOTIFICATIONS == 'true'
         shell: bash
         run: |
+          # Print mail configuration for debugging
+          echo "=== Email Configuration ==="
+          echo "SMTP_SERVER: ${{ vars.SMTP_SERVER }}"
+          echo "SMTP_USERNAME: ${{ vars.SMTP_USERNAME }}"
+          echo "REPORT_EMAIL_ADDRESS: ${{ vars.REPORT_EMAIL_ADDRESS }}"
+          echo "FROM: no-reply@linuxfoundation.org"
+          echo "==========================="
+          echo ""
+
           # Helper function to convert result to emoji
           result_emoji() {
             case "$1" in
@@ -892,12 +901,13 @@ jobs:
           echo "View full workflow run: ${workflow_url}" >> /tmp/email_body.txt
 
       - name: "Send email with dawidd6/action-send-mail"
-        if: always()
-        uses: dawidd6/action-send-mail@v3
+        if: always() && vars.SEND_EMAIL_NOTIFICATIONS == 'true'
+        # yamllint disable-line rule:line-length
+        uses: dawidd6/action-send-mail@6d98ae34d733f9a723a9e04e94f2f24ba05e1402 # v6
         with:
           server_address: ${{ vars.SMTP_SERVER }}
           server_port: 587
-          username: ${{ secrets.SMTP_USERNAME }}
+          username: ${{ vars.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: >-
             Production Report Generation Complete -
