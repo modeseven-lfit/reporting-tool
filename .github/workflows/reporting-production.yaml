@@ -811,3 +811,97 @@ jobs:
               echo ""
             fi
           } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: "Send email notification"
+        if: always()
+        shell: bash
+        run: |
+          # Helper function to convert result to emoji
+          result_emoji() {
+            case "$1" in
+              success) echo "✅" ;;
+              failure) echo "❌" ;;
+              cancelled) echo "⚠️" ;;
+              skipped) echo "⏭️" ;;
+              *) echo "❓" ;;
+            esac
+          }
+
+          # Parse projects JSON to get slugs
+          projects_json='${{ vars.PROJECTS_JSON }}'
+          owner="${{ github.repository_owner }}"
+          repo="${{ github.event.repository.name }}"
+          base_url="https://${owner}.github.io/${repo}"
+
+          # Build email body
+          cat > /tmp/email_body.txt << 'EMAIL_EOF'
+          📊 Production Report Generation Complete
+
+          EMAIL_EOF
+
+          date_completed=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          verify_result="${{ needs.verify.result }}"
+          analyze_result="${{ needs.analyze.result }}"
+          publish_result="${{ needs.publish.result }}"
+          copy_result="${{ needs.copy-to-gerrit-reports.result }}"
+
+          {
+            echo "Completed: ${date_completed}"
+            echo "Status: ${publish_result}"
+            echo ""
+            echo "Job Results:"
+            verify_emoji=$(result_emoji "${verify_result}")
+            echo "- Verify: ${verify_emoji} ${verify_result}"
+            analyze_emoji=$(result_emoji "${analyze_result}")
+            echo "- Analyze: ${analyze_emoji} ${analyze_result}"
+            publish_emoji=$(result_emoji "${publish_result}")
+            echo "- Publish: ${publish_emoji} ${publish_result}"
+            copy_emoji=$(result_emoji "${copy_result}")
+            echo "- Copy: ${copy_emoji} ${copy_result}"
+            echo ""
+          } >> /tmp/email_body.txt
+
+          # Add project reports if publish succeeded
+          if [ "${publish_result}" = "success" ]; then
+            {
+              echo "📑 Project Reports:"
+              echo ""
+            } >> /tmp/email_body.txt
+
+            echo "$projects_json" | \
+              jq -r '.[] | "\(.project)|\(.slug)"' | \
+              while IFS='|' read -r project_name slug; do
+                report_url="${base_url}/${slug}/report.html"
+                data_url="${base_url}/${slug}/report_raw.json"
+                echo "- ${project_name}: ${report_url}" \
+                  >> /tmp/email_body.txt
+                echo "  Raw Data: ${data_url}" >> /tmp/email_body.txt
+              done
+
+            {
+              echo ""
+              echo "Index: ${base_url}/"
+              echo ""
+            } >> /tmp/email_body.txt
+          fi
+
+          run_id="${{ github.run_id }}"
+          repo="${{ github.repository }}"
+          server="${{ github.server_url }}"
+          workflow_url="${server}/${repo}/actions/runs/${run_id}"
+          echo "View full workflow run: ${workflow_url}" >> /tmp/email_body.txt
+
+      - name: "Send email with dawidd6/action-send-mail"
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ vars.SMTP_SERVER }}
+          server_port: 587
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: >-
+            Production Report Generation Complete -
+            ${{ github.repository }}
+          to: ${{ vars.REPORT_EMAIL_ADDRESS }}
+          from: no-reply@linuxfoundation.org
+          body: file:///tmp/email_body.txt
