@@ -1,6 +1,6 @@
 # 📊 Gerrit Project Analysis Report: LF Broadband
 
-**Generated:** November 22, 2025 at 15:40 UTC
+**Generated:** November 22, 2025 at 16:09 UTC
 **Schema Version:** 1.0.0
 
 ## 📈 Global Summary
@@ -318,7 +318,7 @@ The data presented in the table below covers the past 365 days.
 | 7 | abhayk | 20 | +195 | 455 | +9.8 | 9 | radisys.com |
 | 8 | gst | 16 | +192 | 500 | +12.0 | 2 | radisys.com |
 | 9 | Akash Soni | 15 | +2864 | 5546 | +190.9 | 8 | radisys.com |
-| 10 | pnalmas | 14 | +2111 | 13879 | +150.8 | 11 | radisys.com |
+| 10 | praneeth.nalmas | 14 | +2111 | 13879 | +150.8 | 11 | radisys.com |
 | 11 | Mahir Gunyel | 11 | +3538 | 8026 | +321.6 | 24 | netsia.com |
 | 12 | mgouda | 10 | +61005 | 117045 | +6100.5 | 5 | radisys.com |
 | 13 | Abhilash laxmeshwar | 9 | +909 | 2449 | +101.0 | 11 | radisys.com |
@@ -358,8 +358,8 @@ The data presented in the table below covers the past 365 days.
 | 47 | Anand S Katti | 0 | +0 | 0 | - | 1 | radisys.com |
 | 48 | Anatol Pomazau | 0 | +0 | 0 | - | 1 | google.com |
 | 49 | Anatol Pomozov | 0 | +0 | 0 | - | 1 | gmail.com |
-| 50 | Andrea Campanella | 0 | +0 | 0 | - | 44 | opennetworking.org |
-| 51 | Andrea Campanella | 0 | +0 | 0 | - | 21 | intel.com |
+| 50 | Andrea Campanella | 0 | +0 | 0 | - | 21 | intel.com |
+| 51 | Andrea Campanella | 0 | +0 | 0 | - | 44 | opennetworking.org |
 | 52 | Andrea Campanella | 0 | +0 | 0 | - | 8 | onlab.us |
 | 53 | Andrea Campanella | 0 | +0 | 0 | - | 1 | opennetwokring.org |
 | 54 | Andrea Speranza | 0 | +0 | 0 | - | 2 | gmail.com |
@@ -588,8 +588,8 @@ The data presented in the table below covers the past 365 days.
 | 277 | Hyunsun | 0 | +0 | 0 | - | 1 | cloudlab.us |
 | 278 | Hyunsun | 0 | +0 | 0 | - | 1 | cluster.local |
 | 279 | Hyunsun | 0 | +0 | 0 | - | 1 | cloudlab.us |
-| 280 | Hyunsun Moon | 0 | +0 | 0 | - | 16 | gmail.com |
-| 281 | Hyunsun Moon | 0 | +0 | 0 | - | 14 | opennetworking.org |
+| 280 | Hyunsun Moon | 0 | +0 | 0 | - | 14 | opennetworking.org |
+| 281 | Hyunsun Moon | 0 | +0 | 0 | - | 16 | gmail.com |
 | 282 | Hyunsun Moon | 0 | +0 | 0 | - | 2 | intel.com |
 | 283 | Igor Ryzhov | 0 | +0 | 0 | - | 1 | nfware.com |
 | 284 | Ilayda Ozdemir | 0 | +0 | 0 | - | 8 | netsia.com |
@@ -1162,7 +1162,7 @@ The data presented in the table below covers the past 365 days.
 | bbsim-sadis-server | 2 | +0 | 2 | 308 | 2025-01-18 | ✅ |
 | helm-repo-tools | 2 | -1 | 1 | 304 | 2025-01-22 | ✅ |
 | igmpproxy | 2 | +0 | 1 | 309 | 2025-01-17 | ✅ |
-| ofagent-go | 2 | +952 | 2 | 309 | 2025-01-17 | ✅ |
+| ofagent-go | 2 | +952 | 2 | 310 | 2025-01-16 | ✅ |
 | openolt | 2 | +351 | 2 | 171 | 2025-06-04 | ✅ |
 | sadis | 2 | +0 | 1 | 309 | 2025-01-17 | ✅ |
 | cord-tester | 1 | -1 | 1 | 224 | 2025-04-12 | ✅ |
@@ -1205,9 +1205,9 @@ The data presented in the table below covers the past 365 days.
 | ansible/role/netbox | 0 | +0 | 0 | 1,175 | 2022-09-04 | 🛑 |
 | ansible/role/netprep | 0 | +0 | 0 | 1,516 | 2021-09-28 | 🛑 |
 | ansible/role/nginx | 0 | +0 | 0 | 1,286 | 2022-05-16 | 🛑 |
-| ansible/role/node_exporter | 0 | +0 | 0 | 1,173 | 2022-09-06 | 🛑 |
-| ansible/role/nodejs | 0 | +0 | 0 | 1,173 | 2022-09-06 | 🛑 |
-| ansible/role/nsd | 0 | +0 | 0 | 1,173 | 2022-09-06 | 🛑 |
+| ansible/role/node_exporter | 0 | +0 | 0 | 1,174 | 2022-09-05 | 🛑 |
+| ansible/role/nodejs | 0 | +0 | 0 | 1,174 | 2022-09-05 | 🛑 |
+| ansible/role/nsd | 0 | +0 | 0 | 1,174 | 2022-09-05 | 🛑 |
 | ansible/role/onieboot | 0 | +0 | 0 | 1,173 | 2022-09-06 | 🛑 |
 | ansible/role/openvpn | 0 | +0 | 0 | 1,337 | 2022-03-26 | 🛑 |
 | ansible/role/php | 0 | +0 | 0 | 1,173 | 2022-09-06 | 🛑 |
@@ -1241,7 +1241,7 @@ The data presented in the table below covers the past 365 days.
 | cord-omec | 0 | +0 | 0 | 2,328 | 2019-07-09 | 🛑 |
 | cord-onos-publisher | 0 | +0 | 0 | 2,137 | 2020-01-16 | 🛑 |
 | cord-platform | 0 | +0 | 0 | 2,147 | 2020-01-06 | 🛑 |
-| cord-service-boilerplate | 0 | +0 | 0 | 3,157 | 2017-04-01 | 🛑 |
+| cord-service-boilerplate | 0 | +0 | 0 | 3,158 | 2017-03-31 | 🛑 |
 | cord-workflow-airflow | 0 | +0 | 0 | 2,191 | 2019-11-23 | 🛑 |
 | cord-workflow-controller | 0 | +0 | 0 | 2,191 | 2019-11-23 | 🛑 |
 | cord-workflow-controller-client | 0 | +0 | 0 | 2,191 | 2019-11-23 | 🛑 |
@@ -1415,8 +1415,8 @@ The data presented in the table below covers the past 365 days.
 | voltha-go-controller | go | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ |
 | voltha-lib-go | go | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ |
 | voltha-docs | python | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ |
-| bng | maven | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | aaa | maven | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
+| bng | maven | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | dhcpl2relay | maven | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | mcast | maven | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | olt | maven | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
@@ -1437,80 +1437,80 @@ The data presented in the table below covers the past 365 days.
 | ofagent-go | go | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | cord-tester | python | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
 | omci-lib-go | go | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ |
-| ansible/role/bird | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| ansible/role/dkms | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| ansible/role/dhcpd | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
-| ansible/role/389ds | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/devtools | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/chrony | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/apt_source | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/ds389 | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | ansible/role/acme | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/devtools | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/apt_source | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/dkms | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| ansible/role/chrony | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/ds389 | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/dhcpd | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | ansible/role/enodebd | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/edgemonagent | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| ansible/role/docker | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| ansible/role/389ds | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/bird | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ansible/role/gerrit | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/edgemonagent | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| ansible/role/lbackup | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ansible/role/golang | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | ansible/role/keycloak | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/docker | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| ansible/role/lbackup | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| ansible/role/netbox | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | ansible/role/jenkins | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| ansible/role/node_exporter | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/nodejs | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | ansible/role/lua | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/netprep | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ansible/role/mariadb | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/netbox | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/nodejs | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | ansible/role/openvpn | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/nsd | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/nginx | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| ansible/role/postgresql | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| ansible/role/proxmox | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| ansible/role/php | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/netprep | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ansible/role/onieboot | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/nsd | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/php | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/node_exporter | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/postgresql | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| ansible/role/nginx | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| ansible/role/qat | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/redis | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | ansible/role/rke2 | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ansible/role/pxeboot | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/redis | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/unbound | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
-| ansible/role/qat | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/proxmox | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ansible/role/sriov | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/timesheets | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/strongswan | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/users | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/usrp | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ansible/role/unifi | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| Ignite | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | ansible/role/rbackup | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| CORD-Projects | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
-| MME2 | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| ansible/onf-ansible | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| PassiveTest | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/timesheets | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/unbound | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
+| ansible/role/unifi | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/strongswan | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | Aether-Projects | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
 | ActiveTest | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| PublicTest | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| ONOS-App-projects | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
-| SDCore-Projects | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
-| Infra-Projects | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
 | .github | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
+| ansible/role/usrp | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/role/users | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| ansible/onf-ansible | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| CORD-Projects | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
+| PassiveTest | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| MME2 | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| Infra-Projects | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
+| Ignite | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| SDCore-Projects | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
 | SDFabric-Projects | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
-| att-workflow-driver | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| ONOS-App-projects | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
+| PublicTest | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| acordion | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | addressmanager | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | asfvolt16-onl | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| asfvolt16-driver | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | alpine-grpc-base | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| acordion | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| automation-tools | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| asfvolt16-driver | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| att-workflow-driver | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | bogus-project | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| automation-tools | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | cbrstools | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | carrierethernet | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | cggs | python | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | comac-helm-charts | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| composer | node | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | certification | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| composer | node | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | config | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | cord-omec | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| cord-platform | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | chameleon | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | cord-onos-publisher | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| cord-platform | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | cord-service-boilerplate | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | cord-workflow-controller | node | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | cord-workflow-airflow | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
@@ -1520,119 +1520,119 @@ The data presented in the table below covers the past 365 days.
 | cord | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | dt-workflow-driver | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ecord | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| docs | node | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| epc-service | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | enodebd | docker | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| epc-service | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | exampleservice | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| docs | node | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | fabric-crossconnect | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | fabric | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| foo-app | maven | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | device-management | go | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| foo-app | maven | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | fpcagent | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | fwaas | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| go-manifest | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | globalxos | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | freeDiameter-old | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| go-manifest | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | grpc-robot | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| goloxi | go | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | hippie-oss | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | hss_db | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | hypercache | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| igmpca | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
+| goloxi | go | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | igmp | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| igmpca | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | infra-containers | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | infra-manifest | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | internetemulator | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| k8sepcservice | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | ipxe-build | docker | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| k8sepcservice | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | kafka-robot | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | helm-charts | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | kafkaloghandler | python | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| kolla | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | kolla-ansible | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| kolla | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | lbaas | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | kubernetes-service | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | manifest | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| mcord | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| fabric-oftest | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | mcord-configs | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| mcord | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | metro-net | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | metronet-local | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | mgmt-gateway-vm | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | mn-stratum-siab | docker | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | multifabric | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | multistructlog | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| monitoring | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | network-diag-app | python | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | maas | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ntt-workflow-driver | python | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| monitoring | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ng-xos-lib | node | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| nem-ondemand-proxy | go | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| olt-service | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | olttopology | maven | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
+| olt-service | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| nem-ondemand-proxy | go | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | omec-cni | docker | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | omec-pod-init | docker | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | onf-docs | python | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| fabric-oftest | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | onf-scripts | None | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | onfca | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | onos-classic-helm-utils | docker | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | onos-robot | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | openairinterface | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| opencloud | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | onos-service | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| opencloud | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | opendm-agent | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| openolt-api | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | kafka-topic-exporter | go | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| onf-make | python | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
+| openolt-api | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | openolt-test | c_cpp | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | openomci | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| onf-make | python | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
 | openstack | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | opendevice-manager | go | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| osam | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | plyxproto | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| pppoel2relay | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| osam | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | person-detection-app | python | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| pppoel2relay | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | pubsafe | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| qa-manifest | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | progran | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| qa-manifest | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | rcord | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | redfish-agent | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | platform-install | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| openolt-scale-tester | go | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| sdcore-docs | python | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | roc-helm-charts | go | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
+| sadis-server | docker | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| sdcore-docs | python | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | sdcore-helm-charts | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
-| sdfabric-helm-charts | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
+| openolt-scale-tester | go | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | sdn-controller | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | seba-manifest | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| sdfabric-helm-charts | c_cpp | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | seba | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| sadis-server | docker | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| sdfabric-docs | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | simpleexampleservice | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | sjsg | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | swarm | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | templateservice | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| sdfabric-docs | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| tt-workflow-driver | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | vBBU | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| vHSS | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| tt-workflow-driver | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | vEE | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| vEG | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| vHSS | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | service-profile | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| vMM | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| vEG | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | vMME | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | vPGWU | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | vPGWC | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| vMM | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| vSM | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| vSGW | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| vSGWU | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | venb | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| vSGW | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| vSM | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ves-agent | maven | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| vSGWU | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | voltha-adtran-adapter | python | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | repo | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | vnaas | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| voltha-bal | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | voltha-eponolt-adapter | go | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | voltha-epononu-adapter | go | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| voltha-bal | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | voltha-api-server | go | ❌ | ❌ | ❌ | ✅ | ❌ | ☑️ |
 | voltha-omci | python | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | voltha-onos | python | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
@@ -1644,10 +1644,10 @@ The data presented in the table below covers the past 365 days.
 | vsg-hw | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | vspgwc | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | vspgwu | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
+| vtn | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | vtn-service | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | vtr | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | xRAN | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
-| vtn | maven | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | xos-external-app-examples | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | xos-gui | node | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | xos-manifest | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
@@ -1883,28 +1883,28 @@ These Jenkins jobs belong to archived or read-only Gerrit projects; audit them a
 
 | Job Name | Gerrit Project |
 |----------|----------------|
-| voltha-scale-measurements-master-10-stacks-2-16-32-dt-subscribers | voltha |
-| voltha-scale-measurements-master-experimental | voltha |
-| voltha-scale-measurements-lwc-dt-512 | voltha |
-| voltha-scale-measurements-master-2-16-32-att-subscribers | voltha |
-| voltha-scale-measurements-master-10-stacks-2-16-32-att-subscribers | voltha |
-| voltha-scale-measurements-lwc-dt-256 | voltha |
-| voltha-scale-measurements-patchset-1-16-32-tt-subscribers | voltha |
-| voltha-scale-measurements-patchset-1-16-32-att-subscribers | voltha |
-| voltha-scale-measurements-master-1-64-63-dt-subscribers | voltha |
-| voltha-scale-measurements-master-2-64-32-dt-subscribers | voltha |
-| voltha-scale-measurements-master-onu-upgrade-2-16-32-att-onus | voltha |
-| voltha-scale-measurements-patchset-1-16-32-dt-subscribers | voltha |
-| voltha-scale-measurements-2.14-10-stacks-2-16-32-tt-subscribers | voltha |
-| voltha-scale-measurements-voltha-2.14-2-16-32-tt-subscribers | voltha |
-| voltha-scale-measurements-master-2-16-32-tt-subscribers | voltha |
-| voltha-scale-measurements-master-2-16-32-tt-subscribers-maclearner | voltha |
-| voltha-scale-measurements-master-10-stacks-2-16-32-tt-subscribers | voltha |
 | voltha-scale-measurements-voltha-2.14-2-16-32-dt-subscribers | voltha |
+| voltha-scale-measurements-patchset-1-16-32-dt-subscribers | voltha |
 | voltha-scale-measurements-master-experimental-multi-stack | voltha |
-| voltha-scale-measurements-master-2-16-32-dt-subscribers | voltha |
-| voltha-scale-measurements-master-1-64-63-tt-subscribers | voltha |
 | voltha-scale-measurements-2.14-10-stacks-2-16-32-dt-subscribers | voltha |
+| voltha-scale-measurements-master-2-16-32-tt-subscribers-maclearner | voltha |
+| voltha-scale-measurements-master-2-16-32-att-subscribers | voltha |
+| voltha-scale-measurements-master-1-64-63-dt-subscribers | voltha |
+| voltha-scale-measurements-master-onu-upgrade-2-16-32-att-onus | voltha |
+| voltha-scale-measurements-master-10-stacks-2-16-32-tt-subscribers | voltha |
+| voltha-scale-measurements-master-1-64-63-tt-subscribers | voltha |
+| voltha-scale-measurements-master-2-64-32-dt-subscribers | voltha |
+| voltha-scale-measurements-patchset-1-16-32-att-subscribers | voltha |
+| voltha-scale-measurements-master-2-16-32-dt-subscribers | voltha |
+| voltha-scale-measurements-master-2-16-32-tt-subscribers | voltha |
+| voltha-scale-measurements-voltha-2.14-2-16-32-tt-subscribers | voltha |
+| voltha-scale-measurements-patchset-1-16-32-tt-subscribers | voltha |
+| voltha-scale-measurements-master-10-stacks-2-16-32-att-subscribers | voltha |
+| voltha-scale-measurements-master-experimental | voltha |
+| voltha-scale-measurements-2.14-10-stacks-2-16-32-tt-subscribers | voltha |
+| voltha-scale-measurements-lwc-dt-512 | voltha |
+| voltha-scale-measurements-lwc-dt-256 | voltha |
+| voltha-scale-measurements-master-10-stacks-2-16-32-dt-subscribers | voltha |
 
 **Recommendation:** review these jobs and remove them if they are no longer needed.
 

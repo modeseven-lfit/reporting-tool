@@ -1,6 +1,6 @@
 # 📊 Gerrit Project Analysis Report: Linux Foundation
 
-**Generated:** November 22, 2025 at 15:39 UTC
+**Generated:** November 22, 2025 at 16:08 UTC
 **Schema Version:** 1.0.0
 
 ## 📈 Global Summary
@@ -120,52 +120,52 @@ The data presented in the table below covers the past 365 days.
 | 41 | Gerrit Code Review | 0 | +0 | 0 | - | 2 | linuxfoundation.org |
 | 42 | Gilles Thouenon | 0 | +0 | 0 | - | 1 | orange.com |
 | 43 | Gregory Elkinbard | 0 | +0 | 0 | - | 1 | gmail.com |
-| 44 | Houa Yang | 0 | +0 | 0 | - | 2 | linuxfoundation.org |
-| 45 | Jackie Huang | 0 | +0 | 0 | - | 1 | windriver.com |
-| 46 | James E. Blair | 0 | +0 | 0 | - | 1 | redhat.com |
-| 47 | James Gregg | 0 | +0 | 0 | - | 1 | intel.com |
-| 48 | Jamo Luhrsen | 0 | +0 | 0 | - | 2 | gmail.com |
-| 49 | Jamo Luhrsen | 0 | +0 | 0 | - | 2 | redhat.com |
-| 50 | Jeremy Phelps | 0 | +0 | 0 | - | 9 | linuxfoundation.org |
-| 51 | John McInerney | 0 | +0 | 0 | - | 1 | navy.mil |
-| 52 | JohnKeeney | 0 | +0 | 0 | - | 1 | est.tech |
-| 53 | Jordan Conway | 0 | +0 | 0 | - | 2 | linuxfoundation.org |
-| 54 | Jordan Evans | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
-| 55 | Josh Farwell | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
-| 56 | Konstantin Ryabitsev | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
-| 57 | Krzysztof Kuzmicki | 0 | +0 | 0 | - | 1 | nokia.com |
-| 58 | Lott, Christopher (cl778h) | 0 | +0 | 0 | - | 4 | att.com |
-| 59 | Luis Gomez | 0 | +0 | 0 | - | 1 | gmail.com |
-| 60 | Martin Klozik | 0 | +0 | 0 | - | 3 | tieto.com |
-| 61 | Michal Jagiello | 0 | +0 | 0 | - | 1 | t-mobile.pl |
-| 62 | Milin Jaiswal | 0 | +0 | 0 | - | 2 | linuxfoundation.org |
-| 63 | Mohammed Naser | 0 | +0 | 0 | - | 3 | vexxhost.com |
-| 64 | Navin Agrawal | 0 | +0 | 0 | - | 1 | gmail.com |
-| 65 | Nitin Gupta (Bangalore) | 0 | +0 | 0 | - | 1 | yahoo.com |
-| 66 | Prateek | 0 | +0 | 0 | - | 1 | gmail.com |
-| 67 | Robert Varga | 0 | +0 | 0 | - | 2 | hq.sk |
-| 68 | Ry Jones | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
-| 69 | Ry Jones | 0 | +0 | 0 | - | 1 | walledcity.org |
-| 70 | Sam Hague | 0 | +0 | 0 | - | 2 | redhat.com |
-| 71 | Sandra Biton | 0 | +0 | 0 | - | 1 | hpe.com |
-| 72 | Sangwook Ha | 0 | +0 | 0 | - | 1 | verizon.com |
-| 73 | Suresh Channamallu | 0 | +0 | 0 | - | 3 | linuxfoundation.org |
-| 74 | Sylvain Desbureaux | 0 | +0 | 0 | - | 1 | orange.com |
-| 75 | Thanh Ha | 0 | +0 | 0 | - | 18 | gmail.com |
-| 76 | Thanh Ha | 0 | +0 | 0 | - | 9 | linux.com |
+| 44 | Guillaume Lambert | 0 | +0 | 0 | - | 3 | orange.com |
+| 45 | Houa Yang | 0 | +0 | 0 | - | 2 | linuxfoundation.org |
+| 46 | Jackie Huang | 0 | +0 | 0 | - | 1 | windriver.com |
+| 47 | James E. Blair | 0 | +0 | 0 | - | 1 | redhat.com |
+| 48 | James Gregg | 0 | +0 | 0 | - | 1 | intel.com |
+| 49 | Jamo Luhrsen | 0 | +0 | 0 | - | 2 | gmail.com |
+| 50 | Jamo Luhrsen | 0 | +0 | 0 | - | 2 | redhat.com |
+| 51 | Jeremy Phelps | 0 | +0 | 0 | - | 9 | linuxfoundation.org |
+| 52 | John McInerney | 0 | +0 | 0 | - | 1 | navy.mil |
+| 53 | JohnKeeney | 0 | +0 | 0 | - | 1 | est.tech |
+| 54 | Jordan Conway | 0 | +0 | 0 | - | 2 | linuxfoundation.org |
+| 55 | Jordan Evans | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
+| 56 | Josh Farwell | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
+| 57 | Konstantin Ryabitsev | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
+| 58 | Krzysztof Kuzmicki | 0 | +0 | 0 | - | 1 | nokia.com |
+| 59 | Lott, Christopher (cl778h) | 0 | +0 | 0 | - | 4 | att.com |
+| 60 | Luis Gomez | 0 | +0 | 0 | - | 1 | gmail.com |
+| 61 | Martin Klozik | 0 | +0 | 0 | - | 3 | tieto.com |
+| 62 | Michal Jagiello | 0 | +0 | 0 | - | 1 | t-mobile.pl |
+| 63 | Milin Jaiswal | 0 | +0 | 0 | - | 2 | linuxfoundation.org |
+| 64 | Mohammed Naser | 0 | +0 | 0 | - | 3 | vexxhost.com |
+| 65 | Navin Agrawal | 0 | +0 | 0 | - | 1 | gmail.com |
+| 66 | Nitin Gupta (Bangalore) | 0 | +0 | 0 | - | 1 | yahoo.com |
+| 67 | Prateek | 0 | +0 | 0 | - | 1 | gmail.com |
+| 68 | Robert Varga | 0 | +0 | 0 | - | 2 | hq.sk |
+| 69 | Ry Jones | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
+| 70 | Ry Jones | 0 | +0 | 0 | - | 1 | walledcity.org |
+| 71 | Sam Hague | 0 | +0 | 0 | - | 2 | redhat.com |
+| 72 | Sandra Biton | 0 | +0 | 0 | - | 1 | hpe.com |
+| 73 | Sangwook Ha | 0 | +0 | 0 | - | 1 | verizon.com |
+| 74 | Suresh Channamallu | 0 | +0 | 0 | - | 3 | linuxfoundation.org |
+| 75 | Sylvain Desbureaux | 0 | +0 | 0 | - | 1 | orange.com |
+| 76 | Thanh Ha | 0 | +0 | 0 | - | 18 | gmail.com |
 | 77 | Thanh Ha | 0 | +0 | 0 | - | 22 | linuxfoundation.org |
-| 78 | Tim Johnson | 0 | +0 | 0 | - | 5 | linuxfoundation.org |
-| 79 | ToineSiebelink | 0 | +0 | 0 | - | 1 | est.tech |
-| 80 | Tomasz Wrobel | 0 | +0 | 0 | - | 1 | nokia.com |
-| 81 | Tommy Carpenter | 0 | +0 | 0 | - | 1 | att.com |
-| 82 | Trevor Bramwell | 0 | +0 | 0 | - | 12 | linuxfoundation.org |
-| 83 | Vratko Polak | 0 | +0 | 0 | - | 2 | cisco.com |
-| 84 | Zack Williams | 0 | +0 | 0 | - | 1 | opennetworking.org |
-| 85 | alejandro monje | 0 | +0 | 0 | - | 1 | navy.mil |
-| 86 | amit.sarnath | 0 | +0 | 0 | - | 1 | hcl.com |
-| 87 | czichy | 0 | +0 | 0 | - | 1 | nokia.com |
-| 88 | dmcbride1 | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
-| 89 | guillaume.lambert | 0 | +0 | 0 | - | 3 | orange.com |
+| 78 | Thanh Ha | 0 | +0 | 0 | - | 9 | linux.com |
+| 79 | Tim Johnson | 0 | +0 | 0 | - | 5 | linuxfoundation.org |
+| 80 | ToineSiebelink | 0 | +0 | 0 | - | 1 | est.tech |
+| 81 | Tomasz Wrobel | 0 | +0 | 0 | - | 1 | nokia.com |
+| 82 | Tommy Carpenter | 0 | +0 | 0 | - | 1 | att.com |
+| 83 | Trevor Bramwell | 0 | +0 | 0 | - | 12 | linuxfoundation.org |
+| 84 | Vratko Polak | 0 | +0 | 0 | - | 2 | cisco.com |
+| 85 | Zack Williams | 0 | +0 | 0 | - | 1 | opennetworking.org |
+| 86 | alejandro monje | 0 | +0 | 0 | - | 1 | navy.mil |
+| 87 | amit.sarnath | 0 | +0 | 0 | - | 1 | hcl.com |
+| 88 | czichy | 0 | +0 | 0 | - | 1 | nokia.com |
+| 89 | dmcbride1 | 0 | +0 | 0 | - | 1 | linuxfoundation.org |
 | 90 | hekeguang | 0 | +0 | 0 | - | 1 | chinamobile.com |
 | 91 | hoejoo.lee | 0 | +0 | 0 | - | 1 | samsung.com |
 | 92 | josephthaliath | 0 | +0 | 0 | - | 1 | samsung.com |
@@ -241,24 +241,24 @@ The data presented in the table below covers the past 365 days.
 | ansible/roles/lf-recommended-tools | None | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
 | ansible/roles/system-update | None | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
 | ansible/roles/python-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ |
-| ansible/roles/mono-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
-| ansible/roles/haveged-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
-| ansible/roles/protobuf-install | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
+| ansible/roles/lf-dev-libs | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
 | ansible/roles/docker-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
 | ansible/roles/packer-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
-| ansible/roles/lf-dev-libs | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
+| ansible/roles/protobuf-install | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
+| ansible/roles/haveged-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
+| ansible/roles/mono-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
 | puppet/modules/gce | ruby | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | puppet/modules/mailman3 | ruby | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
 | ansible/roles | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
-| clav2test/ccla-only-project | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | lfn/process | None | ❌ | ❌ | ✅ | ✅ | ❌ | 🛑 |
 | clav2test/icla-and-ccla-project | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
+| clav2test/ccla-only-project | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | releng/ci-workshop | docker | ❌ | ✅ | ❌ | ✅ | ❌ | 🛑 |
-| ansible/roles/shellcheck-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
 | ansible/roles/sysstat-install | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
+| ansible/roles/shellcheck-install | None | ❌ | ✅ | ❌ | ✅ | ✅ | ☑️ |
 | releng/license-checker | None | ❌ | ❌ | ❌ | ✅ | ❌ | 🛑 |
-| releng/docs-conf | python | ❌ | ✅ | ✅ | ✅ | ❌ | ☑️ |
 | releng/pipelines | gradle | ❌ | ✅ | ✅ | ✅ | ❌ | 🛑 |
+| releng/docs-conf | python | ❌ | ✅ | ✅ | ✅ | ❌ | ☑️ |
 | releng | None | ❌ | ❌ | ❌ | ❌ | ❌ | ☑️ |
 | sandbox-info-master | None | ❌ | ❌ | ❌ | ❌ | ❌ | 🛑 |
 | releng/nexus-upload | None | ❌ | ✅ | ❌ | ✅ | ❌ | ☑️ |
